@@ -1,29 +1,13 @@
 using Microsoft.OpenApi.Models;
+using PSR.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
+var startup = new Startup(builder.Configuration, builder.Environment);
 
-// Add services to the container.
+startup.ConfigureServices(builder.Services);
 
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new() { Title = "PSR.WebApi", Version = "v1" });
-});
+using var app = builder.Build();
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (builder.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PSR.WebApi v1"));
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+startup.Configure(app);
 
 app.Run();
