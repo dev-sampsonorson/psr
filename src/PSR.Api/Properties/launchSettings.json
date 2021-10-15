@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "PSR.WebApi": {
+    "PSR.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

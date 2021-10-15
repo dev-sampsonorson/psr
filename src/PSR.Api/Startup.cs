@@ -1,4 +1,6 @@
-namespace PSR.WebApi
+using PSR.Infrastructure;
+
+namespace PSR.Api
 {
     public class Startup
     {
@@ -11,9 +13,12 @@ namespace PSR.WebApi
         }
 
         public void ConfigureServices(IServiceCollection services) {
+            services.AddInfrastructureServices(_configuration);
+
+
             services.AddControllers();
             services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new() { Title = "PSR.WebApi", Version = "v1" });
+                c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
         }
 
@@ -22,7 +27,7 @@ namespace PSR.WebApi
             if (_env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PSR.WebApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PSR.Api v1"));
             }
             app.UseRouting();
             

@@ -1,5 +1,5 @@
 using Microsoft.OpenApi.Models;
-using PSR.WebApi;
+using PSR.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 var startup = new Startup(builder.Configuration, builder.Environment);

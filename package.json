@@ -1,10 +1,10 @@
 {
-  "name": "PSR.Backend",
+  "name": "psr-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "launch": "dotnet build && dotnet run --project src/PSR.WebApi"
+    "launch": "dotnet build && dotnet run --project src/PSR.Api"
   },
   "keywords": [],
   "author": "",
