@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using PSR.Api.Services;
 using PSR.Infrastructure;
 using PSR.Infrastructure.Data;
 
@@ -33,6 +34,7 @@ namespace PSR.Api
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
+            services.AddApiServices(_configuration);
         }
 
         public void Configure(IApplicationBuilder app) {
