@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using PSR.Api.Auth;
+using PSR.Api.Interface;
 using PSR.Application;
 
 namespace PSR.Api.Controllers.v1
@@ -7,20 +10,17 @@ namespace PSR.Api.Controllers.v1
     // [Route("api/[controller]")]
     public class TestController : BaseController
     {
-        private readonly ILogger _logger;
-        /* public TestController(ILoggerFactory loggerFactory) {
-            _logger = loggerFactory.CreateLogger("PSR_Logs");
-        } */
-        public TestController(IUnitOfWork unitOfWork, ILoggerFactory loggerFactory) : base(unitOfWork) {
-            _logger = loggerFactory.CreateLogger("PSR_Logs");
+        private readonly ITestRepository _testRepository;
+        
+        public TestController(ITestRepository testRepository, ILoggerFactory loggerFactory) : base(loggerFactory) {
+            _testRepository = testRepository ?? throw new ArgumentNullException(nameof(testRepository));
         }
         
-        [HttpGet]
+        [HttpGet(ApiRoutes.Test.GetTestDescription)]
         public IActionResult GetTestDescription() {
-            ITestRepository repo = _unitOfWork.Get<ITestRepository>();
-
-
-            return Ok(repo.GetTestDescription());
+            
+            // var uri = API.Basket.GetBasket(_basketByPassUrl, user.Id);
+            return Ok(_testRepository.GetTestDescription());
         }
     }
 }

@@ -1,4 +1,7 @@
+using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using PSR.Infrastructure;
+using PSR.Infrastructure.Data;
 
 namespace PSR.Api
 {
@@ -13,6 +16,16 @@ namespace PSR.Api
         }
 
         public void ConfigureServices(IServiceCollection services) {
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+                        //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency 
+                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                    });
+                // options.UseLoggerFactory()
+            });
             services.AddInfrastructureServices(_configuration);
 
 

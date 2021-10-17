@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using PSR.Api.Auth;
+using PSR.Api.Interface;
 using PSR.Application;
 
 namespace PSR.Api.Controllers.v1
@@ -9,10 +12,10 @@ namespace PSR.Api.Controllers.v1
     [ApiController]
     public class BaseController : ControllerBase
     {
-        protected readonly IUnitOfWork _unitOfWork;
+        protected readonly ILogger _logger;
 
-        public BaseController(IUnitOfWork unitOfWork) {
-            _unitOfWork = unitOfWork;
+        public BaseController(ILoggerFactory loggerFactory) {
+            _logger = loggerFactory.CreateLogger("PSR_Logs");
         }
     }
 }

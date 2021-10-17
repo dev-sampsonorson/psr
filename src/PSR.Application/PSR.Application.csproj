@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
-    <ProjectReference Include="..\PSR.Domain\PSR.Domain.csproj" />
-    <ProjectReference Include="..\PSR.SharedKernel\PSR.SharedKernel.csproj" />
+    <ProjectReference Include="..\PSR.Domain\PSR.Domain.csproj"/>
+    <ProjectReference Include="..\PSR.SharedKernel\PSR.SharedKernel.csproj"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.3"/>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3"/>
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
 </Project>

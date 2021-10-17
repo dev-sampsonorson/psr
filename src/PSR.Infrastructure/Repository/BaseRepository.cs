@@ -14,51 +14,41 @@ namespace PSR.Infrastructure.Repository
         protected readonly ILogger _logger;
         internal DbSet<T> dbSet;
 
+        public IUnitOfWork UnitOfWork {
+            get {
+                return _context;
+            }
+        }
+
         public BaseRepository(AppDbContext context, ILogger logger) {
-            _context = context;
-            _logger = logger;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            
             dbSet = context.Set<T>();
         }
 
-        public async Task<T> Add(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            await dbSet.AddAsync(entity);
-            
-            return entity;
+            var result = await dbSet.AddAsync(entity);
+            return result.Entity;
         }
 
-        public async Task<bool> Delete(T entity)
+        public async Task<T> GetByIdAsync(Guid id)
         {
-            dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
-
-            return true;
+            return await dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<T> GetById(Guid id)
+        public async Task<T> GetByIdAsync(Guid id, string include)
         {
-            return await dbSet.FindAsync(id);
+            return await dbSet.Include(include).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<T> GetById(Guid id, string include)
-        {
-            return await dbSet.Include(include).SingleOrDefaultAsync(e => e.Id == id);
-        }
-
-        public async Task<IEnumerable<T>> List() {
+        public async Task<IEnumerable<T>> ListAsync() {
             return await dbSet.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> List(ISpecification<T> spec) {
+        public async Task<IEnumerable<T>> ListAsync(ISpecification<T> spec) {
             return await dbSet.Where(spec.Criteria).ToListAsync();
-        }
-
-        public async Task<bool> Update(T entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return true;
         }
     }
 }

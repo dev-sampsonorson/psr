@@ -19,7 +19,7 @@ namespace PSR.Infrastructure.Data
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString); //, sqlServerOptionsAction: o => o.MigrationsAssembly("PSR.Api")
             return new AppDbContext(optionsBuilder.Options);
         }
     }

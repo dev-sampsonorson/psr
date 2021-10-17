@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "launch": "dotnet build && dotnet run --project src/PSR.Api"
+    "launch": "dotnet build && dotnet run --project src/PSR.Api",
+    "migration:add": "dotnet ef migrations add %npm_config_name% --project ./src/PSR.Infrastructure --startup-project ./src/PSR.Api",
+    "migration:remove": "dotnet ef migrations remove --project ./src/PSR.Infrastructure --startup-project ./src/PSR.Api",
+    "db:update": "dotnet ef database update --project ./src/PSR.Infrastructure --startup-project ./src/PSR.Api"
   },
   "keywords": [],
   "author": "",
