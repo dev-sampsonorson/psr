@@ -25,21 +25,14 @@ namespace PSR.Auth
                 // the signing key is valid and is trusted by the server
                 ValidateIssuerSigningKey = true, 
                 IssuerSigningKey = new SymmetricSecurityKey(key),
-            
-                // The token is going to be valid if the issue
-                // is the actual server that created the token
                 ValidateIssuer = false,
-            
-                // The receiver of the token is a valid recepient
                 ValidateAudience = false,
-            
-                // The token has not expired
+                ValidIssuer = configuration["JwtSettings:Issuer"],
+                ValidAudience = configuration["JwtSettings:Audience"],
+
                 ValidateLifetime = true,
                 RequireExpirationTime = true,
-                ClockSkew = TimeSpan.Zero,
-            
-                ValidIssuer = configuration["JwtSettings:Issuer"],
-                ValidAudience = configuration["JwtSettings:Audience"]
+                ClockSkew = TimeSpan.Zero            
             };
             services.AddSingleton(tokenValidationParams);
             services.AddAuthentication(options => {
