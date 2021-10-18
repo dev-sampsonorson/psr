@@ -35,7 +35,8 @@ namespace PSR.Auth
             
                 // The token has not expired
                 ValidateLifetime = true,
-                RequireExpirationTime = false,
+                RequireExpirationTime = true,
+                ClockSkew = TimeSpan.Zero,
             
                 ValidIssuer = configuration["JwtSettings:Issuer"],
                 ValidAudience = configuration["JwtSettings:Audience"]
