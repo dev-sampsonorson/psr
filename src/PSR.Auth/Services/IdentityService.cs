@@ -10,9 +10,13 @@ namespace PSR.Auth.Services
         public class IdentityService : IIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-        public IdentityService(UserManager<ApplicationUser> userManager) {
+        public IdentityService(
+            UserManager<ApplicationUser> userManager,
+            IRefreshTokenRepository refreshTokenRepository) {
             _userManager = userManager;
+            _refreshTokenRepository = refreshTokenRepository;
         }
 
         public async Task<bool> VerifyPassword(ApplicationUser user, string password) {

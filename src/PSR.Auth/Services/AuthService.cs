@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BlitzkriegSoftware.SecureRandomLibrary;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -193,11 +194,50 @@ namespace PSR.Auth.Services
             return AuthRes.Success(jwtToken, refreshToken.Token);
         }
         
+        public async Task<AuthRes> RevokeTokenAsync(string refreshToken) {
+            var token = await _refreshTokenRepository.GetByRefreshTokenAsync(refreshToken);
+            if (token is null) {                
+                return AuthRes.Failure(new List<string> {
+                    "Invalid token"
+                });
+            }
+
+            var user = await _identityService.GetUserByIdAsync(token.UserId);
+
+            if (token.IsUsed || token.IsRevorked) {
+                return AuthRes.Failure(new List<string> {
+                    "Invalid token"
+                });
+            }
+
+            // revoke token and save
+            RevokeRefreshToken(token, "Revoked without replacement");
+
+            var result = await _refreshTokenRepository.UnitOfWork.SaveEntitiesAsync();
+
+            if (!result) {
+                return AuthRes.Failure(new List<string> {
+                    "Revoke token failed"
+                });
+            }
+
+            return AuthRes.Success("Token revoked");
+        }
+
+        private void RevokeRefreshToken(RefreshToken token, string? reason = null) {
+            // string ipAddress, string reason = null, string replacedByToken = null
+            token.IsRevorked = true;
+            token.RevokedDate = DateTime.UtcNow;
+            token.ReasonRevoked = reason;
+        }
+
         private RefreshToken GenerateRefreshToken(string securityTokenId, string userId) {
             var secureRandom = new SecureRandom();
             var randomBytes = new byte[64];
             secureRandom.NextBytes(randomBytes);
             var refreshTokenString = Convert.ToBase64String(randomBytes);
+
+            var refreshTokenExpiry = DateTime.UtcNow.AddMonths(6);
 
             var refreshToken = new RefreshToken() {
                 JwtId = securityTokenId,
@@ -205,7 +245,7 @@ namespace PSR.Auth.Services
                 IsRevorked = false,
                 UserId = userId,
                 AddedDate = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.AddMonths(6),
+                ExpiryDate = refreshTokenExpiry,
                 Token = refreshTokenString
             };
 
@@ -226,5 +266,7 @@ namespace PSR.Auth.Services
             dateTimeVal = dateTimeVal.AddSeconds(unixTimeStamp).ToUniversalTime();
             return dateTimeVal;
         }
+
+        
     }
 }

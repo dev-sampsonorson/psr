@@ -36,13 +36,16 @@ namespace PSR.Api.Controllers.v1
                 }));
             }
 
-            var authResponse = await _authFacade.RegisterAsync(registrationReq);
+            var result = await _authFacade.RegisterAsync(registrationReq);
 
-            if (!authResponse.Succeeded) {
-                return BadRequest(authResponse);
+            if (!result.Succeeded) {
+                return BadRequest(result);
             }
 
-            return Ok(authResponse);
+            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
+                SetTokenCookie(result.RefreshToken);
+
+            return Ok(result);
         }
         
         [HttpPost]
@@ -54,9 +57,12 @@ namespace PSR.Api.Controllers.v1
                 }));
             }
 
-            var response = await _authFacade.LoginAsync(loginReq);
+            var result = await _authFacade.LoginAsync(loginReq);
 
-            return Ok(response);
+            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
+                SetTokenCookie(result.RefreshToken);
+
+            return Ok(result);
         }
         
         [HttpPost]
@@ -69,7 +75,38 @@ namespace PSR.Api.Controllers.v1
             }
 
             var result = await _authService.RefreshTokenAsync(tokenReq.Token, tokenReq.RefreshToken);
+
+            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
+                SetTokenCookie(result.RefreshToken);
+
             return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("revoke")]
+        public async Task<IActionResult> RevokeToken(RevokeTokenReq revokeReq)
+        {
+            // accept refresh token in request body or cookie
+            var refreshToken = revokeReq.RefreshToken ?? Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(refreshToken)) {
+                return BadRequest(AuthRes.Failure(new List<string>() {
+                    "Invalid payload"
+                }));
+            }
+
+            var result = await _authService.RevokeTokenAsync(refreshToken);
+
+            return Ok(result);
+        }
+
+        private void SetTokenCookie(string refreshToken) {
+            // append cookie with refresh token to the http response
+            var cookieOptions = new CookieOptions {
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
+            Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
         }
     }
 }

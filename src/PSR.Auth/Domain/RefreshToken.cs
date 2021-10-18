@@ -13,6 +13,8 @@ namespace PSR.Auth.Domain
         public string JwtId { get; set; } = "";
         public bool IsUsed { get; set; }
         public bool IsRevorked { get; set; }
+        public DateTime? RevokedDate { get; set; }
+        public string? ReasonRevoked { get; set; } = null;
         public DateTime AddedDate { get; set; }
         public DateTime ExpiryDate { get; set; }
         public ApplicationUser User { get; set; } = default!;
