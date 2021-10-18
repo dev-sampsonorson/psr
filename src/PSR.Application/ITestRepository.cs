@@ -1,4 +1,5 @@
 using PSR.Domain;
+using PSR.SharedKernel;
 
 namespace PSR.Application
 {

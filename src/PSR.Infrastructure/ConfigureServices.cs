@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PSR.Application;
 using PSR.Application.Repository;
-using PSR.Infrastructure.Data;
+using PSR.Auth.Interfaces;
 using PSR.Infrastructure.Repository;
 
 namespace PSR.Infrastructure
@@ -18,6 +18,7 @@ namespace PSR.Infrastructure
 
             services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             // services.AddScoped<IRepositoryFactory, RepositoryFactory>();
             // services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -1,6 +1,12 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using PSR.Api.Converters;
 using PSR.Api.Services;
+using PSR.Application;
+using PSR.Auth;
+using PSR.Auth.Domain;
+using PSR.Auth.Interfaces;
+using PSR.Auth.Services;
 using PSR.Infrastructure;
 using PSR.Infrastructure.Data;
 
@@ -28,13 +34,21 @@ namespace PSR.Api
                 // options.UseLoggerFactory()
             });
             services.AddInfrastructureServices(_configuration);
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddEntityFrameworkStores<AppDbContext>();
 
-
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options => {
+                options.JsonSerializerOptions.Converters.Add(new CountryJsonConverter());
+            });
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
             services.AddApiServices(_configuration);
+            services.AddAuthServices(_configuration);
+            services.AddApplicationServices(_configuration);
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
         }
 
         public void Configure(IApplicationBuilder app) {
@@ -47,7 +61,7 @@ namespace PSR.Api
             app.UseRouting();
             
             // app.UseHttpsRedirection();
-            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(x => x.MapControllers());

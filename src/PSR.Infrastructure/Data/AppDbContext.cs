@@ -1,10 +1,11 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using PSR.Application;
 using PSR.Application.Exceptions;
+using PSR.Auth.Domain;
 using PSR.Domain;
-using PSR.Infrastructure.Auth;
 using PSR.SharedKernel;
 
 namespace PSR.Infrastructure.Data
@@ -27,8 +28,7 @@ namespace PSR.Infrastructure.Data
                     x => x.Value,
                     x => new EmployeeId(x)); */
             
-            // modelBuilder.ApplyConfigurationsFromAssembly(typeof(EmployeeConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
 

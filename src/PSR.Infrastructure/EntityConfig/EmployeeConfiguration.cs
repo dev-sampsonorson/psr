@@ -7,10 +7,10 @@ using PSR.SharedKernel;
 
 namespace PSR.Infrastructure.EntityConfig
 {
-    public class EmployeeConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<Employee>
+    public class EmployeeConfiguration : BaseEntityConfiguration<Employee>
     {
 
-        public void Configure(EntityTypeBuilder<Employee> builder)
+        protected override void ConfigureEntity(EntityTypeBuilder<Employee> builder)
         {
             builder.ToTable("Employee", AppDbContext.DEFAULT_SCHEMA);
 
@@ -46,9 +46,6 @@ namespace PSR.Infrastructure.EntityConfig
                     x => x.Id,
                     x => Enumeration.FromValue<EmployeeStatus>(x))
                 .HasColumnName("StatusId");
-
-            builder.Property<byte[]>(RowVersion)
-                .IsRowVersion();
         }
     }
 }

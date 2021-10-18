@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PSR.Infrastructure.Repository
 {
-    public class BaseRepository<T> : IRepository<T> where T : BaseEntity
+    public class BaseRepository<T> : IRepository<T> where T : class
     {
         protected readonly AppDbContext _context;
         protected readonly ILogger _logger;
@@ -32,17 +32,7 @@ namespace PSR.Infrastructure.Repository
             var result = await dbSet.AddAsync(entity);
             return result.Entity;
         }
-
-        public async Task<T> GetByIdAsync(Guid id)
-        {
-            return await dbSet.FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task<T> GetByIdAsync(Guid id, string include)
-        {
-            return await dbSet.Include(include).FirstOrDefaultAsync(x => x.Id == id);
-        }
-
+        
         public async Task<IEnumerable<T>> ListAsync() {
             return await dbSet.ToListAsync();
         }

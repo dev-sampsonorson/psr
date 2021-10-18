@@ -6,13 +6,18 @@ using PSR.Infrastructure.Data;
 
 namespace PSR.Infrastructure.Repository
 {
-    public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
+    public class EmployeeRepository : BaseEntityRepository<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(AppDbContext context, ILogger<EmployeeRepository> logger) : base(context, logger) { }
         
         public void Delete(Employee entity)
         {
             dbSet.Remove(entity);
+        }
+
+        public async Task<Employee> GetByUserIdAsync(string userId)
+        {
+            return await dbSet.FirstOrDefaultAsync(x => x.UserId == userId);
         }
 
         public void Update(Employee entity)

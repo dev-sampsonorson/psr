@@ -1,8 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using PSR.Api.Auth;
-using PSR.Api.Interface;
-using PSR.Application;
 
 namespace PSR.Api.Controllers.v1
 {

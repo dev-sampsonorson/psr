@@ -4,6 +4,7 @@ namespace PSR.Domain
 {
     public class Country : Enumeration
     {
+        public static Country Empty = new Country(0, nameof(Empty).ToLowerInvariant()); 
         public static Country Andorra = new Country(1, nameof(Andorra).ToLowerInvariant()); 
         public static Country UnitedArabEmirates = new Country(2, nameof(UnitedArabEmirates).ToLowerInvariant()); 
         public static Country Afghanistan = new Country(3, nameof(Afghanistan).ToLowerInvariant()); 

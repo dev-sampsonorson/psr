@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using PSR.Application;
+using PSR.SharedKernel;
 
 namespace PSR.Infrastructure.Repository
 {
