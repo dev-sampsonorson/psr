@@ -17,7 +17,7 @@
 
 
 # Authentiation
-
+- if user has no role log them out
 
 
 

@@ -13,5 +13,6 @@ namespace PSR.Auth.Interfaces
         // Task<AuthRes> JwtTokenAsync(ApplicationUser user);
         Task<AuthRes> RefreshTokenAsync(string token, string refreshToken);
         Task<AuthRes> RevokeTokenAsync(string refreshToken);
+        string ExtractUserIdFromJwtToken(string token);
     }
 }

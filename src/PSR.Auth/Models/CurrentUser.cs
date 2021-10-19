@@ -1,3 +1,4 @@
+using PSR.Auth.Domain;
 using PSR.Auth.Interfaces;
 
 namespace PSR.Auth.Models

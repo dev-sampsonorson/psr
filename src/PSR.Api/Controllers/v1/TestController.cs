@@ -29,6 +29,7 @@ namespace PSR.Api.Controllers.v1
 
             var kkk = HttpContext.User;
             var kkkk = _currentUserService.CurrentUser;
+            var eeee = HttpContext.Items;
             
             // var uri = API.Basket.GetBasket(_basketByPassUrl, user.Id);
             return Ok(_testRepository.GetTestDescription());

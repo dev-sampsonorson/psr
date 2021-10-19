@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
+using PSR.Auth.Exceptions;
 using PSR.Auth.Interfaces;
 using PSR.Auth.Models.Request;
 using PSR.Auth.Models.Response;
@@ -163,6 +164,10 @@ namespace PSR.Auth.Services
             }
         }
 
+        public async Task ChangePreviousTokensToUsedAsync(string userId) {
+            await _refreshTokenRepository.ChangePreviousTokensToUsedAsync(userId);
+        }
+
         public async Task<AuthRes> JwtTokenAsync(ApplicationUser user, string firstName, string lastName) {
             var jwtHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
@@ -186,10 +191,14 @@ namespace PSR.Auth.Services
             var token = jwtHandler.CreateToken(tokenDescriptor);
             var jwtToken = jwtHandler.WriteToken(token);
 
+            await ChangePreviousTokensToUsedAsync(user.Id);
+
             var refreshToken = GenerateRefreshToken(token.Id, user.Id);
 
             await _refreshTokenRepository.AddAsync(refreshToken);
+            RemoveOldRefreshTokens(user.Id);
             await _refreshTokenRepository.UnitOfWork.SaveEntitiesAsync();
+            
 
             return AuthRes.Success(jwtToken, refreshToken.Token);
         }
@@ -224,6 +233,39 @@ namespace PSR.Auth.Services
             return AuthRes.Success("Token revoked");
         }
 
+        public string ExtractUserIdFromJwtToken(string token) {
+                // throw new InvalidJwtTokenException("Token not found");
+            if (string.IsNullOrEmpty(token))
+                throw new InvalidJwtTokenException("Token not found");
+
+            try {
+                var jwtTokenHanlder = new JwtSecurityTokenHandler();
+    
+                // make sure the token is a valid jwt token and not a random string
+                var claimsPrincipal = jwtTokenHanlder.ValidateToken(token, _tokenValidationParams, out var validatedToken);
+    
+                // Validation 2 - Validate encryption algorithm
+                // is it a JwtSecurityToken
+                // IsJwtWithValidSecurityAlgorithm
+                if (!IsJwtWithValidSecurityAlgorithm(validatedToken)) {
+                    throw new InvalidJwtTokenException("Invalid authentication request");
+                }
+
+                // check if the token is expired
+                var utcExpiryDate = long.Parse(claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp)?.Value ?? "0");
+                var expiryDate = UnixTimeStapToDateTime(utcExpiryDate);
+                if (expiryDate < DateTime.UtcNow) {
+                    throw new InvalidJwtTokenException("Token has not yet expired");
+                }
+                
+                var userId = claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == AuthClaimTypes.UserId)?.Value ?? "";
+
+                return userId;
+
+            } catch {
+                throw;
+            }
+        }
         private void RevokeRefreshToken(RefreshToken token, string? reason = null) {
             // string ipAddress, string reason = null, string replacedByToken = null
             token.IsRevorked = true;
@@ -265,6 +307,12 @@ namespace PSR.Auth.Services
             var dateTimeVal = new DateTime(1970, 1,1,0,0,0,0, DateTimeKind.Utc);
             dateTimeVal = dateTimeVal.AddSeconds(unixTimeStamp).ToUniversalTime();
             return dateTimeVal;
+        }
+
+        private void RemoveOldRefreshTokens(string userId) {
+            // remove old used refresh tokens based on TTL
+            _refreshTokenRepository.Delete(x => x.IsUsed &&
+                    x.AddedDate.AddDays(_jwtSettings.RefreshTokenTTL) <= DateTime.UtcNow);
         }
 
         

@@ -64,6 +64,7 @@ namespace PSR.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(x => x.MapControllers());
 
             app.UseEndpoints(endpoints => {
