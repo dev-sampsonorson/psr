@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using PSR.Api.Converters;
+using PSR.Api.Helpers;
 using PSR.Api.Services;
 using PSR.Application;
 using PSR.Auth;
@@ -63,6 +64,9 @@ namespace PSR.Api
             // app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             // app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(x => x.MapControllers());

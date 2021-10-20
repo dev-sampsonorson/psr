@@ -234,7 +234,6 @@ namespace PSR.Auth.Services
         }
 
         public string ExtractUserIdFromJwtToken(string token) {
-                // throw new InvalidJwtTokenException("Token not found");
             if (string.IsNullOrEmpty(token))
                 throw new InvalidJwtTokenException("Token not found");
 
@@ -266,6 +265,7 @@ namespace PSR.Auth.Services
                 throw;
             }
         }
+        
         private void RevokeRefreshToken(RefreshToken token, string? reason = null) {
             // string ipAddress, string reason = null, string replacedByToken = null
             token.IsRevorked = true;
@@ -308,7 +308,6 @@ namespace PSR.Auth.Services
             dateTimeVal = dateTimeVal.AddSeconds(unixTimeStamp).ToUniversalTime();
             return dateTimeVal;
         }
-
         private void RemoveOldRefreshTokens(string userId) {
             // remove old used refresh tokens based on TTL
             _refreshTokenRepository.Delete(x => x.IsUsed &&
