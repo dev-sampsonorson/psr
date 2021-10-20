@@ -1,3 +1,5 @@
+using System;
+
 namespace PSR.SharedKernel
 {
     // source: https://github.com/jhewlett/ValueObject

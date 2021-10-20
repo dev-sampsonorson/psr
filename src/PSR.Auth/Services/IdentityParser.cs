@@ -7,6 +7,8 @@ using PSR.SharedKernel;
 using PSR.Auth.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 using PSR.Auth.Models;
+using System.Linq;
+using System;
 
 namespace PSR.Auth.Services
 {

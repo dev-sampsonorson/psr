@@ -3,8 +3,10 @@ using Microsoft.Extensions.Logging;
 using PSR.Application;
 using PSR.Infrastructure.Data;
 using PSR.SharedKernel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PSR.Infrastructure.Repository
 {
@@ -23,6 +25,5 @@ namespace PSR.Infrastructure.Repository
         {
             return await dbSet.Include(include).FirstOrDefaultAsync(x => x.Id == id);
         }
-
     }
 }

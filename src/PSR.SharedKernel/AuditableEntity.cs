@@ -1,3 +1,5 @@
+using System;
+
 namespace PSR.SharedKernel
 {
     public class AuditableEntity : BaseEntity

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
 using PSR.Auth.Models.Request;

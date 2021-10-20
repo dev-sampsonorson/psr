@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using PSR.Application;
 using PSR.Application.Response;
 using PSR.Infrastructure.Data;
@@ -15,6 +17,11 @@ namespace PSR.Infrastructure
         public List<CountryRes> GetCountries()
         {
             throw new NotImplementedException();
+        }
+
+        List<CountryRes> ICountryService.GetCountries()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

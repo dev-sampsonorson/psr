@@ -1,3 +1,5 @@
+using System;
+
 namespace PSR.Domain
 {
         public class DomainException : Exception

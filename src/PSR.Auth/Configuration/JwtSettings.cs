@@ -1,3 +1,5 @@
+using System;
+
 namespace PSR.Auth.Configuration
 {
     public class JwtSettings

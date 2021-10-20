@@ -1,3 +1,4 @@
+using System;
 using PSR.SharedKernel;
 
 namespace PSR.Auth.Domain

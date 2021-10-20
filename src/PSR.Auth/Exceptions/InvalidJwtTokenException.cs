@@ -1,3 +1,5 @@
+using System;
+
 namespace PSR.Auth.Exceptions
 {
     public class InvalidJwtTokenException : Exception

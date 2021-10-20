@@ -1,3 +1,5 @@
+using System;
+
 namespace PSR.Application.Exceptions
 {
     public class InvalidCastingException : Exception
