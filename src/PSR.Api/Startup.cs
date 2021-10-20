@@ -35,7 +35,7 @@ namespace PSR.Api
                 // options.UseLoggerFactory()
             });
             services.AddInfrastructureServices(_configuration);
-            services.AddDefaultIdentity<ApplicationUser>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddControllers().AddJsonOptions(options => {
