@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "css"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -25,13 +25,13 @@
             "main": "projects/psr/src/main.ts",
             "polyfills": "projects/psr/src/polyfills.ts",
             "tsConfig": "projects/psr/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               "projects/psr/src/favicon.ico",
               "projects/psr/src/assets"
             ],
             "styles": [
-              "projects/psr/src/styles.scss"
+              "projects/psr/src/styles.css"
             ],
             "scripts": []
           },
@@ -93,13 +93,13 @@
             "polyfills": "projects/psr/src/polyfills.ts",
             "tsConfig": "projects/psr/tsconfig.spec.json",
             "karmaConfig": "projects/psr/karma.conf.js",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               "projects/psr/src/favicon.ico",
               "projects/psr/src/assets"
             ],
             "styles": [
-              "projects/psr/src/styles.scss"
+              "projects/psr/src/styles.css"
             ],
             "scripts": []
           }
