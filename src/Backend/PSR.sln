@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Api", "PSR.Api\PSR.Api.csproj", "{7BB5BE2B-C1BD-4D22-9098-D4D01C7AF019}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Application", "PSR.Application\PSR.Application.csproj", "{4DD69AA5-B8AC-4411-A47C-5301233C7383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Auth", "PSR.Auth\PSR.Auth.csproj", "{C1329220-E6DE-411C-931C-A87F028F8152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Domain", "PSR.Domain\PSR.Domain.csproj", "{EAEB317D-EDAB-4319-A9CA-5183027079B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Infrastructure", "PSR.Infrastructure\PSR.Infrastructure.csproj", "{3C679190-F480-4311-9194-DBD420CB1704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Infrastructure.DataServices", "PSR.Infrastructure.DataServices\PSR.Infrastructure.DataServices.csproj", "{9D4AE72D-369E-493B-8388-A690682E81E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.SharedKernel", "PSR.SharedKernel\PSR.SharedKernel.csproj", "{96D24931-AE4D-4426-AC6F-0F3445767BAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BB5BE2B-C1BD-4D22-9098-D4D01C7AF019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB5BE2B-C1BD-4D22-9098-D4D01C7AF019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB5BE2B-C1BD-4D22-9098-D4D01C7AF019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB5BE2B-C1BD-4D22-9098-D4D01C7AF019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD69AA5-B8AC-4411-A47C-5301233C7383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD69AA5-B8AC-4411-A47C-5301233C7383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD69AA5-B8AC-4411-A47C-5301233C7383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD69AA5-B8AC-4411-A47C-5301233C7383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1329220-E6DE-411C-931C-A87F028F8152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1329220-E6DE-411C-931C-A87F028F8152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1329220-E6DE-411C-931C-A87F028F8152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1329220-E6DE-411C-931C-A87F028F8152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAEB317D-EDAB-4319-A9CA-5183027079B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAEB317D-EDAB-4319-A9CA-5183027079B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAEB317D-EDAB-4319-A9CA-5183027079B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAEB317D-EDAB-4319-A9CA-5183027079B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C679190-F480-4311-9194-DBD420CB1704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C679190-F480-4311-9194-DBD420CB1704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C679190-F480-4311-9194-DBD420CB1704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C679190-F480-4311-9194-DBD420CB1704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D4AE72D-369E-493B-8388-A690682E81E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4AE72D-369E-493B-8388-A690682E81E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4AE72D-369E-493B-8388-A690682E81E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4AE72D-369E-493B-8388-A690682E81E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
