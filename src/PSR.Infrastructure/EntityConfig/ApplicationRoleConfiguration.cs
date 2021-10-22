@@ -4,10 +4,10 @@ using PSR.Auth.Domain;
 
 namespace PSR.Infrastructure.EntityConfig
 {
-    public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    public class ApplicationRoleConfiguration : IEntityTypeConfiguration<ApplicationRole>
     {
 
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        public void Configure(EntityTypeBuilder<ApplicationRole> builder)
         {
         }
     }

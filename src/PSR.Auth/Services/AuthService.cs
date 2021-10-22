@@ -84,7 +84,7 @@ namespace PSR.Auth.Services
             // register user
             var identityResult = await _identityService.CreateUserAsync(newUser, registrationReq.Password);
 
-            return (identityResult, applicationUser);
+            return (identityResult, newUser);
         }
 
         public async Task<AuthRes> RefreshTokenAsync(string token, string refreshToken) {
@@ -176,15 +176,10 @@ namespace PSR.Auth.Services
             var jwtHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
 
+            var claims = await GetAllValidClaimsAsync(user, firstName, lastName);
+
             var tokenDescriptor = new SecurityTokenDescriptor {
-                Subject = new ClaimsIdentity(new [] {                    
-                    new Claim(AuthClaimTypes.UserId, user.Id),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(AuthClaimTypes.FirstName, firstName),
-                    new Claim(AuthClaimTypes.LastName, lastName),
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.Add(_jwtSettings.TokenLifetime), // TODO: update the expiration time to minutes
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
@@ -270,6 +265,38 @@ namespace PSR.Auth.Services
             }
         }
         
+        private async Task<List<Claim>> GetAllValidClaimsAsync(ApplicationUser user, string firstName, string lastName) {
+            var _options = new IdentityOptions();
+            var claims = new List<Claim> {
+                new Claim(AuthClaimTypes.UserId, user.Id),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(AuthClaimTypes.FirstName, firstName),
+                new Claim(AuthClaimTypes.LastName, lastName),
+            };
+
+            // Getting the claims that we have assigned to the user
+            var userClaims = await _identityService.GetClaimsAsync(user);
+            claims.AddRange(userClaims);
+
+            // Get the user role and ad it to the claims
+            var userRoles = await _identityService.GetRolesAsync(user);
+            foreach(var userRole  in userRoles) {
+                var role = await _identityService.FindByNameAsync(userRole);
+
+                if (role != null) {
+                    claims.Add(new Claim(ClaimTypes.Role, userRole));
+
+                    var roleClaims = await _identityService.GetClaimsAsync(role);
+                    foreach(var roleClaim in roleClaims) {
+                        claims.Add(roleClaim);
+                    }
+                }
+            }
+
+            return claims;
+        }
         private void RevokeRefreshToken(RefreshToken token, string? reason = null) {
             // string ipAddress, string reason = null, string replacedByToken = null
             token.IsRevorked = true;

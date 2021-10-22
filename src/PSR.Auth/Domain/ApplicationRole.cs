@@ -5,6 +5,6 @@ namespace PSR.Auth.Domain
 {
     public class ApplicationRole : IdentityRole, IApplicationRole
     {
-        
+        public ApplicationRole(string name): base(name) {}
     }
 }

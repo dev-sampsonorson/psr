@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,15 +12,17 @@ using PSR.SharedKernel;
 
 namespace PSR.Auth.Services
 {
-        public class IdentityService : IIdentityService
-    {
+    public class IdentityService : IIdentityService {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
 
         public IdentityService(
             UserManager<ApplicationUser> userManager,
+            RoleManager<ApplicationRole> roleManager,
             IRefreshTokenRepository refreshTokenRepository) {
             _userManager = userManager;
+            _roleManager = roleManager;
             _refreshTokenRepository = refreshTokenRepository;
         }
 
@@ -65,6 +70,121 @@ namespace PSR.Auth.Services
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
+        }
+
+        public async Task<Result> CreateRoleAsync(string name)
+        {
+            // check if role exist
+            var roleExist = await _roleManager.RoleExistsAsync(name);
+            
+            if (roleExist)
+                throw new FailedOperationException(nameof(CreateRoleAsync), "Role already exist");                
+
+            var roleResult = await _roleManager.CreateAsync(new ApplicationRole(name));
+
+            if (!roleResult.Succeeded)
+                throw new FailedOperationException(nameof(CreateRoleAsync), 
+                    $"The role {name} has not been added");
+
+            return Result.Success();
+        }
+
+        public async Task<Result> AddUserToRoleAsync(string email, string roleName)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                throw new EntityNotFoundException($"The user with the {email} does not exist");
+
+            // Check if role exist
+            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+                throw new EntityNotFoundException(roleName, "Role does not exist");
+                
+
+            var result = await _userManager.AddToRoleAsync(user, roleName);
+
+            if (!result.Succeeded)
+                throw new FailedOperationException(nameof(AddUserToRoleAsync), "The user was not able to be added to the role");
+
+            return Result.Success();
+        }
+
+        public async Task<Result> AddUserToRoleAsync(ApplicationUser? user, string roleName)
+        {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            // Check if role exist
+            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+                throw new EntityNotFoundException(roleName, "Role does not exist");
+                
+
+            var result = await _userManager.AddToRoleAsync(user, roleName);
+
+            if (!result.Succeeded)
+                throw new FailedOperationException(nameof(AddUserToRoleAsync), "The user was not able to be added to the role");
+
+            return Result.Success();
+        }
+
+        public List<ApplicationRole> GetAllRoles()
+        {
+            return _roleManager.Roles.ToList();
+        }
+
+        public async Task<Result<IList<string>>> GetUserRolesAsync(string email)
+        {
+            var userExist = await _userManager.FindByEmailAsync(email);
+
+            if (userExist == null)
+                throw new EntityNotFoundException("User does not exist");
+                
+            var roles = await _userManager.GetRolesAsync(userExist);
+            
+            return Result<IList<string>>.Success(roles);
+        }
+
+        public async Task<Result> RemoveUserFromRoleAsync(string email, string roleName)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)            
+                throw new EntityNotFoundException($"The user with the {email} does not exist");
+
+            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+                throw new EntityNotFoundException(roleName, "Role does not exist");
+
+            var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+
+            if (!result.Succeeded)
+                throw new FailedOperationException(nameof(RemoveUserFromRoleAsync), "Unable to remove User {email} from role {roleName}");
+
+            return Result.Success();
+        }
+
+        public List<ApplicationUser> GetAllUsers()
+        {
+            return _userManager.Users.ToList();
+        }
+
+        public async Task<IList<string>> GetRolesAsync(ApplicationUser user)
+        {
+            return await _userManager.GetRolesAsync(user);
+        }
+
+        public async Task<IList<Claim>> GetClaimsAsync(ApplicationUser user)
+        {
+            return await _userManager.GetClaimsAsync(user);
+        }
+
+        public async Task<IList<Claim>> GetClaimsAsync(ApplicationRole role)
+        {
+            return await _roleManager.GetClaimsAsync(role);
+        }
+        
+        public async Task<ApplicationRole> FindByNameAsync(string role) {
+            return await _roleManager.FindByNameAsync(role);
         }
     }
 

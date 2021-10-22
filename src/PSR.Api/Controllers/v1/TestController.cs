@@ -8,8 +8,7 @@ using PSR.Auth.Interfaces;
 
 namespace PSR.Api.Controllers.v1
 {
-    // [ApiController]
-    // [Route("api/[controller]")]
+    [Authorize(Roles = "AppUser")]
     public class TestController : BaseController
     {
         private readonly ITestRepository _testRepository;

@@ -11,14 +11,17 @@ namespace PSR.Api.Services
 {
     public class UserAuthFacade : IUserAuthFacade
     {
+        private readonly IIdentityService _identityService;
         private readonly IAuthService _authService;
         private readonly IEmployeeRepository _employeeRepository;
 
         public UserAuthFacade(
             IAuthService authService,
-            IEmployeeRepository employeeRepository) {
+            IEmployeeRepository employeeRepository,
+            IIdentityService identityService) {
             _authService = authService;
             _employeeRepository = employeeRepository;
+            _identityService = identityService;
         }
 
         public async Task<AuthRes> LoginAsync(UserLoginReq loginReq) {
@@ -41,6 +44,12 @@ namespace PSR.Api.Services
             if (!regResponse.Response.Succeeded || regResponse.User is null) {
                 return regResponse.Response;
             }
+
+            // add user to role
+            var role = await _identityService.FindByNameAsync("AppUser");
+
+            if (role is not null)
+               await _identityService.AddUserToRoleAsync(regResponse.User, "AppUser");
 
             // Register employee
             var newEmployee = new Employee {

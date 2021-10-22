@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using PSR.Application.Exceptions;
+using PSR.SharedKernel;
 
 namespace PSR.Api.Helpers
 {
