@@ -45,6 +45,10 @@ namespace PSR.Auth
                 jwt.TokenValidationParameters = tokenValidationParams;
             });
 
+            services.AddAuthorization(options => {
+                options.AddPolicy("OrganizationPolicy", policy => policy.RequireClaim("organization"));
+            });
+
             /*
             TODO: options => options.SignIn.RequireConfirmedAccount = true
             */

@@ -183,9 +183,33 @@ namespace PSR.Auth.Services
             return await _roleManager.GetClaimsAsync(role);
         }
         
-        public async Task<ApplicationRole> FindByNameAsync(string role) {
+        public async Task<ApplicationRole> GetRoleByNameAsync(string role) {
             return await _roleManager.FindByNameAsync(role);
         }
+
+        public async Task<Result> AddClaimAsync(ApplicationUser user, Claim userClaim) {
+            var result = await _userManager.AddClaimAsync(user, userClaim);
+
+            if (!result.Succeeded) {
+                return Result.Failure($"Unable to add claim {userClaim.Type} to the user {user.Email}");
+            }
+
+
+            return Result.Success();
+        }
+
+        public async Task<Result> RemoveClaimFromUser(ApplicationUser user, Claim userClaim) {
+            var result = await _userManager.RemoveClaimAsync(user, userClaim);
+
+            if (!result.Succeeded) {
+                return Result.Failure($"Unable to remove claim {userClaim.Type} from the user {user.Email}");
+            }
+
+
+            return Result.Success();
+        }
+
+
     }
 
     public static class IdentityResultExtensions

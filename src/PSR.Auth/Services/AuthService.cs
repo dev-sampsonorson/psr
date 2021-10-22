@@ -283,7 +283,7 @@ namespace PSR.Auth.Services
             // Get the user role and ad it to the claims
             var userRoles = await _identityService.GetRolesAsync(user);
             foreach(var userRole  in userRoles) {
-                var role = await _identityService.FindByNameAsync(userRole);
+                var role = await _identityService.GetRoleByNameAsync(userRole);
 
                 if (role != null) {
                     claims.Add(new Claim(ClaimTypes.Role, userRole));

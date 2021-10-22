@@ -38,7 +38,10 @@ namespace PSR.Auth.Interfaces
 
         Task<IList<Claim>> GetClaimsAsync(ApplicationRole role);
 
-        Task<ApplicationRole> FindByNameAsync(string role);
+        Task<ApplicationRole> GetRoleByNameAsync(string role);
+
+        Task<Result> AddClaimAsync(ApplicationUser user, Claim userClaim);
+        Task<Result> RemoveClaimFromUser(ApplicationUser user, Claim userClaim);
 
     }
 }

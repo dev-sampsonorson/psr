@@ -46,7 +46,7 @@ namespace PSR.Api.Services
             }
 
             // add user to role
-            var role = await _identityService.FindByNameAsync("AppUser");
+            var role = await _identityService.GetRoleByNameAsync("AppUser");
 
             if (role is not null)
                await _identityService.AddUserToRoleAsync(regResponse.User, "AppUser");
