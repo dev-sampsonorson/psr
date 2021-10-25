@@ -6,6 +6,7 @@ namespace PSR.Api.Services
 {
     public static class ApiConfigureServices
     {
+        private static readonly string CorsPolicyName = "CorsPolicy";
         public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
@@ -20,9 +21,22 @@ namespace PSR.Api.Services
                 options.DefaultApiVersion = ApiVersion.Default;
             });
 
+            services.AddCors(options => {
+                options.AddPolicy(CorsPolicyName,
+                    builder => builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials());
+            });
+
             services.AddScoped<IUserAuthFacade, UserAuthFacade>();
 
             return services;
+        }
+
+        public static void UseApiServices(this IApplicationBuilder app, IConfiguration configuration) {
+            app.UseCors(CorsPolicyName);
         }
         
     }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -17,14 +18,17 @@ namespace PSR.Api.Controllers.v1
     {
         private readonly IAuthService _authService;
         private readonly IUserAuthFacade _authFacade;
+        private readonly IMapper _mapper;
 
         public AuthController(
             ILoggerFactory loggerFactory,
             IAuthService authService,
-            IUserAuthFacade authFacade) : base(loggerFactory)
+            IUserAuthFacade authFacade,
+            IMapper mapper) : base(loggerFactory)
         {
             _authService = authService;
             _authFacade = authFacade;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -38,14 +42,14 @@ namespace PSR.Api.Controllers.v1
 
             var result = await _authFacade.RegisterAsync(registrationReq);
 
-            if (!result.Succeeded) {
+            if (!result.Response.Succeeded) {
                 return BadRequest(result);
             }
 
-            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
-                SetTokenCookie(result.RefreshToken);
-
-            return Ok(result);
+            /* if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
+                SetTokenCookie(result.RefreshToken); */
+            
+            return CreatedAtRoute("GetUser", new { id = result.User?.Id }, _mapper.Map<UserRegistrationRes>(result.User));
         }
         
         [HttpPost]

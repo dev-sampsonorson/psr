@@ -21,7 +21,8 @@ namespace PSR.Api.Converters
                 return Enumeration.FromValue<Country>(countryId);
             } catch(Exception) { }
 
-            throw new JsonFormatException(nameof(Country));
+            // throw new JsonFormatException(nameof(Country));
+            return Country.Empty;
         }
 
         public override void Write(Utf8JsonWriter writer, Country value, JsonSerializerOptions options)

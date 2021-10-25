@@ -64,11 +64,11 @@ namespace PSR.Auth.Services
             return (AuthRes.Success(), applicationUser);
         }
         
-        public async Task<(AuthRes Response, ApplicationUser? User)> RegisterAsync(UserRegistrationReq registrationReq) {
+        public async Task<(Result Response, ApplicationUser? User)> RegisterAsync(UserRegistrationReq registrationReq) {
             // check if the email exist
             var applicationUser = await _identityService.GetUserByEmailAsync(registrationReq.Email);
             if (applicationUser is not null) {
-                var response = AuthRes.Failure(new List<string> {
+                var response = Result.Failure(new List<string> {
                     "Email already in use"
                 });
                 

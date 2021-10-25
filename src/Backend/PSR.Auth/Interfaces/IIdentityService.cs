@@ -17,9 +17,9 @@ namespace PSR.Auth.Interfaces
 
         Task<string> GetUserNameAsync(string userId);
 
-        Task<AuthRes> CreateUserAsync(ApplicationUser user, string password);
+        Task<Result> CreateUserAsync(ApplicationUser user, string password);
 
-        Task<AuthRes> DeleteUserAsync(string userId);
+        Task<Result> DeleteUserAsync(string userId);
 
         Task<Result> CreateRoleAsync(string name);
 

@@ -10,6 +10,10 @@ using PSR.Auth.Interfaces;
 using PSR.Auth.Services;
 using PSR.Infrastructure;
 using PSR.Infrastructure.Data;
+using PSR.Api.Filters;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
+using PSR.Auth.Validators;
 
 namespace PSR.Api
 {
@@ -38,9 +42,30 @@ namespace PSR.Api
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddControllers().AddJsonOptions(options => {
+            services.AddControllers(options => {
+                options.Filters.Add<ValidationFilter>();
+            }).AddJsonOptions(options => {
                 options.JsonSerializerOptions.Converters.Add(new CountryJsonConverter());
+            }).AddFluentValidation(options => {
+                options.RegisterValidatorsFromAssemblyContaining<Startup>();
+                options.RegisterValidatorsFromAssemblyContaining<UserRegistrationReqValidator>();
             });
+
+            // Customise default API behaviour
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                // disable api request model default fluent validation
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+
+            /* services.AddMvc(options => {
+                options.Filters.Add<ValidationFilter>();
+            }).AddFluentValidation(options => {
+                options.RegisterValidatorsFromAssemblyContaining<Startup>();
+            }); */
+
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
@@ -60,6 +85,7 @@ namespace PSR.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PSR.Api v1"));
             }
             app.UseRouting();
+            app.UseApiServices(_configuration);
             
             // app.UseHttpsRedirection();
             app.UseAuthentication();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace PSR.SharedKernel
 {
@@ -40,17 +41,23 @@ namespace PSR.SharedKernel
     }
 
     public class Result<T> : Result {
+        [JsonPropertyName("result")]
         public T Value { get; private set; } = default!;
      
-        protected internal Result(T value, bool success, IEnumerable<string> errors)
-            : base(success, "", errors) {
+        protected internal Result(T value, bool success, string message, IEnumerable<string> errors)
+            : base(success, message, errors) {
 
             Value = value;
         }
 
         public static Result<T> Success(T value)
         {
-            return new Result<T>(value, true, new string[] { });
+            return new Result<T>(value, true, "", new string[] { });
+        }
+
+        public static Result<T> Success(T value, string message)
+        {
+            return new Result<T>(value, true, message, new string[] { });
         }
     }
 }

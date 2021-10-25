@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using PSR.Domain;
 
@@ -5,7 +6,7 @@ namespace PSR.Auth.Models.Request
 {
     public class UserRegistrationReq
     {
-        
+
         public string Email { get; set; } = "";
         public string Password { get; set; } = "";
         public string FirstName { get; set; } = "";

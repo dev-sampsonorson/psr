@@ -534,5 +534,12 @@ namespace PSR.Domain
 
             return country;
         }
+
+        public static bool Exists(int id)
+        {
+            var country = List().SingleOrDefault(s => s.Id == id);
+
+            return country is not null;
+        }
     }
 }

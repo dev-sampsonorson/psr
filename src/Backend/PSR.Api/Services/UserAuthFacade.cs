@@ -1,6 +1,7 @@
 using PSR.Api.Interfaces;
 using PSR.Application.Models.Request;
 using PSR.Application.Repository;
+using PSR.Auth.Domain;
 using PSR.Auth.Interfaces;
 using PSR.Auth.Models.Request;
 using PSR.Auth.Models.Response;
@@ -37,12 +38,12 @@ namespace PSR.Api.Services
             return await _authService.JwtTokenAsync(
                 result.User, employee.FirstName, employee.LastName);
         }
-
-        public async Task<AuthRes> RegisterAsync(UserRegistrationReq registrationReq)
+        
+        public async Task<(Result Response, ApplicationUser? User)> RegisterAsync(UserRegistrationReq registrationReq)
         {
             var regResponse = await _authService.RegisterAsync(registrationReq);
             if (!regResponse.Response.Succeeded || regResponse.User is null) {
-                return regResponse.Response;
+                return (regResponse.Response, null);
             }
 
             // add user to role
@@ -66,14 +67,19 @@ namespace PSR.Api.Services
             await _employeeRepository.AddAsync(newEmployee);
             var isSuccessful = await _employeeRepository.UnitOfWork.SaveEntitiesAsync();
             if (!isSuccessful) {
-                return AuthRes.Failure(new List<string>() {
-                    "Registration unsuccessful"
-                });
+                return (
+                    Result.Failure(new List<string>() {
+                        "Registration unsuccessful"
+                    }),
+                    null
+                );
             }
 
+            return (Result.Success(), regResponse.User);
+
             // Generate Jwt token
-            return await _authService.JwtTokenAsync(
-                regResponse.User, registrationReq.FirstName, registrationReq.LastName);
+            /* return await _authService.JwtTokenAsync(
+                regResponse.User, registrationReq.FirstName, registrationReq.LastName); */
         }
     }
 }

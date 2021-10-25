@@ -25,6 +25,8 @@ namespace PSR.Api.Helpers
                 var response = context.Response;
                 response.ContentType = "application/json";
 
+                object responsePayload = new { message = error?.Message };
+
                 switch(error)
                 {
                     case AppException e:
@@ -35,13 +37,17 @@ namespace PSR.Api.Helpers
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+                    case JsonFormatException e:
+                        responsePayload = e.ToValidationProblemDetails();
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+                var result = JsonSerializer.Serialize(responsePayload, options);
                 await response.WriteAsync(result);
             }
         }

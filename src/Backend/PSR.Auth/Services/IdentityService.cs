@@ -48,24 +48,24 @@ namespace PSR.Auth.Services
             return user.UserName;
         }
 
-        public async Task<AuthRes> CreateUserAsync(ApplicationUser user, string password)
+        public async Task<Result> CreateUserAsync(ApplicationUser user, string password)
         {            
             var result = await _userManager.CreateAsync(user, password);            
 
             return result.ToApplicationResult();
         }
 
-        public async Task<AuthRes> DeleteUserAsync(string userId) {
+        public async Task<Result> DeleteUserAsync(string userId) {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
             if (user is null) {
-                return AuthRes.Success();
+                return Result.Success();
             }
             
             return await DeleteUserAsync(user);
         }
 
-        private async Task<AuthRes> DeleteUserAsync(ApplicationUser user)
+        private async Task<Result> DeleteUserAsync(ApplicationUser user)
         {
             var result = await _userManager.DeleteAsync(user);
 
@@ -214,11 +214,11 @@ namespace PSR.Auth.Services
 
     public static class IdentityResultExtensions
     {
-        public static AuthRes ToApplicationResult(this IdentityResult result)
+        public static Result ToApplicationResult(this IdentityResult result)
         {
             return result.Succeeded
-                ? AuthRes.Success()
-                : AuthRes.Failure(result.Errors.Select(e => e.Description));
+                ? Result.Success()
+                : Result.Failure(result.Errors.Select(e => e.Description));
         }
     }
 }
