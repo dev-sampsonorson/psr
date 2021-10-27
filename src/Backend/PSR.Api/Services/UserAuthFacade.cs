@@ -1,5 +1,7 @@
+using AutoMapper;
 using PSR.Api.Interfaces;
-using PSR.Application.Models.Request;
+using PSR.Application.Common.Exceptions;
+using PSR.Application.Common.Mappings;
 using PSR.Application.Repository;
 using PSR.Auth.Interfaces;
 using PSR.Auth.Models.Request;
@@ -14,14 +16,17 @@ namespace PSR.Api.Services
         private readonly IIdentityService _identityService;
         private readonly IAuthService _authService;
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IMapper _mapper;
 
         public UserAuthFacade(
             IAuthService authService,
             IEmployeeRepository employeeRepository,
-            IIdentityService identityService) {
+            IIdentityService identityService,
+            IMapper mapper) {
             _authService = authService;
             _employeeRepository = employeeRepository;
             _identityService = identityService;
+            _mapper = mapper;
         }
 
         public async Task<AuthRes> LoginAsync(UserLoginReq loginReq) {
@@ -38,11 +43,11 @@ namespace PSR.Api.Services
                 result.User, employee.FirstName, employee.LastName);
         }
 
-        public async Task<AuthRes> RegisterAsync(UserRegistrationReq registrationReq)
+        public async Task<UserRegistrationRes> RegisterAsync(UserRegistrationReq registrationReq)
         {
             var regResponse = await _authService.RegisterAsync(registrationReq);
             if (!regResponse.Response.Succeeded || regResponse.User is null) {
-                return regResponse.Response;
+                throw new AppException(regResponse.Response.Errors);
             }
 
             // add user to role
@@ -66,14 +71,34 @@ namespace PSR.Api.Services
             await _employeeRepository.AddAsync(newEmployee);
             var isSuccessful = await _employeeRepository.UnitOfWork.SaveEntitiesAsync();
             if (!isSuccessful) {
-                return AuthRes.Failure(new List<string>() {
-                    "Registration unsuccessful"
-                });
+                throw new AppException("Registration unsuccessful");
             }
 
             // Generate Jwt token
-            return await _authService.JwtTokenAsync(
+            var tokenResult = await _authService.JwtTokenAsync(
                 regResponse.User, registrationReq.FirstName, registrationReq.LastName);
+
+            if (!tokenResult.Succeeded)
+                throw new AppException("Token generation failed");
+
+            return _mapper.MergeInto<UserRegistrationRes>(regResponse.User, newEmployee, tokenResult);
+            
+
+            // Generate Jwt token
+            /* return await _authService.JwtTokenAsync(
+                regResponse.User, registrationReq.FirstName, registrationReq.LastName); */
+        }
+
+        public async Task<UserRes> GetUserByIdAysnc(string userId) {
+            var user = await _identityService.GetUserByIdAsync(userId);
+            if (user is null)
+                throw new EntityNotFoundException(nameof(user), userId);
+            
+            var employee = await _employeeRepository.GetByUserIdAsync(userId);
+            if (employee is null)
+                throw new EntityNotFoundException(nameof(employee), userId);
+
+            return _mapper.MergeInto<UserRes>(user, employee);
         }
     }
 }

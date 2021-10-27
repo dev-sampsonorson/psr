@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -15,19 +16,50 @@ namespace PSR.Api.Controllers.v1
 {
     public class UsersController : BaseController
     {
+        private readonly IUserAuthFacade _userAuthFacade;
         private readonly IIdentityService _identityService;
+        private readonly IMapper _mapper;
 
         public UsersController(
+            IUserAuthFacade userAuthFacade,
             IIdentityService identityService,
-            ILoggerFactory loggerFactory) : base(loggerFactory) 
-        {            
+            ILoggerFactory loggerFactory,
+            IMapper mapper) : base(loggerFactory) 
+        {
+            _userAuthFacade = userAuthFacade;
             _identityService = identityService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAllUsers() {
             var users = _identityService.GetAllUsers();
             return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(string id) {
+
+            var user = await _userAuthFacade.GetUserByIdAysnc(id);
+
+            return Ok(user);
+
+            /* var user = await _identityService.GetUserByIdAsync(id);
+
+            if (user is null)
+                throw new EntityNotFoundException(nameof(user), id);
+
+            return Ok(_mapper.Map<ApplicationUser, UserRegistrationRes>(user)); */
+        }
+
+        [HttpPost("exists")]
+        public async Task<IActionResult> CheckUserExists(CheckUserExistsReq request) {
+            var userExists = await _identityService.GetUserByEmailAsync(request.Email);
+
+            if (userExists is not null)
+                return Ok(Result<string>.Success("invalid"));
+
+            return Ok(Result<string>.Success("valid"));
         }
         
     }

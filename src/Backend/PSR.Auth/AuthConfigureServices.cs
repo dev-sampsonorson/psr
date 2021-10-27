@@ -1,5 +1,7 @@
 using System;
+using System.Reflection;
 using System.Text;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +50,9 @@ namespace PSR.Auth
             services.AddAuthorization(options => {
                 options.AddPolicy("OrganizationPolicy", policy => policy.RequireClaim("organization"));
             });
+            
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             /*
             TODO: options => options.SignIn.RequireConfirmedAccount = true

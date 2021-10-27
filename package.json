@@ -10,6 +10,8 @@
     "ng:watch": "npm watch --watch --configuration development --prefix ./src/PSR.Angular/",
     "ng:test": "npm test --prefix ./src/PSR.Angular/",
     "api": "dotnet run --project ./src/Backend/PSR.Api",
+    "watch": "dotnet watch --project ./src/Backend/PSR.Api",
+    "build": "dotnet build ./src/Backend",
     "launch": "dotnet build ./src/Backend && dotnet run --project ./src/Backend/PSR.Api",
     "migration:add": "dotnet ef migrations add %npm_config_name% --project ./src/Backend/PSR.Infrastructure --startup-project ./src/Backend/PSR.Api",
     "migration:remove": "dotnet ef migrations remove --project ./src/Backend/PSR.Infrastructure --startup-project ./src/Backend/PSR.Api",

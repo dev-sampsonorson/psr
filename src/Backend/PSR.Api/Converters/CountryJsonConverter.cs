@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using PSR.Domain;
 using PSR.SharedKernel;
 using PSR.Application.Exceptions;
+using PSR.Application.Common.Exceptions;
 
 namespace PSR.Api.Converters
 {
@@ -19,9 +20,14 @@ namespace PSR.Api.Converters
                 }
                 
                 return Enumeration.FromValue<Country>(countryId);
-            } catch(Exception) { }
+            } catch(InvalidOperationException) {
+                return Country.Empty;
+            } catch(FormatException) {
+                throw new RequestFormatException(nameof(Country));
+            } catch(Exception) {}
 
-            throw new JsonFormatException(nameof(Country));
+            // throw new RequestFormatException(nameof(Country));
+            return Country.Empty;
         }
 
         public override void Write(Utf8JsonWriter writer, Country value, JsonSerializerOptions options)

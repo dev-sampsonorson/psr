@@ -9,7 +9,3 @@ export interface ILookupItem {
     id: number;
     value: string;
 }
-
-export interface ILookupRespose extends IApiResponse {
-    result: ILookupItem[];
-}

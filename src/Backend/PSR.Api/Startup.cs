@@ -1,6 +1,9 @@
 using System.Reflection;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PSR.Api.Converters;
+using PSR.Api.Filters;
 using PSR.Api.Helpers;
 using PSR.Api.Services;
 using PSR.Application;
@@ -38,12 +41,26 @@ namespace PSR.Api
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddControllers().AddJsonOptions(options => {
+            services.AddControllers(options => {
+                options.Filters.Add<ValidationFilter>();
+            })
+            .AddJsonOptions(options => {
                 options.JsonSerializerOptions.Converters.Add(new CountryJsonConverter());
+            })
+            .AddFluentValidation(x => {
+                x.RegisterValidatorsFromAssemblyContaining<AuthLayerMarker>();
+                x.RegisterValidatorsFromAssemblyContaining<ApplicationLayerMarker>();
             });
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
+
+            // Customise default API behaviour
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddApiServices(_configuration);
             services.AddAuthServices(_configuration);
             services.AddApplicationServices(_configuration);

@@ -196,7 +196,7 @@ namespace PSR.Auth.Services
 
             await _refreshTokenRepository.AddAsync(refreshToken);
             RemoveOldRefreshTokens(user.Id);
-            await _refreshTokenRepository.UnitOfWork.SaveEntitiesAsync();
+            await _refreshTokenRepository.UnitOfWork.SaveEntitiesAsync();           
             
 
             return AuthRes.Success(jwtToken, refreshToken.Token);

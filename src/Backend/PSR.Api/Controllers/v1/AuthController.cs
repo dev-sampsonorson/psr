@@ -38,11 +38,11 @@ namespace PSR.Api.Controllers.v1
 
             var result = await _authFacade.RegisterAsync(registrationReq);
 
-            if (!result.Succeeded) {
+            /* if (!result.Succeeded) {
                 return BadRequest(result);
-            }
+            } */
 
-            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
+            if (!string.IsNullOrEmpty(result.RefreshToken))
                 SetTokenCookie(result.RefreshToken);
 
             return Ok(result);

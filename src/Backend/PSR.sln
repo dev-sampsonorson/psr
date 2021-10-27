@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Domain", "PSR.Domain\PS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Infrastructure", "PSR.Infrastructure\PSR.Infrastructure.csproj", "{3C679190-F480-4311-9194-DBD420CB1704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Infrastructure.DataServices", "PSR.Infrastructure.DataServices\PSR.Infrastructure.DataServices.csproj", "{9D4AE72D-369E-493B-8388-A690682E81E4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.SharedKernel", "PSR.SharedKernel\PSR.SharedKernel.csproj", "{96D24931-AE4D-4426-AC6F-0F3445767BAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSR.Application.Common", "PSR.Application.Common\PSR.Application.Common.csproj", "{52AC7953-F00C-4250-A271-27AD26A40E2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,13 +46,13 @@ Global
 		{3C679190-F480-4311-9194-DBD420CB1704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C679190-F480-4311-9194-DBD420CB1704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C679190-F480-4311-9194-DBD420CB1704}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D4AE72D-369E-493B-8388-A690682E81E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D4AE72D-369E-493B-8388-A690682E81E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D4AE72D-369E-493B-8388-A690682E81E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D4AE72D-369E-493B-8388-A690682E81E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96D24931-AE4D-4426-AC6F-0F3445767BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52AC7953-F00C-4250-A271-27AD26A40E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AC7953-F00C-4250-A271-27AD26A40E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AC7953-F00C-4250-A271-27AD26A40E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52AC7953-F00C-4250-A271-27AD26A40E2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

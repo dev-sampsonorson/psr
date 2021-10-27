@@ -6,6 +6,7 @@ namespace PSR.Api.Interfaces
     public interface IUserAuthFacade
     {
         Task<AuthRes> LoginAsync(UserLoginReq loginReq);
-        Task<AuthRes> RegisterAsync(UserRegistrationReq registrationReq);
+        Task<UserRegistrationRes> RegisterAsync(UserRegistrationReq registrationReq);
+        Task<UserRes> GetUserByIdAysnc(string userId);
     }
 }
