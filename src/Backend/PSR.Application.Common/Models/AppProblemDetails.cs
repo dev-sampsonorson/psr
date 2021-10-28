@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PSR.Application.Common.Exceptions
+namespace PSR.Application.Common.Models
 {
     public class AppProblemDetails : ProblemDetails
     {

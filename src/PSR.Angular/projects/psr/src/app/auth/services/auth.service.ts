@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { StorageService } from '@psr/core/services/storage.service';
 import { BehaviorSubject, concat, from, Observable, of } from 'rxjs';
 import { distinctUntilKeyChanged, filter, map, take, tap } from 'rxjs/operators';
 import { APP_CONFIG_TOKEN, IAppConfig } from '../../app.config';
-import { AuthConstants, AuthPaths } from '../auth.constants';
+import { AuthConstants, AuthPaths, AuthRoutes } from '../auth.constants';
 import { IUser } from '../models/user.model';
-import { StorageService } from '../../core/storage.service';
 
 export interface IUserRegistrationReq {
     email: string;
@@ -21,12 +22,16 @@ export interface IUserRegistrationReq {
     providedIn: 'root'
 })
 export class AuthService {
+    redirectToLogin(): void {
+        this.router.navigate([AuthRoutes.Login])
+    }
     private refreshTokenTimeout: any;
     private userSubject = new BehaviorSubject<IUser | null>(null);
 
     constructor(
         private http: HttpClient,
         private storage: StorageService,
+        private router: Router,
         @Inject(APP_CONFIG_TOKEN) private appConfig: IAppConfig
     ) { }
 
@@ -73,6 +78,44 @@ export class AuthService {
                 this.storeUser(user);
             })
         );
+    }
+
+    public logout() {
+        return this.http.post<any>(this.appConfig.getUrl(AuthPaths.RevokeToken), {}, { withCredentials: true }).pipe(
+            tap((user) => {
+                // emit null as next user
+                // this.userSubject.next(null);
+
+                // stop refresh token timer
+                // this.startRefreshTokenTimer();
+
+                // remove user from localStorage
+                // this.removeUser();
+
+                // redirect to login
+            })
+        ).subscribe();
+        // logout from server
+        // pass refresh token if you can
+        // 
+        /* return this.http.post<any>(this.appConfig.getUrl(AuthPaths.RevokeToken), {}, { withCredentials: true }).pipe(
+            tap((user) => {
+                // emit null as next user
+                this.userSubject.next(null);
+
+                // stop refresh token timer
+                // this.startRefreshTokenTimer();
+
+                // remove user from localStorage
+                this.removeUser();
+
+                // redirect to login
+            })
+        ).subscribe(); */
+
+
+        /*  */
+        // this.userSubject.next(null);
     }
 
     public checkEmailExists(email: string): Observable<any> {

@@ -1,0 +1,114 @@
+:host {
+    @apply flex-auto w-full mb-4;
+}
+
+.alert {
+    &__wrapper {
+        @apply w-full max-w-sm overflow-hidden  rounded-lg;
+        @apply shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-10;
+    }
+
+    &__title {
+        @apply text-sm font-medium;
+    }
+
+    &__message {
+        @apply mt-1 text-sm;
+    }
+
+    &__btn-action {
+        @apply text-sm font-medium rounded-md focus:outline-none;
+    }
+
+    &__btn-close {
+        @apply inline-flex rounded-md focus:outline-none;
+    }
+
+    &--error {
+        & .alert__wrapper {
+            @apply bg-red-900;
+        }
+
+        & .alert__title {
+            @apply text-white;
+        }
+
+        & .alert__message {
+            @apply text-red-200;
+        }
+
+        & .alert__btn-action {
+            @apply text-white bg-transparent hover:text-red-200;
+        }
+
+        & .alert__btn-close {
+            @apply text-red-100 bg-red-900 hover:text-white;
+        }
+    }
+
+    &--info {
+        & .alert__wrapper {
+            @apply bg-blue-600;
+        }
+
+        & .alert__title {
+            @apply text-white;
+        }
+
+        & .alert__message {
+            @apply text-blue-200;
+        }
+
+        & .alert__btn-action {
+            @apply text-white bg-transparent hover:text-blue-200;
+        }
+
+        & .alert__btn-close {
+            @apply text-blue-100 bg-blue-600 hover:text-white;
+        }
+    }
+
+    &--success {
+        & .alert__wrapper {
+            @apply bg-green-600;
+        }
+
+        & .alert__title {
+            @apply text-white;
+        }
+
+        & .alert__message {
+            @apply text-green-200;
+        }
+
+        & .alert__btn-action {
+            @apply text-white bg-transparent hover:text-green-200;
+        }
+
+        & .alert__btn-close {
+            @apply text-green-100 bg-green-600 hover:text-white;
+        }
+    }
+
+    &--warning {
+        & .alert__wrapper {
+            @apply bg-yellow-600;
+        }
+
+        & .alert__title {
+            @apply text-white;
+        }
+
+        & .alert__message {
+            @apply text-yellow-200;
+        }
+
+        & .alert__btn-action {
+            @apply text-white bg-transparent hover:text-yellow-200;
+        }
+
+        & .alert__btn-close {
+            @apply text-yellow-100 bg-yellow-600 hover:text-white;
+        }
+    }
+}

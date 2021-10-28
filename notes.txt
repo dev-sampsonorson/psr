@@ -1,0 +1,15 @@
+- BAD_USER_INPUT => UserInputError
+
+- UNAUTHENTICATED => AuthenticationError
+
+- FORBIDDEN => ForbiddenError
+
+- VALIDATION_FAILED => ValidationError
+
+- PARSE_FAILED => SyntaxError
+
+- INTERNAL_SERVER_ERROR
+
+- PERSISTED_QUERY_NOT_FOUND
+
+- PERSISTED_QUERY_NOT_SUPPORTED

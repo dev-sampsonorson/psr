@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace PSR.Application
 {
-    public static class ConfigureServices
+    public static class ApplicationConfigureServices
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration) {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

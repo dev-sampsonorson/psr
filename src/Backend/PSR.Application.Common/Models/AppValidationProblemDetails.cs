@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PSR.Application.Common.Models.Response;
 
-namespace PSR.Application.Common.Exceptions
+namespace PSR.Application.Common.Models
 {
     public class AppValidationProblemDetails : ProblemDetails
     {

@@ -2,6 +2,7 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using PSR.Application.Common.Exceptions;
+using PSR.Application.Common.Models;
 using PSR.Application.Common.Models.Response;
 
 namespace PSR.Api.Filters

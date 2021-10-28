@@ -13,7 +13,11 @@ export const environment: IEnvironment = {
     production: false,
     enableDebugTools: true,
     logLevel: 'debug',
-    apiUrl: _apiUrl
+    apiUrl: _apiUrl,
+    alertOptions: {
+        autoClose: false,
+        timeToClose: 10
+    }
 };
 
 /*

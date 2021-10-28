@@ -7,4 +7,5 @@ export interface IEnvironment {
     enableDebugTools: boolean;
     logLevel: LogLevel;
     apiUrl: string;
+    alertOptions: any;
 }

@@ -1,5 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using PSR.Application.Common.Models;
 
 namespace PSR.Application.Common.Exceptions
 {
@@ -10,9 +11,9 @@ namespace PSR.Application.Common.Exceptions
 
             var prob = new AppProblemDetails(exception.Errors){
                 Status = (int)HttpStatusCode.BadRequest,
-                Type = "https://httpstatuses.com/400",
-                Title = "Validation failed",
-                Detail = "One or more inputs need to be corrected. Check errors for details",
+                Type = "app/general",
+                Title = "Application error",
+                Detail = exception.Message,
                 Instance = traceId
             };
 

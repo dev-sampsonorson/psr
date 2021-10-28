@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { AuthPaths } from '@psr/auth/auth.constants';
 import { Observable } from 'rxjs';
 import { APP_CONFIG_TOKEN, IAppConfig } from '../app.config';
 
@@ -13,5 +14,9 @@ export class TestService {
     getError(): Observable<any> {
         console.log(this.appConfig.getUrl('error/get-error'));
         return this.http.get(this.appConfig.getUrl('error/get-error'));
+    }
+
+    getTestDescription(): Observable<string> {
+        return this.http.get<string>(this.appConfig.getUrl(AuthPaths.GetTestDescription));
     }
 }

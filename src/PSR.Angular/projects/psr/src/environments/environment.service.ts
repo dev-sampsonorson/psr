@@ -22,5 +22,9 @@ export class EnvironmentService implements IEnvironment {
         return environment.apiUrl;
     }
 
+    get alertOptions() {
+        return environment.alertOptions;
+    }
+
     constructor() { }
 }

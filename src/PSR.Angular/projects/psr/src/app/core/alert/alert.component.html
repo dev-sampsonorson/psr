@@ -1,0 +1,80 @@
+<div *ngIf="alert" aria-live="assertive" class="{{ cssClass() }}">
+    <!-- <div class="flex flex-col items-center w-full space-y-4 sm:items-end"> -->
+    <div class="flex flex-col items-center w-full max-w-sm space-y-4 sm:items-end">
+        <!-- w-full max-w-sm overflow-hidden bg-red-900 rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-10 -->
+        <div class="alert__wrapper">
+            <div class="p-4">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <ng-container *ngIf="alertIconRef">
+                            <ng-container *ngTemplateOutlet="alertIconRef"></ng-container>
+                        </ng-container>
+                        <!-- <ng-container *ngIf="alert?.type" [ngSwitch]="alert?.type">
+                            <ng-container *ngSwitchCase="0" [ngTemplateOutlet]="successIcon"></ng-container>
+                            <ng-container *ngSwitchCase="1" [ngTemplateOutlet]="errorIcon"></ng-container>
+                            <ng-container *ngSwitchCase="2" [ngTemplateOutlet]="infoIcon"></ng-container>
+                            <ng-container *ngSwitchCase="3" [ngTemplateOutlet]="warningIcon"></ng-container>
+                        </ng-container> -->
+                    </div>
+                    <div class="ml-3 w-0 flex-1 pt-0.5">
+                        <p class="alert__title">
+                            <!-- text-sm font-medium text-white -->
+                            {{alert?.title}}
+                        </p>
+                        <p class="alert__message">
+                            <!-- mt-1 text-sm text-red-200 -->
+                            {{alert?.message}}
+                        </p>
+                        <div *ngIf="alert?.actions" class="flex mt-3 space-x-7">
+                            <!-- text-sm font-medium text-white bg-transparent rounded-md hover:text-red-200 focus:outline-none -->
+                            <button *ngFor="let action of alert?.actions" (click)="onAction(action)" type="button"
+                                    class="alert__btn-action">
+                                {{action.name}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-shrink-0 ml-4">
+                        <button (click)="onCloseAlert()" class="alert__btn-close">
+                            <span class="sr-only">Close</span>
+                            <!-- Heroicon name: solid/x -->
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                 fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                      clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #successIcon>
+    <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+</ng-template>
+<ng-template #errorIcon>
+    <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+</ng-template>
+<ng-template #infoIcon>
+    <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+</ng-template>
+<ng-template #warningIcon>
+    <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+        </path>
+    </svg>
+</ng-template>

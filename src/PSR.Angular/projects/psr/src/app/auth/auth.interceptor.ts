@@ -17,7 +17,7 @@ export class AuthorizeInterceptor implements HttpInterceptor {
     }
     private processRequestWithToken(token: string | null, req: HttpRequest<any>, next: HttpHandler) {
         const isApiUrl = req.url.startsWith(this.env.apiUrl);
-        if (!!token && this.isSameOriginUrl(req) && isApiUrl) {
+        if (!!token && isApiUrl) { //this.isSameOriginUrl(req)
             req = req.clone({
                 setHeaders: {
                     Authorization: `Bearer ${token}`

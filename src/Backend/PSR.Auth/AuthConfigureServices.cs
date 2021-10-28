@@ -3,12 +3,14 @@ using System.Reflection;
 using System.Text;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
 using PSR.Auth.Interfaces;
+using PSR.Auth.Middlewares;
 using PSR.Auth.Services;
 
 namespace PSR.Auth
@@ -50,6 +52,7 @@ namespace PSR.Auth
             services.AddAuthorization(options => {
                 options.AddPolicy("OrganizationPolicy", policy => policy.RequireClaim("organization"));
             });
+            services.AddSingleton<IAuthorizationMiddlewareResultHandler, AppAuthorizationMiddlewareResultHandler>();
             
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

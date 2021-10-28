@@ -87,7 +87,9 @@ namespace PSR.Api.Controllers.v1
         public async Task<IActionResult> RevokeToken(RevokeTokenReq revokeReq)
         {
             // accept refresh token in request body or cookie
-            var refreshToken = revokeReq.RefreshToken ?? Request.Cookies["refreshToken"];
+            var refreshToken = string.IsNullOrEmpty(revokeReq.RefreshToken) 
+                ? null 
+                : (revokeReq.RefreshToken ?? Request.Cookies["refreshToken"]);
 
             if (string.IsNullOrEmpty(refreshToken)) {
                 return BadRequest(AuthRes.Failure(new List<string>() {

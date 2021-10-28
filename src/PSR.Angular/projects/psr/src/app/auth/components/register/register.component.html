@@ -4,7 +4,7 @@
 </div>
 <div class="register__container">
     <div class="register__group">
-        <form [formGroup]="form" (ngSubmit)="registerEmployee(form)" class="register__form">
+        <form [formGroup]="form" (ngSubmit)="registerEmployee()" class="register__form">
             <div>
                 <label class="register__label" for="email-address">Email address</label>
                 <input formControlName="email" [class.register__field--error]="isInvalid(emailControl)"

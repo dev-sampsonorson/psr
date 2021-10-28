@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EnvironmentService } from '@env/environment.service';
+import { AuthRoutes } from '@psr/auth/auth.constants';
+import { AlertService } from '@psr/core/alert';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ILookupItem } from '../../../core/app.interfaces';
@@ -27,7 +30,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private auth: AuthService,
         private fb: FormBuilder,
         private validators: AuthValidatorsService,
-        private lookupService: LookupService
+        private lookupService: LookupService,
+        private alert: AlertService,
+        private env: EnvironmentService
     ) { }
 
     ngOnInit(): void {
@@ -48,28 +53,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
         });
     }
 
-    registerEmployee(f: any) {
-        console.log(f);
+    registerEmployee() {
         if (this.form.valid) {
-
+            this.auth.register(this.form.value).subscribe(response => {
+                console.info(response);
+                this.form.reset();
+                this.alert.success(
+                    this.env.alertOptions,
+                    "Registration successful",
+                    "You have completed registration. Please login.",
+                    [
+                        { name: 'Login', route: AuthRoutes.Login }
+                    ]
+                )
+            });
         } else {
             this.form.markAllAsTouched();
         }
-
-        /* var payload = {
-            email: "john@email.com",
-            password: "J0h1n.Pass",
-            firstName: "John",
-            lastName: "Doe",
-            timeZone: "+2",
-            workHours: "8am-4pm",
-            coreHours: "",
-            country: "xxcc"
-        }; */
-
-        this.auth.register(this.form.value).subscribe(response => {
-            console.info(response);
-        });
 
 
         /* if (this.form.valid) {
@@ -81,8 +81,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 tap(() => this.router.navigate(['../login']))
             ).subscribe();
         } */
-
-        // console.log('formValues', this.form.value);
     }
 
     onPasswordChange(e: Event) {
