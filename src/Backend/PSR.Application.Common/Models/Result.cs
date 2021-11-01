@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PSR.SharedKernel
+namespace PSR.Application.Common.Models
 {
     public class Result
     {

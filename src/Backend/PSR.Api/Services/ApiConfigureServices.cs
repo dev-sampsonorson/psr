@@ -20,7 +20,7 @@ namespace PSR.Api.Services
                 options.DefaultApiVersion = ApiVersion.Default;
             });
 
-            services.AddScoped<IUserAuthFacade, UserAuthFacade>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

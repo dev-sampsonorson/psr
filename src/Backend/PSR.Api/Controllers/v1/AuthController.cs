@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PSR.Api.Interfaces;
+using PSR.Application.Common.Exceptions;
+using PSR.Application.Common.Models;
 using PSR.Application.Models.Request;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
@@ -16,67 +18,50 @@ namespace PSR.Api.Controllers.v1
     public class AuthController : BaseController
     {
         private readonly IAuthService _authService;
-        private readonly IUserAuthFacade _authFacade;
+        private readonly ITokenManagerService _tokenManager;
 
         public AuthController(
             ILoggerFactory loggerFactory,
             IAuthService authService,
-            IUserAuthFacade authFacade) : base(loggerFactory)
+            ITokenManagerService tokenManager) : base(loggerFactory)
         {
             _authService = authService;
-            _authFacade = authFacade;
+            _tokenManager = tokenManager;
         }
 
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationReq registrationReq) {
-            if (!ModelState.IsValid) {
-                return BadRequest(Result.Failure(new List<string>() {
-                    "Invalid payload"
-                }));
-            }
+            var userResponse = await _authService.RegisterAsync(registrationReq);
 
-            var result = await _authFacade.RegisterAsync(registrationReq);
+            if (!string.IsNullOrEmpty(userResponse.RefreshToken))
+                SetTokenCookie(userResponse.RefreshToken);
 
-            /* if (!result.Succeeded) {
-                return BadRequest(result);
-            } */
-
-            if (!string.IsNullOrEmpty(result.RefreshToken))
-                SetTokenCookie(result.RefreshToken);
-
-            return Ok(result);
+            return Ok(userResponse);
         }
         
         [HttpPost]
         [Route("authenticate")]
         public async Task<IActionResult> Login([FromBody] UserLoginReq loginReq) {
-            if (!ModelState.IsValid) {
-                return BadRequest(AuthRes.Failure(new List<string>() {
-                    "Invalid payload"
-                }));
-            }
+            var userResponse = await _authService.LoginAsync(loginReq);
 
-            var result = await _authFacade.LoginAsync(loginReq);
+            if (!string.IsNullOrEmpty(userResponse.RefreshToken))
+                SetTokenCookie(userResponse.RefreshToken);
 
-            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
-                SetTokenCookie(result.RefreshToken);
-
-            return Ok(result);
+            return Ok(userResponse);
         }
         
         [HttpPost]
         [Route("refresh")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenReq tokenReq) {
-            if (!ModelState.IsValid) {
-                return BadRequest(AuthRes.Failure(new List<string>() {
-                    "Invalid payload"
-                }));
-            }
+            // accept refresh token in request body or cookie
+            var refreshToken = string.IsNullOrEmpty(tokenReq.RefreshToken) 
+                ? (tokenReq.RefreshToken ?? Request.Cookies["refreshToken"]) 
+                : tokenReq.RefreshToken;
 
-            var result = await _authService.RefreshTokenAsync(tokenReq.Token, tokenReq.RefreshToken);
+            var result = await _tokenManager.RefreshTokenAsync(tokenReq.Token, refreshToken);
 
-            if (result.Succeeded && !string.IsNullOrEmpty(result.RefreshToken))
+            if (!string.IsNullOrEmpty(result.RefreshToken))
                 SetTokenCookie(result.RefreshToken);
 
             return Ok(result);
@@ -85,19 +70,17 @@ namespace PSR.Api.Controllers.v1
         [HttpPost]
         [Route("revoke")]
         public async Task<IActionResult> RevokeToken(RevokeTokenReq revokeReq)
-        {
+        {            
             // accept refresh token in request body or cookie
             var refreshToken = string.IsNullOrEmpty(revokeReq.RefreshToken) 
-                ? null 
-                : (revokeReq.RefreshToken ?? Request.Cookies["refreshToken"]);
+                ? (revokeReq.RefreshToken ?? Request.Cookies["refreshToken"]) 
+                : revokeReq.RefreshToken;
 
             if (string.IsNullOrEmpty(refreshToken)) {
-                return BadRequest(AuthRes.Failure(new List<string>() {
-                    "Invalid payload"
-                }));
+                throw new AppException("Logout failed", "Invalid payload");
             }
 
-            var result = await _authService.RevokeTokenAsync(refreshToken);
+            var result = await _tokenManager.RevokeTokenAsync(refreshToken);
 
             return Ok(result);
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PSR.Api.Interfaces;
 using PSR.Application;
+using PSR.Application.Common.Models;
 using PSR.Auth.Domain;
 using PSR.Auth.Interfaces;
 using PSR.SharedKernel;

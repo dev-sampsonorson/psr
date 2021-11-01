@@ -2,7 +2,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using PSR.Domain;
 using PSR.SharedKernel;
-using PSR.Application.Exceptions;
 using PSR.Application.Common.Exceptions;
 
 namespace PSR.Api.Converters

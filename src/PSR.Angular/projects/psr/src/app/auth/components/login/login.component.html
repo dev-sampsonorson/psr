@@ -1,1 +1,36 @@
-<p>login works!</p>
+<!-- <div class="login"> -->
+<div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="psr-form__header">Sign In</h2>
+</div>
+<div class="psr-form__container">
+    <div class="psr-form__group">
+        <form [formGroup]="form" (ngSubmit)="loginEmployee()" class="psr-form__form">
+            <div>
+                <label class="psr-form__label" for="email-address">Email address</label>
+                <input formControlName="email" [class.psr-form__field--error]="isInvalid(emailControl)"
+                       id="email-address" name="email-address" type="email" class="psr-form__field"
+                       placeholder="example@email.com" autocomplete="email" />
+                <p class="psr-form__field-error-msg" *ngIf="isInvalid(emailControl, 'required')">What is your email
+                    address?</p>
+                <p class="psr-form__field-error-msg" *ngIf="isInvalid(emailControl, 'email')">Invalid email format</p>
+            </div>
+            <div>
+                <label class="psr-form__label" for="password">Password</label>
+                <input formControlName="password" [class.psr-form__field--error]="isInvalid(passwordControl)"
+                       id="password" name="password" type="password" class="psr-form__field" placeholder=""
+                       autocomplete="current-password">
+                <p class="psr-form__field-error-msg" *ngIf="isInvalid(passwordControl, 'required')">What is your
+                    password?</p>
+            </div>
+            <div>
+                <!-- [disabled]="!formIsValid" -->
+                <button class="psr-form__button" type="submit">
+                    Sign in
+                </button>
+            </div>
+        </form>
+    </div>
+    <p class="psr-form__footer">Don't Have an Account? <a class="psr-form__alt-action" (click)="gotoRegister()">Create
+            it.</a></p>
+</div>
+<!-- </div> -->

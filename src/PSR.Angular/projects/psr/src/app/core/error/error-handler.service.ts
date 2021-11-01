@@ -4,9 +4,9 @@ import { EnvironmentService } from '@env/environment.service';
 import { AuthRoutes } from '@psr/auth/auth.constants';
 import { AuthService } from '@psr/auth/services/auth.service';
 import { ObservableInput, throwError } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
 import { AlertService } from '../alert/alert.service';
-import { ProblemDetails } from '../error/error.model';
+import { ProblemDetails } from './error.model';
 
 
 
@@ -23,7 +23,7 @@ export class ErrorHandlerService {
     ) { }
 
     handleError(response: HttpErrorResponse): ObservableInput<any> {
-        const problem = response.error && response.error as ProblemDetails;
+        const problem: ProblemDetails = response.error && response.error as ProblemDetails;
 
         this.auth.getUser()
             .pipe(
@@ -34,7 +34,6 @@ export class ErrorHandlerService {
                         if (x.user === null && [401, 403].includes(x.status)) {
                             this.alert.onCloseAlert(
                                 this.alert.error(
-                                    this.env.alertOptions,
                                     problem.title,
                                     problem.detail,
                                     [
@@ -46,13 +45,13 @@ export class ErrorHandlerService {
                             });
                         }
                     });
-                    // x.user === null && [401, 403].includes(x.status) && this.auth.redirectToLogin();
+                    x.user === null && [401, 403].includes(x.status) && this.auth.redirectToLogin();
+                    // x.user === null && [401, 403].includes(x.status) && this.auth.logout();
                 }),
-                // tap(x => x.user !== null && x.status === 401 && this.auth.logout()),
+                tap(x => x.user !== null && x.status === 401 && this.auth.logout()),
                 tap(x => {
                     this.zone.run(() => {
                         (x.user !== null && x.status === 403) && this.alert.warn(
-                            this.env.alertOptions,
                             'Unauthorized',
                             'Not authorized to peform the action'
                         );
@@ -61,24 +60,31 @@ export class ErrorHandlerService {
             )
             .subscribe();
 
+        if (response.status === 0) {
+            this.alert.error(
+                "No connection",
+                "Unable to connect to the server. You're probably offline or sever unreachable."
+            );
+        }
+
+        console.log('problem instanceof ProblemDetails', problem instanceof ProblemDetails);
         if (!(problem instanceof ProblemDetails)) {
             console.error('Request does not return a problem detail, find out why');
+            console.log(problem);
         }
 
         [404].includes(response.status) && this.zone.run(() => {
             this.alert.error(
-                this.env.alertOptions,
                 "Not found",
                 "We could not find the resource you requested."
             );
         });
 
-        ![401, 403, 404].includes(response.status) && this.zone.run(() => {
+        ![401, 403, 404, 0].includes(response.status) && this.zone.run(() => {
             console.log('bad request');
 
             //TODO: ExpressionChangedAfterItHasBeenCheckedError
             this.alert.error(
-                this.env.alertOptions,
                 problem.title,
                 problem.detail
             );

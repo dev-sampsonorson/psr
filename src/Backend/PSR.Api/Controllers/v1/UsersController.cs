@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PSR.Api.Interfaces;
+using PSR.Application.Common.Models;
 using PSR.Application.Models.Request;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
@@ -16,17 +17,17 @@ namespace PSR.Api.Controllers.v1
 {
     public class UsersController : BaseController
     {
-        private readonly IUserAuthFacade _userAuthFacade;
+        private readonly IAuthService _authService;
         private readonly IIdentityService _identityService;
         private readonly IMapper _mapper;
 
         public UsersController(
-            IUserAuthFacade userAuthFacade,
+            IAuthService authService,
             IIdentityService identityService,
             ILoggerFactory loggerFactory,
             IMapper mapper) : base(loggerFactory) 
         {
-            _userAuthFacade = userAuthFacade;
+            _authService = authService;
             _identityService = identityService;
             _mapper = mapper;
         }
@@ -40,7 +41,7 @@ namespace PSR.Api.Controllers.v1
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(string id) {
 
-            var user = await _userAuthFacade.GetUserByIdAysnc(id);
+            var user = await _authService.GetUserByIdAysnc(id);
 
             return Ok(user);
 

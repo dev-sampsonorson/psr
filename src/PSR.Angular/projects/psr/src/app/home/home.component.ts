@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthRoutes } from '@psr/auth/auth.constants';
+import { IUser } from '@psr/auth/models/user.model';
 import { AuthService } from '@psr/auth/services/auth.service';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { TestService } from '../services/test.service';
 
 @Component({
@@ -9,7 +12,13 @@ import { TestService } from '../services/test.service';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+
+    public user: IUser | null = null;
+
+    private getUserSub!: Subscription;
+    private logoutSub!: Subscription;
+    private testDescSub!: Subscription;
 
     constructor(
         private test: TestService,
@@ -18,6 +27,10 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.getUserSub = this.auth.getUser()
+            .subscribe(user => {
+                this.user = user;
+            });
     }
 
     onGetError(): void {
@@ -32,19 +45,23 @@ export class HomeComponent implements OnInit {
     }
 
     onGetTestDescription(): void {
-        this.test.getTestDescription().subscribe(result => {
+        console.log('onGetTestDescription');
+        this.testDescSub = this.test.getTestDescription().subscribe(result => {
             console.log('result', result);
         });
     }
 
-    onLogout(): void {
-        this.auth.logout();
-
-        /*
-.subscribe(_ => {
-            // this.router.navigate([AuthRoutes.Login]);
-        })
-        */
+    onLogin(): void {
+        this.router.navigate([AuthRoutes.Login]);
     }
 
+    onLogout(): void {
+        this.auth.logout();
+    }
+
+    ngOnDestroy(): void {
+        this.getUserSub && this.getUserSub.unsubscribe();
+        // this.logoutSub.unsubscribe();
+        this.testDescSub && this.testDescSub.unsubscribe();
+    }
 }

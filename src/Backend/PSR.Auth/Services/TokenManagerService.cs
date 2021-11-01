@@ -1,93 +1,44 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
 using BlitzkriegSoftware.SecureRandomLibrary;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PSR.Application.Common.Exceptions;
+using PSR.Application.Common.Mappings;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
 using PSR.Auth.Exceptions;
 using PSR.Auth.Interfaces;
-using PSR.Auth.Models.Request;
 using PSR.Auth.Models.Response;
-using PSR.Domain;
-using PSR.SharedKernel;
 
 namespace PSR.Auth.Services
 {
-    public class AuthService : IAuthService
+    public class TokenManagerService : ITokenManagerService
     {
         private readonly IIdentityService _identityService;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParams;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
+        private readonly IMapper _mapper;
         
-        public AuthService(
+        public TokenManagerService(
             IIdentityService identityService, 
             IOptionsMonitor<JwtSettings> optionsMonitor,
             TokenValidationParameters tokenValidationParams,
-            IRefreshTokenRepository refreshTokenRepository) 
+            IRefreshTokenRepository refreshTokenRepository,
+            IMapper mapper) 
         {
             _identityService = identityService;
             _jwtSettings = optionsMonitor.CurrentValue;
             _tokenValidationParams = tokenValidationParams;
             _refreshTokenRepository = refreshTokenRepository;
-        }
-
-        public async Task<(AuthRes Response, ApplicationUser? User)> LoginAsync(UserLoginReq loginReq) {
-            // get ApplicationUser
-            var applicationUser = await _identityService.GetUserByEmailAsync(loginReq.Email);
-
-            if (applicationUser == null) {
-                var respose = AuthRes.Failure(new List<string> {
-                    "Invalid authentication request"
-                });
-                return (respose, null);
-            }
-
-            // verify user name and password
-            var isValid = await _identityService.VerifyPassword(applicationUser, loginReq.Password);
-
-            if (!isValid) {
-                var respose = AuthRes.Failure(new List<string> {
-                    "Invalid authentication request"
-                });
-                return (respose, null);
-            }
-
-            return (AuthRes.Success(), applicationUser);
+            _mapper = mapper;
         }
         
-        public async Task<(AuthRes Response, ApplicationUser? User)> RegisterAsync(UserRegistrationReq registrationReq) {
-            // check if the email exist
-            var applicationUser = await _identityService.GetUserByEmailAsync(registrationReq.Email);
-            if (applicationUser is not null) {
-                var response = AuthRes.Failure(new List<string> {
-                    "Email already in use"
-                });
-                
-                return (response, null);
-            }            
-
-            var newUser = new ApplicationUser {
-                Email = registrationReq.Email,
-                UserName = registrationReq.Email,
-                EmailConfirmed = true // TODO build email functionality to send to the user to confirm email
-            };
-
-            // register user
-            var identityResult = await _identityService.CreateUserAsync(newUser, registrationReq.Password);
-
-            return (identityResult, newUser);
-        }
-
-        public async Task<AuthRes> RefreshTokenAsync(string token, string refreshToken) {
+        public async Task<UserAuthRes> RefreshTokenAsync(string token, string refreshToken) {
             var jwtTokenHanlder = new JwtSecurityTokenHandler();
 
             try {
@@ -98,48 +49,54 @@ namespace PSR.Auth.Services
                 // is it a JwtSecurityToken
                 // IsJwtWithValidSecurityAlgorithm
                 if (!IsJwtWithValidSecurityAlgorithm(validatedToken)) {
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Invalid authentication request");
+                    /* return AuthRes.Failure(new List<string> {
                         "Invalid authentication request"
-                    });
+                    }); */
                 }
                 
                 // check that the token is not expired
                 var utcExpiryDate = long.Parse(claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp)?.Value ?? "0");
                 var expiryDate = UnixTimeStapToDateTime(utcExpiryDate);
                 if (expiryDate > DateTime.UtcNow) {
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Token has not yet expired");
+                    /* return AuthRes.Failure(new List<string> {
                         "Token has not yet expired"
-                    });
+                    }); */
                 }
                 
                 // does the token exists in our database
                 var storedRefreshToken = await _refreshTokenRepository.GetByRefreshTokenAsync(refreshToken);
                 if (storedRefreshToken is null) {
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Token does not exist");
+                    /* return AuthRes.Failure(new List<string> {
                         "Token does not exist"
-                    });
+                    }); */
                 }
                 
                 // has refresh token been used
                 if (storedRefreshToken.IsUsed) {
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Token has been used");
+                    /* return AuthRes.Failure(new List<string> {
                         "Token has been used"
-                    });
+                    }); */
                 }
 
                 // validate if revoked
                 if (storedRefreshToken.IsRevorked) {
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Token has been revoked");
+                    /* return AuthRes.Failure(new List<string> {
                         "Token has been revoked"
-                    });
+                    }); */
                 }
 
                 // matches jti in our db and validate it (id)
                 var jti = claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti)?.Value ?? "";
                 if (storedRefreshToken.JwtId != jti) {  
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Token doesn't match");
+                    /* return AuthRes.Failure(new List<string> {
                         "Token doesn't match"
-                    });
+                    }); */
                 }
 
                 // update current token
@@ -154,17 +111,26 @@ namespace PSR.Auth.Services
                 var lastName = claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == AuthClaimTypes.LastName)?.Value!;
 
                 // generate new token
-                return await JwtTokenAsync(userExisting, firstName, lastName);
+                var tokenResult = await JwtTokenAsync(userExisting, firstName, lastName);
+                
+                var userAuthResponse = _mapper.MergeInto<UserAuthRes>(userExisting, tokenResult);
+                userAuthResponse.FirstName = firstName;
+                userAuthResponse.LastName = lastName;
+
+                return userAuthResponse;
             } catch(Exception ex) {
                 if(ex.Message.Contains("Lifetime validation failed. The token is expired.")) {
-                    return AuthRes.Failure(new List<string> {
+                    throw new AppException("Authentication failed", "Token has expired please re-login");
+                    /* return AuthRes.Failure(new List<string> {
                         "Token has expired please re-login"
-                    });               
+                    }); */               
                 }
 
-                return AuthRes.Failure(new List<string> {
+                // throw new AppException("Authentication failed", "Something went wrong.");
+                /* return AuthRes.Failure(new List<string> {
                     "Something went wrong."
-                });
+                }); */
+                throw;
             }
         }
 
@@ -345,6 +311,7 @@ namespace PSR.Auth.Services
                     x.AddedDate.AddDays(_jwtSettings.RefreshTokenTTL) <= DateTime.UtcNow);
         }
 
+        
         
     }
 }

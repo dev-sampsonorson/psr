@@ -81,6 +81,10 @@ export class AlertComponent implements OnInit, IAlertComponent, OnDestroy, After
         return classes.join(' ');
     }
 
+    hasActions() {
+        return !!this.alert?.actions && this.alert.actions.length > 0;
+    }
+
     ngOnDestroy(): void {
         clearTimeout(this._timeout);
     }

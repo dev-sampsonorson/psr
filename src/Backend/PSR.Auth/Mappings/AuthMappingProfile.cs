@@ -20,6 +20,10 @@ namespace PSR.Auth.Mappings
             CreateMap<ApplicationUser, UserRegistrationRes>();
             CreateMap<Employee, UserRegistrationRes>();
             CreateMap<AuthRes, UserRegistrationRes>();
+            
+            CreateMap<ApplicationUser, UserAuthRes>();
+            CreateMap<Employee, UserAuthRes>();
+            CreateMap<AuthRes, UserAuthRes>();
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)

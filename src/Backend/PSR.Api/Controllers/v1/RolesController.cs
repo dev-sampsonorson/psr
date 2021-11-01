@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PSR.Api.Interfaces;
+using PSR.Application.Common.Models;
 using PSR.Application.Models.Request;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;

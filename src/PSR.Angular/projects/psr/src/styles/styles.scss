@@ -3,3 +3,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "markup/form.scss";
+
+body {
+    @apply bg-gray-100;
+}

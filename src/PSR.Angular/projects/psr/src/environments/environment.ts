@@ -15,7 +15,7 @@ export const environment: IEnvironment = {
     logLevel: 'debug',
     apiUrl: _apiUrl,
     alertOptions: {
-        autoClose: false,
+        autoClose: true,
         timeToClose: 10
     }
 };

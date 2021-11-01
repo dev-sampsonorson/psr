@@ -11,6 +11,7 @@ using PSR.Auth.Interfaces;
 using PSR.Auth.Models.Request;
 using PSR.Auth.Models.Response;
 using PSR.SharedKernel;
+using PSR.Application.Common.Models;
 
 namespace PSR.Api.Controllers.v1
 {

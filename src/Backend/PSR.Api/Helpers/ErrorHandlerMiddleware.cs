@@ -1,7 +1,6 @@
 using System.Net;
 using System.Text.Json;
 using PSR.Application.Common.Exceptions;
-using PSR.Application.Exceptions;
 using PSR.SharedKernel;
 
 namespace PSR.Api.Helpers
@@ -44,6 +43,9 @@ namespace PSR.Api.Helpers
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+                    // thrown from ef core ef entities are not valid
+                    case RepositoryException _:
+                    case UnexpectedTypeException _:
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;

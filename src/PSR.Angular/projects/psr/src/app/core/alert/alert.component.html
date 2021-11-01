@@ -25,7 +25,7 @@
                             <!-- mt-1 text-sm text-red-200 -->
                             {{alert?.message}}
                         </p>
-                        <div *ngIf="alert?.actions" class="flex mt-3 space-x-7">
+                        <div *ngIf="hasActions()" class="flex mt-3 space-x-7">
                             <!-- text-sm font-medium text-white bg-transparent rounded-md hover:text-red-200 focus:outline-none -->
                             <button *ngFor="let action of alert?.actions" (click)="onAction(action)" type="button"
                                     class="alert__btn-action">

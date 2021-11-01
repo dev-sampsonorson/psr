@@ -1,15 +1,10 @@
-using System;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using PSR.Application;
-using PSR.Application.Exceptions;
+using PSR.Application.Common.Exceptions;
 using PSR.Auth.Domain;
-using PSR.Domain;
 using PSR.SharedKernel;
 
 namespace PSR.Infrastructure.Data
@@ -36,31 +31,54 @@ namespace PSR.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
         }
 
+        // https://stackoverflow.com/questions/46430619/net-core-2-ef-core-error-handling-save-changes
+        private void ValidateEntities() {
+            var entities = from e in ChangeTracker.Entries()
+                           where e.State == EntityState.Added
+                               || e.State == EntityState.Modified
+                           select e.Entity;
+                           
+            foreach (var entity in entities) {
+                var validationContext = new ValidationContext(entity);
+                Validator.ValidateObject(entity, validationContext, validateAllProperties: true);
+            }
+        }
+
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            ChangeTracker.DetectChanges();
+            try {
+                ValidateEntities();
+
+                ChangeTracker.DetectChanges();
             
-            var entries = ChangeTracker.Entries()
-                .Where(e => e.Entity is AuditableEntity 
-                    && (e.State == EntityState.Added
-                       || e.State == EntityState.Modified));
-
-            foreach (var entry in entries) {
-                var entity = entry.Entity as AuditableEntity;
-
-                if (entity is null)
-                    throw new InvalidCastingException(nameof(entry.Entity), nameof(AuditableEntity));
-
-                if (entry.State == EntityState.Added) {
-                    entity.InsertDate = DateTime.UtcNow;
+                var entries = ChangeTracker.Entries()
+                    .Where(e => e.Entity is AuditableEntity 
+                        && (e.State == EntityState.Added
+                           || e.State == EntityState.Modified));
+    
+                foreach (var entry in entries) {
+                    var entity = entry.Entity as AuditableEntity;
+    
+                    if (entity is null)
+                        throw new UnexpectedTypeException("entity", entry.Entity, typeof(AuditableEntity));
+    
+                    if (entry.State == EntityState.Added) {
+                        entity.InsertDate = DateTime.UtcNow;
+                    }
+                    
+                    entity.UpdateDate = DateTime.UtcNow;
                 }
                 
-                entity.UpdateDate = DateTime.UtcNow;
+                // After executing this line all the changes
+                // performed through the DbContext will be committed
+                await base.SaveChangesAsync(cancellationToken);
+            } catch(System.ComponentModel.DataAnnotations.ValidationException e) {
+                throw new RepositoryException($"Entity in invalid state: {e.ValidationResult.ErrorMessage}");
+            } catch (UnexpectedTypeException) {
+                throw;
+            } catch {
+                return false;
             }
-            
-            // After executing this line all the changes
-            // performed through the DbContext will be committed
-            var result = await base.SaveChangesAsync(cancellationToken);
 
             return true;
         }

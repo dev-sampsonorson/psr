@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PSR.Application.Common.Models
@@ -7,6 +8,8 @@ namespace PSR.Application.Common.Models
         public AppProblemDetails(List<string> errors) {
             Errors = errors;
         }
+
+        [JsonPropertyName("errors")]
         public List<string> Errors { get; }
     }
 }

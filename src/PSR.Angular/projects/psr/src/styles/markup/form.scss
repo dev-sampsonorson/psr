@@ -1,24 +1,4 @@
-:host {
-    @apply block min-h-full;
-    @apply flex flex-col justify-center items-center;
-    @apply h-screen px-4 py-12;
-}
-
-:host::after {
-    content: "";
-    background-image: url(/assets/bg-login.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.20;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-}
-
-/* .register {
+.psr-form {
 
     &__container {
         @apply w-full max-w-md;
@@ -77,7 +57,7 @@
         @apply py-4 text-gray-500 text-center border-t border-gray-200;
     }
 
-    &__login {
-        @apply inline-block font-medium  underline hover:no-underline;
+    &__alt-action {
+        @apply inline-block font-medium  underline hover:no-underline cursor-pointer;
     }
-} */
+}

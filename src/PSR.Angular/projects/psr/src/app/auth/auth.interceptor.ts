@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, take } from 'rxjs/operators';
 import { EnvironmentService } from '@env/environment.service';
 
 @Injectable({
@@ -13,7 +13,9 @@ export class AuthorizeInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return this.auth.getToken()
-            .pipe(mergeMap(token => this.processRequestWithToken(token, req, next)));
+            .pipe(
+                mergeMap(token => this.processRequestWithToken(token, req, next))
+            );
     }
     private processRequestWithToken(token: string | null, req: HttpRequest<any>, next: HttpHandler) {
         const isApiUrl = req.url.startsWith(this.env.apiUrl);

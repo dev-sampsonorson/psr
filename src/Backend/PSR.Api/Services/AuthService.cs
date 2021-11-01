@@ -11,54 +11,55 @@ using PSR.SharedKernel;
 
 namespace PSR.Api.Services
 {
-    public class UserAuthFacade : IUserAuthFacade
+    public class AuthService : IAuthService
     {
+        private readonly ITokenManagerService _tokenManager;
         private readonly IIdentityService _identityService;
-        private readonly IAuthService _authService;
+        private readonly IUserService _userService;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
 
-        public UserAuthFacade(
-            IAuthService authService,
+        public AuthService(
+            ITokenManagerService tokenManager,
+            IUserService userService,
             IEmployeeRepository employeeRepository,
             IIdentityService identityService,
             IMapper mapper) {
-            _authService = authService;
+            _tokenManager = tokenManager;
+            _userService = userService;
             _employeeRepository = employeeRepository;
             _identityService = identityService;
             _mapper = mapper;
         }
 
-        public async Task<AuthRes> LoginAsync(UserLoginReq loginReq) {
-            var result = await _authService.LoginAsync(loginReq);
-            if (!result.Response.Succeeded || result.User is null) {
-                return result.Response;
-            }
+        public async Task<UserAuthRes> LoginAsync(UserLoginReq loginReq) {
+            var result = await _userService.LoginAsync(loginReq);
+            var user = result.Value;
 
+            if (!result.Succeeded || user is null)
+                throw new AppException("Login failed", result.Errors);
             
-            var employee = await _employeeRepository.GetByUserIdAsync(result.User.Id);
+            var employee = await _employeeRepository.GetByUserIdAsync(user.Id);
 
             // Generate Jwt token
-            return await _authService.JwtTokenAsync(
-                result.User, employee.FirstName, employee.LastName);
+            var tokenResult = await _tokenManager.JwtTokenAsync(
+                user, employee.FirstName, employee.LastName);
+
+            return _mapper.MergeInto<UserAuthRes>(user, employee, tokenResult);
         }
 
-        public async Task<UserRegistrationRes> RegisterAsync(UserRegistrationReq registrationReq)
+        public async Task<UserAuthRes> RegisterAsync(UserRegistrationReq registrationReq)
         {
-            var regResponse = await _authService.RegisterAsync(registrationReq);
-            if (!regResponse.Response.Succeeded || regResponse.User is null) {
-                throw new AppException(regResponse.Response.Errors);
-            }
+            var user = await _userService.RegisterAsync(registrationReq);
 
             // add user to role
             var role = await _identityService.GetRoleByNameAsync("AppUser");
-
             if (role is not null)
-               await _identityService.AddUserToRoleAsync(regResponse.User, "AppUser");
+               await _identityService.AddUserToRoleAsync(user, "AppUser");
 
             // Register employee
-            var newEmployee = new Employee {
-                UserId = regResponse.User.Id,
+            var employeeToSave = new Employee {
+                UserId = user.Id,
                 FirstName = registrationReq.FirstName,
                 LastName = registrationReq.LastName,
                 TimeZone = registrationReq.TimeZone,
@@ -68,20 +69,20 @@ namespace PSR.Api.Services
                 Status = EmployeeStatus.Active
             };
 
-            await _employeeRepository.AddAsync(newEmployee);
-            var isSuccessful = await _employeeRepository.UnitOfWork.SaveEntitiesAsync();
-            if (!isSuccessful) {
-                throw new AppException("Registration unsuccessful");
+            await _employeeRepository.AddAsync(employeeToSave);
+
+            if (!await _employeeRepository.UnitOfWork.SaveEntitiesAsync()) {
+                throw new AppException("Registration failed", "Registration unsuccessful");
             }
 
             // Generate Jwt token
-            var tokenResult = await _authService.JwtTokenAsync(
-                regResponse.User, registrationReq.FirstName, registrationReq.LastName);
+            var tokenResult = await _tokenManager.JwtTokenAsync(
+                user, registrationReq.FirstName, registrationReq.LastName);
 
             if (!tokenResult.Succeeded)
-                throw new AppException("Token generation failed");
+                throw new AppException("Registration failed", "Token generation failed");
 
-            return _mapper.MergeInto<UserRegistrationRes>(regResponse.User, newEmployee, tokenResult);
+            return _mapper.MergeInto<UserAuthRes>(user, employeeToSave, tokenResult);
             
 
             // Generate Jwt token

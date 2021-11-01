@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { AuthPaths } from '@psr/auth/auth.constants';
 import { Observable } from 'rxjs';
+import { share, shareReplay } from 'rxjs/operators';
 import { APP_CONFIG_TOKEN, IAppConfig } from '../app.config';
 
 @Injectable({
@@ -17,6 +18,8 @@ export class TestService {
     }
 
     getTestDescription(): Observable<string> {
-        return this.http.get<string>(this.appConfig.getUrl(AuthPaths.GetTestDescription));
+        return this.http.get<string>(this.appConfig.getUrl(AuthPaths.GetTestDescription)).pipe(
+            // shareReplay()
+        );
     }
 }

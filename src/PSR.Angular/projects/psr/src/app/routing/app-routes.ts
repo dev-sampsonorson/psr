@@ -1,8 +1,9 @@
 import { Routes } from "@angular/router";
+import { AppComponent } from "@psr/app.component";
 import { HomeComponent } from "../home/home.component";
 
 export const appRoutes: Routes = [
-    { path: 'home', component: HomeComponent },
+    { path: 'home', component: AppComponent },
     {
         path: 'auth',
         loadChildren: () => import("../auth/auth.module").then(m => m.AuthModule)

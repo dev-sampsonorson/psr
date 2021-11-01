@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EnvironmentService } from '@env/environment.service';
 import { AuthRoutes } from '@psr/auth/auth.constants';
 import { AlertService } from '@psr/core/alert';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ILookupItem } from '../../../core/app.interfaces';
 import { LookupService } from '../../../services/lookup.service';
@@ -21,10 +22,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     public form!: FormGroup;
     public countries: ILookupItem[] = [];
+    public formIsValid: boolean = false;
 
     private debouncer$: Subject<string> = new Subject();
-
-    formIsValid: boolean = false;
+    private registerSub!: Subscription;
+    private formStatusSub!: Subscription;
 
     constructor(
         private auth: AuthService,
@@ -32,7 +34,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private validators: AuthValidatorsService,
         private lookupService: LookupService,
         private alert: AlertService,
-        private env: EnvironmentService
+        private env: EnvironmentService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -45,7 +48,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             distinctUntilChanged()
         ).subscribe((value: string) => this.passwordChange.emit(value));
 
-        this.form.statusChanges.subscribe(formStatus => {
+        this.formStatusSub = this.form.statusChanges.subscribe(formStatus => {
             if (formStatus === "INVALID" || formStatus === "PENDING")
                 this.formIsValid = false;
             else
@@ -55,11 +58,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     registerEmployee() {
         if (this.form.valid) {
-            this.auth.register(this.form.value).subscribe(response => {
+            this.registerSub = this.auth.register(this.form.value).subscribe(response => {
                 console.info(response);
                 this.form.reset();
                 this.alert.success(
-                    this.env.alertOptions,
                     "Registration successful",
                     "You have completed registration. Please login.",
                     [
@@ -70,23 +72,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
         } else {
             this.form.markAllAsTouched();
         }
-
-
-        /* if (this.form.valid) {
-            this.userService.create({
-                email: this.email.value,
-                password: this.password.value,
-                username: this.username.value
-            }).pipe(
-                tap(() => this.router.navigate(['../login']))
-            ).subscribe();
-        } */
     }
 
     onPasswordChange(e: Event) {
         const { target } = e;
-        // (target as HTMLInputElement).value
-        this.debouncer$.next('kdkfdk');
+        this.debouncer$.next((target as HTMLInputElement).value);
     }
 
     isInvalid(control: FormControl, validation: string | undefined = undefined) {
@@ -120,8 +110,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy() {
-
+    gotoLogin() {
+        this.router.navigate([AuthRoutes.Login]);
+    }
+    ngOnDestroy(): void {
+        this.registerSub.unsubscribe();
+        this.formStatusSub.unsubscribe();
     }
 
 }

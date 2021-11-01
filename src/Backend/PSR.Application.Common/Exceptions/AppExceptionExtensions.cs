@@ -12,7 +12,7 @@ namespace PSR.Application.Common.Exceptions
             var prob = new AppProblemDetails(exception.Errors){
                 Status = (int)HttpStatusCode.BadRequest,
                 Type = "app/general",
-                Title = "Application error",
+                Title = exception.Title,
                 Detail = exception.Message,
                 Instance = traceId
             };

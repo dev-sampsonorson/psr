@@ -1,4 +1,5 @@
 <p>home works!</p>
+<h1 *ngIf="user">Welcome {{ user?.firstName }}</h1>
 
 <button (click)="onGetError()" class="btn__elevated">
     Get Error
@@ -8,4 +9,7 @@
 </button>
 <button (click)="onLogout()" class="btn__elevated">
     Logout
+</button>
+<button (click)="onLogin()" class="btn__elevated">
+    Login
 </button>

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using PSR.Application.Common.Models;
 using PSR.Auth.Domain;
 using PSR.Auth.Models.Response;
 using PSR.SharedKernel;

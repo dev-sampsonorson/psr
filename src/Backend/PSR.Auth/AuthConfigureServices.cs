@@ -66,7 +66,8 @@ namespace PSR.Auth
 
 
             services.AddScoped<IIdentityService, IdentityService>();
-            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenManagerService, TokenManagerService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }
