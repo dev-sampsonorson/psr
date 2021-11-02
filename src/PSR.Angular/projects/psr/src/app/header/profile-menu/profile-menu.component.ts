@@ -13,8 +13,7 @@ import { ProfileMenuService } from '../profile-menu.service';
         <app-dropdown-menu
             *ngIf="isDropdownOpen"
             [menus]="menuItems"
-            (menuItemClicked)="onMenuItemClicked($event)"
-            >
+            (menuItemClicked)="onMenuItemClicked($event)">
         </app-dropdown-menu>
     `,
     styles: [`
@@ -23,7 +22,7 @@ import { ProfileMenuService } from '../profile-menu.service';
         }
 
         .close-overlay {
-            @apply fixed inset-0 bg-black opacity-50 h-full w-full cursor-default;
+            @apply fixed inset-0 h-full w-full cursor-default; //bg-black opacity-50
         }
     `]
 })
@@ -40,7 +39,6 @@ export class ProfileMenuComponent implements OnInit {
 
     ngOnInit(): void {
         this.openStatus$.subscribe(status => {
-            console.log('status from Profile Menu => ', status);
             this.isDropdownOpen = status;
         });
     }

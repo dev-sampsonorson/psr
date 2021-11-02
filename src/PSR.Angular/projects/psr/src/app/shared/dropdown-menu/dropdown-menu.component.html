@@ -12,9 +12,9 @@
      role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
 
     <ng-container *ngFor="let menuItem of menus">
-        <a [routerLink]="[menuItem.route]" routerLinkActive="router-link-active" (click)="onMenuItemClick(menuItem)" class="block px-4 py-2 text-sm text-gray-700"
-           tabindex="-1">
-            {{menuItem.name}}
+        <a [routerLink]="[menuItem.route]" routerLinkActive="router-link-active" (click)="onMenuItemClick(menuItem)"
+           class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">
+            {{menuItem.label}}
         </a>
     </ng-container>
 

@@ -4,7 +4,7 @@ export interface IAppRoutes {
 }
 
 let appRoutes: IAppRoutes = {
-    Home: `home`
+    Home: `/home`
 };
 
 

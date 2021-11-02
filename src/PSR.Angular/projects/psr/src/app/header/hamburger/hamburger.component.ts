@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-hamburger',
-  templateUrl: './hamburger.component.html',
-  styleUrls: ['./hamburger.component.scss']
+    selector: 'app-hamburger',
+    templateUrl: './hamburger.component.html',
+    styleUrls: ['./hamburger.component.scss']
 })
 export class HamburgerComponent implements OnInit {
 
-  constructor() { }
+    @Output() clicked = new EventEmitter();
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+    onClick(): void {
+        this.clicked.emit();
+    }
 
 }
