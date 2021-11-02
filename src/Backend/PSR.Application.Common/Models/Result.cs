@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace PSR.SharedKernel
+namespace PSR.Application.Common.Models
 {
     public class Result
     {

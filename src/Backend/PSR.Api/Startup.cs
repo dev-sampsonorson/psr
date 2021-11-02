@@ -1,6 +1,9 @@
 using System.Reflection;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PSR.Api.Converters;
+using PSR.Api.Filters;
 using PSR.Api.Helpers;
 using PSR.Api.Services;
 using PSR.Application;
@@ -19,6 +22,7 @@ namespace PSR.Api
 {
     public class Startup
     {
+        private readonly string AllowSpecificOrigins = "_psrAllowSpecificOrigins";
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
 
@@ -44,31 +48,40 @@ namespace PSR.Api
 
             services.AddControllers(options => {
                 options.Filters.Add<ValidationFilter>();
-            }).AddJsonOptions(options => {
+
+                // using global exception handler instead
+                // options.Filters.Add(new HttpResponseExceptionFilter());
+            })
+            .AddJsonOptions(options => {
                 options.JsonSerializerOptions.Converters.Add(new CountryJsonConverter());
-            }).AddFluentValidation(options => {
-                options.RegisterValidatorsFromAssemblyContaining<Startup>();
-                options.RegisterValidatorsFromAssemblyContaining<UserRegistrationReqValidator>();
+            })
+            .AddFluentValidation(x => {
+                x.RegisterValidatorsFromAssemblyContaining<AuthLayerMarker>();
+                x.RegisterValidatorsFromAssemblyContaining<ApplicationLayerMarker>();
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowSpecificOrigins,
+                    builder => builder
+                    .WithOrigins("http://localhost:4200")
+                    // .SetIsOriginAllowed((host) => true) // allow any origin
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                );
+            });
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
             {
-                // disable api request model default fluent validation
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-
-            /* services.AddMvc(options => {
-                options.Filters.Add<ValidationFilter>();
-            }).AddFluentValidation(options => {
-                options.RegisterValidatorsFromAssemblyContaining<Startup>();
-            }); */
-
-
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
-            });
             services.AddApiServices(_configuration);
             services.AddAuthServices(_configuration);
             services.AddApplicationServices(_configuration);
@@ -78,14 +91,20 @@ namespace PSR.Api
         }
 
         public void Configure(IApplicationBuilder app) {
+            // app.UseMiddleware<ErrorHandlerMiddleware>();
 
             if (_env.IsDevelopment()) {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/api/v1/error/development");
+                // app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PSR.Api v1"));
+            } else {
+                app.UseExceptionHandler("/api/v1/error");
             }
             app.UseRouting();
             app.UseApiServices(_configuration);
+            
+            app.UseCors(AllowSpecificOrigins);
             
             // app.UseHttpsRedirection();
             app.UseAuthentication();

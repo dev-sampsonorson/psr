@@ -22,10 +22,10 @@ namespace PSR.Application.Mappings
             foreach (var type in types)
             {
                 var method = type.GetMethod("Mapping") ??
-                             type?.GetInterface("IMapFrom`1")?
+                             type.GetInterface("IMapFrom`1")!
                                 .GetMethod("Mapping");
 
-                var instance = Activator.CreateInstance(type!);
+                var instance = Activator.CreateInstance(type);
 
                 method?.Invoke(instance, new object[] { this });
             }

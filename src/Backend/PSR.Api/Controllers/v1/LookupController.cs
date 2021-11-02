@@ -1,21 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
-using PSR.Application.Interfaces;
-using PSR.Application.Response;
-using PSR.SharedKernel;
+using PSR.Application.Common;
+using PSR.Domain;
 
 namespace PSR.Api.Controllers.v1
 {
     public class LookupController : BaseController
     {
-        private readonly ILookupService _lookupService;
 
-        public LookupController(ILoggerFactory loggerFactory, ILookupService lookupService) : base(loggerFactory) { 
-            _lookupService = lookupService;
+        public LookupController(
+            ILoggerFactory loggerFactory) : base(loggerFactory) 
+        {
         }
 
         [HttpGet("countries")]
         public IActionResult GetCountries() {
-            return Ok(Result<List<LookupRes>>.Success(_lookupService.GetCountries()));
+            return Ok(Country.List().Select(item => new LookupItem(item.Id, item.Name)));
         }
         
     }

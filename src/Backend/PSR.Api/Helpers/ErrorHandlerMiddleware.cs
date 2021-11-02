@@ -1,6 +1,6 @@
 using System.Net;
 using System.Text.Json;
-using PSR.Application.Exceptions;
+using PSR.Application.Common.Exceptions;
 using PSR.SharedKernel;
 
 namespace PSR.Api.Helpers
@@ -25,29 +25,33 @@ namespace PSR.Api.Helpers
                 var response = context.Response;
                 response.ContentType = "application/json";
 
-                object responsePayload = new { message = error?.Message };
+                
+                var result = JsonSerializer.Serialize(new { message = error?.Message });
 
                 switch(error)
                 {
                     case AppException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        result = JsonSerializer.Serialize(e.ToProblemDetails());
+                        break;
+                    case RequestFormatException e:
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        result = JsonSerializer.Serialize(e.ToProblemDetails());
                         break;
                     case EntityNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
-                    case JsonFormatException e:
-                        responsePayload = e.ToValidationProblemDetails();
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
+                    // thrown from ef core ef entities are not valid
+                    case RepositoryException _:
+                    case UnexpectedTypeException _:
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-                var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-                var result = JsonSerializer.Serialize(responsePayload, options);
+                
                 await response.WriteAsync(result);
             }
         }

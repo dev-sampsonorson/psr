@@ -1,6 +1,10 @@
 using System.Reflection;
 using AutoMapper;
 using PSR.Application.Common.Mappings;
+using PSR.Auth.Domain;
+using PSR.Auth.Models.Response;
+using PSR.Domain;
+using PSR.SharedKernel.Extensions;
 
 namespace PSR.Auth.Mappings
 {
@@ -9,6 +13,17 @@ namespace PSR.Auth.Mappings
         public AuthMappingProfile()
         {
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+            
+            CreateMap<ApplicationUser, UserRes>();
+            CreateMap<Employee, UserRes>();
+            
+            CreateMap<ApplicationUser, UserRegistrationRes>();
+            CreateMap<Employee, UserRegistrationRes>();
+            CreateMap<AuthRes, UserRegistrationRes>();
+            
+            CreateMap<ApplicationUser, UserAuthRes>();
+            CreateMap<Employee, UserAuthRes>();
+            CreateMap<AuthRes, UserAuthRes>();
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)
@@ -22,10 +37,10 @@ namespace PSR.Auth.Mappings
             foreach (var type in types)
             {
                 var method = type.GetMethod("Mapping") ??
-                             type?.GetInterface("IMapFrom`1")?
+                             type.GetInterface("IMapFrom`1")!
                                 .GetMethod("Mapping");
 
-                var instance = Activator.CreateInstance(type!);
+                var instance = Activator.CreateInstance(type);
 
                 method?.Invoke(instance, new object[] { this });
             }

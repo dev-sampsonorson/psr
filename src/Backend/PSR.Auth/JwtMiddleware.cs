@@ -16,11 +16,11 @@ namespace PSR.Auth
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, IIdentityService identityService, IAuthService authService)
+        public async Task Invoke(HttpContext context, IIdentityService identityService, ITokenManagerService tokenManager)
         {
             try {
                 var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                var userId = authService.ExtractUserIdFromJwtToken(token!);
+                var userId = tokenManager.ExtractUserIdFromJwtToken(token!);
                 if (!string.IsNullOrEmpty(userId))
                 {
                     // attach user to context on successful jwt validation

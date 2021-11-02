@@ -4,9 +4,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11"/>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11"/>
     <PackageReference Include="BlitzkriegSoftware.SecureRandomLibrary" Version="1.0.3"/>
-    <PackageReference Include="FluentValidation" Version="10.3.4"/>
     <PackageReference Include="AutoMapper" Version="10.1.1"/>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
+    <PackageReference Include="FluentValidation" Version="10.3.4"/>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PSR.SharedKernel\PSR.SharedKernel.csproj"/>
