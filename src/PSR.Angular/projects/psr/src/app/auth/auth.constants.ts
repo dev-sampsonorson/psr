@@ -28,10 +28,10 @@ let authPaths: IAuthPaths = {
 };
 
 let authRoutes: IAuthRoutes = {
-    Register: `auth/register`,
-    Login: `auth/authenticate`,
-    RefreshToken: `auth/refresh`,
-    RevokeToken: `auth/revoke`
+    Register: `/auth/register`,
+    Login: `/auth/authenticate`,
+    RefreshToken: `/auth/refresh`,
+    RevokeToken: `/auth/revoke`
 };
 
 let authConsts: IAuthConstants = {

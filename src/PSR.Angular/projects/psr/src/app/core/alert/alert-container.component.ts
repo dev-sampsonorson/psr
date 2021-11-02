@@ -13,7 +13,7 @@ import { AlertHostDirective } from './alert-host.directive';
     styles: [`
         :host {
             @apply flex flex-row flex-wrap fixed top-0 right-0 px-4 py-6 sm:p-6 max-w-sm items-end sm:items-end pointer-events-none;
-            @apply max-w-sm w-full;
+            @apply max-w-sm w-full z-20;
         }
     `
     ]
