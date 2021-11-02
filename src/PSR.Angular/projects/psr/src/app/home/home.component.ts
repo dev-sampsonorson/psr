@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     onGetTestDescription(): void {
-        console.log('onGetTestDescription');
         this.testDescSub = this.test.getTestDescription().subscribe(result => {
             console.log('result', result);
         });

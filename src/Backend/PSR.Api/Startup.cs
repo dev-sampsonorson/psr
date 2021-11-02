@@ -13,16 +13,12 @@ using PSR.Auth.Interfaces;
 using PSR.Auth.Services;
 using PSR.Infrastructure;
 using PSR.Infrastructure.Data;
-using PSR.Api.Filters;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
 using PSR.Auth.Validators;
 
 namespace PSR.Api
 {
     public class Startup
     {
-        private readonly string AllowSpecificOrigins = "_psrAllowSpecificOrigins";
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
 
@@ -46,40 +42,8 @@ namespace PSR.Api
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddControllers(options => {
-                options.Filters.Add<ValidationFilter>();
-
-                // using global exception handler instead
-                // options.Filters.Add(new HttpResponseExceptionFilter());
-            })
-            .AddJsonOptions(options => {
-                options.JsonSerializerOptions.Converters.Add(new CountryJsonConverter());
-            })
-            .AddFluentValidation(x => {
-                x.RegisterValidatorsFromAssemblyContaining<AuthLayerMarker>();
-                x.RegisterValidatorsFromAssemblyContaining<ApplicationLayerMarker>();
-            });
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy(AllowSpecificOrigins,
-                    builder => builder
-                    .WithOrigins("http://localhost:4200")
-                    // .SetIsOriginAllowed((host) => true) // allow any origin
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                );
-            });
-
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
-            });
-
-            // Customise default API behaviour
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
             });
 
             services.AddApiServices(_configuration);
@@ -103,8 +67,6 @@ namespace PSR.Api
             }
             app.UseRouting();
             app.UseApiServices(_configuration);
-            
-            app.UseCors(AllowSpecificOrigins);
             
             // app.UseHttpsRedirection();
             app.UseAuthentication();

@@ -13,3 +13,6 @@
 - PERSISTED_QUERY_NOT_FOUND
 
 - PERSISTED_QUERY_NOT_SUPPORTED
+
+
+Remove dependency on Microsoft.AspNetCore.Mvc from Application.Common

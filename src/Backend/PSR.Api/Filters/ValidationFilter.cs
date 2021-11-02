@@ -17,18 +17,18 @@ namespace PSR.Api.Filters
                     .Where(x => x.Value?.Errors.Count > 0)
                     .ToDictionary(pair => pair.Key, pair => pair.Value?.Errors.Select(x => x.ErrorMessage)).ToArray();
 
-                var errorResponse = new ErrorRes();
-
+                // var errorResponse = new ErrorRes();
+                List<ErrorItem> errorResponse = new List<ErrorItem>();
                 foreach(var error in errorsInModelState) {
                     foreach(var subError in error.Value!) {
-                        errorResponse.Errors.Add(new ErrorItem {
+                        errorResponse.Add(new ErrorItem {
                             Field = error.Key,
                             Message = subError
                         });
                     }
                 }
                 
-                context.Result = new BadRequestObjectResult(new AppValidationProblemDetails(errorResponse.Errors) {
+                context.Result = new BadRequestObjectResult(new AppValidationProblemDetails(errorResponse) {
                     Status = (int)HttpStatusCode.BadRequest,
                     Type = "validation",
                     Title = "Validation failed",

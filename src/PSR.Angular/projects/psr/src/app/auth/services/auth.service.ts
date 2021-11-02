@@ -53,7 +53,7 @@ export class AuthService {
             of(this.storage.getItem(AuthConstants.UserKey)).pipe(
                 filter(user => !!user),
 
-                tap(x => console.log('storage => ', x)),
+                // tap(x => console.log('storage => ', x)),
 
                 // we will get here if the value is not null
                 // update the user subject
@@ -65,8 +65,7 @@ export class AuthService {
             switchMap(user => of(user ?? EMPTY_USER)),
             distinctUntilKeyChanged('id'),
             // transform back to null
-            switchMap(user => of(user.id === EMPTY_USER.id ? null : user)),
-            tap(x => console.log('auth tap', x))
+            switchMap(user => of(user.id === EMPTY_USER.id ? null : user))
         );
 
         return source$;

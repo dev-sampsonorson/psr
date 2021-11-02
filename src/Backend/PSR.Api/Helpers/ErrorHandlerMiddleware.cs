@@ -25,19 +25,19 @@ namespace PSR.Api.Helpers
                 var response = context.Response;
                 response.ContentType = "application/json";
 
-                
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+                var result = JsonSerializer.Serialize(new { message = error?.Message }, options);
 
                 switch(error)
                 {
                     case AppException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        result = JsonSerializer.Serialize(e.ToProblemDetails());
+                        result = JsonSerializer.Serialize(e.ToProblemDetails(), options);
                         break;
                     case RequestFormatException e:
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        result = JsonSerializer.Serialize(e.ToProblemDetails());
+                        result = JsonSerializer.Serialize(e.ToProblemDetails(), options);
                         break;
                     case EntityNotFoundException e:
                         // not found error
@@ -58,3 +58,7 @@ namespace PSR.Api.Helpers
         
     }
 }
+/* case JsonFormatException e:
+    responsePayload = e.ToValidationProblemDetails();
+    response.StatusCode = (int)HttpStatusCode.BadRequest;
+    break; */

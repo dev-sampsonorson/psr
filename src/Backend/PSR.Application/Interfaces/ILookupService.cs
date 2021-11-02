@@ -1,9 +1,9 @@
-using PSR.Application.Response;
+using PSR.Application.Common;
 
 namespace PSR.Application.Interfaces
 {
     public interface ILookupService
     {
-         List<LookupRes> GetCountries();
+         List<LookupItem> GetCountries();
     }
 }

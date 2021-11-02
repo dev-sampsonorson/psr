@@ -6,6 +6,8 @@ using BlitzkriegSoftware.SecureRandomLibrary;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PSR.Application.Common.Exceptions;
+using PSR.Application.Common.Mappings;
 using PSR.Auth.Configuration;
 using PSR.Auth.Domain;
 using PSR.Auth.Exceptions;

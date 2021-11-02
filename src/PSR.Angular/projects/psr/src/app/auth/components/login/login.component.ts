@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     loginEmployee() {
         if (this.form.valid) {
             this.loginSub = this.auth.login(this.form.value).subscribe(response => {
-                console.info('login', response);
+                // console.info('login', response);
                 this.form.reset();
                 this.alert.success(
                     "Login successful",

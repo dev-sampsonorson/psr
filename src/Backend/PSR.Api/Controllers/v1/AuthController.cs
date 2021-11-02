@@ -57,8 +57,11 @@ namespace PSR.Api.Controllers.v1
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenReq tokenReq) {
             // accept refresh token in request body or cookie
             var refreshToken = string.IsNullOrEmpty(tokenReq.RefreshToken) 
-                ? (tokenReq.RefreshToken ?? Request.Cookies["refreshToken"]) 
+                ? Request.Cookies["refreshToken"]
                 : tokenReq.RefreshToken;
+
+            if (refreshToken is null)
+                throw new RequestFormatException(nameof(refreshToken));
 
             var result = await _tokenManager.RefreshTokenAsync(tokenReq.Token, refreshToken);
 
