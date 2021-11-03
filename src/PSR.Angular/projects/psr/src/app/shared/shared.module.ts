@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     declarations: [
         LogoComponent,
-        DropdownMenuComponent
+        DropdownMenuComponent,
     ],
     exports: [
         LogoComponent,

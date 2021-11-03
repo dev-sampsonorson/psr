@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthRoutes } from '@psr/auth/auth.constants';
 import { MenuItem } from '@psr/shared/menu.model';
 import { Observable } from 'rxjs';
@@ -33,8 +33,10 @@ export class ProfileMenuComponent implements OnInit {
 
     @Input() menuItems: MenuItem[] = [];
 
-    constructor(private profileMenuService: ProfileMenuService) {
-        this.openStatus$ = this.profileMenuService.openStatus$;
+    constructor(
+        private service: ProfileMenuService
+    ) {
+        this.openStatus$ = this.service.openStatus$;
     }
 
     ngOnInit(): void {
@@ -44,12 +46,19 @@ export class ProfileMenuComponent implements OnInit {
     }
 
     onHideDropdown(): void {
-        this.profileMenuService.changeOpenStatus(false);
+        this.service.changeOpenStatus(false);
     }
 
     onMenuItemClicked(menuItem: MenuItem) {
         if (menuItem.route === AuthRoutes.RevokeToken) {
-            this.profileMenuService.changeOpenStatus(false);
+            this.service.changeOpenStatus(false);
+        }
+    }
+
+    @HostListener('document:keydown', ['$event'])
+    onHandleEscape(e: KeyboardEvent) {
+        if (e.key === 'Esc' || e.key === 'Escape') {
+            this.service.changeOpenStatus(false);
         }
     }
 }

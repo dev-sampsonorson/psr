@@ -7,7 +7,7 @@ import { ProfileMenuService } from '../profile-menu.service';
     selector: 'app-profile-display',
     template: `
         <div class="profile-display">
-            <button (click)="toggleDropdown()" type="button" class="profile-display_button" id="profile-menu-button"
+            <button (click)="toggleDropdown()" type="button" class="profile-display__button" id="profile-menu-button"
                     aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open profile menu</span>
                 <span class="profile-display__welcome">Welcome John</span>
