@@ -1,14 +1,16 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthRoutes } from '@psr/auth/auth.constants';
+import { IUser } from '@psr/auth/models/user.model';
+import { AuthService } from '@psr/auth/services/auth.service';
 import { MenuItem } from '@psr/shared/menu.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProfileMenuService } from '../profile-menu.service';
 
 // (isDropdownOpen)="toggleDropdown($event)"
 @Component({
     selector: 'app-profile-menu',
     template: `
-        <app-profile-display></app-profile-display>
+        <app-profile-display *ngIf="user" [user]="user"></app-profile-display>
         <button *ngIf="isDropdownOpen" (click)="onHideDropdown()" class="close-overlay" tabindex="-1"></button>
         <app-dropdown-menu
             *ngIf="isDropdownOpen"
@@ -26,7 +28,11 @@ import { ProfileMenuService } from '../profile-menu.service';
         }
     `]
 })
-export class ProfileMenuComponent implements OnInit {
+export class ProfileMenuComponent implements OnInit, OnDestroy {
+
+    public user: IUser | null = null;
+
+    private getUserSub!: Subscription;
 
     private openStatus$: Observable<boolean>;
     public isDropdownOpen: boolean = false;
@@ -34,7 +40,8 @@ export class ProfileMenuComponent implements OnInit {
     @Input() menuItems: MenuItem[] = [];
 
     constructor(
-        private service: ProfileMenuService
+        private service: ProfileMenuService,
+        private auth: AuthService
     ) {
         this.openStatus$ = this.service.openStatus$;
     }
@@ -43,6 +50,10 @@ export class ProfileMenuComponent implements OnInit {
         this.openStatus$.subscribe(status => {
             this.isDropdownOpen = status;
         });
+        this.getUserSub = this.auth.getUser()
+            .subscribe(user => {
+                this.user = user;
+            });
     }
 
     onHideDropdown(): void {
@@ -60,5 +71,9 @@ export class ProfileMenuComponent implements OnInit {
         if (e.key === 'Esc' || e.key === 'Escape') {
             this.service.changeOpenStatus(false);
         }
+    }
+
+    ngOnDestroy() {
+        this.getUserSub && this.getUserSub.unsubscribe();
     }
 }

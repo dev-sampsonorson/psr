@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { IUser } from '@psr/auth/models/user.model';
+import { AuthService } from '@psr/auth/services/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import { ProfileMenuService } from '../profile-menu.service';
@@ -10,7 +12,8 @@ import { ProfileMenuService } from '../profile-menu.service';
             <button (click)="toggleDropdown()" type="button" class="profile-display__button" id="profile-menu-button"
                     aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open profile menu</span>
-                <span class="profile-display__welcome">Welcome John</span>
+                <span class="profile-display__welcome">Welcome {{ user?.firstName }}</span>
+                <!-- <h1 *ngIf="user">Welcome {{ user?.firstName }}</h1> -->
             </button>
         </div>
     `,
@@ -34,8 +37,12 @@ export class ProfileDisplayComponent implements OnInit, OnDestroy {
     private openStatus$: Observable<boolean>;
     private openStatusSubscription: Subscription | undefined = undefined;
 
-    constructor(private profileMenuService: ProfileMenuService) {
-        this.openStatus$ = this.profileMenuService.openStatus$;
+    @Input() user: IUser | null = null;
+
+    constructor(
+        private service: ProfileMenuService
+    ) {
+        this.openStatus$ = this.service.openStatus$;
     }
 
     ngOnInit(): void {
@@ -44,12 +51,12 @@ export class ProfileDisplayComponent implements OnInit, OnDestroy {
     toggleDropdown(): void {
         this.openStatusSubscription = this.openStatus$.pipe(take(1))
             .subscribe(status => {
-                this.profileMenuService.changeOpenStatus(!status);
+                this.service.changeOpenStatus(!status);
             });
     }
 
     ngOnDestroy(): void {
-        this.openStatusSubscription?.unsubscribe();
+        this.openStatusSubscription && this.openStatusSubscription?.unsubscribe();
     }
 
 }
