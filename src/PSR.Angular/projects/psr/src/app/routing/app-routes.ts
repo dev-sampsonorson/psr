@@ -12,6 +12,7 @@ export const appRoutes: Routes = [
         children: [
             { path: 'home', component: HomeComponent },
             { path: 'secret', component: SecretComponent, canActivate: [AuthGuard] },
+            { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]
     },
     {
