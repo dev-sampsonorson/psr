@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { APP_CONFIG_TOKEN, IAppConfig } from '@psr/app.config';
 import { AuthRoutes } from '@psr/auth/auth.constants';
 import { AppRoutes } from '@psr/shared/app.constants';
 import { MenuItem } from '@psr/shared/menu.model';
@@ -11,14 +12,12 @@ import { MenuItem } from '@psr/shared/menu.model';
 export class HeaderComponent implements OnInit {
 
     public isMobileMenuOpen: boolean = false;
-    public primaryMenu: MenuItem[] = [
-        { label: 'Home', route: AppRoutes.Home }
-    ];
-    public profileMenu: MenuItem[] = [
-        { label: 'Sign out', route: AuthRoutes.RevokeToken }
-    ];
+    public primaryMenu: MenuItem[] = this.appConfig.primaryMenu;
+    public profileMenu: MenuItem[] = this.appConfig.profileMenu;
 
-    constructor() { }
+    constructor(
+        @Inject(APP_CONFIG_TOKEN) private appConfig: IAppConfig
+    ) { }
 
     ngOnInit(): void {
     }

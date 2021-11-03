@@ -1,18 +1,20 @@
 import { InjectionToken, Provider } from "@angular/core";
 import { environment } from '@env/environment';
+import { AuthRoutes } from "./auth/auth.constants";
+import { AppRoutes } from "./shared/app.constants";
+import { MenuItem } from "./shared/menu.model";
 
 
 export interface IAppConfig {
     baseUrl: string;
     getUrl: (url: string) => string;
+    primaryMenu: MenuItem[];
+    profileMenu: MenuItem[];
 }
 
 export const APP_CONFIG_TOKEN = new InjectionToken<IAppConfig>("Application configuration", {
     providedIn: 'root',
     factory: (): IAppConfig => {
-        /* const _version: string = 'v1';
-        const _port: string = '4455';
-        const _baseUrl: string = `http://localhost:${_port}/api/${_version}/`; */
         const _baseUrl = environment.apiUrl;
 
         return {
@@ -24,6 +26,13 @@ export const APP_CONFIG_TOKEN = new InjectionToken<IAppConfig>("Application conf
 
                 return `${_baseUrl}${url}`;
             },
+
+            primaryMenu: [
+                { label: 'Home', route: AppRoutes.Home }
+            ],
+            profileMenu: [
+                { label: 'Sign out', route: AuthRoutes.RevokeToken }
+            ]
         };
     }
 });
