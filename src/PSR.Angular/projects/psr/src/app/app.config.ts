@@ -28,7 +28,8 @@ export const APP_CONFIG_TOKEN = new InjectionToken<IAppConfig>("Application conf
             },
 
             primaryMenu: [
-                { label: 'Home', route: AppRoutes.Home }
+                { label: 'Home', route: AppRoutes.Home },
+                { label: 'Secret', route: AppRoutes.Secret }
             ],
             profileMenu: [
                 { label: 'Sign out', route: AuthRoutes.RevokeToken }

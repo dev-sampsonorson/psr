@@ -8,11 +8,15 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { HeaderModule } from './header/header.module';
+import { SecretComponent } from './secret/secret.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        SecretComponent,
+        MainComponent
     ],
     imports: [
         BrowserModule,

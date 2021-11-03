@@ -1,3 +1,7 @@
+export const QueryParameterNames = {
+    ReturnUrl: 'returnUrl'
+};
+
 let appPaths: IAppPaths = {
     GetCountries: `lookup/countries`
 };
