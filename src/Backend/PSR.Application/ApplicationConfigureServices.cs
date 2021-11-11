@@ -12,9 +12,9 @@ namespace PSR.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration) {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            
             services.AddScoped<ILookupService, LookupService>();
+            services.AddScoped<IEmployeeManagementService, EmployeeManagementService>();
 
             return services;
         }

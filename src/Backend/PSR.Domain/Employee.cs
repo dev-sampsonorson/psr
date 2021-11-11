@@ -26,5 +26,7 @@ namespace PSR.Domain
         public Country Country { get; set; } = default!;
 
         public EmployeeStatus Status { get; set; } = EmployeeStatus.Active;
+        public ICollection<Skill> Skills { get; set; } = new List<Skill>();
+        public ICollection<SkillRating> SkillRatings { get; set; } = new List<SkillRating>();
     }
 }

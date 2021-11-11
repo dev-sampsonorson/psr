@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './routing/app-routing.module';
+import { AuthModule } from '@auth/auth.module';
+import { HomeComponent } from '@modules/home/home.component';
+import { SecretComponent } from '@modules/secret/secret.component';
+import { SkillManagementModule } from '@psr/modules/skill-management/skill-mgt.module';
+import { AlertModule } from '@widgets/alert';
+import { HeaderModule } from '@widgets/header';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
-import { HomeComponent } from './home/home.component';
+import { LayoutComponent } from './layout.component';
 import { SharedModule } from './shared/shared.module';
-import { HeaderModule } from './header/header.module';
-import { SecretComponent } from './secret/secret.component';
-import { MainComponent } from './main/main.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         SecretComponent,
-        MainComponent
+        LayoutComponent
     ],
     imports: [
         BrowserModule,
@@ -24,7 +26,11 @@ import { MainComponent } from './main/main.component';
         AuthModule,
         CoreModule,
         SharedModule,
-        HeaderModule
+
+        // cleanup
+        AlertModule,
+        HeaderModule,
+        SkillManagementModule
     ],
     providers: [],
     bootstrap: [AppComponent]

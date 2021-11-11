@@ -1,19 +1,22 @@
-import { NgModule } from '@angular/core';
-import { LogoComponent } from './logo/logo.component';
-import { DropdownMenuComponent } from './dropdown-menu/dropdown-menu.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { PageHeadingLayoutComponent } from './layouts/page-heading-layout.component';
+import { TwoColumnLayoutComponent } from './layouts/two-column/two-column-layout.component';
 
 
 
 @NgModule({
     declarations: [
-        LogoComponent,
-        DropdownMenuComponent,
+        TwoColumnLayoutComponent,
+        PageHeadingLayoutComponent
     ],
     exports: [
-        LogoComponent,
-        DropdownMenuComponent
+        CommonModule,
+
+        TwoColumnLayoutComponent,
+        PageHeadingLayoutComponent
     ],
     imports: [
         CommonModule,

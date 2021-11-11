@@ -6,6 +6,7 @@ using PSR.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace PSR.Infrastructure.Repository
@@ -29,14 +30,36 @@ namespace PSR.Infrastructure.Repository
             dbSet = context.Set<T>();
         }
 
-        public async Task<T> AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
             var result = await dbSet.AddAsync(entity);
             return result.Entity;
         }
         
-        public async Task<IEnumerable<T>> ListAsync() {
+        public virtual async Task<IEnumerable<T>> ListAsync() {
             return await dbSet.ToListAsync();
+        }
+        
+        public virtual async Task<(IEnumerable<T> Result, long TotalRecords)> ListAsync<TKey>(int page, int pageSize, Expression<Func<T, TKey>> keySelector) {
+            var totalRecords = await dbSet.LongCountAsync();
+            var result = await dbSet
+                .OrderBy(keySelector)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (result, totalRecords);
+        }
+        
+        public virtual async Task<(IEnumerable<T> Result, long TotalRecords)> ListDescAsync<TKey>(int page, int pageSize, Expression<Func<T, TKey>> keySelector) {
+            var totalRecords = await dbSet.LongCountAsync();
+            var result = await dbSet
+                .OrderByDescending(keySelector)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (result, totalRecords);
         }
 
         public async Task<IEnumerable<T>> ListAsync(ISpecification<T> spec) {

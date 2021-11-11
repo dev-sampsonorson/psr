@@ -363,6 +363,148 @@ namespace PSR.Infrastructure.Migrations
                     b.ToTable("Employee", "dbo");
                 });
 
+            modelBuilder.Entity("PSR.Domain.Skill", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SubCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdateUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.ToTable("Skill", "dbo");
+                });
+
+            modelBuilder.Entity("PSR.Domain.SkillCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SkillCategory", "dbo");
+                });
+
+            modelBuilder.Entity("PSR.Domain.SkillRating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<Guid>("SkillId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdateUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("SkillRating", "dbo");
+                });
+
+            modelBuilder.Entity("PSR.Domain.SkillSubCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SkillSubCategory", "dbo");
+                });
+
             modelBuilder.Entity("PSR.Auth.Domain.ApplicationRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
@@ -430,6 +572,65 @@ namespace PSR.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PSR.Domain.Skill", b =>
+                {
+                    b.HasOne("PSR.Domain.SkillCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PSR.Domain.SkillSubCategory", "SubCategory")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("PSR.Domain.SkillRating", b =>
+                {
+                    b.HasOne("PSR.Domain.Employee", "Employee")
+                        .WithMany("SkillRatings")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PSR.Domain.Skill", "Skill")
+                        .WithMany("SkillRatings")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("PSR.Domain.SkillSubCategory", b =>
+                {
+                    b.HasOne("PSR.Domain.SkillCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("PSR.Domain.Employee", b =>
+                {
+                    b.Navigation("SkillRatings");
+                });
+
+            modelBuilder.Entity("PSR.Domain.Skill", b =>
+                {
+                    b.Navigation("SkillRatings");
                 });
 #pragma warning restore 612, 618
         }

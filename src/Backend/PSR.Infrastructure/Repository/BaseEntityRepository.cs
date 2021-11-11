@@ -16,7 +16,7 @@ namespace PSR.Infrastructure.Repository
         public BaseEntityRepository(AppDbContext context, ILogger logger): base(context, logger) {
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }

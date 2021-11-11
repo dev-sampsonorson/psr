@@ -14,6 +14,8 @@ using PSR.Auth.Services;
 using PSR.Infrastructure;
 using PSR.Infrastructure.Data;
 using PSR.Auth.Validators;
+using PSR.DomainService;
+using PSR.Application.Common;
 
 namespace PSR.Api
 {
@@ -46,8 +48,10 @@ namespace PSR.Api
                 c.SwaggerDoc("v1", new() { Title = "PSR.Api", Version = "v1" });
             });
 
+            services.AddDomainServices(_configuration);
             services.AddApiServices(_configuration);
             services.AddAuthServices(_configuration);
+            services.AddApplicationCommonServices(_configuration);
             services.AddApplicationServices(_configuration);
 
             services.AddHttpContextAccessor();

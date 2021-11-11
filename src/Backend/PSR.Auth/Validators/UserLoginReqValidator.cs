@@ -1,4 +1,5 @@
 using FluentValidation;
+using PSR.Application.Common;
 using PSR.Auth.Models.Request;
 
 namespace PSR.Auth.Validators

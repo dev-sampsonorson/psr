@@ -1,0 +1,29 @@
+<ng-container *ngIf="skill">
+    <div class="flex flex-col justify-between h-full p-4 space-y-4 text-left bg-white rounded-lg shadow">
+        <h3 class="text-lg font-medium text-gray-800">{{ skill.name}} Employee Packet</h3>
+        <div class="skill-stats">
+            <div class="skill-stats__info">
+                <span
+                      class="mr-4 text-sm text-gray-500 transition-colors duration-200 hover:text-gray-900">Employees</span>
+                <span class="text-lg font-medium text-gray-900">{{ skill.employees }}</span>
+            </div>
+            <div class="skill-stats__info">
+                <span class="mr-4 text-sm text-gray-500 transition-colors duration-200 hover:text-gray-900">Team
+                    Competency</span>
+                <span class="text-lg font-medium text-gray-900">{{ skill.teamCompetency }}</span>
+            </div>
+        </div>
+        <div class="flex h-5">
+            <span title="{{getCategoryInfo(skill)}}"
+                  class="flex-1 pr-2 text-sm text-gray-800 truncate">{{getCategoryInfo(skill)}}</span>
+            <a>
+                <svg class="w-5 h-5 text-gray-500 transition-colors duration-200 hover:text-gray-900" fill="none"
+                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</ng-container>

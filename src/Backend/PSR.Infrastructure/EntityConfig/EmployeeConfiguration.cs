@@ -46,6 +46,20 @@ namespace PSR.Infrastructure.EntityConfig
                     x => x.Id,
                     x => Enumeration.FromValue<EmployeeStatus>(x))
                 .HasColumnName("StatusId");
+
+            builder
+                .HasMany(e => e.Skills)
+                .WithMany(s => s.Employees)
+                .UsingEntity<SkillRating>(
+                    j => j.HasOne(m => m.Skill)
+                            .WithMany(s => s.SkillRatings)
+                            // .HasForeignKey(x => x.SkillId)
+                            .OnDelete(DeleteBehavior.NoAction),
+                    j => j.HasOne(m => m.Employee)
+                            .WithMany(e => e.SkillRatings)
+                            // .HasForeignKey(x => x.EmployeeId)
+                            .OnDelete(DeleteBehavior.NoAction)
+                );
         }
     }
 }

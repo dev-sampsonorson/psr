@@ -111,3 +111,17 @@ namespace PSR.SharedKernel
         }
     }
 }
+
+
+/*
+class Customer : ValueObject
+{
+    public string Name { get; set; }
+    public int Age;
+
+    private int ssn;  //ignored in comparisons
+    
+    [IgnoreMember]
+    public string Address;  //also ignored because of attribute
+}
+*/

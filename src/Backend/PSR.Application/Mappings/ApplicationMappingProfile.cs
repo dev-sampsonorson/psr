@@ -1,6 +1,9 @@
 using System.Reflection;
 using AutoMapper;
 using PSR.Application.Common.Mappings;
+using PSR.Application.Models.Request;
+using PSR.Application.Models.Response;
+using PSR.Domain;
 
 namespace PSR.Application.Mappings
 {
@@ -9,6 +12,56 @@ namespace PSR.Application.Mappings
         public ApplicationMappingProfile()
         {
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+            
+            CreateMap<Skill, AddSkillReq>()
+                .ReverseMap()
+                .ForMember(dest => dest.Category, opt => opt.Ignore())
+                .ForMember(dest => dest.SubCategory, opt => opt.Ignore());
+            CreateMap<Skill, AddSkillRes>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+            CreateMap<Skill, SkillRes>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+            CreateMap<SkillRating, SkillRatingRes>()
+                .ForMember(dest => dest.SkillId, opt => opt.MapFrom(src => src.Skill.Id))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Skill.Name))
+                .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => src.Skill.Slug))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Skill.CategoryId))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Skill.Category.Name))
+                .ForMember(dest => dest.SubCategoryId, opt => opt.MapFrom(src => src.Skill.SubCategoryId))
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Skill.SubCategory.Name));
+
+            CreateMap<SkillCategory, AddSkillCategoryReq>().ReverseMap();
+            CreateMap<SkillCategory, AddSkillCategoryRes>();
+
+            CreateMap<SkillSubCategory, AddSkillSubCategoryReq>()
+                .ReverseMap()
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
+            CreateMap<SkillSubCategory, AddSkillSubCategoryRes>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
+
+            CreateMap<Employee, EmployeeRes>()
+                .ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
+                .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name))
+                .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => src.Status.Id))
+                .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.Status.Name))
+                .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillRatings));
+
+            CreateMap<Employee, AddSkillToEmployeeRes>()
+                .ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
+                .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name))
+                .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => src.Status.Id))
+                .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.Status.Name))
+                .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillRatings));
+
+            CreateMap<Employee, UpdateEmployeeSkillRatingRes>()
+                .ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
+                .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name))
+                .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => src.Status.Id))
+                .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.Status.Name))
+                .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillRatings));
+
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)

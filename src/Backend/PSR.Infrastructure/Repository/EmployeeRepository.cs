@@ -1,9 +1,11 @@
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PSR.Application.Repository;
 using PSR.Domain;
 using PSR.Infrastructure.Data;
+using PSR.SharedKernel;
 
 namespace PSR.Infrastructure.Repository
 {
@@ -24,6 +26,59 @@ namespace PSR.Infrastructure.Repository
         public void Update(Employee entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public override async Task<Employee> GetByIdAsync(Guid id)
+        {
+            return await dbSet
+                .Include(x => x.Skills)
+                .Include(x => x.SkillRatings)
+                .ThenInclude(x => x.Skill.Category)
+                .Include(x => x.SkillRatings)
+                .ThenInclude(x => x.Skill.SubCategory)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public override async Task<(IEnumerable<Employee> Result, long TotalRecords)> ListAsync<TKey>(int page, int pageSize, Expression<Func<Employee, TKey>> keySelector) {
+            var totalRecords = await dbSet.LongCountAsync();
+            var result = await dbSet
+                .Include(x => x.Skills)
+                .Include(x => x.SkillRatings)
+                .ThenInclude(x => x.Skill.Category)
+                .Include(x => x.SkillRatings)
+                .ThenInclude(x => x.Skill.SubCategory)
+                .OrderBy(keySelector)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (result, totalRecords);
+        }
+        
+        public override async Task<(IEnumerable<Employee> Result, long TotalRecords)> ListDescAsync<TKey>(int page, int pageSize, Expression<Func<Employee, TKey>> keySelector) {
+            var totalRecords = await dbSet.LongCountAsync();
+            var result = await dbSet
+                .Include(x => x.Skills)
+                .Include(x => x.SkillRatings)
+                .ThenInclude(x => x.Skill.Category)
+                .Include(x => x.SkillRatings)
+                .ThenInclude(x => x.Skill.SubCategory)
+                .OrderByDescending(keySelector)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (result, totalRecords);
+        }
+
+        public async Task<bool> CheckSkillExists(Guid employeeId, Guid skillId) {
+            var employee = await dbSet
+                .Include(x => x.Skills)
+                .FirstOrDefaultAsync(x => x.Id == employeeId);
+            if (employee is null)
+                throw new EntityNotFoundException("Employee not found");
+
+            return employee.Skills.Any(x => x.Id == skillId);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
 using PSR.Application.Common.Exceptions;
 using PSR.Auth.Domain;
@@ -17,7 +18,14 @@ namespace PSR.Infrastructure.Data
         private IDbContextTransaction _currentTransaction;
         public bool HasActiveTransaction => _currentTransaction != null;
         
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            optionsBuilder
+                .LogTo(Console.WriteLine, new [] { RelationalEventId.CommandExecuted })
+                .EnableSensitiveDataLogging();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             // modelBuilder.HasDefaultSchema("blogging");

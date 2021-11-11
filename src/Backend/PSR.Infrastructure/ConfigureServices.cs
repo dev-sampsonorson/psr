@@ -18,6 +18,7 @@ namespace PSR.Infrastructure
 
             services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             // services.AddScoped<IRepositoryFactory, RepositoryFactory>();
             // services.AddScoped<IUnitOfWork, UnitOfWork>();
