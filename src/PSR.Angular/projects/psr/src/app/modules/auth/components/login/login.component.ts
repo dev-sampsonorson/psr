@@ -5,8 +5,9 @@ import { AuthRoutes } from '@auth/auth.constants';
 import { AuthValidatorsService } from '@auth/services/auth-validators.service';
 import { AuthService } from '@auth/services/auth.service';
 import { AppRoutes } from '@core/app.constants';
-import { AlertService } from '@widgets/alert';
+import { AlertService } from '@shared/alert';
 import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -32,12 +33,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.createForm();
 
-        this.formStatusSub = this.form.statusChanges.subscribe(formStatus => {
-            if (formStatus === "INVALID" || formStatus === "PENDING")
-                this.formIsValid = false;
-            else
-                this.formIsValid = true;
-        });
+        this.formStatusSub = this.form.statusChanges
+            .pipe(
+                /**
+                 * The Debouncetime emits the last received value
+                 * from the source observable after a specified amount
+                 * of time has elapsed without any other value appearing
+                 * on the source Observable
+                 */
+                debounceTime(100)
+            ).subscribe(formStatus => {
+                if (formStatus === "INVALID" || formStatus === "PENDING")
+                    this.formIsValid = false;
+                else
+                    this.formIsValid = true;
+            });
     }
 
     loginEmployee() {
@@ -72,7 +82,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     gotoRegister(): void {
-        this.router.navigate([AuthRoutes.Register]);
+        this.router.navigate(AuthRoutes.Register() as any[]);
     }
 
     ngOnDestroy(): void {

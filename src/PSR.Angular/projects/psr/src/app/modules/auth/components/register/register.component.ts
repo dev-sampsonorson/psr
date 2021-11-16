@@ -5,7 +5,7 @@ import { AuthRoutes } from '@auth/auth.constants';
 import { ILookupItem } from '@core/app.interfaces';
 import { LookupService } from '@core/services/lookup.service';
 import { EnvironmentService } from '@env/environment.service';
-import { AlertService } from '@widgets/alert';
+import { AlertService } from '@shared/alert';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     "Registration successful",
                     "You have completed registration. Please login.",
                     [
-                        { name: 'Login', route: AuthRoutes.Login }
+                        { name: 'Login', route: AuthRoutes.Login() }
                     ]
                 )
             });
@@ -112,7 +112,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     gotoLogin() {
-        this.router.navigate([AuthRoutes.Login]);
+        this.router.navigate(AuthRoutes.Login() as any[]);
     }
     ngOnDestroy(): void {
         this.registerSub.unsubscribe();

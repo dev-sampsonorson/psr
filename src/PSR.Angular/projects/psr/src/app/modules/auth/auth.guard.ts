@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { QueryParameterNames } from "@psr/core/app.constants";
-import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
-import { AuthRoutes } from "./auth.constants";
-import { AuthService } from "./services/auth.service";
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { QueryParameterNames } from '@core/app.constants';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { AuthRoutes } from './auth.constants';
+import { AuthService } from './services/auth.service';
 
 
 
@@ -26,7 +27,7 @@ export class AuthGuard implements CanActivate {
 
     private handleAuthorization(isAuthenticated: boolean, state: RouterStateSnapshot) {
         if (!isAuthenticated) {
-            this.router.navigate([AuthRoutes.Login], {
+            this.router.navigate(AuthRoutes.Login() as any[], {
                 queryParams: {
                     [QueryParameterNames.ReturnUrl]: state.url
                 }

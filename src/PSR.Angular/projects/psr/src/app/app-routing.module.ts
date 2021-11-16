@@ -14,7 +14,7 @@ const appRoutes: Routes = [
             { path: 'home', component: HomeComponent },
             {
                 path: 'skills',
-                loadChildren: () => import('@psr/modules/skill-management/skill-mgt.module').then(m => m.SkillManagementModule)
+                loadChildren: () => import('@modules/skill-management/skill-mgt.module').then(m => m.SkillManagementModule)
             },
             { path: 'secret', component: SecretComponent, canActivate: [AuthGuard] },
             { path: '', redirectTo: 'home', pathMatch: 'full' }

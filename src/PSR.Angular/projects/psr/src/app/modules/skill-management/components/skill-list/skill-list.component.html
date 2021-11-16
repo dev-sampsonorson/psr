@@ -1,10 +1,14 @@
-<app-add-skill-card></app-add-skill-card>
-<ng-container *ngFor="let skill of skills">
-    <app-skill-card [skill]="skill"></app-skill-card>
+<!-- { outlets: { primary: 'categories', details: null } } -->
+<!-- <a [routerLink]="['/skills', 'categories']">Categories</a> -->
+<!-- { outlets: { primary: 'subcategories', details: null } } -->
+<!-- <a [routerLink]="['/skills', 'subcategories']">Sub categories</a> -->
+<ng-container *ngIf="isSkillsVisible">
+    <app-add-skill-card (addSkillCardClick)="addSkillCardClickHandler()"></app-add-skill-card>
+    <ng-container *ngFor="let skill of skills">
+        <app-skill-card (skillCardClick)="skillCardClickHandler($event)" [skill]="skill"></app-skill-card>
+    </ng-container>
 </ng-container>
-<ng-container *ngFor="let skill of skills">
-    <app-skill-card [skill]="skill"></app-skill-card>
-</ng-container>
-<ng-container *ngFor="let skill of skills">
-    <app-skill-card [skill]="skill"></app-skill-card>
-</ng-container>
+
+<app-empty-state *ngIf="!isSkillsVisible" [title]="emptyStateTitle" [description]="emptyStateDescription"
+                 [buttonLabel]="emptyStateButtonLabel">
+</app-empty-state>

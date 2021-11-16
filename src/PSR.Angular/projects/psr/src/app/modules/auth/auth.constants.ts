@@ -8,10 +8,10 @@ export interface IAuthEndpoints {
 }
 
 export interface IAuthRoutes {
-    readonly Register: string;
-    readonly Login: string;
-    readonly RefreshToken: string;
-    readonly RevokeToken: string;
+    readonly Register: () => any[] | string;
+    readonly Login: () => any[] | string;
+    readonly RefreshToken: () => any[] | string;
+    readonly RevokeToken: () => any[] | string;
 }
 
 export interface IAuthConstants {
@@ -28,10 +28,10 @@ let authPaths: IAuthEndpoints = {
 };
 
 let authRoutes: IAuthRoutes = {
-    Register: `/auth/register`,
-    Login: `/auth/authenticate`,
-    RefreshToken: `/auth/refresh`,
-    RevokeToken: `/auth/revoke`
+    Register: () => [`/auth/register`],
+    Login: () => [`/auth/authenticate`],
+    RefreshToken: () => [`/auth/refresh`],
+    RevokeToken: () => [`/auth/revoke`],
 };
 
 let authConsts: IAuthConstants = {

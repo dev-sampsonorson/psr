@@ -1,6 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { AuthRoutes } from '@auth/auth.constants';
 import { environment } from '@env/environment';
+import { IconLogoutComponent } from '@shared/icons/icon-logout.component';
 
 import { MenuItem } from '../shared/menu.model';
 import { AppRoutes } from './app.constants';
@@ -29,12 +30,18 @@ export const APP_CONFIG_TOKEN = new InjectionToken<IAppConfig>("Application conf
             },
 
             primaryMenu: [
-                { label: 'Home', route: AppRoutes.Home },
-                { label: 'Skills', route: AppRoutes.Skills },
-                { label: 'Secret', route: AppRoutes.Secret }
+                { name: 'primary-home', label: 'Home', routerLink: () => AppRoutes.Home() },
+                { name: 'primary-skills', label: 'Skills', routerLink: () => AppRoutes.Skills() },
+                { name: 'primary-secret', label: 'Secret', routerLink: () => AppRoutes.Secret() }
             ],
             profileMenu: [
-                { label: 'Sign out', route: AuthRoutes.RevokeToken }
+                {
+                    name: 'primary-signout',
+                    label: 'Sign out',
+                    iconComponent: IconLogoutComponent,
+                    isIconVisible: true,
+                    routerLink: () => AuthRoutes.RevokeToken()
+                }
             ]
         };
     }

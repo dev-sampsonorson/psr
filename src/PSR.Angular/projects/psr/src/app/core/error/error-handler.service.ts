@@ -3,7 +3,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AuthRoutes } from '@auth/auth.constants';
 import { AuthService } from '@auth/services/auth.service';
 import { EnvironmentService } from '@env/environment.service';
-import { AlertService } from '@widgets/alert';
+import { AlertService } from '@shared/alert';
 import { ObservableInput, throwError } from 'rxjs';
 import { filter, map, take, tap } from 'rxjs/operators';
 
@@ -24,8 +24,6 @@ export class ErrorHandlerService {
     handleError(response: HttpErrorResponse): ObservableInput<any> {
         const problem: ProblemDetails = response.error && response.error as ProblemDetails;
 
-        console.log('response.status', response.status);
-
         this.auth.getUser()
             .pipe(
                 take(1),
@@ -39,11 +37,11 @@ export class ErrorHandlerService {
                                     problem.title,
                                     problem.detail,
                                     [
-                                        { name: 'Login', route: AuthRoutes.Login }
+                                        { name: 'Login', route: AuthRoutes.Login() }
                                     ]
                                 )
                             ).subscribe(_ => {
-                                console.log('alert closed');
+                                // console.log('alert closed');
                             });
                         }
                     });
@@ -51,9 +49,6 @@ export class ErrorHandlerService {
                     // x.user === null && [401, 403].includes(x.status) && this.auth.logout();
                 }),
                 tap(x => {
-                    console.log('tapping...');
-                    console.log('x.user', x.user);
-                    console.log('x.status', x.status);
                     x.user !== null && x.status === 401 && this.auth.logout();
                 }),
                 tap(x => {
@@ -74,11 +69,17 @@ export class ErrorHandlerService {
             );
         }
 
-        console.log('problem instanceof ProblemDetails', problem instanceof ProblemDetails);
-        if (!(problem instanceof ProblemDetails)) {
+
+        if (this.isProblemDetail(problem)) {
             console.error('Request does not return a problem detail, find out why');
             console.log(problem);
         }
+
+        // console.log('problem instanceof ProblemDetails', problem instanceof ProblemDetails);
+        /* if (!(problem instanceof ProblemDetails)) {
+            console.error('Request does not return a problem detail, find out why');
+            console.log(problem);
+        } */
 
         [404].includes(response.status) && this.zone.run(() => {
             this.alert.error(
@@ -104,5 +105,14 @@ export class ErrorHandlerService {
             message: response.message,
             error: response.error
         });
+    }
+
+    private isProblemDetail(problem: any) {
+        return problem && "type" in problem
+            && "title" in problem
+            && "status" in problem
+            && "detail" in problem
+            && "instance" in problem
+            && "errors" in problem;
     }
 }

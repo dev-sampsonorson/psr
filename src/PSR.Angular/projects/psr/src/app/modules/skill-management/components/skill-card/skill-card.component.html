@@ -1,29 +1,33 @@
 <ng-container *ngIf="skill">
-    <div class="flex flex-col justify-between h-full p-4 space-y-4 text-left bg-white rounded-lg shadow">
-        <h3 class="text-lg font-medium text-gray-800">{{ skill.name}} Employee Packet</h3>
+    <!-- (click)="skillCardClickHandler(skill)" -->
+    <div tabindex="0"
+         class="flex flex-col justify-between h-full p-4 space-y-4 text-left border border-gray-200 rounded-lg hover:border-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-indigo-500">
+        <h3 class="text-lg font-medium text-gray-700">{{ skill.name}} Employee Packet</h3>
         <div class="skill-stats">
             <div class="skill-stats__info">
                 <span
-                      class="mr-4 text-sm text-gray-500 transition-colors duration-200 hover:text-gray-900">Employees</span>
-                <span class="text-lg font-medium text-gray-900">{{ skill.employees }}</span>
+                      class="mr-4 text-xs font-thin text-gray-500 transition-colors duration-200 hover:text-gray-900">Employees</span>
+                <span class="text-xl font-normal text-gray-700">{{ skill.employees }}</span>
             </div>
             <div class="skill-stats__info">
-                <span class="mr-4 text-sm text-gray-500 transition-colors duration-200 hover:text-gray-900">Team
+                <span
+                      class="mr-4 text-xs font-thin text-gray-500 transition-colors duration-200 hover:text-gray-900">Team
                     Competency</span>
-                <span class="text-lg font-medium text-gray-900">{{ skill.teamCompetency }}</span>
+                <span class="text-xl font-normal text-gray-700">{{ skill.teamCompetency }}</span>
             </div>
         </div>
-        <div class="flex h-5">
+        <div class="flex items-center h-5">
             <span title="{{getCategoryInfo(skill)}}"
-                  class="flex-1 pr-2 text-sm text-gray-800 truncate">{{getCategoryInfo(skill)}}</span>
-            <a>
-                <svg class="w-5 h-5 text-gray-500 transition-colors duration-200 hover:text-gray-900" fill="none"
-                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                    </path>
-                </svg>
-            </a>
+                  class="flex-1 pr-2 text-sm font-thin text-gray-500 truncate">{{getCategoryInfo(skill)}}</span>
+            <div class="relative">
+                <app-button-icon (buttonClick)="onToggleContextMenu()">
+                    <app-icon-dot-vertical></app-icon-dot-vertical>
+                </app-button-icon>
+                <button *ngIf="isContextMenuVisible" (click)="onToggleContextMenu()" class="close-overlay"
+                        tabindex="-1"></button>
+                <app-context-menu *ngIf="isContextMenuVisible" (menuItemClick)="onMenuItemClick($event)"
+                                  [menuItems]="menuItems" class="absolute right-0 w-40"></app-context-menu>
+            </div>
         </div>
     </div>
 </ng-container>

@@ -1,41 +1,51 @@
-<div class="flex h-full">
-    <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
-        <div class="lg:hidden">
-            <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
-                <div>
-                    <img class="w-auto h-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                         alt="Workflow">
-                </div>
-                <div>
-                    <button type="button"
-                            class="inline-flex items-center justify-center w-12 h-12 -mr-3 text-gray-500 rounded-md hover:text-gray-900">
-                        <span class="sr-only">Open sidebar</span>
-                        <!-- Heroicon name: outline/menu -->
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+<header class="bg-white border-b-2 border-gray-200 border-dashed">
+    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <ng-content select="[header-content]"></ng-content>
+    </div>
+</header>
+<nav class="flex px-4 py-4 mx-auto border-b-2 border-gray-200 border-dashed max-w-7xl sm:px-6 lg:px-8"
+     aria-label="Breadcrumb">
+    <ng-content select="[breadcrumb-content]"></ng-content>
+</nav>
+<!-- overflow-hidden -->
+<div class="flex flex-col flex-1 min-w-0 min-h-full">
+    <div class="lg:hidden">
+        <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+            <button (click)="hamburgerMenuClickHandler()" type="button"
+                    class="inline-flex items-center justify-center w-12 h-12 -mr-3 text-gray-500 rounded-md hover:text-gray-900">
+                <span class="sr-only">Open sidebar</span>
+                <!-- Heroicon name: outline/menu -->
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
-        <div class="relative z-0 flex flex-1 overflow-hidden">
-            <main class="relative z-0 flex-1 overflow-y-auto bg-white focus:outline-none">
-                <!-- Start main area-->
-                <div class="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
+    </div>
+    <!-- overflow-hidden -->
+    <div class="relative z-0 flex flex-1 ">
+        <!-- overflow-y-auto -->
+        <main class="relative z-0 flex-1 bg-white focus:outline-none">
+            <!-- Start main area-->
+            <!-- absolute inset-0  -->
+            <div class="min-h-full px-4 py-6 sm:px-6 lg:px-8">
+                <div class="h-full">
                     <ng-content select="[main-content]"></ng-content>
                 </div>
-                <!-- End main area -->
-            </main>
-            <aside
-                   class="relative flex-shrink-0 hidden overflow-y-auto border-l border-gray-200 xl:flex xl:flex-col w-96">
-                <!-- Start secondary column (hidden on smaller screens) -->
-                <div class="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
+            </div>
+            <!-- End main area -->
+        </main>
+        <!-- overflow-y-auto -->
+        <!-- absolute inset-0  -->
+        <aside *ngIf="isSecondaryContentVisible"
+               class="relative flex-shrink-0 hidden border-l border-gray-200 bg-purple-50 lg:flex lg:flex-col w-80">
+            <!-- Start secondary column (hidden on smaller screens) -->
+            <div class="min-h-full px-4 py-6 sm:px-6 lg:px-8">
+                <div class="h-full">
                     <ng-content select="[secondary-content]"></ng-content>
                 </div>
-                <!-- End secondary column -->
-            </aside>
-        </div>
+            </div>
+            <!-- End secondary column -->
+        </aside>
     </div>
 </div>

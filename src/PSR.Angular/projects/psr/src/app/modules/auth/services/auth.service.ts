@@ -16,7 +16,7 @@ import { EMPTY_USER, IUser, IUserLoginReq, IUserRegistrationReq } from '../model
 })
 export class AuthService {
     redirectToLogin(): void {
-        this.router.navigate([AuthRoutes.Login])
+        this.router.navigate(AuthRoutes.Login() as any[]);
     }
     private refreshTokenTimeout: any;
     private userSubject = new BehaviorSubject<IUser | null>(null);
@@ -109,7 +109,7 @@ export class AuthService {
                 this.removeUser();
 
                 // redirect to login
-                this.router.navigate([AuthRoutes.Login]);
+                this.router.navigate(AuthRoutes.Login() as any[]);
             })
         ).subscribe();
     }

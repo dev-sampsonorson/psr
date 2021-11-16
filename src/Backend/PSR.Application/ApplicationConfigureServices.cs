@@ -15,6 +15,7 @@ namespace PSR.Application
             
             services.AddScoped<ILookupService, LookupService>();
             services.AddScoped<IEmployeeManagementService, EmployeeManagementService>();
+            services.AddScoped<ISkillService, SkillService>();
 
             return services;
         }

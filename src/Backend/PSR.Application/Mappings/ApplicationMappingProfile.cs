@@ -22,7 +22,9 @@ namespace PSR.Application.Mappings
                 .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
             CreateMap<Skill, SkillRes>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name))
+                .ForMember(dest => dest.Employees, opt => opt.Ignore())
+                .ForMember(dest => dest.TeamCompetency, opt => opt.Ignore());
             CreateMap<SkillRating, SkillRatingRes>()
                 .ForMember(dest => dest.SkillId, opt => opt.MapFrom(src => src.Skill.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Skill.Name))
@@ -34,6 +36,16 @@ namespace PSR.Application.Mappings
 
             CreateMap<SkillCategory, AddSkillCategoryReq>().ReverseMap();
             CreateMap<SkillCategory, AddSkillCategoryRes>();
+
+            CreateMap<SkillCategory, SkillCategoryRes>().ReverseMap();
+            CreateMap<SkillSubCategory, SkillSubCategoryRes>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ReverseMap()
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => new SkillCategory {
+                        Id = src.CategoryId,
+                        Name = src.CategoryName
+                    })
+                );
 
             CreateMap<SkillSubCategory, AddSkillSubCategoryReq>()
                 .ReverseMap()

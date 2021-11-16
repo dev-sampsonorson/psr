@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 console.info(value);
             },
             error => {
-                console.error(error);
+                // console.error(error);
             }
         );
     }
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     onLogin(): void {
-        this.router.navigate([AuthRoutes.Login]);
+        this.router.navigate(AuthRoutes.Login() as any[]);
     }
 
     onLogout(): void {

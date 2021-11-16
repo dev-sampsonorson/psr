@@ -7,7 +7,6 @@ namespace PSR.Application.Interfaces
     {
          Task<AddSkillToEmployeeRes> AddSkillRatingToEmployee(AddSkillToEmployeeReq request);
          Task<UpdateEmployeeSkillRatingRes> UpdateSkillRatingToEmployee(UpdateEmployeeSkillRatingReq request);
-
          Task<(IEnumerable<EmployeeRes> Employees, long TotalRecords)> GetEmployees(int page, int pageSize);
     }
 }

@@ -34,6 +34,30 @@ namespace PSR.Infrastructure.Repository
         {
             return _context.Set<SkillSubCategory>().AsNoTracking().Include(x => x.Category).ToList();
         }
+
+        public async Task<SkillCategory> GetSkillCategoryAsync(Guid id)
+        {
+            return await _context.Set<SkillCategory>()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<SkillSubCategory> GetSkillSubCategoryAsync(Guid id)
+        {
+            return await _context.Set<SkillSubCategory>()
+                .Include(x => x.Category)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<SkillSubCategory>> GetSkillSubCategoryByCategoryAsync(Guid categoryId)
+        {
+            return await _context.Set<SkillSubCategory>()
+                .Include(x => x.Category)
+                .AsNoTracking()
+                .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();
+        }
         /* #endregion */
 
         /* #region Get skills */
@@ -62,7 +86,7 @@ namespace PSR.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<List<Skill>> GetSkillsByCategory(Guid categoryId, Guid subCategoryId)
+        public async Task<List<Skill>> GetSkillsByCategoryAndSubcategory(Guid categoryId, Guid subCategoryId)
         {
             return await dbSet
                 .Include(x => x.Category)

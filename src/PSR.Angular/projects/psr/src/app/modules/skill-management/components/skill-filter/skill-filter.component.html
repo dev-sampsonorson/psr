@@ -1,0 +1,23 @@
+<ng-container *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="filterSkillsHandler()">
+        <div class="flex justify-end space-x-4">
+            <div>
+                <!-- <label class="psr-form__label" for="category">Category</label> -->
+                <select formControlName="category" id="category" name="category"
+                        class="psr-form__select psr-form__select--alt">
+                    <option value="" selected> Pick a category </option>
+                    <option [value]="category.id" *ngFor="let category of categories">{{ category.name }}</option>
+                </select>
+            </div>
+            <div>
+                <!-- <label class="psr-form__label" for="sub-category">Sub category</label> -->
+                <select formControlName="subCategory" [disableControl]="isSubcategoryDisabled" id="sub-category"
+                        name="sub-category" class="psr-form__select psr-form__select--alt">
+                    <option value="" selected> Pick a subcategory </option>
+                    <option [value]="subCategory.id" *ngFor="let subCategory of subCategories">{{ subCategory.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </form>
+</ng-container>

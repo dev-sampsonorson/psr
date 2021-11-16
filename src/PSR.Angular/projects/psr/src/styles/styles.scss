@@ -6,5 +6,19 @@
 @import "markup/form.scss";
 
 body {
-    @apply bg-gray-100;
+    @apply bg-gray-50;
+
+
+}
+
+html, body { @apply min-h-full; }
+
+/* body {
+    min-height: 100vh;
+    height:auto !important;
+    height: 100vh;
+} */
+
+.close-overlay {
+    @apply fixed inset-0 h-full w-full cursor-default z-10; //bg-black opacity-50
 }

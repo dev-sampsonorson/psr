@@ -28,12 +28,17 @@
         @apply block w-full mt-2 pl-3 pr-10 py-2.5;
         @apply rounded mb-3 leading-tight focus:outline-none ;
         @apply  bg-gray-200 text-gray-700 border border-gray-200 focus:bg-white;
+
+        &--alt {
+            @apply  bg-white border-gray-300 focus:border-gray-400;
+        }
     }
 
     &__field {
         @apply appearance-none block w-full mt-2;
         @apply rounded py-3 px-4 mb-3 leading-tight focus:outline-none;
-        @apply bg-gray-200 text-gray-700 border border-solid border-gray-200 focus:bg-white;
+        // @apply bg-gray-200 text-gray-700 border border-solid border-gray-200 focus:bg-white;
+        @apply bg-white text-gray-700 border border-solid border-gray-200 focus:bg-white;
         // border-style: solid;
 
         &--error {
@@ -42,6 +47,10 @@
 
         &-error-msg {
             @apply text-xs italic text-red-500;
+        }
+
+        &--alt {
+            @apply  bg-white border-gray-300 focus:border-gray-400;
         }
     }
 

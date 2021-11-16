@@ -1,0 +1,6 @@
+<!-- <p>skill-category-list works!</p> -->
+<!-- { outlets: { primary: 'subcategories', details: null } } -->
+<!-- <a [routerLink]="['/skills', 'subcategories']">Sub categories</a> -->
+<ng-container *ngFor="let category of categories">
+    <app-skill-category-card (onCardClick)="onCardClick(category)" [category]="category"></app-skill-category-card>
+</ng-container>
