@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ISkillCategory } from '../../models/skill.model';
 import { PageTitleService } from '../../services/page-title.service';
 import { SkillMgtRoutes } from '../../skill-mgt-constants';
-import { ISkillCategory } from '../../skill.model';
 
 @Component({
     selector: 'app-skill-category-list',

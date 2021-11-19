@@ -5,10 +5,23 @@
 <ng-container *ngIf="isSkillsVisible">
     <app-add-skill-card (addSkillCardClick)="addSkillCardClickHandler()"></app-add-skill-card>
     <ng-container *ngFor="let skill of skills">
-        <app-skill-card (skillCardClick)="skillCardClickHandler($event)" [skill]="skill"></app-skill-card>
+        <!-- (skillCardClick)="skillCardClickHandler($event)" [x-compref]="skillCard"  -->
+        <app-skill-card #skillCard [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask" [skill]="skill"
+                        (contextMenuItemEvent)="onCardItemEvent($event)"></app-skill-card>
+        <!-- <app-block-ui class="hidden" [target]="skillCard" [blocked]="skill?.deleting || false"></app-block-ui> -->
     </ng-container>
 </ng-container>
-
-<app-empty-state *ngIf="!isSkillsVisible" [title]="emptyStateTitle" [description]="emptyStateDescription"
-                 [buttonLabel]="emptyStateButtonLabel">
+<app-empty-state (addNewItem)="addSkillCardClickHandler()" *ngIf="!isSkillsVisible" [title]="emptyStateTitle"
+                 [description]="emptyStateDescription" [buttonLabel]="emptyStateButtonLabel">
 </app-empty-state>
+
+<ng-template #mask>
+    <div class="ui-blockui ui-widget-overlay">
+        <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+    </div>
+</ng-template>
+<!-- <div appBlockUiOverlay #overlayRef="appBlockUiOverlay" class="ui-blockui ui-widget-overlay"></div> -->

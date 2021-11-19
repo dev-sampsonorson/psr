@@ -65,6 +65,20 @@ namespace PSR.Application.Services
                 return response;
             }  
         }
+        public async Task<UpdateSkillRes> UpdateSkill(UpdateSkillReq request)
+        {
+            using (var uow = _skillRepository.UnitOfWork) {
+                var skill = await _skillRepository.GetByIdAsync(request.Id);                
+                var skillToUpdate = _mapper.Map<UpdateSkillReq, Skill>(request, skill);
+    
+                _skillRepository.Update(skillToUpdate);    
+                var response = _mapper.Map<Skill, UpdateSkillRes>(skillToUpdate);
+
+                await uow.SaveEntitiesAsync();
+    
+                return response;
+            }  
+        }
 
         public async Task<AddSkillSubCategoryRes> CreateSubCategory(AddSkillSubCategoryReq request)
         {

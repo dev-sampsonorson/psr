@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ROUTER_CONFIGURATION, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth/auth.guard';
 import { HomeComponent } from '@modules/home/home.component';
 import { SecretComponent } from '@modules/secret/secret.component';
@@ -29,6 +29,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        { provide: ROUTER_CONFIGURATION, useValue: { enableTracing: false } }
+    ]
 })
 export class AppRoutingModule { }

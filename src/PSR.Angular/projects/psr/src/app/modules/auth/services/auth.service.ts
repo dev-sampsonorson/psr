@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { APP_CONFIG_TOKEN, IAppConfig } from '@core/app.config';
+import { APP_CONFIG_TOKEN, IAppConfig } from '@config/app.config';
 import { StorageService } from '@core/services/storage.service';
 import { BehaviorSubject, concat, Observable, of } from 'rxjs';
 import { distinctUntilKeyChanged, filter, map, switchMap, take, tap } from 'rxjs/operators';

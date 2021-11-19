@@ -1,11 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { SkillFormService } from '@modules/skill-management/services/skill-form.service';
+import { Observable, Subscription } from 'rxjs';
 import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
 
+import { ISkill, ISkillCategory, ISkillSubCategory } from '../../models/skill.model';
 import { SkillsService } from '../../services/skills.service';
-import { ISkill, ISkillCategory, ISkillSubCategory } from '../../skill.model';
 
 @Component({
     selector: 'app-skill-form',
@@ -20,33 +21,59 @@ export class SkillFormComponent implements OnInit, OnDestroy {
 
     private _categoryValueChangeSub: Subscription | undefined;
     private _formStatusChangeSub: Subscription | undefined;
+    private _resetForm$: Observable<void>;
 
-    @Input() skill: ISkill | undefined;
+    private _routeDataSub: Subscription | undefined;
+    private _skill: ISkill | undefined;
+
     @Input() categories: ISkillCategory[] = [];
-    @Input() subcategories: ISkillSubCategory[] = [];
+    @Input() subcategories?: ISkillSubCategory[] = [];
+    @Input() buttonLabel: string = 'Save';
+
+    // ngOnInit is called before set skill
+    @Input() set skill(skill: ISkill | undefined) {
+        this._skill = skill;
+        this.initForm(this._skill);
+    }
+
+    @Output() commitSkill = new EventEmitter<ISkill>();
 
     get nameControl() { return this.form?.get('name') as FormControl; }
-    get categoryControl() { return this.form?.get('category') as FormControl; }
-    get subCategoryContorl() { return this.form?.get('subCategory') as FormControl; }
+    get categoryControl() { return this.form?.get('categoryId') as FormControl; }
+    get subcategoryContorl() { return this.form?.get('subcategoryId') as FormControl; }
 
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private skillService: SkillsService
-    ) { }
-
-    ngOnInit(): void {
-        this.createForm(this.skill);
-        this.listenCategoryValueChange();
-        this.listenFormStatusChange();
+        private skillService: SkillsService,
+        private skillFormService: SkillFormService
+    ) {
+        this._resetForm$ = this.skillFormService.resetForm$;
     }
 
-    createForm(skill: ISkill | undefined): void {
-        this.form = this.fb.group({
-            name: [skill?.name || '', [Validators.required, Validators.minLength(3)]],
-            category: [skill?.categoryId || '', [Validators.required]],
-            subCategory: [skill?.subCategoryId || '', [Validators.required]],
+    ngOnInit(): void {
+        this.initForm(this._skill);
+        this.listenCategoryValueChange();
+        this.listenFormStatusChange();
+        this.listenFormReset();
+    }
+
+    initForm(skill: ISkill | undefined): void {
+        if (!this.form) {
+            this.form = this.fb.group({
+                name: [skill?.name || '', [Validators.required, Validators.minLength(3)]],
+                categoryId: [skill?.categoryId || '', [Validators.required]],
+                subcategoryId: [skill?.subcategoryId || '', [Validators.required]],
+            });
+            return;
+        }
+
+        // console.log('initForm', skill);
+        this.form.setValue({
+            name: skill?.name || '',
+            categoryId: skill?.categoryId || '',
+            subcategoryId: skill?.subcategoryId || '',
         });
         // this.listenCategoryValueChange();
         /* console.log('updateValueAndValidity');
@@ -56,9 +83,15 @@ export class SkillFormComponent implements OnInit, OnDestroy {
         }); */
     }
 
-    updateSkill(): void {
+    onCommitSkill(): void {
         if (this.formIsValid && this.form?.valid) {
+            this.commitSkill.emit(
+                this._skill?.id
+                    ? { ...this.form.value, id: this._skill.id }
+                    : { ...this.form.value }
+            );
 
+            // this.commitSkill.emit(this.form.value);
         } else {
             this.form?.markAllAsTouched();
         }
@@ -67,13 +100,13 @@ export class SkillFormComponent implements OnInit, OnDestroy {
     listenCategoryValueChange(): void {
         this._categoryValueChangeSub = this.categoryControl.valueChanges
             .pipe(
-                startWith(this.skill?.categoryId),
+                startWith(this._skill?.categoryId),
                 filter(categoryId => !!categoryId),
                 switchMap(categoryId => this.skillService.getSubCategories(categoryId))
             )
             .subscribe(subCategories => {
                 this.subcategories = subCategories;
-                this.subCategoryContorl.patchValue(this.skill?.subCategoryId || '');
+                this.subcategoryContorl.patchValue(this._skill?.subcategoryId || '');
                 this.isSubcategoryDisabled = false;
             });
     }
@@ -97,8 +130,13 @@ export class SkillFormComponent implements OnInit, OnDestroy {
             });
     }
 
+    listenFormReset(): void {
+        this._resetForm$.subscribe(() => {
+            this.form?.reset();
+        });
+    }
+
     onCategoryChange(e: any): void {
-        console.log('onCategoryChange', e);
         this.isSubcategoryDisabled = true;
     }
 
@@ -109,6 +147,7 @@ export class SkillFormComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this._categoryValueChangeSub?.unsubscribe();
         this._formStatusChangeSub?.unsubscribe();
+        this._routeDataSub?.unsubscribe();
     }
 
 }

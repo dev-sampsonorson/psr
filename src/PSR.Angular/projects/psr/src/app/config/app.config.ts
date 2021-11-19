@@ -3,8 +3,8 @@ import { AuthRoutes } from '@auth/auth.constants';
 import { environment } from '@env/environment';
 import { IconLogoutComponent } from '@shared/icons/icon-logout.component';
 
+import { AppRoutes } from '../core/app.constants';
 import { MenuItem } from '../shared/menu.model';
-import { AppRoutes } from './app.constants';
 
 
 export interface IAppConfig {

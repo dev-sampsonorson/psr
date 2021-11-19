@@ -1,4 +1,4 @@
-import { Component, Input, NgModule, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-empty-state',
@@ -13,7 +13,7 @@ import { Component, Input, NgModule, OnInit } from '@angular/core';
             {{ description }}
         </p>
         <div class="mt-6">
-            <button type="button"
+            <button (click)="onAddNewItem()" type="button"
                     class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <!-- Heroicon name: solid/plus -->
                 <svg class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -42,9 +42,15 @@ export class EmptyStateComponent implements OnInit {
     @Input() description: string = 'Get started by adding a new item';
     @Input() buttonLabel: string = 'Add New';
 
+    @Output() addNewItem: EventEmitter<void> = new EventEmitter<void>();
+
     constructor() { }
 
     ngOnInit(): void {
+    }
+
+    onAddNewItem(): void {
+        this.addNewItem.emit();
     }
 
 }

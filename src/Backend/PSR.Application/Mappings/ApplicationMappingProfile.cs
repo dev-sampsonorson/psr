@@ -20,6 +20,16 @@ namespace PSR.Application.Mappings
             CreateMap<Skill, AddSkillRes>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+
+            CreateMap<Skill, UpdateSkillReq>()
+                .ReverseMap()
+                .ForMember(dest => dest.Category, opt => opt.Ignore())
+                .ForMember(dest => dest.SubCategory, opt => opt.Ignore());
+            CreateMap<Skill, UpdateSkillRes>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+
+
             CreateMap<Skill, SkillRes>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name))

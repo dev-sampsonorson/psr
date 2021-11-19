@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ElementHostDirective } from '../../../shared/directives/element-host.directive';
@@ -28,7 +28,7 @@ export class AlertContainerComponent implements OnInit, OnDestroy {
     constructor(
         private resolver: ComponentFactoryResolver,
         private alertService: AlertService,
-        public viewContainerRef: ViewContainerRef
+        // public viewContainerRef: ViewContainerRef
     ) { }
 
     ngOnInit(): void {

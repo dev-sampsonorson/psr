@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ISkillCategory, ISkillSubCategory } from '../../skill.model';
+import { ISkillCategory, ISkillSubCategory } from '../../models/skill.model';
 
 @Component({
     selector: 'app-skill-filter',

@@ -71,7 +71,6 @@ export class ErrorHandlerService {
 
 
         if (this.isProblemDetail(problem)) {
-            console.error('Request does not return a problem detail, find out why');
             console.log(problem);
         }
 
@@ -89,12 +88,11 @@ export class ErrorHandlerService {
         });
 
         ![401, 403, 404, 0].includes(response.status) && this.zone.run(() => {
-            console.log('bad request');
-
             //TODO: ExpressionChangedAfterItHasBeenCheckedError
+
             this.alert.error(
                 problem.title,
-                problem.detail
+                this.extractMessages(problem) || problem.detail
             );
         });
 
@@ -114,5 +112,11 @@ export class ErrorHandlerService {
             && "detail" in problem
             && "instance" in problem
             && "errors" in problem;
+    }
+
+    private extractMessages(problem: ProblemDetails) {
+        return this.isProblemDetail(problem)
+            ? problem.errors.map(x => ({ message: x.message }))
+            : undefined;
     }
 }

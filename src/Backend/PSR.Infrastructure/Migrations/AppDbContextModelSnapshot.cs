@@ -392,7 +392,6 @@ namespace PSR.Infrastructure.Migrations
                         .HasColumnType("rowversion");
 
                     b.Property<string>("Slug")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("SubCategoryId")

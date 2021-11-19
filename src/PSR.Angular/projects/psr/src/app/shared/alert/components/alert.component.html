@@ -21,10 +21,18 @@
                             <!-- text-sm font-medium text-white -->
                             {{alert?.title}}
                         </p>
-                        <p class="alert__message">
-                            <!-- mt-1 text-sm text-red-200 -->
-                            {{alert?.message}}
-                        </p>
+
+                        <ul *ngIf="isErrorMessagesVisible" role="list" class="alert__messages">
+                            <ng-container *ngIf="hasSingleMessage; then singleMessage else multiMessage"></ng-container>
+                        </ul>
+                        <ng-template #singleMessage>
+                            <p class="alert__message">{{alert?.messages![0].message}}</p>
+                        </ng-template>
+                        <ng-template #multiMessage>
+                            <li *ngFor="let item of alert?.messages" class="alert__message-item">
+                                <p class="alert__message">{{item?.message}}</p>
+                            </li>
+                        </ng-template>
                         <div *ngIf="hasActions()" class="flex mt-3 space-x-7">
                             <!-- text-sm font-medium text-white bg-transparent rounded-md hover:text-red-200 focus:outline-none -->
                             <button *ngFor="let action of alert?.actions" (click)="onAction(action)" type="button"

@@ -1,14 +1,13 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 
+import { BREADCRUMB_CONFIG_TOKEN } from './breadcrumb-config.token';
 import { IBreadcrumb } from './breadcrumb.model';
 
 
-export const BREADCRUMB_CONFIG_TOKEN = new InjectionToken<IBreadcrumb[]>("breadcrumb-config");
 
-/* const breadcrumbConfig: IBreadcrumb[] = ; */
 
 @Injectable()
 export class BreadcrumbService extends Observable<IBreadcrumb[]> {
@@ -19,7 +18,7 @@ export class BreadcrumbService extends Observable<IBreadcrumb[]> {
 
     private _paramPattern = /\:([a-zA-Z]+)/g;
 
-    private get _routerEvent$() {
+    private _routerEvent$(config: IBreadcrumb[]) {
         return this.router.events.pipe(
             // Filter the NavigationEnd events as the breadcrumb is
             // updated only when the route reaches its end
@@ -35,8 +34,8 @@ export class BreadcrumbService extends Observable<IBreadcrumb[]> {
             switchMap(route => {
                 return route.data.pipe(
                     map(data => {
-                        let index = this.breadcrumbConfig.findIndex(x => x.name === data.breadcrumb);
-                        return this.updateWithParams(this.breadcrumbConfig.slice(0, index + 1), route.snapshot.params);
+                        let index = config.findIndex(x => x.name === data.breadcrumb);
+                        return this.updateWithParams(config.slice(0, index + 1), route.snapshot.params);
                     })
                 );
             }),
@@ -55,7 +54,7 @@ export class BreadcrumbService extends Observable<IBreadcrumb[]> {
             // console.log('subscriber');
             // this._routerEvent$.subscribe(subscriber);
             this._breadcrumbsSub = this._breadcrumbs$.asObservable().subscribe(subscriber);
-            this._routeEventSub = this._routerEvent$.subscribe();
+            this._routeEventSub = this._routerEvent$(this.breadcrumbConfig).subscribe();
 
             return () => {
                 this._routeEventSub?.unsubscribe();
@@ -63,7 +62,7 @@ export class BreadcrumbService extends Observable<IBreadcrumb[]> {
             };
         });
         // console.log('constructor');
-        this._routeEventSub = this._routerEvent$.subscribe();
+        this._routeEventSub = this._routerEvent$(this.breadcrumbConfig).subscribe();
 
 
 

@@ -28,9 +28,17 @@ export class AlertComponent implements OnInit, IAlertComponent, OnDestroy, After
     @ViewChild('warningIcon', { read: TemplateRef }) warningIconRef!: TemplateRef<any>;
 
     alertIconRef!: TemplateRef<any>;
-
-
     private _timeout: any;
+
+    get isErrorMessagesVisible() {
+        return (this.alert?.messages.length || 0) > 0;
+    }
+
+    get hasSingleMessage() {
+        return (this.alert?.messages.length || 0) === 1;
+    }
+
+
 
     constructor(private alertService: AlertService, private router: Router) { }
 

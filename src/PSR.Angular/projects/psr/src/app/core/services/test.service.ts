@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { AuthEndpoints } from '@auth/auth.constants';
+import { APP_CONFIG_TOKEN, IAppConfig } from '@config/app.config';
 import { Observable } from 'rxjs';
-
-import { APP_CONFIG_TOKEN, IAppConfig } from '../app.config';
 
 @Injectable({
     providedIn: 'root'

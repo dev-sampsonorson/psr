@@ -25,7 +25,7 @@ const routes: Routes = [
             { path: 'categories/:categoryId/subcategories/:subcategoryId/list', component: SkillListComponent, resolve: { skills: SkillListResolver }, data: { breadcrumb: 'list' } },
             { path: 'read/:id', component: SkillReadComponent, outlet: 'details', resolve: { skill: SkillResolver } },
             { path: 'edit/:id', component: SkillEditComponent, outlet: 'details', resolve: { skill: SkillResolver, categories: SkillCategoryResolver } },
-            { path: 'add', component: SkillAddComponent, outlet: 'details', resolve: { categories: SkillAddResolver } },
+            { path: 'add/:categoryId/:subcategoryId', component: SkillAddComponent, outlet: 'details', resolve: { categories: SkillAddResolver } },
             { path: '**', redirectTo: 'categories', pathMatch: 'full' }
         ],
         resolve: { resolverResult: IndexResolver }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ISkill } from '../../skill.model';
+import { ISkill } from '../../models/skill.model';
 
 @Component({
     selector: 'app-skill-read',

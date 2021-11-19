@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { APP_CONFIG_TOKEN, IAppConfig } from '@core/app.config';
+import { APP_CONFIG_TOKEN, IAppConfig } from '@config/app.config';
 import { MenuItem } from '@shared/menu.model';
 
 @Component({

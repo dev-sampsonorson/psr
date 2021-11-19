@@ -5,7 +5,9 @@ import { catchError } from 'rxjs/operators';
 
 import { ErrorHandlerService } from './error-handler.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ErrorInterceptor implements HttpInterceptor {
 
     constructor(private errorHandler: ErrorHandlerService) { }

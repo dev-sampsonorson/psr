@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { pluck, switchMap, take } from 'rxjs/operators';
 
+import { ISkill } from '../models/skill.model';
 import { SkillsService } from '../services/skills.service';
-import { ISkill } from '../skill.model';
 
 @Injectable()
 export class SkillResolver implements Resolve<ISkill> {

@@ -1,5 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { BreadcrumbModule } from '@shared/breadcrumb/breadcrumb.module';
 import { SharedModule } from '@shared/shared.module';
 
 import { AddSkillCardModule } from './components/add-skill-card/add-skill-card.module';
@@ -14,6 +14,8 @@ import { SkillListModule } from './components/skill-list/skill-list.module';
 import { SkillReadModule } from './components/skill-read/skill-read.module';
 import { SkillSubcategoryCardModule } from './components/skill-subcategory-card/skill-subcategory-card.module';
 import { SkillSubcategoryListModule } from './components/skill-subcategory-list/skill-subcategory-list.module';
+import { breadcrumbConfig } from './config/breadcrumb.config';
+import { ISkillMgtConfig } from './models/skill-mgt.model';
 import { IndexModule } from './pages/index.module';
 import { IndexResolver } from './resolvers/index.resolver';
 import { SkillAddResolver } from './resolvers/skill-add.resolver';
@@ -22,9 +24,10 @@ import { SkillListResolver } from './resolvers/skill-list.resolver';
 import { SkillSubcategoryResolver } from './resolvers/skill-subcategory.resolver';
 import { SkillResolver } from './resolvers/skill.resolver';
 import { PageTitleService } from './services/page-title.service';
+import { SkillFormService } from './services/skill-form.service';
 import { SkillsService } from './services/skills.service';
-import { skillMgtBreadcrumbConfigProvider as SkillMgtBreadcrumbConfigProvider } from './skill-mgt-breadcrumb-config';
 import { SkillMgtRoutingModule } from './skill-mgt-routing.module';
+import { SKILL_MGT_CONFIG_TOKEN } from './tokens/skill-mgt-config.token';
 
 
 
@@ -32,9 +35,8 @@ import { SkillMgtRoutingModule } from './skill-mgt-routing.module';
     declarations: [],
     imports: [
         SharedModule,
+        BreadcrumbModule.withConfig(breadcrumbConfig || []),
         SkillMgtRoutingModule,
-        HttpClientModule,
-        SharedModule,
 
         IndexModule,
         AddSkillCardModule,
@@ -53,6 +55,7 @@ import { SkillMgtRoutingModule } from './skill-mgt-routing.module';
     ],
     providers: [
         PageTitleService,
+        SkillFormService,
 
         SkillsService,
         SkillListResolver,
@@ -60,9 +63,21 @@ import { SkillMgtRoutingModule } from './skill-mgt-routing.module';
         SkillAddResolver,
         IndexResolver,
         SkillCategoryResolver,
-        SkillSubcategoryResolver,
-
-        SkillMgtBreadcrumbConfigProvider
+        SkillSubcategoryResolver
     ]
 })
-export class SkillManagementModule { }
+export class SkillManagementModule {
+    static withConfig(
+        config: ISkillMgtConfig
+    ): ModuleWithProviders<SkillManagementModule> {
+        return {
+            ngModule: BreadcrumbModule,
+            providers: [
+                {
+                    provide: SKILL_MGT_CONFIG_TOKEN,
+                    useValue: config || {}
+                }
+            ]
+        };
+    }
+}

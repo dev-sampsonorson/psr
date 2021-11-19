@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { APP_CONFIG_TOKEN, IAppConfig } from '@core/app.config';
+import { APP_CONFIG_TOKEN, IAppConfig } from '@config/app.config';
 import { AppEndpoints } from '@core/app.constants';
 import { ILookupItem } from '@core/app.interfaces';
 import { Observable } from 'rxjs';

@@ -16,7 +16,7 @@ namespace PSR.Infrastructure.EntityConfig
                 .IsRequired();
 
             builder.Property(x => x.Slug)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(x => x.CategoryId).IsRequired();
             

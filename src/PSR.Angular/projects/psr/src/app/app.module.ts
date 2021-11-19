@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthModule } from '@auth/auth.module';
+import { skillMgtConfig } from '@config/skill-mgt.config';
 import { HomeComponent } from '@modules/home/home.component';
 import { SecretComponent } from '@modules/secret/secret.component';
 import { SkillManagementModule } from '@modules/skill-management/skill-mgt.module';
 
-import { AppBreadcrumbConfigProvider } from './app-breadcrumb-config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -26,13 +26,11 @@ import { SharedModule } from './shared/shared.module';
         CoreModule,
         SharedModule,
 
-        // cleanup
-        // AlertModule,
-        // HeaderModule,
-        SkillManagementModule
+        SkillManagementModule.withConfig(skillMgtConfig)
     ],
     providers: [
-        AppBreadcrumbConfigProvider
+        // { provide: SKILL_MGT_CONFIG_TOKEN, useValue: skillMgtConfig },
+        // AppBreadcrumbConfigProvider,
     ],
     bootstrap: [AppComponent]
 })

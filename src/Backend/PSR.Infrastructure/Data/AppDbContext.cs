@@ -21,11 +21,11 @@ namespace PSR.Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder
                 .LogTo(Console.WriteLine, new [] { RelationalEventId.CommandExecuted })
                 .EnableSensitiveDataLogging();
-        }
+        } */
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             // modelBuilder.HasDefaultSchema("blogging");
@@ -85,7 +85,7 @@ namespace PSR.Infrastructure.Data
             } catch (UnexpectedTypeException) {
                 throw;
             } catch {
-                return false;
+                throw;
             }
 
             return true;

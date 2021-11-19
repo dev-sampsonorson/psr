@@ -1,5 +1,9 @@
 import { EventEmitter } from '@angular/core';
 
+export interface IMessageItem {
+    message: string;
+}
+
 export interface IAlertComponent {
     alert: Alert | undefined;
     closeAlert: EventEmitter<boolean>;
@@ -10,6 +14,7 @@ export class Alert {
     type: AlertType = AlertType.Info;
     title: string = '';
     message: string = '';
+    messages: { message: string }[] = [];
     actions: IAlertAction[] = [];
     autoClose: boolean = true;
     timeToClose: number = 5;

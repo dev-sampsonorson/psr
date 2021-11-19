@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
+import { ISkillCategory } from '../models/skill.model';
 import { SkillsService } from '../services/skills.service';
-import { ISkillCategory } from '../skill.model';
 
 @Injectable()
 export class SkillAddResolver implements Resolve<ISkillCategory[]> {

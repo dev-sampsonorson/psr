@@ -9,12 +9,12 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('loading...');
+        // console.log('loading...');
         //   this.loadingDialogService.openDialog();
         return next.handle(request).pipe(
             finalize(() => {
                 //   this.loadingDialogService.hideDialog();
-                console.log('complete!!!!');
+                // console.log('complete!!!!');
             })
         ) as Observable<HttpEvent<any>>;
     }

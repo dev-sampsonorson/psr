@@ -4,10 +4,12 @@ export interface ISkill {
     slug: string;
     categoryId: string;
     categoryName: string;
-    subCategoryId: string;
-    subCategoryName: string;
+    subcategoryId: string;
+    subcategoryName: string;
     employees: number;
     teamCompetency: number;
+
+    deleting?: boolean;
 }
 
 export interface ISkillCategory {

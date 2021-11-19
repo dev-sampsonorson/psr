@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SkillFormService } from '@modules/skill-management/services/skill-form.service';
 import { Subscription } from 'rxjs';
-import { debounceTime, filter, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
+import { ISkill, ISkillCategory, ISkillSubCategory } from '../../models/skill.model';
 import { SkillsService } from '../../services/skills.service';
-import { ISkillCategory, ISkillSubCategory } from '../../skill.model';
 
 @Component({
     selector: 'app-skill-add',
@@ -14,10 +15,11 @@ import { ISkillCategory, ISkillSubCategory } from '../../skill.model';
 })
 export class SkillAddComponent implements OnInit, OnDestroy {
 
-    title: string = 'Add New Skill';
-    description: string = 'Provide details about the skill.';
-
+    public title: string = 'Add New Skill';
+    public description: string = 'Provide details about the skill.';
+    public buttonLabel: string = 'Add skill';
     public form: FormGroup | undefined;
+    public skill: ISkill | undefined;
     public categories: ISkillCategory[] = [];
     public subCategories: ISkillSubCategory[] = [];
     public formIsValid: boolean = false;
@@ -26,78 +28,46 @@ export class SkillAddComponent implements OnInit, OnDestroy {
     private _categoryValueChangeSub: Subscription | undefined;
     private _formStatusChangeSub: Subscription | undefined;
 
-    get nameControl() { return this.form?.get('name') as FormControl; }
-    get categoryControl() { return this.form?.get('category') as FormControl; }
-    get subCategoryContorl() { return this.form?.get('subCategory') as FormControl; }
-
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private skillService: SkillsService
-    ) { }
+        private skillService: SkillsService,
+        private skillFormService: SkillFormService
+    ) {
+    }
 
     ngOnInit(): void {
-        this.route.data.subscribe(({ categories }) => {
+        // get the categories ids
+        // get the skill
+        // update the skill with category and subcategory
+        // emit new object with categories and skill using map
+
+        this.route.params.pipe(
+            switchMap(({ categoryId, subcategoryId }) => {
+                return this.route.data.pipe(
+                    map(({ categories, skill }) => {
+                        // skill.categoryId = categoryId;
+                        // skill.subcategoryId = subcategoryId;
+
+                        return {
+                            categories,
+                            skill: { ...skill, categoryId, subcategoryId }
+                        };
+                    })
+                )
+            })
+        ).subscribe(({ categories, skill }) => {
             this.categories = categories;
-        });
-
-        this.createForm();
-        this.listenCategoryValueChange();
-        this.listenFormStatusChange();
-    }
-
-    addSkill(): void {
-        if (this.formIsValid && this.form?.valid) {
-
-        } else {
-            this.form?.markAllAsTouched();
-        }
-
-    }
-
-    createForm(): void {
-        this.form = this.fb.group({
-            name: ['', [Validators.required, Validators.minLength(3)]],
-            category: ['', [Validators.required]],
-            subCategory: ['', [Validators.required]],
+            this.skill = skill;
         });
     }
-
-    listenCategoryValueChange(): void {
-        this._categoryValueChangeSub = this.categoryControl.valueChanges
-            .pipe(
-                filter(categoryId => !!categoryId),
-                switchMap(categoryId => this.skillService.getSubCategories(categoryId))
-            )
-            .subscribe(subCategories => {
-                this.subCategories = subCategories;
-                this.subCategoryContorl.patchValue('');
-                this.isSubcategoryDisabled = false;
-            });
-    }
-
-    listenFormStatusChange(): void {
-        this._formStatusChangeSub = this.form?.statusChanges
-            .pipe(
-                /**
-                 * The Debouncetime emits the last received value
-                 * from the source observable after a specified amount
-                 * of time has elapsed without any other value appearing
-                 * on the source Observable
-                 */
-                debounceTime(100)
-            )
-            .subscribe(formStatus => {
-                if (formStatus === "INVALID" || formStatus === "PENDING")
-                    this.formIsValid = false;
-                else
-                    this.formIsValid = true;
-            });
-    }
-
-    onCategoryChange(): void {
-        this.isSubcategoryDisabled = true;
+    onSaveSkill(skill: ISkill) {
+        this.skillService.addSkill(skill).subscribe((response: ISkill) => {
+            // tell the list component that skill has been added
+            this.skillService.notifySkillSave(response);
+            this.skillFormService.resetForm();
+        });
     }
 
     onCloseClick() {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { UtilService } from '@core/services/util.service';
 import { EnvironmentService } from '@env/environment.service';
-import { Alert, AlertType, IAlertAction, IAlertOptions } from '@shared/alert';
+import { Alert, AlertType, IAlertAction, IAlertOptions, IMessageItem } from '@shared/alert';
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -13,22 +14,49 @@ export class AlertService {
     private _onCloseSubject = new Subject<Symbol>();
     private _defaultId = 'default-alert';
 
-    constructor(private env: EnvironmentService) { }
+    constructor(
+        private env: EnvironmentService,
+        private util: UtilService
+    ) { }
 
-    success(title: string, message: string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
-        return this.sendAlert(new Alert({ ...options, type: AlertType.Success, title, message, actions }));
+    success(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+        return this.sendAlert(new Alert({
+            ...options,
+            type: AlertType.Success,
+            title,
+            messages: this.util.isString(messages) ? [{ message: messages as string }] : (messages as IMessageItem[]),
+            actions
+        }));
     }
 
-    error(title: string, message: string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
-        return this.sendAlert(new Alert({ ...options, type: AlertType.Error, title, message, actions }));
+    error(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+        return this.sendAlert(new Alert({
+            ...options,
+            type: AlertType.Error,
+            title,
+            messages: this.util.isString(messages) ? [{ message: messages as string }] : (messages as IMessageItem[]),
+            actions
+        }));
     }
 
-    info(title: string, message: string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
-        return this.sendAlert(new Alert({ ...options, type: AlertType.Info, title, message, actions }));
+    info(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+        return this.sendAlert(new Alert({
+            ...options,
+            type: AlertType.Info,
+            title,
+            messages: this.util.isString(messages) ? [{ message: messages as string }] : (messages as IMessageItem[]),
+            actions
+        }));
     }
 
-    warn(title: string, message: string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
-        return this.sendAlert(new Alert({ ...options, type: AlertType.Warning, title, message, actions }));
+    warn(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+        return this.sendAlert(new Alert({
+            ...options,
+            type: AlertType.Warning,
+            title,
+            messages: this.util.isString(messages) ? [{ message: messages as string }] : (messages as IMessageItem[]),
+            actions
+        }));
     }
 
     sendAlert(alert: Alert): Symbol {

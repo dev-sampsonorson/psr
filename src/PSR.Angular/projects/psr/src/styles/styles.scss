@@ -5,6 +5,12 @@
 
 @import "markup/form.scss";
 
+:root {
+    --eui-blockui-overlay-border-radius: 0rem;
+    --eui-blockui-cursor: wait;
+    --eui-blockui-background-color: rgba(0, 0, 0, 0.4);
+}
+
 body {
     @apply bg-gray-50;
 
@@ -21,4 +27,11 @@ html, body { @apply min-h-full; }
 
 .close-overlay {
     @apply fixed inset-0 h-full w-full cursor-default z-10; //bg-black opacity-50
+}
+
+
+
+.ui-widget-overlay {
+    margin: 0;
+    // @apply flex justify-center items-center;
 }

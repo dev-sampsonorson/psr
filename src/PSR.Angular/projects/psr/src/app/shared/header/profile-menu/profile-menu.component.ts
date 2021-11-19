@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core
 import { Router } from '@angular/router';
 import { IUser } from '@auth/models/user.model';
 import { AuthService } from '@auth/services/auth.service';
+import { IContextMenuItemClickEvent } from '@shared/context-menu/context-menu.model';
 import { MenuItem } from '@shared/menu.model';
 import { Observable, Subscription } from 'rxjs';
 
@@ -66,7 +67,7 @@ export class ProfileMenuComponent implements OnInit, OnDestroy {
         this.service.changeOpenStatus(false);
     }
 
-    onMenuItemClick(menuItem: MenuItem) {
+    onMenuItemClick({ menuItem, handle }: IContextMenuItemClickEvent) {
         this.service.changeOpenStatus(false);
         this.router.navigate(menuItem.routerLink() as any[]);
     }

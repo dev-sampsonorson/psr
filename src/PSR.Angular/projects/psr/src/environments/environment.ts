@@ -1,8 +1,8 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import { IEnvironment } from './environment.interface';
 
-import { IEnvironment } from "./environment.interface";
 
 const _apiHost = 'localhost';
 const _apiPort = 4455;
@@ -15,7 +15,7 @@ export const environment: IEnvironment = {
     logLevel: 'debug',
     apiUrl: _apiUrl,
     alertOptions: {
-        autoClose: true,
+        autoClose: false,
         timeToClose: 10
     }
 };

@@ -4,5 +4,5 @@ export class ProblemDetails {
     status: number = -1;
     detail: string = '';
     instance: string = '';
-    errors: string[] = [];
+    errors: any[] = [];
 }

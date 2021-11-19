@@ -1,12 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BREADCRUMB_CONFIG_TOKEN } from '@shared/breadcrumb/breadcrumb-config.token';
 import { IBreadcrumb } from '@shared/breadcrumb/breadcrumb.model';
 import { BreadcrumbService } from '@shared/breadcrumb/breadcrumb.service';
 import { SecondaryHeaderService } from '@shared/secondary-header/secondary-header.service';
 import { Observable, Subscription } from 'rxjs';
 
+import { ISkillCategory } from '../models/skill.model';
 import { PageTitleService } from '../services/page-title.service';
-import { ISkillCategory } from '../skill.model';
 
 @Component({
     selector: 'app-index',
@@ -29,7 +30,9 @@ import { ISkillCategory } from '../skill.model';
             </p>
             <!-- <app-skill-filter [categories]="categories"></app-skill-filter> -->
         </div>
-        <app-breadcrumb breadcrumb-content></app-breadcrumb>
+        <nav breadcrumb-content *ngIf="isBreadcrumbVisible" class="flex px-4 py-4 mx-auto border-b-2 border-gray-200 border-dashed max-w-7xl sm:px-6 lg:px-8" aria-label="Breadcrumb">
+            <app-breadcrumb></app-breadcrumb>
+        </nav>
         <router-outlet main-content
                 (activate)="onPrimaryRouterOutletActivate()"
                 (deactivate)="onPrimaryRouterOutletDeactivate()"></router-outlet>
@@ -65,12 +68,17 @@ export class IndexComponent implements OnInit, OnDestroy {
 
     private _breadcrumbs$: Observable<IBreadcrumb[]>;
 
+    get isBreadcrumbVisible() {
+        return this.breadcrumbConfig.length > 0;
+    }
+
     constructor(
         private pageTitle: PageTitleService,
         private route: ActivatedRoute,
         private router: Router,
         private breadcrumbService: BreadcrumbService,
-        private secondaryHeaderService: SecondaryHeaderService
+        private secondaryHeaderService: SecondaryHeaderService,
+        @Inject(BREADCRUMB_CONFIG_TOKEN) private breadcrumbConfig: IBreadcrumb[]
     ) {
         this.pageTitle$ = this.pageTitle.pageTitle$;
         this.pageSubTitle$ = this.pageTitle.pageSubTitle$;

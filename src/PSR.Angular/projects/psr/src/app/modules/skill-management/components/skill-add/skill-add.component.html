@@ -1,6 +1,11 @@
 <app-secondary-header [title]="title" [description]="description" (closeClick)="onCloseClick()"></app-secondary-header>
 
-<div class="flex flex-col py-5 space-y-6 border-t border-gray-200">
+<app-skill-form [skill]="skill" [categories]="categories" (commitSkill)="onSaveSkill($event)"
+                [buttonLabel]="buttonLabel">
+</app-skill-form>
+
+
+<!-- <div class="flex flex-col py-5 space-y-6 border-t border-gray-200">
     <ng-container *ngIf="form">
         <form [formGroup]="form" (ngSubmit)="addSkill()" class="psr-form__form">
             <div>
@@ -32,4 +37,4 @@
             </div>
         </form>
     </ng-container>
-</div>
+</div> -->

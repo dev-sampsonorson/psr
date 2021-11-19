@@ -89,6 +89,32 @@ namespace PSR.Api.Controllers.v1
             var response = await _skillService.CreateSkill(request);
             return CreatedAtAction(nameof(GetSkill), new { id = response.Id }, response);          
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillReq request) {
+            var response = await _skillService.UpdateSkill(request);
+            return CreatedAtAction(nameof(GetSkill), new { id = response.Id }, response);          
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteSkill([FromBody] UpdateSkillReq request) {
+            var response = await _skillService.DeleteSkill(request);
+            return CreatedAtAction(nameof(GetSkill), new { id = response.Id }, response);          
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem(int id) {
+            var existItem = await _context.Items.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (existItem == null)
+                return NotFound();
+
+            _context.Items.Remove(existItem);
+            await _context.SaveChangesAsync();
+
+            return Ok(existItem);
+        }
         
         
         [HttpPost("slug-exists")]

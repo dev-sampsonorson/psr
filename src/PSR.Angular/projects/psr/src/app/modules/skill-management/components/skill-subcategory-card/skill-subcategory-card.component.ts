@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ISkillSubCategory } from '../../skill.model';
+import { ISkillSubCategory } from '../../models/skill.model';
 
 @Component({
     selector: 'app-skill-subcategory-card',

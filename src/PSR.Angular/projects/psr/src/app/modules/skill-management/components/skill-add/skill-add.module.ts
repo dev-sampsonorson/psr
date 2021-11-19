@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DisableControlModule } from '@shared/directives/disable-control.directive';
 import { SecondaryHeaderModule } from '@shared/secondary-header/secondary-header.component';
 
+import { SkillFormModule } from '../skill-form/skill-form.module';
 import { SkillAddComponent } from './skill-add.component';
 
 
@@ -14,7 +15,8 @@ import { SkillAddComponent } from './skill-add.component';
         CommonModule,
         ReactiveFormsModule,
         DisableControlModule,
-        SecondaryHeaderModule
+        SecondaryHeaderModule,
+        SkillFormModule
     ],
     exports: [SkillAddComponent]
 })

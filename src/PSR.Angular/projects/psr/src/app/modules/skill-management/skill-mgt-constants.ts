@@ -1,4 +1,4 @@
-import { IAppConfig } from '@core/app.config';
+import { IAppConfig } from '@config/app.config';
 
 export interface ISkillMgtEndpoints {
     readonly GetSkills: (config: IAppConfig) => string;
@@ -6,13 +6,16 @@ export interface ISkillMgtEndpoints {
     readonly GetSkill: (config: IAppConfig, id: string) => string;
     readonly GetSkillCategories: (config: IAppConfig) => string;
     readonly GetSkillSubCategories: (config: IAppConfig, categoryId: string) => string;
+    readonly AddSkill: (config: IAppConfig) => string;
+    readonly UpdateSkill: (config: IAppConfig) => string;
+    readonly DeleteSkill: (config: IAppConfig, id: string) => string;
 }
 
 export interface ISkillMgtRoutes {
     readonly ListSkills: (categoryId: string, subcategoryId: string) => any[];
     readonly ReadSkill: (id: string) => any[];
     readonly EditSkill: (id: string) => any[];
-    readonly AddSkill: () => any[];
+    readonly AddSkill: (categoryId: string, subcategoryId: string) => any[];
     readonly ListSubcategories: (id: string) => any[];
 }
 
@@ -24,6 +27,9 @@ let appPaths: ISkillMgtEndpoints = {
     GetSkill: (config: IAppConfig, id: string) => config.getUrl(`skills/${id}`),
     GetSkillCategories: (config: IAppConfig) => config.getUrl(`skills/categories`),
     GetSkillSubCategories: (config: IAppConfig, categoryId: string) => config.getUrl(`skills/categories/${categoryId}/subcategories`),
+    AddSkill: (config: IAppConfig) => config.getUrl(`skills`),
+    UpdateSkill: (config: IAppConfig) => config.getUrl(`skills`),
+    DeleteSkill: (config: IAppConfig, id: string) => config.getUrl(`skills/${id}`),
 };
 
 let appRoutes: ISkillMgtRoutes = {
@@ -31,7 +37,7 @@ let appRoutes: ISkillMgtRoutes = {
     // ReadSkill: (id: string) => [`/skills`, { outlets: { details: ['read', id] } }],
     ReadSkill: (id: string) => [`/skills`, { outlets: { details: ['read', id] } }],
     EditSkill: (id: string) => [`/skills`, { outlets: { details: ['edit', id] } }],
-    AddSkill: () => [`/skills`, { outlets: { details: ['add'] } }],
+    AddSkill: (categoryId: string, subcategoryId: string) => [`/skills`, { outlets: { details: ['add', categoryId, subcategoryId] } }],
     ListSubcategories: (id: string) => [`/skills`, `categories`, `${id}`, `subcategories`],
 };
 

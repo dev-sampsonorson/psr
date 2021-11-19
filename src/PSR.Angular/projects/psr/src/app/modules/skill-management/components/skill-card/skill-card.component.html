@@ -1,7 +1,7 @@
 <ng-container *ngIf="skill">
     <!-- (click)="skillCardClickHandler(skill)" -->
     <div tabindex="0"
-         class="flex flex-col justify-between h-full p-4 space-y-4 text-left border border-gray-200 rounded-lg hover:border-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-indigo-500">
+         class="relative flex flex-col justify-between h-full p-4 space-y-4 text-left border border-gray-200 rounded-lg hover:border-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-indigo-500">
         <h3 class="text-lg font-medium text-gray-700">{{ skill.name}} Employee Packet</h3>
         <div class="skill-stats">
             <div class="skill-stats__info">
@@ -25,9 +25,10 @@
                 </app-button-icon>
                 <button *ngIf="isContextMenuVisible" (click)="onToggleContextMenu()" class="close-overlay"
                         tabindex="-1"></button>
-                <app-context-menu *ngIf="isContextMenuVisible" (menuItemClick)="onMenuItemClick($event)"
+                <app-context-menu [handle]="contextMenuHandle" *ngIf="isContextMenuVisible" (menuItemClick)="onMenuItemClick($event)"
                                   [menuItems]="menuItems" class="absolute right-0 w-40"></app-context-menu>
             </div>
         </div>
     </div>
+    <!-- <ng-container #blockUiOverlay></ng-container> -->
 </ng-container>
