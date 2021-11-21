@@ -7,7 +7,7 @@ using PSR.Auth.Interfaces;
 using PSR.Auth.Models.Request;
 using PSR.Auth.Models.Response;
 using PSR.Domain;
-using PSR.SharedKernel;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Api.Services
 {
@@ -71,7 +71,7 @@ namespace PSR.Api.Services
 
             await _employeeRepository.AddAsync(employeeToSave);
 
-            if (!await _employeeRepository.UnitOfWork.SaveEntitiesAsync()) {
+            if (await _employeeRepository.UnitOfWork.SaveEntitiesAsync() <= 0) {
                 throw new AppException("Registration failed", "Registration unsuccessful");
             }
 

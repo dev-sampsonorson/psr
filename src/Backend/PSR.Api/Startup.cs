@@ -16,6 +16,7 @@ using PSR.Infrastructure.Data;
 using PSR.Auth.Validators;
 using PSR.DomainService;
 using PSR.Application.Common;
+using PSR.SharedKernel;
 
 namespace PSR.Api
 {
@@ -40,6 +41,7 @@ namespace PSR.Api
                     });
                 // options.UseLoggerFactory()
             });
+            services.AddScoped<IUnitOfWork, AppDbContext>();
             services.AddInfrastructureServices(_configuration);
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>();

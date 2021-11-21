@@ -70,9 +70,9 @@ export class ErrorHandlerService {
         }
 
 
-        if (this.isProblemDetail(problem)) {
+        /* if (this.isProblemDetail(problem)) {
             console.log(problem);
-        }
+        } */
 
         // console.log('problem instanceof ProblemDetails', problem instanceof ProblemDetails);
         /* if (!(problem instanceof ProblemDetails)) {
@@ -89,11 +89,13 @@ export class ErrorHandlerService {
 
         ![401, 403, 404, 0].includes(response.status) && this.zone.run(() => {
             //TODO: ExpressionChangedAfterItHasBeenCheckedError
+            // let kkk = this.extractMessages(problem);
+            console.log('problem', problem);
 
-            this.alert.error(
-                problem.title,
+            /* this.alert.error(
+                problem?.title || 'Error',
                 this.extractMessages(problem) || problem.detail
-            );
+            ); */
         });
 
         return throwError({
@@ -110,13 +112,12 @@ export class ErrorHandlerService {
             && "title" in problem
             && "status" in problem
             && "detail" in problem
-            && "instance" in problem
-            && "errors" in problem;
+            && "instance" in problem;
     }
 
     private extractMessages(problem: ProblemDetails) {
         return this.isProblemDetail(problem)
-            ? problem.errors.map(x => ({ message: x.message }))
-            : undefined;
+            ? (problem?.errors?.map(x => ({ message: x.message })) || problem.detail)
+            : 'An error has occured contact the administrator';
     }
 }

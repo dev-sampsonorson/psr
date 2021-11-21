@@ -5,10 +5,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1"/>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0"/>
-    <PackageReference Include="FluentValidation" Version="10.3.4"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="FluentValidation" Version="10.3.4" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSR.SharedKernel\PSR.SharedKernel.csproj" />
   </ItemGroup>
 </Project>

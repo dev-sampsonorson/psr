@@ -18,7 +18,9 @@ namespace PSR.Application.Interfaces
          Task<AddSkillSubCategoryRes> CreateSubCategory(AddSkillSubCategoryReq request);
          Task<AddSkillRes> CreateSkill(AddSkillReq request);
          Task<UpdateSkillRes> UpdateSkill(UpdateSkillReq request);
+         Task DeleteSkill(DeleteSkillReq request);
          Task<CheckExistsRes> CheckSlugExists(CheckSlugExistsReq request);
+         Task<CheckExistsRes> CheckSkillExists(CheckSkillExistsReq request);
          
     }
 }

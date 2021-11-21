@@ -137,5 +137,11 @@ namespace PSR.Infrastructure.Repository
         public async Task<bool> SlugExistsAsync(Guid skillId, string slug) {
             return await dbSet.AnyAsync(x => x.Id != skillId && x.Slug == slug);
         }
+    
+        public async Task<bool> SkillExistsAsync(string name, Guid categoryId, Guid subCategoryId) {
+            return await dbSet.AnyAsync(x => x.Name == name 
+            && x.CategoryId == categoryId 
+            && x.SubCategoryId == subCategoryId);
+        }
     }
 }

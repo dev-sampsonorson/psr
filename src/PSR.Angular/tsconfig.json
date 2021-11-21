@@ -26,9 +26,9 @@
     //   "@widgets/*": ["projects/psr/src/app/widgets/*"],
       "@shared/*": ["projects/psr/src/app/shared/*"],
       "@layouts/*": ["projects/psr/src/app/shared/layouts/*"],
-      "@modules/*": ["projects/psr/src/app/modules/*"],
+      "@features/*": ["projects/psr/src/app/features/*"],
       "@core/*": ["projects/psr/src/app/core/*"],
-      "@auth/*": ["projects/psr/src/app/modules/auth/*"],
+      "@auth/*": ["projects/psr/src/app/features/auth/*"],
       "@config/*": ["projects/psr/src/app/config/*"],
     }
   },

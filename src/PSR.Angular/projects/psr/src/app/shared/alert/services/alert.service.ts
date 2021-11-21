@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { UtilService } from '@core/services/util.service';
-import { EnvironmentService } from '@env/environment.service';
 import { Alert, AlertType, IAlertAction, IAlertOptions, IMessageItem } from '@shared/alert';
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-@Injectable({
-    providedIn: 'root'
-})
+import { ALERT_CONFIG_TOKEN } from '../tokens/alert-config.token';
+
+@Injectable()
 export class AlertService {
 
     private _subject = new Subject<Alert>();
@@ -15,11 +14,12 @@ export class AlertService {
     private _defaultId = 'default-alert';
 
     constructor(
-        private env: EnvironmentService,
-        private util: UtilService
+        // private env: EnvironmentService,
+        private util: UtilService,
+        @Inject(ALERT_CONFIG_TOKEN) private alertConfig: IAlertOptions
     ) { }
 
-    success(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+    success(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.alertConfig): Symbol {
         return this.sendAlert(new Alert({
             ...options,
             type: AlertType.Success,
@@ -29,7 +29,7 @@ export class AlertService {
         }));
     }
 
-    error(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+    error(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.alertConfig): Symbol {
         return this.sendAlert(new Alert({
             ...options,
             type: AlertType.Error,
@@ -39,7 +39,7 @@ export class AlertService {
         }));
     }
 
-    info(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+    info(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.alertConfig): Symbol {
         return this.sendAlert(new Alert({
             ...options,
             type: AlertType.Info,
@@ -49,7 +49,7 @@ export class AlertService {
         }));
     }
 
-    warn(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.env.alertOptions): Symbol {
+    warn(title: string, messages: IMessageItem[] | string, actions: IAlertAction[] = [], options: IAlertOptions = this.alertConfig): Symbol {
         return this.sendAlert(new Alert({
             ...options,
             type: AlertType.Warning,

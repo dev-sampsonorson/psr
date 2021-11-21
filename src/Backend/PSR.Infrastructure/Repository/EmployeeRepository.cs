@@ -1,11 +1,10 @@
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PSR.Application.Repository;
 using PSR.Domain;
 using PSR.Infrastructure.Data;
-using PSR.SharedKernel;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Infrastructure.Repository
 {

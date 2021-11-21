@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using PSR.SharedKernel.Extensions;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Api.Filters
 {

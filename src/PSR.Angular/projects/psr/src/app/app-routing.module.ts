@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ROUTER_CONFIGURATION, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@auth/auth.guard';
-import { HomeComponent } from '@modules/home/home.component';
-import { SecretComponent } from '@modules/secret/secret.component';
+import { HomeComponent } from '@features/home/home.component';
 
 import { LayoutComponent } from './layout.component';
 
@@ -14,9 +12,10 @@ const appRoutes: Routes = [
             { path: 'home', component: HomeComponent },
             {
                 path: 'skills',
-                loadChildren: () => import('@modules/skill-management/skill-mgt.module').then(m => m.SkillManagementModule)
+                loadChildren: () => import('@features/skill-management/skill-mgt.module').then(m => m.SkillManagementModule)
             },
-            { path: 'secret', component: SecretComponent, canActivate: [AuthGuard] },
+            { path: 'secret', loadChildren: () => import('@features/secret/secret.module').then(m => m.SecretModule) },
+            // { path: 'secret', component: SecretComponent, canActivate: [AuthGuard] },
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]
     },

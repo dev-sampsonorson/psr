@@ -5,6 +5,7 @@ using PSR.Application.Models.Request;
 using PSR.Application.Models.Response;
 using PSR.Application.Repository;
 using PSR.Domain;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Application.Services
 {
@@ -28,14 +29,27 @@ namespace PSR.Application.Services
         }
         public async Task<CheckExistsRes> CheckSlugExists(CheckSlugExistsReq request)
         {
-            using (var uow = _skillRepository.UnitOfWork) {
-                var slugExists = await _skillRepository.SlugExistsAsync(request.SkillId, request.Slug);
+            var uow = _skillRepository.UnitOfWork;
+            var slugExists = await _skillRepository.SlugExistsAsync(request.SkillId, request.Slug);
 
-                if (slugExists)
-                    return CheckExistsRes.Invalid();
+            if (slugExists)
+                return CheckExistsRes.Invalid();
                     
-                return CheckExistsRes.Valid();
-            }
+            return CheckExistsRes.Valid();
+        }
+
+        public async Task<CheckExistsRes> CheckSkillExists(CheckSkillExistsReq request) {
+            var uow = _skillRepository.UnitOfWork;
+            var slugExists = await _skillRepository.SkillExistsAsync(
+                request.Name, 
+                request.CategoryId,
+                request.SubcategoryId
+            );
+
+            if (slugExists)
+                return CheckExistsRes.Invalid();
+                    
+            return CheckExistsRes.Valid();
         }
 
         public async Task<AddSkillCategoryRes> CreateCategory(AddSkillCategoryReq request)
@@ -54,7 +68,8 @@ namespace PSR.Application.Services
 
         public async Task<AddSkillRes> CreateSkill(AddSkillReq request)
         {
-            using (var uow = _skillRepository.UnitOfWork) {
+            /* using (var uow = _skillRepository.UnitOfWork) {
+                var uow = _skillRepository.UnitOfWork
                 var newSkill = _mapper.Map<AddSkillReq, Skill>(request);
     
                 var createdSkill = await _skillRepository.AddAsync(newSkill);    
@@ -63,7 +78,17 @@ namespace PSR.Application.Services
                 await uow.SaveEntitiesAsync();
     
                 return response;
-            }  
+            }   */
+
+            var uow = _skillRepository.UnitOfWork;
+            var newSkill = _mapper.Map<AddSkillReq, Skill>(request);
+    
+            var createdSkill = await _skillRepository.AddAsync(newSkill);    
+            var response = _mapper.Map<Skill, AddSkillRes>(createdSkill);
+
+            await uow.SaveEntitiesAsync();
+    
+            return response;
         }
         public async Task<UpdateSkillRes> UpdateSkill(UpdateSkillReq request)
         {
@@ -97,10 +122,9 @@ namespace PSR.Application.Services
 
         public async Task<SkillRes> GetSkill(Guid id)
         {
-            using (var uow = _skillRepository.UnitOfWork) {
-                var skill = await _skillRepository.GetByIdAsync(id);
-                return _mapper.Map<Skill, SkillRes>(skill);
-            }
+            var uow = _skillRepository.UnitOfWork;
+            var skill = await _skillRepository.GetByIdAsync(id);
+            return _mapper.Map<Skill, SkillRes>(skill);
         }
 
         public IEnumerable<SkillCategoryRes> GetSkillCategories()
@@ -158,9 +182,21 @@ namespace PSR.Application.Services
             return _mapper.Map<SkillSubCategory, SkillSubCategoryRes>(subCategory);
         }
 
+        public async Task DeleteSkill(DeleteSkillReq request)
+        {
+            var uow = _skillRepository.UnitOfWork;
+            var skill = await _skillRepository.GetByIdAsync(request.Id);
+
+            if (skill is null)
+                throw new EntityNotFoundException(nameof(skill), request.Id);
+
+            _skillRepository.Delete(skill);
+            await uow.SaveEntitiesAsync();
+        }
+
         /* private string GenerateSlug(string name) {
             return Regex.Replace(name.ToLowerInvariant(), RegexPattern.NotAlphanumeric, "-");
         } */
-        
+
     }
 }

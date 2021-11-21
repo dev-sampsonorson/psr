@@ -28,5 +28,24 @@ namespace PSR.Domain
         public EmployeeStatus Status { get; set; } = EmployeeStatus.Active;
         public ICollection<Skill> Skills { get; set; } = new List<Skill>();
         public ICollection<SkillRating> SkillRatings { get; set; } = new List<SkillRating>();
+
+        public void UpdateSkillRating(Skill skill, double newRating) {
+            ArgumentNullException.ThrowIfNull(skill);
+
+            if (newRating >= 0 && newRating <= 5) {
+                RaiseDomainEvent(new EmployeeSkillRatingChangeEvent(Id, skill.Id, newRating));
+            }
+
+            var skillToUpdate = SkillRatings.FirstOrDefault(x => x.Id == skill.Id);
+            if (skillToUpdate is not null) {
+                skillToUpdate.Rating = newRating;
+            } else {
+                skillToUpdate = new SkillRating {
+                    Skill = skill,
+                    Employee = this,
+                    Rating = newRating
+                };
+            }
+        }
     }
 }

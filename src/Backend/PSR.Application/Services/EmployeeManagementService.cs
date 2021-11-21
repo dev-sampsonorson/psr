@@ -5,7 +5,7 @@ using PSR.Application.Models.Request;
 using PSR.Application.Models.Response;
 using PSR.Application.Repository;
 using PSR.Domain;
-using PSR.SharedKernel;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Application.Services
 {
@@ -65,6 +65,8 @@ namespace PSR.Application.Services
                 skillRating.Rating = request.Rating;
     
                 await uow.SaveEntitiesAsync();
+
+                // Dispatch events here
 
                 return _mapper.Map<Employee, UpdateEmployeeSkillRatingRes>(employee);
             }

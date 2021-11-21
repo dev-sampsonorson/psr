@@ -14,6 +14,25 @@ namespace PSR.SharedKernel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
+        private readonly List<IDomainEvent> _domainEvents = new List<IDomainEvent>();
+        public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents;
+
+        /*
+            Only entities themselves may raise the events, this method
+            shouldn't be accessible to other classes
+
+            Raising an event is a responsibility of an aggregate root
+            and not an entity
+        */
+        protected virtual void RaiseDomainEvent(IDomainEvent domainEvent) {
+            _domainEvents.Add(domainEvent);
+        }
+
+        public virtual void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+
         public bool IsTransient()
         {
             return this.Id == default(Guid);

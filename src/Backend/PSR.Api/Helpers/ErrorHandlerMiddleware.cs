@@ -1,7 +1,8 @@
 using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using PSR.Application.Common.Exceptions;
-using PSR.SharedKernel;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Api.Helpers
 {
@@ -20,15 +21,17 @@ namespace PSR.Api.Helpers
             {
                 await _next(context);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
 
                 var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-                var result = JsonSerializer.Serialize(new { message = error?.Message }, options);
+                // new { message = ex?.Message }
+                string result = string.Empty;
+                
 
-                switch(error)
+                switch(ex)
                 {
                     case AppException e:
                         // custom application error
@@ -42,6 +45,7 @@ namespace PSR.Api.Helpers
                     case EntityNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
+                        result = JsonSerializer.Serialize(e.ToProblemDetails(response.StatusCode), options);
                         break;
                     // thrown from ef core ef entities are not valid
                     case RepositoryException _:
@@ -49,6 +53,7 @@ namespace PSR.Api.Helpers
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        result = JsonSerializer.Serialize(ex.ToProblemDetails("general-error", "Internal Server Error", response.StatusCode), options);
                         break;
                 }
                 

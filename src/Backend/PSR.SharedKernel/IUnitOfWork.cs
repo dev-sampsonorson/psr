@@ -9,6 +9,6 @@ namespace PSR.SharedKernel
     {
         // TRepository Get<TRepository>() where TRepository : notnull, IRepository;
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
-        Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

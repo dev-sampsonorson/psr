@@ -17,5 +17,6 @@ namespace PSR.Application.Repository
          Task<SkillCategory> AddCategoryAsync(SkillCategory category);
          Task<SkillSubCategory> AddSubCategoryAsync(SkillSubCategory category);
          Task<bool> SlugExistsAsync(Guid skillId, string slug);
+         Task<bool> SkillExistsAsync(string name, Guid categoryId, Guid subcategoryId);
     }
 }

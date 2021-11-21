@@ -9,5 +9,7 @@ namespace PSR.Application.Models.Response
         public string CategoryName { get; set; } = "";
         public Guid SubCategoryId { get; set; } = Guid.Empty;
         public string SubCategoryName { get; set; } = "";
+        public int Employees { get; set; } = 21;
+        public double TeamCompetency { get; set; } = 3.50d;
     }
 }

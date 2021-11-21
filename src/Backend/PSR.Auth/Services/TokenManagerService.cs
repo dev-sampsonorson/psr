@@ -189,7 +189,7 @@ namespace PSR.Auth.Services
 
             var result = await _refreshTokenRepository.UnitOfWork.SaveEntitiesAsync();
 
-            if (!result) {
+            if (result <= 0) {
                 return AuthRes.Failure(new List<string> {
                     "Revoke token failed"
                 });

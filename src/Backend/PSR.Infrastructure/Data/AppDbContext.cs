@@ -17,8 +17,13 @@ namespace PSR.Infrastructure.Data
         
         private IDbContextTransaction _currentTransaction;
         public bool HasActiveTransaction => _currentTransaction != null;
+
+        // private readonly EventDispatcher _eventDispatcher;
+
+
         
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
+            // _eventDispatcher = eventDispatcher;
         }
 
         /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -52,7 +57,7 @@ namespace PSR.Infrastructure.Data
             }
         }
 
-        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<int> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             try {
                 ValidateEntities();
@@ -79,16 +84,24 @@ namespace PSR.Infrastructure.Data
                 
                 // After executing this line all the changes
                 // performed through the DbContext will be committed
-                await base.SaveChangesAsync(cancellationToken);
+                int result = await base.SaveChangesAsync(cancellationToken);
+
+                /* List<BaseEntity> trackedEntities = ChangeTracker.Entries()
+                    .Where(x => x.Entity is BaseEntity)
+                    .Select(x => x.Entity as BaseEntity)
+                    .ToList();
+
+                foreach(BaseEntity entity in trackedEntities) {
+                    _eventDispatcher.Dispatch(entity.DomainEvents) ;
+                    entity.ClearDomainEvents();
+                } */
+
+                return result;
             } catch(System.ComponentModel.DataAnnotations.ValidationException e) {
                 throw new RepositoryException($"Entity in invalid state: {e.ValidationResult.ErrorMessage}");
-            } catch (UnexpectedTypeException) {
-                throw;
             } catch {
                 throw;
             }
-
-            return true;
         }
 
         public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;

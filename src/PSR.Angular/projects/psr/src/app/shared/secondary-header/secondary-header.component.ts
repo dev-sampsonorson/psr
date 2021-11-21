@@ -17,7 +17,7 @@ import { SecondaryHeaderService } from './secondary-header.service';
             </p>
         </div> -->
         <app-page-heading x-size="medium" x-color="indigo" [title]="title" [description]="description"></app-page-heading>
-        <app-button-icon (buttonClick)="onButtonClick()">
+        <app-button-icon (buttonClick)="onButtonClick()" class="text-indigo-900">
             <app-icon-close></app-icon-close>
         </app-button-icon>
         <!-- <app-page-heading x-size="medium" x-color="indigo"></app-page-heading> -->

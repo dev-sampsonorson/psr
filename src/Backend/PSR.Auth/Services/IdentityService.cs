@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PSR.Application.Common.Models;
 using PSR.Auth.Domain;
 using PSR.Auth.Interfaces;
-using PSR.Auth.Models.Response;
-using PSR.SharedKernel;
+using PSR.SharedKernel.Exceptions;
 
 namespace PSR.Auth.Services
 {

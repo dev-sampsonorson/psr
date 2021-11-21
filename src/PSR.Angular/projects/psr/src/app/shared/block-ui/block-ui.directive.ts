@@ -26,6 +26,7 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDes
     @Input('x-overlay-tpl') maskTpl: TemplateRef<any> | undefined;
 
     private _overlayEl: HTMLElement | undefined;
+    private _overlayRemoved: boolean = true;
 
     constructor(
         private el: ElementRef,
@@ -95,12 +96,14 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDes
             this.renderer.setStyle(this._overlayEl, 'z-index', String(this.baseZIndex + 1000));
             // this._overlayEl.style.zIndex = String(this.baseZIndex + 1000); //(++DomHandler.zindex)
         }
+        this._overlayRemoved = false;
     }
 
     unblock() {
         // this.mask?.nativeElement && this.el.nativeElement.appendChild(this.mask?.nativeElement);
         // this._overlayEl && this.renderer.removeChild(this.target?.getBlockableElement() || document.body, this._overlayEl);
-        this._overlayEl && this.renderer.removeChild(this.targetElement ? this.el.nativeElement : document.body, this._overlayEl);
+        !this._overlayRemoved && this._overlayEl && this.renderer.removeChild(this.targetElement ? this.el.nativeElement : document.body, this._overlayEl);
+        this._overlayRemoved = true;
     }
 
     ngOnDestroy() {

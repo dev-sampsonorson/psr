@@ -9,6 +9,7 @@ using PSR.Application.Models.Response;
 using PSR.Application.Repository;
 using PSR.Auth.Validators;
 using PSR.Domain;
+using PSR.SharedKernel;
 
 namespace PSR.Api.Controllers.v1
 {
@@ -16,9 +17,11 @@ namespace PSR.Api.Controllers.v1
     {
 
         private readonly ISkillService _skillService;
+        private readonly IUnitOfWork _unitOfWork;
 
         public SkillsController(
             ISkillService skillService, 
+            IUnitOfWork unitOfWork,
             ILoggerFactory loggerFactory
 
         ) : base(loggerFactory)
@@ -26,6 +29,7 @@ namespace PSR.Api.Controllers.v1
             ArgumentNullException.ThrowIfNull(nameof(skillService));
 
             _skillService = skillService;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -41,7 +45,10 @@ namespace PSR.Api.Controllers.v1
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSkill(Guid id) {
-            return Ok(await _skillService.GetSkill(id));
+            var result = await _skillService.GetSkill(id);
+
+            return Ok(result);
+            // return Ok(await _skillService.GetSkill(id));
         }
 
         [HttpGet("categories/{id}")]
@@ -98,12 +105,18 @@ namespace PSR.Api.Controllers.v1
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteSkill([FromBody] UpdateSkillReq request) {
-            var response = await _skillService.DeleteSkill(request);
-            return CreatedAtAction(nameof(GetSkill), new { id = response.Id }, response);          
+        public async Task<IActionResult> DeleteSkill([FromRoute] DeleteSkillReq request) {
+            // throw new Exception();
+            var skill = await _skillService.GetSkill(request.Id);
+
+            if (skill is null)
+                return NotFound();
+
+            await _skillService.DeleteSkill(request);
+            return NoContent();     
         }
 
-        [HttpDelete("{id}")]
+        /* [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id) {
             var existItem = await _context.Items.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -114,7 +127,20 @@ namespace PSR.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             return Ok(existItem);
+
+
+
+
+            var owner = _repository.Owner.GetOwnerById(id);
+        if(owner == null)
+        {
+            _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
+            return NotFound();
         }
+        _repository.Owner.DeleteOwner(owner);
+                _repository.Save();
+        return NoContent();
+        } */
         
         
         [HttpPost("slug-exists")]
