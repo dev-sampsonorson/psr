@@ -15,6 +15,7 @@ import { SkillReadModule } from './components/skill-read/skill-read.module';
 import { SkillSubcategoryCardModule } from './components/skill-subcategory-card/skill-subcategory-card.module';
 import { SkillSubcategoryListModule } from './components/skill-subcategory-list/skill-subcategory-list.module';
 import { breadcrumbConfig } from './config/breadcrumb.config';
+import { skillCardContextMenuConfig } from './config/context-menu.config';
 import { ISkillMgtConfig } from './models/skill-mgt.model';
 import { IndexModule } from './pages/index.module';
 import { IndexResolver } from './resolvers/index.resolver';
@@ -49,7 +50,7 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens/skill-mgt-config.token';
         SkillEditModule,
         SkillFilterModule,
         SkillFormModule,
-        SkillListModule,
+        SkillListModule.withConfig(skillCardContextMenuConfig),
         SkillReadModule,
         SkillSubcategoryCardModule,
         SkillSubcategoryListModule

@@ -12,13 +12,9 @@ import {
 import { Router } from '@angular/router';
 import { IBlockableUi } from '@shared/block-ui/block-ui.model';
 import { IContextMenuItemClickEvent } from '@shared/context-menu/context-menu.model';
-import { IconEyeComponent } from '@shared/icons/icon-eye.component';
-import { IconPencilComponent } from '@shared/icons/icon-pencil.component';
-import { IconTrashComponent } from '@shared/icons/icon-trash.component';
 import { MenuItem } from '@shared/menu.model';
 
 import { ISkill } from '../../models/skill.model';
-import { SkillMgtRoutes } from '../../skill-mgt-constants';
 import { ISkillCard } from './skill-card.model';
 
 @Component({
@@ -32,29 +28,7 @@ export class SkillCardComponent implements OnInit, ISkillCard, IBlockableUi {
 
     @Output() contextMenuItemEvent = new EventEmitter<{ skillId: string, menuName: string, card: ISkillCard }>();
     @Input() skill: ISkill | undefined;
-    @Input() menuItems: MenuItem<any>[] = [
-        new MenuItem<string>({
-            name: 'skill-details',
-            label: 'Skill detail',
-            routerLink: (skillId?: string) => (skillId && SkillMgtRoutes.ReadSkill(skillId)) || [],
-            isIconVisible: true,
-            iconComponent: IconEyeComponent
-        }),
-        new MenuItem<string>({
-            name: 'skill-edit',
-            label: 'Edit skill',
-            routerLink: (skillId?: string) => (skillId && SkillMgtRoutes.EditSkill(skillId)) || [],
-            isIconVisible: true,
-            iconComponent: IconPencilComponent
-        }),
-        new MenuItem<string>({
-            name: 'skill-delete',
-            label: 'Delete skill',
-            routerLink: () => [],
-            isIconVisible: true,
-            iconComponent: IconTrashComponent
-        })
-    ];
+    @Input() menuItems: MenuItem<any>[] = [];
 
     // @Output() skillCardClick = new EventEmitter<ISkill>();
 

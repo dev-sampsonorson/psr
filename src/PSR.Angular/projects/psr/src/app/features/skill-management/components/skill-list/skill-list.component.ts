@@ -1,7 +1,9 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SkillsService } from '@features/skill-management/services/skills.service';
+import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '@features/skill-management/tokens/skill-mgt-config.token';
 import { AlertService } from '@shared/alert';
+import { MenuItem } from '@shared/menu.model';
 import { Observable } from 'rxjs';
 
 import { ISkill } from '../../models/skill.model';
@@ -45,7 +47,8 @@ export class SkillListComponent implements OnInit {
         private pageTitle: PageTitleService,
         private skillService: SkillsService,
         private alert: AlertService,
-        private zone: NgZone
+        private zone: NgZone,
+        @Inject(SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN) public menuItems: MenuItem<any>[]
     ) {
         this._skillSave$ = this.skillService.onSkillSave$;
         this._skillUpdate$ = this.skillService.onSkillUpdate$;
