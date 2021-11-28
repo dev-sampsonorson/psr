@@ -1,10 +1,11 @@
-import { Component, Inject, NgZone, OnInit, Type } from '@angular/core';
+import { Component, Inject, NgZone, OnDestroy, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SkillCardContextMenuitemService } from '@features/skill-management/services/skill-card-context-menuitem.service';
 import { SkillsService } from '@features/skill-management/services/skills.service';
 import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '@features/skill-management/tokens/skill-mgt-config.token';
 import { AlertService } from '@shared/alert';
 import { MenuItem } from '@shared/menu.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { ISkill, ISkillCard } from '../../models/skill.model';
 import { PageTitleService } from '../../services/page-title.service';
@@ -17,13 +18,13 @@ import { SkillCardComponent } from '../skill-card/skill-card.component';
     templateUrl: './skill-list.component.html',
     styleUrls: ['./skill-list.component.scss']
 })
-export class SkillListComponent implements OnInit {
+export class SkillListComponent implements OnInit, OnDestroy {
 
     private _selectedCategoryId: string = '';
     private _selectedSubcategoryId: string = '';
 
     public skills: ISkill[] = [];
-    public showAddSkillCard: boolean = true;
+    public isAddSkillCardVisible: boolean = true;
     public emptyStateTitle: string;
     public emptyStateDescription: string;
     public emptyStateButtonLabel: string;
@@ -34,6 +35,9 @@ export class SkillListComponent implements OnInit {
 
     private _skillSave$: Observable<ISkill>;
     private _skillUpdate$: Observable<ISkill>;
+    private _eventStart$: Observable<{ skillId: string, menuName: string }>;
+
+    private _eventStartSub: Subscription | undefined;
 
     get isSkillsVisible() {
         return this.skills.length > 0;
@@ -51,10 +55,12 @@ export class SkillListComponent implements OnInit {
         private skillService: SkillsService,
         private alert: AlertService,
         private zone: NgZone,
-        @Inject(SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN) public menuItems: MenuItem<any>[]
+        @Inject(SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN) public menuItems: MenuItem<any>[],
+        private ctxMenuItem: SkillCardContextMenuitemService
     ) {
         this._skillSave$ = this.skillService.onSkillSave$;
         this._skillUpdate$ = this.skillService.onSkillUpdate$;
+        this._eventStart$ = this.ctxMenuItem.onEventStart$;
 
         this.pageTitle.updatePageTitle("Skills");
         this.pageTitle.updatePageSubTitle("View list of skill, see skill details, and add new skill.");
@@ -85,6 +91,10 @@ export class SkillListComponent implements OnInit {
                 return (item.id === skill.id) ? { ...skill } : item;
             });
         });
+
+        this._eventStartSub = this._eventStart$.subscribe(({ skillId, menuName }) => {
+            this.deleteSkill(skillId, menuName);
+        });
     }
 
     addSkillCardClickHandler(): void {
@@ -104,7 +114,7 @@ export class SkillListComponent implements OnInit {
                     this.skills.splice(this.skills.findIndex(x => x.id === e.skillId), 1);
                     // let temp = this.skills;
                     // this.skills = [];
-                    this.skills = [...this.skills];
+                    // this.skills = [...this.skills];
                     // this.skills = temp;
                     e.card.blockCard = false;
                     /* this.skillService.deleteSkill(e.skillId).subscribe({
@@ -135,8 +145,41 @@ export class SkillListComponent implements OnInit {
         }
     }
 
+    private deleteSkill(skillId: string, menuName: string): void {
+        if (this.menuItemIsDelete(menuName)) {
+            // e.card.blockCard = true;
+            if (confirm('Are you sure you want to delete this skill?')) {
+                this.skillService.deleteSkill(skillId).subscribe({
+                    next: (response) => {
+                        // remove card from dom (destroy);
+                        this.skills.splice(this.skills.findIndex(x => x.id === skillId), 1);
+                        this.ctxMenuItem.complete(skillId, menuName);
+                        this.alert.success(
+                            'Successful',
+                            'Skill has been deleted successfully'
+                        );
+                    },
+                    error: (error: any) => {
+                        this.ctxMenuItem.complete(skillId, menuName);
+                        this.alert.error(
+                            'Delete Failed',
+                            'Unable to delete the specified skill'
+                        );
+                    }
+                });
+            } else {
+                // e.card.blockCard = false;
+                this.ctxMenuItem.complete(skillId, menuName);
+            }
+        }
+    }
+
     private menuItemIsDelete(menuName: string): boolean {
         return menuName === 'skill-delete';
+    }
+
+    ngOnDestroy(): void {
+        this._eventStartSub?.unsubscribe();
     }
 
 

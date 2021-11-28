@@ -1,14 +1,10 @@
 <div class="skill-list">
     <ng-container *ngIf="isSkillsVisible">
-        <app-add-skill-card *ngIf="showAddSkillCard" (addSkillCardClick)="addSkillCardClickHandler()">
+        <!-- <app-add-skill-card *ngIf="isAddSkillCardVisible" (addSkillCardClick)="addSkillCardClickHandler()">
         </app-add-skill-card>
-        <ng-container #skillListContainer></ng-container>
-        <!-- <ng-container *ngFor="let skill of skills"> -->
-        <!-- (skillCardClick)="skillCardClickHandler($event)" [x-compref]="skillCard"  -->
-        <!-- <app-skill-card #skillCard [menuItems]="menuItems" [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask"
-                            [skill]="skill" (contextMenuItemEvent)="onCardItemEvent($event)"></app-skill-card> -->
-        <!-- <app-block-ui class="hidden" [target]="skillCard" [blocked]="skill?.deleting || false"></app-block-ui> -->
-        <!-- </ng-container> -->
+        <ng-container #skillListContainer></ng-container> -->
+        <ng-content></ng-content>
+
     </ng-container>
     <ng-template #mask>
         <div class="ui-blockui ui-widget-overlay">
@@ -20,3 +16,9 @@
         </div>
     </ng-template>
 </div>
+<!-- <ng-container *ngFor="let skill of skills"> -->
+<!-- (skillCardClick)="skillCardClickHandler($event)" [x-compref]="skillCard"  -->
+<!-- <app-skill-card #skillCard [menuItems]="menuItems" [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask"
+                            [skill]="skill" (contextMenuItemEvent)="onCardItemEvent($event)"></app-skill-card> -->
+<!-- <app-block-ui class="hidden" [target]="skillCard" [blocked]="skill?.deleting || false"></app-block-ui> -->
+<!-- </ng-container> -->

@@ -19,7 +19,8 @@ namespace PSR.Application.Mappings
                 .ForMember(dest => dest.SubCategory, opt => opt.Ignore());
             CreateMap<Skill, AddSkillRes>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name))
+                .ForMember(dest => dest.Employees, opt => opt.Ignore());
 
             CreateMap<Skill, UpdateSkillReq>()
                 .ReverseMap()
@@ -27,7 +28,8 @@ namespace PSR.Application.Mappings
                 .ForMember(dest => dest.SubCategory, opt => opt.Ignore());
             CreateMap<Skill, UpdateSkillRes>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name))
+                .ForMember(dest => dest.Employees, opt => opt.Ignore());
 
 
             CreateMap<Skill, SkillRes>()

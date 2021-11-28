@@ -25,6 +25,7 @@ export const skillCardContextMenuConfig: MenuItem<any>[] = [
         name: 'skill-delete',
         label: 'Delete skill',
         routerLink: () => [],
+        navigatable: false,
         isIconVisible: true,
         iconComponent: IconTrashComponent
     })

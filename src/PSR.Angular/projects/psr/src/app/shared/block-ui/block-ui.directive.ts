@@ -10,22 +10,17 @@ import {
     SimpleChanges,
     TemplateRef,
 } from '@angular/core';
-import { IBlockUiDirective } from '@features/skill-management/models/skill.model';
 
 @Directive({
-    // selector: '[x-blockui]'
     selector: '[x-blockui]'
 })
-export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, IBlockUiDirective, OnDestroy {
+export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
     @Input('x-target-el') targetElement: boolean = true;
     @Input('x-auto-zindex') autoZIndex: boolean = true;
     @Input('x-base-zindex') baseZIndex: number = 0;
     @Input('x-blockui') appBlockUi: boolean = false;
     @Input('x-overlay-tpl') maskTpl: TemplateRef<any> | undefined;
-    // @Input('x-compref') target: IBlockableUi | undefined;
-    // @Input('x-mask') mask: TemplateRef<any> | undefined;
-    // @Input('x-mask') mask: BlockUiOverlayDirective | undefined;
 
     private _overlayEl: HTMLElement | undefined;
     private _overlayRemoved: boolean = true;
@@ -54,12 +49,11 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, IBloc
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('changes', changes);
         if (changes.appBlockUi.currentValue) {
-            console.log('Block UI');
+            // console.log('Block UI');
             this.block();
         } else {
-            console.log('Unblock UI');
+            // console.log('Unblock UI');
             this.unblock();
         }
     }

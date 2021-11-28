@@ -6,11 +6,12 @@ export class MenuItem<TParams = any> {
     command?: (this: MenuItem<TParams>) => void = () => { };
     // routerLink: any[] | string = [];
     routerLink: (params?: TParams) => (any[] | string) = () => [];
+    navigatable: boolean = true;
 
     isIconVisible?: boolean = false;
     iconComponent?: Type<any>;
 
-    constructor(init: MenuItem<TParams>) {
+    constructor(init: Partial<MenuItem<TParams>>) {
         Object.assign(this, init);
     }
 };

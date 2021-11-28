@@ -1,10 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ISkillCard } from '@features/skill-management/models/skill.model';
 
+import { SKILL_CARD_TOKEN } from '../skill-list-display/skill-card.token';
+
 @Component({
     selector: 'app-add-skill-card',
     templateUrl: './add-skill-card.component.html',
-    styleUrls: ['./add-skill-card.component.scss']
+    styleUrls: ['./add-skill-card.component.scss'],
+    providers: [{ provide: SKILL_CARD_TOKEN, useExisting: AddSkillCardComponent }],
 })
 export class AddSkillCardComponent implements OnInit, ISkillCard {
 

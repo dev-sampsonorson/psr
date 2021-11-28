@@ -30,18 +30,18 @@ export const APP_CONFIG_TOKEN = new InjectionToken<IAppConfig>("Application conf
             },
 
             primaryMenu: [
-                { name: 'primary-home', label: 'Home', routerLink: () => AppRoutes.Home() },
-                { name: 'primary-skills', label: 'Skills', routerLink: () => AppRoutes.Skills() },
-                { name: 'primary-secret', label: 'Secret', routerLink: () => AppRoutes.Secret() }
+                new MenuItem({ name: 'primary-home', label: 'Home', routerLink: () => AppRoutes.Home() }),
+                new MenuItem({ name: 'primary-skills', label: 'Skills', routerLink: () => AppRoutes.Skills() }),
+                new MenuItem({ name: 'primary-secret', label: 'Secret', routerLink: () => AppRoutes.Secret() })
             ],
             profileMenu: [
-                {
+                new MenuItem({
                     name: 'primary-signout',
                     label: 'Sign out',
                     iconComponent: IconLogoutComponent,
                     isIconVisible: true,
                     routerLink: () => AuthRoutes.RevokeToken()
-                }
+                })
             ]
         };
     }

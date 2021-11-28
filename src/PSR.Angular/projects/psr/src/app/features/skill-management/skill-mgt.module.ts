@@ -28,6 +28,7 @@ import { SkillListResolver } from './resolvers/skill-list.resolver';
 import { SkillSubcategoryResolver } from './resolvers/skill-subcategory.resolver';
 import { SkillResolver } from './resolvers/skill.resolver';
 import { PageTitleService } from './services/page-title.service';
+import { SkillCardContextMenuitemService } from './services/skill-card-context-menuitem.service';
 import { SkillFormService } from './services/skill-form.service';
 import { SkillsService } from './services/skills.service';
 import { SkillMgtRoutingModule } from './skill-mgt-routing.module';
@@ -62,6 +63,7 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens/skill-mgt-config.token';
     providers: [
         PageTitleService,
         SkillFormService,
+        SkillCardContextMenuitemService,
 
         SkillsService,
         SkillListResolver,
