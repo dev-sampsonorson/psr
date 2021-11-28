@@ -10,20 +10,22 @@ import {
     SimpleChanges,
     TemplateRef,
 } from '@angular/core';
+import { IBlockUiDirective } from '@features/skill-management/models/skill.model';
 
 @Directive({
+    // selector: '[x-blockui]'
     selector: '[x-blockui]'
 })
-export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, IBlockUiDirective, OnDestroy {
 
     @Input('x-target-el') targetElement: boolean = true;
     @Input('x-auto-zindex') autoZIndex: boolean = true;
     @Input('x-base-zindex') baseZIndex: number = 0;
     @Input('x-blockui') appBlockUi: boolean = false;
+    @Input('x-overlay-tpl') maskTpl: TemplateRef<any> | undefined;
     // @Input('x-compref') target: IBlockableUi | undefined;
     // @Input('x-mask') mask: TemplateRef<any> | undefined;
     // @Input('x-mask') mask: BlockUiOverlayDirective | undefined;
-    @Input('x-overlay-tpl') maskTpl: TemplateRef<any> | undefined;
 
     private _overlayEl: HTMLElement | undefined;
     private _overlayRemoved: boolean = true;
@@ -52,6 +54,7 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDes
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        console.log('changes', changes);
         if (changes.appBlockUi.currentValue) {
             console.log('Block UI');
             this.block();
@@ -61,7 +64,18 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDes
         }
     }
 
-    setupOverlay(): void {
+    toggleBlockUi(state: boolean) {
+        // console.log('toggleBlockUi');
+        if (state) {
+            console.log('Block UI');
+            this.block();
+        } else {
+            // console.log('Unblock UI');
+            this.unblock();
+        }
+    }
+
+    private setupOverlay(): void {
         this._overlayEl = this.maskTpl!.createEmbeddedView(null).rootNodes[0];
         this.renderer.setStyle(this._overlayEl, 'display', 'none');
         this.renderer.setStyle(this.el.nativeElement, 'position', 'relative');
@@ -79,7 +93,8 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDes
 
     }
 
-    block() {
+    private block() {
+        console.log('block', this._overlayEl);
         if (!this._overlayEl)
             return;
 
@@ -99,7 +114,7 @@ export class BlockUiDirective implements OnChanges, OnInit, AfterViewInit, OnDes
         this._overlayRemoved = false;
     }
 
-    unblock() {
+    private unblock() {
         // this.mask?.nativeElement && this.el.nativeElement.appendChild(this.mask?.nativeElement);
         // this._overlayEl && this.renderer.removeChild(this.target?.getBlockableElement() || document.body, this._overlayEl);
         !this._overlayRemoved && this._overlayEl && this.renderer.removeChild(this.targetElement ? this.el.nativeElement : document.body, this._overlayEl);

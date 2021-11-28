@@ -1,4 +1,4 @@
-import { Component, Inject, NgZone, OnInit } from '@angular/core';
+import { Component, Inject, NgZone, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SkillsService } from '@features/skill-management/services/skills.service';
 import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '@features/skill-management/tokens/skill-mgt-config.token';
@@ -6,10 +6,11 @@ import { AlertService } from '@shared/alert';
 import { MenuItem } from '@shared/menu.model';
 import { Observable } from 'rxjs';
 
-import { ISkill } from '../../models/skill.model';
+import { ISkill, ISkillCard } from '../../models/skill.model';
 import { PageTitleService } from '../../services/page-title.service';
 import { SkillMgtRoutes } from '../../skill-mgt-constants';
-import { ISkillCard } from '../skill-card/skill-card.model';
+import { AddSkillCardComponent } from '../add-skill-card/add-skill-card.component';
+import { SkillCardComponent } from '../skill-card/skill-card.component';
 
 @Component({
     selector: 'app-skill-list',
@@ -22,12 +23,14 @@ export class SkillListComponent implements OnInit {
     private _selectedSubcategoryId: string = '';
 
     public skills: ISkill[] = [];
-
+    public showAddSkillCard: boolean = true;
     public emptyStateTitle: string;
     public emptyStateDescription: string;
     public emptyStateButtonLabel: string;
     public selectedCategoryName: string | undefined;
     public selectedSubcategoryName: string | undefined;
+    public skillAddCardType: Type<ISkillCard> = AddSkillCardComponent;
+    public skillCardType: Type<ISkillCard> = SkillCardComponent;
 
     private _skillSave$: Observable<ISkill>;
     private _skillUpdate$: Observable<ISkill>;
@@ -89,12 +92,22 @@ export class SkillListComponent implements OnInit {
     }
 
     onCardItemEvent(e: { skillId: string, menuName: string, card: ISkillCard }): void {
+        // this.skills = [];
+        // console.log('before => e.card.blockCard', e.card.blockCard);
+        // e.card.blockCard = true;
+        // console.log('after => e.card.blockCard', e.card.blockCard);
         if (this.menuItemIsDelete(e.menuName)) {
             e.card.blockCard = true;
             if (confirm('Are you sure you want to delete this skill?')) {
                 // console.log('delete skill');
                 setTimeout(() => {
-                    this.skillService.deleteSkill(e.skillId).subscribe({
+                    this.skills.splice(this.skills.findIndex(x => x.id === e.skillId), 1);
+                    // let temp = this.skills;
+                    // this.skills = [];
+                    this.skills = [...this.skills];
+                    // this.skills = temp;
+                    e.card.blockCard = false;
+                    /* this.skillService.deleteSkill(e.skillId).subscribe({
                         next: (response) => {
                             e.card.blockCard = false;
                             // remove card from dom (destroy);
@@ -111,7 +124,7 @@ export class SkillListComponent implements OnInit {
                                 'Unable to delete the specified skill'
                             );
                         }
-                    });
+                    }); */
                 }, 3000);
 
 

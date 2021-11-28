@@ -10,6 +10,7 @@ import { SkillCategoryListModule } from './components/skill-category-list/skill-
 import { SkillEditModule } from './components/skill-edit/skill-edit.module';
 import { SkillFilterModule } from './components/skill-filter/skill-filter.module';
 import { SkillFormModule } from './components/skill-form/skill-form.module';
+import { SkillListDisplayModule } from './components/skill-list-display/skill-list-display.module';
 import { SkillListModule } from './components/skill-list/skill-list.module';
 import { SkillReadModule } from './components/skill-read/skill-read.module';
 import { SkillSubcategoryCardModule } from './components/skill-subcategory-card/skill-subcategory-card.module';
@@ -35,7 +36,8 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens/skill-mgt-config.token';
 
 
 @NgModule({
-    declarations: [],
+    declarations: [
+    ],
     imports: [
         SharedModule,
         BreadcrumbModule.withConfig(breadcrumbConfig || []),
@@ -53,7 +55,8 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens/skill-mgt-config.token';
         SkillListModule.withConfig(skillCardContextMenuConfig),
         SkillReadModule,
         SkillSubcategoryCardModule,
-        SkillSubcategoryListModule
+        SkillSubcategoryListModule,
+        SkillListDisplayModule
 
     ],
     providers: [

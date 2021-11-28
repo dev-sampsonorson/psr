@@ -26,7 +26,8 @@ import { IContextMenuItemClickEvent } from './context-menu.model';
         @apply block z-20;
       }
     `
-    ]
+    ],
+    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextMenuComponent implements OnInit {
 

@@ -1,3 +1,3 @@
 export interface IBlockableUi {
-    getBlockableElement(): HTMLElement;
+    // getBlockableElement(): HTMLElement;
 }

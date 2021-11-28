@@ -25,8 +25,9 @@
                 </app-button-icon>
                 <button *ngIf="isContextMenuVisible" (click)="onToggleContextMenu()" class="close-overlay"
                         tabindex="-1"></button>
-                <app-context-menu [handle]="contextMenuHandle" *ngIf="isContextMenuVisible" (menuItemClick)="onMenuItemClick($event)"
-                                  [menuItems]="menuItems" class="absolute right-0 w-40"></app-context-menu>
+                <app-context-menu [handle]="contextMenuHandle" *ngIf="isContextMenuVisible"
+                                  (menuItemClick)="onMenuItemClick($event)" [menuItems]="menuItems"
+                                  class="absolute right-0 w-40"></app-context-menu>
             </div>
         </div>
     </div>

@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
     selector: '[app-block-ui]',
     template: `
-        <div #mask class="ui-blockui ui-widget-overlay" [ngClass]="{'ui-blockui-document':!target}" [ngStyle]="{display: blocked ? 'block' : 'none'}">
-            <!-- <ng-content></ng-content> -->
-        </div>
+        <!-- <div #mask class="ui-blockui ui-widget-overlay" [ngClass]="{'ui-blockui-document':!target}" [ngStyle]="{display: blocked ? 'block' : 'none'}">
+            <ng-content></ng-content>
+        </div> -->
   `,
     styles: [
         `
@@ -31,26 +31,26 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChi
 })
 export class BlockUiComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    @Input() target: any;
+    /* @Input() target: any;
     @Input() autoZIndex: boolean = true;
     @Input() baseZIndex: number = 0;
     @ViewChild('mask', { static: false }) mask: ElementRef | undefined;
 
-    private _blocked: boolean = false;
+    private _blocked: boolean = false; */
 
-    @Input() get blocked(): boolean {
+    /* @Input() get blocked(): boolean {
         return this._blocked;
-    }
+    } */
 
     set blocked(val: boolean) {
-        this._blocked = val;
+        /* this._blocked = val;
 
         if (this.mask && this.mask.nativeElement) {
             if (this._blocked)
                 this.block();
             else
                 this.unblock();
-        }
+        } */
     }
 
     constructor(public el: ElementRef) { }
@@ -59,14 +59,14 @@ export class BlockUiComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        console.log('this.target', this.target);
+        /* console.log('this.target', this.target);
         if (this.target && !this.target.getBlockableElement) {
             throw 'Target of BlockUI must implement IBlockableUi interface';
-        }
+        } */
     }
 
     block() {
-        if (this.target) {
+        /* if (this.target) {
             this.target.getBlockableElement().appendChild(this.mask?.nativeElement);
             let style = this.target.style || {};
             style.position = 'relative';
@@ -78,15 +78,15 @@ export class BlockUiComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if (this.autoZIndex && this.mask) {
             this.mask.nativeElement.style.zIndex = String(this.baseZIndex + 1000); //(++DomHandler.zindex)
-        }
+        } */
     }
 
     unblock() {
-        this.el.nativeElement.appendChild(this.mask?.nativeElement);
+        // this.el.nativeElement.appendChild(this.mask?.nativeElement);
     }
 
     ngOnDestroy() {
-        this.unblock();
+        // this.unblock();
     }
 
 }
