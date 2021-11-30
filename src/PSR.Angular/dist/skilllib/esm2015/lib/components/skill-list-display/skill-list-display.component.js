@@ -1,0 +1,42 @@
+import { Component, ContentChildren, Input } from '@angular/core';
+import { SKILL_CARD_TOKEN } from './skill-card.token';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+export class SkillListDisplayComponent {
+    constructor() {
+        this.isAddSkillCardVisible = false;
+        this.isSkillsVisible = false;
+    }
+    ngOnInit() {
+    }
+    ngAfterContentInit() {
+        // console.log('this.cards', this.cards?.toArray());
+    }
+    /* isBlockableSkillCard(componentRef: any): componentRef is IBlockableSkillCard {
+        const prototype = Object.getPrototypeOf(componentRef);
+        // console.log(prototype);
+        return 'initView' in prototype
+            && 'ngOnDestroy' in prototype;
+    } */
+    ngOnDestroy() {
+    }
+}
+SkillListDisplayComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SkillListDisplayComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+SkillListDisplayComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: SkillListDisplayComponent, selector: "skl-list-display", inputs: { isAddSkillCardVisible: "isAddSkillCardVisible", isSkillsVisible: "isSkillsVisible" }, queries: [{ propertyName: "cards", predicate: SKILL_CARD_TOKEN }], ngImport: i0, template: "<div class=\"skill-list\">\n    <ng-container *ngIf=\"isSkillsVisible\">\n        <!-- <skl-add-card *ngIf=\"isAddSkillCardVisible\" (addSkillCardClick)=\"addSkillCardClickHandler()\">\n        </skl-add-card>\n        <ng-container #skillListContainer></ng-container> -->\n        <ng-content></ng-content>\n\n    </ng-container>\n    <ng-template #mask>\n        <div class=\"ui-blockui ui-widget-overlay\">\n            <svg class=\"w-12 h-12 text-gray-500\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"\n                 xmlns=\"http://www.w3.org/2000/svg\">\n                <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                      d=\"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z\"></path>\n            </svg>\n        </div>\n    </ng-template>\n</div>\n<!-- <ng-container *ngFor=\"let skill of skills\"> -->\n<!-- (skillCardClick)=\"skillCardClickHandler($event)\" [x-compref]=\"skillCard\"  -->\n<!-- <skl-card #skillCard [menuItems]=\"menuItems\" [x-blockui]=\"skillCard.blockCard\" [x-overlay-tpl]=\"mask\"\n                            [skill]=\"skill\" (contextMenuItemEvent)=\"onCardItemEvent($event)\"></skl-card> -->\n<!-- <app-block-ui class=\"hidden\" [target]=\"skillCard\" [blocked]=\"skill?.deleting || false\"></app-block-ui> -->\n<!-- </ng-container> -->\n", styles: [":host{display:block}.skill-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));grid-gap:2rem}\n"], directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SkillListDisplayComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'skl-list-display',
+                    templateUrl: './skill-list-display.component.html',
+                    styleUrls: ['./skill-list-display.component.scss'],
+                    // changeDetection: ChangeDetectionStrategy.OnPush,
+                }]
+        }], ctorParameters: function () { return []; }, propDecorators: { cards: [{
+                type: ContentChildren,
+                args: [SKILL_CARD_TOKEN]
+            }], isAddSkillCardVisible: [{
+                type: Input
+            }], isSkillsVisible: [{
+                type: Input
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2tpbGwtbGlzdC1kaXNwbGF5LmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3NraWxsbGliL3NyYy9saWIvY29tcG9uZW50cy9za2lsbC1saXN0LWRpc3BsYXkvc2tpbGwtbGlzdC1kaXNwbGF5LmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3NraWxsbGliL3NyYy9saWIvY29tcG9uZW50cy9za2lsbC1saXN0LWRpc3BsYXkvc2tpbGwtbGlzdC1kaXNwbGF5LmNvbXBvbmVudC5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBb0IsU0FBUyxFQUFFLGVBQWUsRUFBRSxLQUFLLEVBQWdDLE1BQU0sZUFBZSxDQUFDO0FBR2xILE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLG9CQUFvQixDQUFDOzs7QUFRdEQsTUFBTSxPQUFPLHlCQUF5QjtJQUtsQztRQUhTLDBCQUFxQixHQUFZLEtBQUssQ0FBQztRQUN2QyxvQkFBZSxHQUFZLEtBQUssQ0FBQztJQUUxQixDQUFDO0lBRWpCLFFBQVE7SUFFUixDQUFDO0lBRUQsa0JBQWtCO1FBQ2Qsb0RBQW9EO0lBQ3hELENBQUM7SUFFRDs7Ozs7UUFLSTtJQUVKLFdBQVc7SUFFWCxDQUFDOzt1SEF4QlEseUJBQXlCOzJHQUF6Qix5QkFBeUIsOEtBQ2pCLGdCQUFnQiw2QkNackMsd3pDQXdCQTs0RkRiYSx5QkFBeUI7a0JBTnJDLFNBQVM7bUJBQUM7b0JBQ1AsUUFBUSxFQUFFLGtCQUFrQjtvQkFDNUIsV0FBVyxFQUFFLHFDQUFxQztvQkFDbEQsU0FBUyxFQUFFLENBQUMscUNBQXFDLENBQUM7b0JBQ2xELG1EQUFtRDtpQkFDdEQ7MEVBRXNDLEtBQUs7c0JBQXZDLGVBQWU7dUJBQUMsZ0JBQWdCO2dCQUN4QixxQkFBcUI7c0JBQTdCLEtBQUs7Z0JBQ0csZUFBZTtzQkFBdkIsS0FBSyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFmdGVyQ29udGVudEluaXQsIENvbXBvbmVudCwgQ29udGVudENoaWxkcmVuLCBJbnB1dCwgT25EZXN0cm95LCBPbkluaXQsIFF1ZXJ5TGlzdCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBJU2tpbGxDYXJkIH0gZnJvbSAnLi4vLi4vbW9kZWxzJztcbmltcG9ydCB7IFNLSUxMX0NBUkRfVE9LRU4gfSBmcm9tICcuL3NraWxsLWNhcmQudG9rZW4nO1xuXG5AQ29tcG9uZW50KHtcbiAgICBzZWxlY3RvcjogJ3NrbC1saXN0LWRpc3BsYXknLFxuICAgIHRlbXBsYXRlVXJsOiAnLi9za2lsbC1saXN0LWRpc3BsYXkuY29tcG9uZW50Lmh0bWwnLFxuICAgIHN0eWxlVXJsczogWycuL3NraWxsLWxpc3QtZGlzcGxheS5jb21wb25lbnQuc2NzcyddLFxuICAgIC8vIGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoLFxufSlcbmV4cG9ydCBjbGFzcyBTa2lsbExpc3REaXNwbGF5Q29tcG9uZW50IGltcGxlbWVudHMgT25Jbml0LCBPbkRlc3Ryb3ksIEFmdGVyQ29udGVudEluaXQge1xuICAgIEBDb250ZW50Q2hpbGRyZW4oU0tJTExfQ0FSRF9UT0tFTikgY2FyZHM6IFF1ZXJ5TGlzdDxJU2tpbGxDYXJkPiB8IHVuZGVmaW5lZDtcbiAgICBASW5wdXQoKSBpc0FkZFNraWxsQ2FyZFZpc2libGU6IGJvb2xlYW4gPSBmYWxzZTtcbiAgICBASW5wdXQoKSBpc1NraWxsc1Zpc2libGU6IGJvb2xlYW4gPSBmYWxzZTtcblxuICAgIGNvbnN0cnVjdG9yKCkgeyB9XG5cbiAgICBuZ09uSW5pdCgpOiB2b2lkIHtcblxuICAgIH1cblxuICAgIG5nQWZ0ZXJDb250ZW50SW5pdCgpOiB2b2lkIHtcbiAgICAgICAgLy8gY29uc29sZS5sb2coJ3RoaXMuY2FyZHMnLCB0aGlzLmNhcmRzPy50b0FycmF5KCkpO1xuICAgIH1cblxuICAgIC8qIGlzQmxvY2thYmxlU2tpbGxDYXJkKGNvbXBvbmVudFJlZjogYW55KTogY29tcG9uZW50UmVmIGlzIElCbG9ja2FibGVTa2lsbENhcmQge1xuICAgICAgICBjb25zdCBwcm90b3R5cGUgPSBPYmplY3QuZ2V0UHJvdG90eXBlT2YoY29tcG9uZW50UmVmKTtcbiAgICAgICAgLy8gY29uc29sZS5sb2cocHJvdG90eXBlKTtcbiAgICAgICAgcmV0dXJuICdpbml0VmlldycgaW4gcHJvdG90eXBlXG4gICAgICAgICAgICAmJiAnbmdPbkRlc3Ryb3knIGluIHByb3RvdHlwZTtcbiAgICB9ICovXG5cbiAgICBuZ09uRGVzdHJveSgpOiB2b2lkIHtcblxuICAgIH1cblxufVxuIiwiPGRpdiBjbGFzcz1cInNraWxsLWxpc3RcIj5cbiAgICA8bmctY29udGFpbmVyICpuZ0lmPVwiaXNTa2lsbHNWaXNpYmxlXCI+XG4gICAgICAgIDwhLS0gPHNrbC1hZGQtY2FyZCAqbmdJZj1cImlzQWRkU2tpbGxDYXJkVmlzaWJsZVwiIChhZGRTa2lsbENhcmRDbGljayk9XCJhZGRTa2lsbENhcmRDbGlja0hhbmRsZXIoKVwiPlxuICAgICAgICA8L3NrbC1hZGQtY2FyZD5cbiAgICAgICAgPG5nLWNvbnRhaW5lciAjc2tpbGxMaXN0Q29udGFpbmVyPjwvbmctY29udGFpbmVyPiAtLT5cbiAgICAgICAgPG5nLWNvbnRlbnQ+PC9uZy1jb250ZW50PlxuXG4gICAgPC9uZy1jb250YWluZXI+XG4gICAgPG5nLXRlbXBsYXRlICNtYXNrPlxuICAgICAgICA8ZGl2IGNsYXNzPVwidWktYmxvY2t1aSB1aS13aWRnZXQtb3ZlcmxheVwiPlxuICAgICAgICAgICAgPHN2ZyBjbGFzcz1cInctMTIgaC0xMiB0ZXh0LWdyYXktNTAwXCIgZmlsbD1cIm5vbmVcIiBzdHJva2U9XCJjdXJyZW50Q29sb3JcIiB2aWV3Qm94PVwiMCAwIDI0IDI0XCJcbiAgICAgICAgICAgICAgICAgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiPlxuICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPVwicm91bmRcIiBzdHJva2UtbGluZWpvaW49XCJyb3VuZFwiIHN0cm9rZS13aWR0aD1cIjJcIlxuICAgICAgICAgICAgICAgICAgICAgIGQ9XCJNMTIgOHY0bDMgM202LTNhOSA5IDAgMTEtMTggMCA5IDkgMCAwMTE4IDB6XCI+PC9wYXRoPlxuICAgICAgICAgICAgPC9zdmc+XG4gICAgICAgIDwvZGl2PlxuICAgIDwvbmctdGVtcGxhdGU+XG48L2Rpdj5cbjwhLS0gPG5nLWNvbnRhaW5lciAqbmdGb3I9XCJsZXQgc2tpbGwgb2Ygc2tpbGxzXCI+IC0tPlxuPCEtLSAoc2tpbGxDYXJkQ2xpY2spPVwic2tpbGxDYXJkQ2xpY2tIYW5kbGVyKCRldmVudClcIiBbeC1jb21wcmVmXT1cInNraWxsQ2FyZFwiICAtLT5cbjwhLS0gPHNrbC1jYXJkICNza2lsbENhcmQgW21lbnVJdGVtc109XCJtZW51SXRlbXNcIiBbeC1ibG9ja3VpXT1cInNraWxsQ2FyZC5ibG9ja0NhcmRcIiBbeC1vdmVybGF5LXRwbF09XCJtYXNrXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBbc2tpbGxdPVwic2tpbGxcIiAoY29udGV4dE1lbnVJdGVtRXZlbnQpPVwib25DYXJkSXRlbUV2ZW50KCRldmVudClcIj48L3NrbC1jYXJkPiAtLT5cbjwhLS0gPGFwcC1ibG9jay11aSBjbGFzcz1cImhpZGRlblwiIFt0YXJnZXRdPVwic2tpbGxDYXJkXCIgW2Jsb2NrZWRdPVwic2tpbGw/LmRlbGV0aW5nIHx8IGZhbHNlXCI+PC9hcHAtYmxvY2stdWk+IC0tPlxuPCEtLSA8L25nLWNvbnRhaW5lcj4gLS0+XG4iXX0=

@@ -1,0 +1,47 @@
+import { NgZone, OnDestroy, OnInit, Type } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService, MenuItem } from '@sharedlib';
+import { ISkill, ISkillCard, SkillCardContextMenuitemService } from '@skilllib';
+import { SkillMgtService } from '../../services';
+import { PageTitleService } from '../../services/page-title.service';
+import * as i0 from "@angular/core";
+export declare class SkillListComponent implements OnInit, OnDestroy {
+    private route;
+    private router;
+    private pageTitle;
+    private skillService;
+    private alert;
+    private zone;
+    menuItems: MenuItem<any>[];
+    private ctxMenuItem;
+    private _selectedCategoryId;
+    private _selectedSubcategoryId;
+    skills: ISkill[];
+    isAddSkillCardVisible: boolean;
+    emptyStateTitle: string;
+    emptyStateDescription: string;
+    emptyStateButtonLabel: string;
+    selectedCategoryName: string | undefined;
+    selectedSubcategoryName: string | undefined;
+    skillAddCardType: Type<ISkillCard>;
+    skillCardType: Type<ISkillCard>;
+    private _skillSave$;
+    private _skillUpdate$;
+    private _eventStart$;
+    private _eventStartSub;
+    get isSkillsVisible(): boolean;
+    get isCategoryDetailsVisible(): boolean;
+    constructor(route: ActivatedRoute, router: Router, pageTitle: PageTitleService, skillService: SkillMgtService, alert: AlertService, zone: NgZone, menuItems: MenuItem<any>[], ctxMenuItem: SkillCardContextMenuitemService);
+    ngOnInit(): void;
+    addSkillCardClickHandler(): void;
+    onCardItemEvent(e: {
+        skillId: string;
+        menuName: string;
+        card: ISkillCard;
+    }): void;
+    private deleteSkill;
+    private menuItemIsDelete;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SkillListComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SkillListComponent, "app-skill-list", never, {}, {}, never, never>;
+}

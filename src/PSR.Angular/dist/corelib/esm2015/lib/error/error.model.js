@@ -1,0 +1,11 @@
+export class ProblemDetails {
+    constructor() {
+        this.type = '';
+        this.title = '';
+        this.status = -1;
+        this.detail = '';
+        this.instance = '';
+        this.errors = [];
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXJyb3IubW9kZWwuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9jb3JlbGliL3NyYy9saWIvZXJyb3IvZXJyb3IubW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxPQUFPLGNBQWM7SUFBM0I7UUFDSSxTQUFJLEdBQVcsRUFBRSxDQUFDO1FBQ2xCLFVBQUssR0FBVyxFQUFFLENBQUM7UUFDbkIsV0FBTSxHQUFXLENBQUMsQ0FBQyxDQUFDO1FBQ3BCLFdBQU0sR0FBVyxFQUFFLENBQUM7UUFDcEIsYUFBUSxHQUFXLEVBQUUsQ0FBQztRQUN0QixXQUFNLEdBQVUsRUFBRSxDQUFDO0lBQ3ZCLENBQUM7Q0FBQSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBQcm9ibGVtRGV0YWlscyB7XHJcbiAgICB0eXBlOiBzdHJpbmcgPSAnJztcclxuICAgIHRpdGxlOiBzdHJpbmcgPSAnJztcclxuICAgIHN0YXR1czogbnVtYmVyID0gLTE7XHJcbiAgICBkZXRhaWw6IHN0cmluZyA9ICcnO1xyXG4gICAgaW5zdGFuY2U6IHN0cmluZyA9ICcnO1xyXG4gICAgZXJyb3JzOiBhbnlbXSA9IFtdO1xyXG59Il19

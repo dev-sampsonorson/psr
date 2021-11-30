@@ -1,0 +1,33 @@
+import { OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BreadcrumbService, IBreadcrumb, SecondaryHeaderService } from '@sharedlib';
+import { ISkillCategory } from '@skilllib';
+import { Observable } from 'rxjs';
+import { PageTitleService } from '../services/page-title.service';
+import * as i0 from "@angular/core";
+export declare class IndexComponent implements OnInit, OnDestroy {
+    private pageTitle;
+    private route;
+    private router;
+    private breadcrumbService;
+    private secondaryHeaderService;
+    private breadcrumbConfig;
+    pageTitle$: Observable<string>;
+    pageSubTitle$: Observable<string>;
+    categories: ISkillCategory[];
+    isSecondaryContentVisible: boolean;
+    private _routerEventSub;
+    private _routeDataSub;
+    private _breadcrumbs$;
+    get isBreadcrumbVisible(): boolean;
+    constructor(pageTitle: PageTitleService, route: ActivatedRoute, router: Router, breadcrumbService: BreadcrumbService, secondaryHeaderService: SecondaryHeaderService, breadcrumbConfig: IBreadcrumb[]);
+    ngOnInit(): void;
+    onDetailsRouterOutletActivate(): void;
+    onDetailsRouterOutletDeactivate(): void;
+    onPrimaryRouterOutletActivate(): void;
+    onPrimaryRouterOutletDeactivate(): void;
+    hamburgerMenuClickHandler(): void;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<IndexComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<IndexComponent, "app-index", never, {}, {}, never, never>;
+}

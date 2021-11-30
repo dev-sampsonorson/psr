@@ -1,0 +1,9 @@
+export function authInitializer(auth) {
+    return () => new Promise(resolve => {
+        // attempt to refresh token on app start up to auto authenticate
+        auth.refreshToken()
+            .subscribe()
+            .add(resolve);
+    });
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC5pbml0aWFsaXplci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2F1dGhsaWIvc3JjL2xpYi9zZXJ2aWNlcy9hdXRoLmluaXRpYWxpemVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBLE1BQU0sVUFBVSxlQUFlLENBQUMsSUFBaUI7SUFDN0MsT0FBTyxHQUFHLEVBQUUsQ0FBQyxJQUFJLE9BQU8sQ0FBQyxPQUFPLENBQUMsRUFBRTtRQUMvQixnRUFBZ0U7UUFDaEUsSUFBSSxDQUFDLFlBQVksRUFBRTthQUNkLFNBQVMsRUFBRTthQUNYLEdBQUcsQ0FBQyxPQUFPLENBQUMsQ0FBQztJQUN0QixDQUFDLENBQUMsQ0FBQztBQUNQLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBBdXRoU2VydmljZSB9IGZyb20gJy4vYXV0aC5zZXJ2aWNlJztcclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBhdXRoSW5pdGlhbGl6ZXIoYXV0aDogQXV0aFNlcnZpY2UpIHtcclxuICAgIHJldHVybiAoKSA9PiBuZXcgUHJvbWlzZShyZXNvbHZlID0+IHtcclxuICAgICAgICAvLyBhdHRlbXB0IHRvIHJlZnJlc2ggdG9rZW4gb24gYXBwIHN0YXJ0IHVwIHRvIGF1dG8gYXV0aGVudGljYXRlXHJcbiAgICAgICAgYXV0aC5yZWZyZXNoVG9rZW4oKVxyXG4gICAgICAgICAgICAuc3Vic2NyaWJlKClcclxuICAgICAgICAgICAgLmFkZChyZXNvbHZlKTtcclxuICAgIH0pO1xyXG59Il19

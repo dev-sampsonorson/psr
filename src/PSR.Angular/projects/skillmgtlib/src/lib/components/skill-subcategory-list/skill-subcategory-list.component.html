@@ -1,0 +1,9 @@
+<!-- <p>skill-subcategory-list works!</p> -->
+<!-- { outlets: { primary: 'list', details: null } } -->
+<!-- <a [routerLink]="['/skills', 'list']">List</a><br /> -->
+<!-- { outlets: { primary: 'categories', details: null } } -->
+<!-- <a [routerLink]="['/skills', 'categories']">Categories</a> -->
+<ng-container *ngFor="let subcategory of subcategories">
+    <skl-subcategory-card (onCardClick)="onCardClick(subcategory)" [subcategory]="subcategory">
+    </skl-subcategory-card>
+</ng-container>

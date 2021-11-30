@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@auth/services/auth.service';
-import { Observable } from 'rxjs';
+import { IUser } from '@features/auth/models/user.model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-layout',
     template: `
-      <app-header [showSignInOrSignUp]="isAuthenticated$ | async"></app-header>
+      <app-header [showSignInOrSignUp]="isAuthenticated$ | async" [user]="user"></app-header>
       <!-- h-0 is here to make the immediate sibling fill height of this container -->
       <div class="flex-1 h-0">
           <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8 min-h-full flex flex-col">
@@ -21,15 +22,27 @@ import { Observable } from 'rxjs';
         }
     `]
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy {
+
+    private getUserSub!: Subscription;
 
     public isAuthenticated$: Observable<boolean>;
+    public user: IUser | null = null;
 
     constructor(private auth: AuthService) {
         this.isAuthenticated$ = this.auth.isAuthenticated()
     }
 
     ngOnInit(): void {
+
+        this.getUserSub = this.auth.getUser()
+            .subscribe(user => {
+                this.user = user;
+            });
+    }
+
+    ngOnDestroy() {
+        this.getUserSub && this.getUserSub.unsubscribe();
     }
 
 }

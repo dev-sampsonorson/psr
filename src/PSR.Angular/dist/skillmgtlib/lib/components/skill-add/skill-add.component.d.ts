@@ -1,0 +1,33 @@
+import { OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '@sharedlib';
+import { ISkill, ISkillCategory, ISkillSubCategory, SkillFormService } from '@skilllib';
+import { SkillMgtService } from '../../services';
+import * as i0 from "@angular/core";
+export declare class SkillAddComponent implements OnInit, OnDestroy {
+    private fb;
+    private route;
+    private router;
+    private skillService;
+    private skillFormService;
+    private alert;
+    title: string;
+    description: string;
+    buttonLabel: string;
+    form: FormGroup | undefined;
+    skill: ISkill | undefined;
+    categories: ISkillCategory[];
+    subCategories: ISkillSubCategory[];
+    formIsValid: boolean;
+    isSubcategoryDisabled: boolean;
+    private _categoryValueChangeSub;
+    private _formStatusChangeSub;
+    constructor(fb: FormBuilder, route: ActivatedRoute, router: Router, skillService: SkillMgtService, skillFormService: SkillFormService, alert: AlertService);
+    ngOnInit(): void;
+    onSaveSkill(skill: ISkill): void;
+    onCloseClick(): void;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SkillAddComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SkillAddComponent, "app-skill-add", never, {}, {}, never, never>;
+}

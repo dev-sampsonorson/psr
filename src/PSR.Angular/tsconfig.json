@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    // "rootDir": "./projects",
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -21,15 +22,46 @@
       "dom"
     ],
     "paths": {
-    //   "@psr/*": ["projects/psr/src/app/*"],
       "@env/*": ["projects/psr/src/environments/*"],
-    //   "@widgets/*": ["projects/psr/src/app/widgets/*"],
-      "@shared/*": ["projects/psr/src/app/shared/*"],
-      "@layouts/*": ["projects/psr/src/app/shared/layouts/*"],
+    //   "@shared/*": ["projects/psr/src/app/shared/*"],
+    //   "@layouts/*": ["projects/psr/src/app/shared/layouts/*"],
       "@features/*": ["projects/psr/src/app/features/*"],
-      "@core/*": ["projects/psr/src/app/core/*"],
-      "@auth/*": ["projects/psr/src/app/features/auth/*"],
-      "@config/*": ["projects/psr/src/app/config/*"],
+    //   "@core/*": ["projects/psr/src/app/core/*"],
+    //   "@auth/*": ["projects/psr/src/app/features/auth/*"],
+      "@config/*": [
+        "projects/psr/src/app/config/*"
+      ],
+
+    //   "@sharedlib": ["projects/sharedlib/src/index.ts"],
+    //   "@corelib": ["projects/corelib/src/index.ts"],
+      "@sharedlib": [
+        // "projects/sharedlib/src/index.ts",
+        "dist/sharedlib/sharedlib",
+        "dist/sharedlib",
+      ],
+      "@corelib": [
+        // "projects/corelib/src/index.ts",
+        "dist/corelib/corelib",
+        "dist/corelib",
+      ],
+      //dist/corelib/lib/error/error.module
+
+      "@skilllib": [
+        "dist/skilllib/skilllib",
+        "dist/skilllib"
+      ],
+      "@authlib": [
+        "dist/authlib/authlib",
+        "dist/authlib"
+      ],
+      "@headerlib": [
+        "dist/headerlib/headerlib",
+        "dist/headerlib"
+      ],
+      "@skillmgtlib": [
+        "dist/skillmgtlib/skillmgtlib",
+        "dist/skillmgtlib"
+      ],
     }
   },
   "angularCompilerOptions": {

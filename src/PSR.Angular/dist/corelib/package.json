@@ -1,0 +1,18 @@
+{
+  "name": "corelib",
+  "version": "0.0.0-watch+1638295877998",
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "main": "bundles/corelib.umd.js",
+  "module": "fesm2015/corelib.js",
+  "es2015": "fesm2015/corelib.js",
+  "esm2015": "esm2015/corelib.js",
+  "fesm2015": "fesm2015/corelib.js",
+  "typings": "corelib.d.ts",
+  "sideEffects": false
+}

@@ -109,6 +109,192 @@
           }
         }
       }
+    },
+    "skilllib": {
+      "projectType": "library",
+      "root": "projects/skilllib",
+      "sourceRoot": "projects/skilllib/src",
+      "prefix": "skl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/skilllib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/skilllib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/skilllib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/skilllib/src/test.ts",
+            "tsConfig": "projects/skilllib/tsconfig.spec.json",
+            "karmaConfig": "projects/skilllib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "sharedlib": {
+      "projectType": "library",
+      "root": "projects/sharedlib",
+      "sourceRoot": "projects/sharedlib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/sharedlib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sharedlib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/sharedlib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sharedlib/src/test.ts",
+            "tsConfig": "projects/sharedlib/tsconfig.spec.json",
+            "karmaConfig": "projects/sharedlib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "authlib": {
+      "projectType": "library",
+      "root": "projects/authlib",
+      "sourceRoot": "projects/authlib/src",
+      "prefix": "auth",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/authlib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/authlib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/authlib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/authlib/src/test.ts",
+            "tsConfig": "projects/authlib/tsconfig.spec.json",
+            "karmaConfig": "projects/authlib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "corelib": {
+      "projectType": "library",
+      "root": "projects/corelib",
+      "sourceRoot": "projects/corelib/src",
+      "prefix": "core",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/corelib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/corelib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/corelib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/corelib/src/test.ts",
+            "tsConfig": "projects/corelib/tsconfig.spec.json",
+            "karmaConfig": "projects/corelib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "headerlib": {
+      "projectType": "library",
+      "root": "projects/headerlib",
+      "sourceRoot": "projects/headerlib/src",
+      "prefix": "hdr",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/headerlib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/headerlib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/headerlib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/headerlib/src/test.ts",
+            "tsConfig": "projects/headerlib/tsconfig.spec.json",
+            "karmaConfig": "projects/headerlib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "skillmgtlib": {
+      "projectType": "library",
+      "root": "projects/skillmgtlib",
+      "sourceRoot": "projects/skillmgtlib/src",
+      "prefix": "sklmgt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/skillmgtlib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/skillmgtlib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/skillmgtlib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/skillmgtlib/src/test.ts",
+            "tsConfig": "projects/skillmgtlib/tsconfig.spec.json",
+            "karmaConfig": "projects/skillmgtlib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "psr"

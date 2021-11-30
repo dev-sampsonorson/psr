@@ -1,0 +1,18 @@
+{
+  "name": "skilllib",
+  "version": "0.0.0-watch+1638299742477",
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "main": "bundles/skilllib.umd.js",
+  "module": "fesm2015/skilllib.js",
+  "es2015": "fesm2015/skilllib.js",
+  "esm2015": "esm2015/skilllib.js",
+  "fesm2015": "fesm2015/skilllib.js",
+  "typings": "skilllib.d.ts",
+  "sideEffects": false
+}

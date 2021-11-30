@@ -1,7 +1,0 @@
-<app-secondary-header [title]="title" [description]="description" (closeClick)="onCloseClick()"></app-secondary-header>
-
-<ng-container *ngIf="isFormVisible">
-    <app-skill-form [skill]="skill" [categories]="categories" [subcategories]="subcategories"
-                    (commitSkill)="onUpdateSkill($event)" [buttonLabel]="buttonLabel">
-    </app-skill-form>
-</ng-container>

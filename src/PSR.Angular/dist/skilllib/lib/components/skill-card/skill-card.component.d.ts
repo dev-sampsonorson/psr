@@ -1,0 +1,32 @@
+import { ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { BlockUiDirective, IBlockableUi, IContextMenuItemClickEvent, MenuItem } from '@sharedlib';
+import { ISkill, ISkillCard } from '../../models/skill.model';
+import { SkillCardContextMenuitemService } from '../../services/skill-card-context-menuitem.service';
+import * as i0 from "@angular/core";
+export declare class SkillCardComponent implements OnInit, ISkillCard, IBlockableUi {
+    private el;
+    private router;
+    private renderer;
+    private ctxMenuItem;
+    blockUiDirective: BlockUiDirective;
+    skill: ISkill | undefined;
+    menuItems: MenuItem<any>[];
+    private _blockCard;
+    private _eventComplete$;
+    private _eventCompleteSub;
+    isContextMenuVisible: boolean;
+    contextMenuHandle: Symbol;
+    type: 'add' | 'overview' | 'personal';
+    set blockCard(value: boolean);
+    get blockCard(): boolean;
+    constructor(el: ElementRef, router: Router, renderer: Renderer2, ctxMenuItem: SkillCardContextMenuitemService);
+    ngOnInit(): void;
+    getCategoryInfo(skill: ISkill): string;
+    onHandleEscape(e: KeyboardEvent): void;
+    onToggleContextMenu(): void;
+    onMenuItemClick({ menuItem, handle }: IContextMenuItemClickEvent): void;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SkillCardComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SkillCardComponent, "skl-card", never, { "skill": "skill"; "menuItems": "menuItems"; }, {}, never, never>;
+}
