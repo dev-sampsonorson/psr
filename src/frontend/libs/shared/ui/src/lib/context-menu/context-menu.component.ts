@@ -4,7 +4,7 @@ import { MenuItem } from '../menu/menu.model';
 import { IContextMenuItemClickEvent } from './context-menu.model';
 
 @Component({
-    selector: 'app-context-menu',
+    selector: 'psr-context-menu',
     templateUrl: './context-menu.component.html',
     styleUrls: ['./context-menu.component.scss'],
     // changeDetection: ChangeDetectionStrategy.OnPush,
