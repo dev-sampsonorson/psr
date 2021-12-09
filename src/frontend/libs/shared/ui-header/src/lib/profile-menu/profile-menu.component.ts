@@ -12,13 +12,13 @@ import { ProfileMenuService } from './profile-menu.service';
     template: `
         <psr-ui-profile-display *ngIf="user" [user]="user"></psr-ui-profile-display>
         <button *ngIf="isDropdownOpen" (click)="onHideDropdown()" class="close-overlay" tabindex="-1"></button>
-        <psr-context-menu
+        <psr-ui-context-menu
             *ngIf="isDropdownOpen"
             [handle]="contextMenuHandle"
             [menuItems]="menuItems"
             (menuItemClick)="onMenuItemClick($event)"
             class="absolute right-0 w-48">
-        </psr-context-menu>
+        </psr-ui-context-menu>
     `,
     styleUrls: ['./profile-menu.component.scss']
 })
