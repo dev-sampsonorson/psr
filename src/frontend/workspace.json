@@ -1,4 +1,16 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "auth": "libs/auth",
+    "core": "libs/core",
+    "psr-desktop": "apps/psr-desktop",
+    "psr-desktop-e2e": "apps/psr-desktop-e2e",
+    "shared-data-access": "libs/shared/data-access",
+    "shared-ui": "libs/shared/ui",
+    "shared-ui-header": "libs/shared/ui-header",
+    "shared-util": "libs/shared/util",
+    "skill-feature-myskill": "libs/skill/feature-myskill",
+    "skill-feature-skill-mgt": "libs/skill/feature-skill-mgt",
+    "skill-shared": "libs/skill/shared"
+  }
 }

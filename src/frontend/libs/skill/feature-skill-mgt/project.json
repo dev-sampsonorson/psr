@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/skill/feature-skill-mgt",
+  "sourceRoot": "libs/skill/feature-skill-mgt/src",
+  "prefix": "psr-skl",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/skill/feature-skill-mgt"],
+      "options": {
+        "project": "libs/skill/feature-skill-mgt/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/skill/feature-skill-mgt/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/skill/feature-skill-mgt/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/skill/feature-skill-mgt"],
+      "options": {
+        "jestConfig": "libs/skill/feature-skill-mgt/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/skill/feature-skill-mgt/src/**/*.ts",
+          "libs/skill/feature-skill-mgt/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:skill", "type:feature", "platform:web"]
+}

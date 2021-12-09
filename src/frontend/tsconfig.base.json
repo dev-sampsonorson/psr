@@ -14,7 +14,21 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@frontend/auth": ["libs/auth/src/index.ts"],
+      "@frontend/core": ["libs/core/src/index.ts"],
+      "@frontend/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@frontend/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@frontend/shared/ui-header": ["libs/shared/ui-header/src/index.ts"],
+      "@frontend/shared/util": ["libs/shared/util/src/index.ts"],
+      "@frontend/skill/feature-myskill": [
+        "libs/skill/feature-myskill/src/index.ts"
+      ],
+      "@frontend/skill/feature-skill-mgt": [
+        "libs/skill/feature-skill-mgt/src/index.ts"
+      ],
+      "@frontend/skill/shared": ["libs/skill/shared/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

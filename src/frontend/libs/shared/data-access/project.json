@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/data-access",
+  "sourceRoot": "libs/shared/data-access/src",
+  "prefix": "frontend",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/shared/data-access"],
+      "options": {
+        "project": "libs/shared/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/data-access"],
+      "options": {
+        "jestConfig": "libs/shared/data-access/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/data-access/src/**/*.ts",
+          "libs/shared/data-access/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:data-access", "platform:web"]
+}
