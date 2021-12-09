@@ -1,5 +1,5 @@
 {
-  "name": "@frontend/shared/ui",
+  "name": "@psr/shared/ui",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^13.0.0",
