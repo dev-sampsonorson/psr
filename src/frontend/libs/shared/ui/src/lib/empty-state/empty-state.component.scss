@@ -1,0 +1,5 @@
+:host {
+    display: block;
+    @apply p-12 text-center border-2 border-gray-300;
+    @apply border-dashed rounded-lg hover:border-gray-400 focus:outline-none;
+  }

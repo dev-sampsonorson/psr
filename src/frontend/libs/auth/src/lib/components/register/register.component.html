@@ -1,0 +1,110 @@
+<div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <h2 class="psr-form__header">Register
+  </h2>
+</div>
+<div class="psr-form__container">
+  <div class="psr-form__group">
+    <form [formGroup]="form" (ngSubmit)="registerEmployee()" class="psr-form__form">
+      <div>
+        <label class="psr-form__label" for="email-address">Email address</label>
+        <input formControlName="email" [class.psr-form__field--error]="isInvalid(emailControl)" id="email-address"
+               name="email-address" type="email" class="psr-form__field" placeholder="example@email.com"
+               autocomplete="email" />
+        <p class="psr-form__field-error-msg" *ngIf="isInvalid(emailControl, 'required')">What is your email
+          address?</p>
+        <p class="psr-form__field-error-msg" *ngIf="isInvalid(emailControl, 'emailNotAvailable')">
+          Email not available
+        </p>
+      </div>
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="password">Password</label>
+          <input formControlName="password" [class.psr-form__field--error]="isInvalid(passwordControl)"
+                 (input)="onPasswordChange($event)" id="password" name="password" type="password"
+                 class="psr-form__field" placeholder="" autocomplete="current-password">
+          <psr-password-strength [password-control]="passwordControl"></psr-password-strength>
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(passwordControl)">
+            Enter a combination of at least eight characters; numbers, uppercase, lowercase, and
+            punctuation.
+          </p>
+        </div>
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="confirm-password">Confirm password</label>
+          <input formControlName="confirmPassword" [class.psr-form__field--error]="isInvalid(confirmPasswordControl)"
+                 id="confirm-password" name="confirm-password" type="password" class="psr-form__field" placeholder=""
+                 autocomplete="new-password">
+          <p class="psr-form__field-error-msg" *ngIf="confirmPasswordControl.hasError('passwordMismatch')">
+            Passwords do not match
+          </p>
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(confirmPasswordControl, 'required')">
+            Confirm your password
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="first-name">First name</label>
+          <input formControlName="firstName" [class.psr-form__field--error]="isInvalid(firstNameControl)"
+                 id="first-name" name="first-name" type="text" class="psr-form__field" placeholder="">
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(firstNameControl)">
+            What is your first name?
+          </p>
+        </div>
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="last-name">Last name</label>
+          <input formControlName="lastName" [class.psr-form__field--error]="isInvalid(lastNameControl)" id="last-name"
+                 name="last-name" type="text" class="psr-form__field" placeholder="">
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(lastNameControl)">
+            What is your last name?
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-1/2 px-3">
+          <label for="country" class="psr-form__label">Country</label>
+          <select formControlName="country" [class.psr-form__field--error]="isInvalid(countryControl)" id="country"
+                  name="country" class="psr-form__select">
+            <option value="" selected> -- </option>
+            <option [value]="country.id" *ngFor="let country of countries">{{ country.value }}</option>
+          </select>
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(countryControl)">
+            What country do you reside in?
+          </p>
+        </div>
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="timezone">Timezone</label>
+          <input formControlName="timezone" [class.psr-form__field--error]="isInvalid(timezoneControl)" id="timezone"
+                 name="timezone" type="text" class="psr-form__field" placeholder="">
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(timezoneControl)">
+            What is your time zone?
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="core-hours">Core hours</label>
+          <input formControlName="coreHours" [class.psr-form__field--error]="isInvalid(coreHoursControl)"
+                 id="core-hours" name="core-hours" type="text" class="psr-form__field" placeholder="">
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(coreHoursControl)">
+            What is your core work period? (8am - 4pm)
+          </p>
+        </div>
+        <div class="w-1/2 px-3">
+          <label class="psr-form__label" for="work-hours">Work hours</label>
+          <input formControlName="workHours" [class.psr-form__field--error]="isInvalid(workHoursControl)"
+                 id="work-hours" name="work-hours" type="text" class="psr-form__field" placeholder="">
+          <p class="psr-form__field-error-msg" *ngIf="isInvalid(workHoursControl)">
+            What is your probably work period? (6am - 9pm)
+          </p>
+        </div>
+      </div>
+      <div>
+        <button [disabled]="!formIsValid" class="psr-form__button" type="submit">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+  <p class="psr-form__footer">Already have an Account? <a class="psr-form__alt-action" (click)="gotoLogin()">Log
+      in.</a></p>
+</div>
