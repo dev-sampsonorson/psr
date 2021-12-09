@@ -17,24 +17,13 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { IconTrashComponent } from '../icons/icon-trash.component';
+import { IconTrashComponent } from '../icons';
 import { MenuItem } from '../menu/menu.model';
 
 @Component({
     selector: 'app-link-icon',
-    template: `
-    <a (click)="onLinkClick()" class="flex items-center px-4 py-2 text-sm cursor-pointer" role="menuitem" tabindex="-1">
-        <ng-container #container *ngIf="menuItem?.isIconVisible"></ng-container>
-        <span class="truncate">{{menuItem?.label}}</span>
-    </a>
-  `,
-    styles: [
-        `
-      :host {
-        display: block;
-      }
-    `
-    ]
+    templateUrl: './link-icon.component.html',
+    styleUrls: ['./link-icon.component.scss'],
 })
 export class LinkIconComponent implements OnInit, OnDestroy, AfterContentInit, AfterViewInit {
 

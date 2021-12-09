@@ -17,20 +17,7 @@ import { ProfileMenuService } from '../profile-menu/profile-menu.service';
             </button>
         </div>
     `,
-    styles: [`
-        .profile-display {
-            @apply relative z-10;
-
-            &__button {
-                @apply flex items-center space-x-4 bg-gray-800 rounded-full focus:outline-none ring-0;
-            }
-
-            &__welcome {
-                //hover:bg-gray-700
-                @apply text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium;
-            }
-        }
-    `]
+    styleUrls: ['./profile-display.component.scss']
 })
 export class ProfileDisplayComponent implements OnInit, OnDestroy {
 

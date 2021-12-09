@@ -17,12 +17,12 @@ export class CorelibModule {
         };
     }
 }
-CorelibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-CorelibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, imports: [CommonModule,
+CorelibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+CorelibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, imports: [CommonModule,
         HttpClientModule,
         ErrorModule], exports: [HttpClientModule,
         ErrorModule] });
-CorelibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, providers: [
+CorelibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, providers: [
         // { provide: APP_INITIALIZER, useFactory: authInitializer, multi: true, deps: [AuthService] },
         // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // { provide: UrlSerializer, useClass: CustomUrlSerializer },
@@ -38,7 +38,7 @@ CorelibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: 
             ErrorModule
         ], HttpClientModule,
         ErrorModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],

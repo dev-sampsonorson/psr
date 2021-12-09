@@ -7,5 +7,33 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.3.0",
+    "@tailwindcss/forms": "^0.3.4",
+    "@tailwindcss/line-clamp": "^0.2.2",
+    "@tailwindcss/typography": "^0.4.1",
+    "autoprefixer": "^10.3.7",
+    "copy-webpack-plugin": "^10.0.0",
+    "cross-env": "^7.0.3",
+    "glob": "^7.2.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "^8.4.4",
+    "postcss-cli": "^9.0.2",
+    "postcss-loader": "^6.2.1",
+    "postcss-nested": "^5.0.6",
+    "postcss-scss": "^4.0.2",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^12.3.0",
+    "tailwindcss": "^2.2.17",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "clean": "rimraf ./temp",
+    "process:main-style": "postcss ./src/styles/styles.scss -o ./styles.css",
+    "prepare:lib": "cross-env LIB_PATH=./projects/headerlib webpack --config ../../webpack.config.js --mode development",
+    "before-build:lib": "npm run process:main-style && npm run clean && npm run prepare:lib",
+    "build:lib": "ng build headerlib"
   }
 }

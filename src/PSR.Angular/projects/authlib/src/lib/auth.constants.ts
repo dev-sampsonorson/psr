@@ -9,6 +9,7 @@ export interface IAuthEndpoints {
 export interface IAuthRoutePaths {
     readonly Register: string;
     readonly Login: string;
+    readonly RevokeToken: string;
 }
 
 export interface IAuthNavRoutes {
@@ -33,6 +34,7 @@ let authPaths: IAuthEndpoints = {
 let authRoutePaths: IAuthRoutePaths = {
     Register: 'register',
     Login: 'login',
+    RevokeToken: 'revoke',
 };
 
 let authNavRoutes: IAuthNavRoutes = {

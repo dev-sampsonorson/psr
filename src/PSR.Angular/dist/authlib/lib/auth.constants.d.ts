@@ -8,6 +8,7 @@ export interface IAuthEndpoints {
 export interface IAuthRoutePaths {
     readonly Register: string;
     readonly Login: string;
+    readonly RevokeToken: string;
 }
 export interface IAuthNavRoutes {
     readonly Register: () => any[] | string;

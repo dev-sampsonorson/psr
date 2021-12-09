@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Directive, Input, NgModule, Injectable, Inject, EventEmitter, TemplateRef, Component, Output, ViewChild, ViewContainerRef, ContentChild } from '@angular/core';
+import { Directive, Input, NgModule, InjectionToken, Injectable, Inject, EventEmitter, TemplateRef, Component, Output, ViewChild, ViewContainerRef, ContentChild } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { filter, map, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
@@ -22,15 +22,6 @@ class MenuItem {
 }
 ;
 
-const PRIMARY_MENU_TOKEN = new InjectionToken('PRIMARY_MENU_TOKEN', {
-    providedIn: 'root',
-    factory: () => []
-});
-const PROFILE_MENU_TOKEN = new InjectionToken('PROFILE_MENU_TOKEN', {
-    providedIn: 'root',
-    factory: () => []
-});
-
 class DisableControlDirective {
     constructor(ngControl) {
         this.ngControl = ngControl;
@@ -52,9 +43,9 @@ class DisableControlDirective {
         }
     }
 }
-DisableControlDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DisableControlDirective, deps: [{ token: i1.NgControl }], target: i0.ɵɵFactoryTarget.Directive });
-DisableControlDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.11", type: DisableControlDirective, selector: "[disableControl]", inputs: { disableControl: "disableControl" }, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DisableControlDirective, decorators: [{
+DisableControlDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DisableControlDirective, deps: [{ token: i1.NgControl }], target: i0.ɵɵFactoryTarget.Directive });
+DisableControlDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.14", type: DisableControlDirective, selector: "[disableControl]", inputs: { disableControl: "disableControl" }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DisableControlDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[disableControl]'
@@ -64,10 +55,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class DisableControlModule {
 }
-DisableControlModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DisableControlModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DisableControlModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DisableControlModule, declarations: [DisableControlDirective], exports: [DisableControlDirective] });
-DisableControlModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DisableControlModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DisableControlModule, decorators: [{
+DisableControlModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DisableControlModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DisableControlModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DisableControlModule, declarations: [DisableControlDirective], exports: [DisableControlDirective] });
+DisableControlModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DisableControlModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DisableControlModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [DisableControlDirective],
@@ -80,9 +71,9 @@ class ElementHostDirective {
         this.viewContainerRef = viewContainerRef;
     }
 }
-ElementHostDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ElementHostDirective, deps: [{ token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
-ElementHostDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.11", type: ElementHostDirective, selector: "[appElementHost]", ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ElementHostDirective, decorators: [{
+ElementHostDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ElementHostDirective, deps: [{ token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
+ElementHostDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.14", type: ElementHostDirective, selector: "[appElementHost]", ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ElementHostDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[appElementHost]'
@@ -90,10 +81,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
         }], ctorParameters: function () { return [{ type: i0.ViewContainerRef }]; } });
 class ElementHostModule {
 }
-ElementHostModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ElementHostModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ElementHostModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ElementHostModule, declarations: [ElementHostDirective], exports: [ElementHostDirective] });
-ElementHostModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ElementHostModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ElementHostModule, decorators: [{
+ElementHostModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ElementHostModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ElementHostModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ElementHostModule, declarations: [ElementHostDirective], exports: [ElementHostDirective] });
+ElementHostModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ElementHostModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ElementHostModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [ElementHostDirective],
@@ -106,9 +97,9 @@ class TemplateHandleDirective {
         this.templateRef = templateRef;
     }
 }
-TemplateHandleDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleDirective, deps: [{ token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
-TemplateHandleDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.11", type: TemplateHandleDirective, selector: "[appTemplateHandle]", ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleDirective, decorators: [{
+TemplateHandleDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleDirective, deps: [{ token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
+TemplateHandleDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.14", type: TemplateHandleDirective, selector: "[appTemplateHandle]", ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[appTemplateHandle]'
@@ -116,10 +107,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
         }], ctorParameters: function () { return [{ type: i0.TemplateRef }]; } });
 class TemplateHandleModule {
 }
-TemplateHandleModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-TemplateHandleModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule, declarations: [TemplateHandleDirective], exports: [TemplateHandleDirective] });
-TemplateHandleModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule, decorators: [{
+TemplateHandleModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+TemplateHandleModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule, declarations: [TemplateHandleDirective], exports: [TemplateHandleDirective] });
+TemplateHandleModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [TemplateHandleDirective],
@@ -156,9 +147,9 @@ class UtilService {
         return typeof value === 'string';
     }
 }
-UtilService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: UtilService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-UtilService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: UtilService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: UtilService, decorators: [{
+UtilService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: UtilService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+UtilService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: UtilService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: UtilService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
@@ -201,9 +192,9 @@ class AlertService {
         return this._onCloseSubject.asObservable().pipe(filter(x => x === alertSymbol));
     }
 }
-AlertService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertService, deps: [{ token: UtilService }, { token: ALERT_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
-AlertService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertService, decorators: [{
+AlertService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertService, deps: [{ token: UtilService }, { token: ALERT_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
+AlertService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: UtilService }, { type: undefined, decorators: [{
                     type: Inject,
@@ -282,14 +273,14 @@ class AlertComponent {
         clearTimeout(this._timeout);
     }
 }
-AlertComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertComponent, deps: [{ token: AlertService }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Component });
-AlertComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: AlertComponent, selector: "app-alert", inputs: { alert: "alert" }, outputs: { closeAlert: "closeAlert" }, viewQueries: [{ propertyName: "successIconRef", first: true, predicate: ["successIcon"], descendants: true, read: TemplateRef }, { propertyName: "errorIconRef", first: true, predicate: ["errorIcon"], descendants: true, read: TemplateRef }, { propertyName: "infoIconRef", first: true, predicate: ["infoIcon"], descendants: true, read: TemplateRef }, { propertyName: "warningIconRef", first: true, predicate: ["warningIcon"], descendants: true, read: TemplateRef }], ngImport: i0, template: "<div *ngIf=\"alert\" aria-live=\"assertive\" class=\"{{ cssClass() }}\">\r\n    <!-- <div class=\"flex flex-col items-center w-full space-y-4 sm:items-end\"> -->\r\n    <div class=\"flex flex-col items-center w-full max-w-sm space-y-4 sm:items-end\">\r\n        <!-- w-full max-w-sm overflow-hidden bg-red-900 rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-10 -->\r\n        <div class=\"alert__wrapper\">\r\n            <div class=\"p-4\">\r\n                <div class=\"flex items-start\">\r\n                    <div class=\"flex-shrink-0\">\r\n                        <ng-container *ngIf=\"alertIconRef\">\r\n                            <ng-container *ngTemplateOutlet=\"alertIconRef\"></ng-container>\r\n                        </ng-container>\r\n                        <!-- <ng-container *ngIf=\"alert?.type\" [ngSwitch]=\"alert?.type\">\r\n                            <ng-container *ngSwitchCase=\"0\" [ngTemplateOutlet]=\"successIcon\"></ng-container>\r\n                            <ng-container *ngSwitchCase=\"1\" [ngTemplateOutlet]=\"errorIcon\"></ng-container>\r\n                            <ng-container *ngSwitchCase=\"2\" [ngTemplateOutlet]=\"infoIcon\"></ng-container>\r\n                            <ng-container *ngSwitchCase=\"3\" [ngTemplateOutlet]=\"warningIcon\"></ng-container>\r\n                        </ng-container> -->\r\n                    </div>\r\n                    <div class=\"ml-3 w-0 flex-1 pt-0.5\">\r\n                        <p class=\"alert__title\">\r\n                            <!-- text-sm font-medium text-white -->\r\n                            {{alert?.title}}\r\n                        </p>\r\n\r\n                        <ul *ngIf=\"isErrorMessagesVisible\" role=\"list\" class=\"alert__messages\">\r\n                            <ng-container *ngIf=\"hasSingleMessage; then singleMessage else multiMessage\"></ng-container>\r\n                        </ul>\r\n                        <ng-template #singleMessage>\r\n                            <p class=\"alert__message\">{{alert?.messages![0].message}}</p>\r\n                        </ng-template>\r\n                        <ng-template #multiMessage>\r\n                            <li *ngFor=\"let item of alert?.messages\" class=\"alert__message-item\">\r\n                                <p class=\"alert__message\">{{item?.message}}</p>\r\n                            </li>\r\n                        </ng-template>\r\n                        <div *ngIf=\"hasActions()\" class=\"flex mt-3 space-x-7\">\r\n                            <!-- text-sm font-medium text-white bg-transparent rounded-md hover:text-red-200 focus:outline-none -->\r\n                            <button *ngFor=\"let action of alert?.actions\" (click)=\"onAction(action)\" type=\"button\"\r\n                                    class=\"alert__btn-action\">\r\n                                {{action.name}}\r\n                            </button>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"flex flex-shrink-0 ml-4\">\r\n                        <button (click)=\"onCloseAlert()\" class=\"alert__btn-close\">\r\n                            <span class=\"sr-only\">Close</span>\r\n                            <!-- Heroicon name: solid/x -->\r\n                            <svg class=\"w-5 h-5\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"\r\n                                 fill=\"currentColor\" aria-hidden=\"true\">\r\n                                <path fill-rule=\"evenodd\"\r\n                                      d=\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\"\r\n                                      clip-rule=\"evenodd\" />\r\n                            </svg>\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<ng-template #successIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 13l4 4L19 7\"></path>\r\n    </svg>\r\n</ng-template>\r\n<ng-template #errorIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n              d=\"M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z\"></path>\r\n    </svg>\r\n</ng-template>\r\n<ng-template #infoIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n              d=\"M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"></path>\r\n    </svg>\r\n</ng-template>\r\n<ng-template #warningIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n              d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z\">\r\n        </path>\r\n    </svg>\r\n</ng-template>\r\n", styles: [":host{@apply flex-auto w-full mb-4;}.alert__wrapper{@apply w-full max-w-sm overflow-hidden rounded-lg;@apply shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-10;}.alert__title{@apply text-sm font-medium;}.alert__message{@apply mt-1 text-sm;}.alert__btn-action{@apply text-sm font-medium rounded-md focus:outline-none;}.alert__btn-close{@apply inline-flex rounded-md focus:outline-none;}.alert--error .alert__wrapper{@apply bg-red-900;}.alert--error .alert__title{@apply text-white;}.alert--error .alert__message{@apply text-red-200;}.alert--error .alert__message-item{@apply py-2;}.alert--error .alert__messages{@apply mt-2 divide-y divide-black divide-opacity-10;}.alert--error .alert__btn-action{@apply text-white bg-transparent hover:text-red-200;}.alert--error .alert__btn-close{@apply text-red-100 bg-red-900 hover:text-white;}.alert--info .alert__wrapper{@apply bg-blue-600;}.alert--info .alert__title{@apply text-white;}.alert--info .alert__message{@apply text-blue-200;}.alert--info .alert__message-item{@apply py-2;}.alert--info .alert__messages{@apply mt-2 divide-y divide-black divide-opacity-10;}.alert--info .alert__btn-action{@apply text-white bg-transparent hover:text-blue-200;}.alert--info .alert__btn-close{@apply text-blue-100 bg-blue-600 hover:text-white;}.alert--success .alert__wrapper{@apply bg-green-600;}.alert--success .alert__title{@apply text-white;}.alert--success .alert__message{@apply text-green-200;}.alert--success .alert__message-item{@apply py-2;}.alert--success .alert__messages{@apply mt-2 divide-y divide-black divide-opacity-10;}.alert--success .alert__btn-action{@apply text-white bg-transparent hover:text-green-200;}.alert--success .alert__btn-close{@apply text-green-100 bg-green-600 hover:text-white;}.alert--warning .alert__wrapper{@apply bg-yellow-600;}.alert--warning .alert__title{@apply text-white;}.alert--warning .alert__message{@apply text-yellow-200;}.alert--warning .alert__message-item{@apply py-2;}.alert--warning .alert__messages{@apply mt-2 divide-y divide-black divide-opacity-10;}.alert--warning .alert__btn-action{@apply text-white bg-transparent hover:text-yellow-200;}.alert--warning .alert__btn-close{@apply text-yellow-100 bg-yellow-600 hover:text-white;}\n"], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertComponent, decorators: [{
+AlertComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertComponent, deps: [{ token: AlertService }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Component });
+AlertComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: AlertComponent, selector: "app-alert", inputs: { alert: "alert" }, outputs: { closeAlert: "closeAlert" }, viewQueries: [{ propertyName: "successIconRef", first: true, predicate: ["successIcon"], descendants: true, read: TemplateRef }, { propertyName: "errorIconRef", first: true, predicate: ["errorIcon"], descendants: true, read: TemplateRef }, { propertyName: "infoIconRef", first: true, predicate: ["infoIcon"], descendants: true, read: TemplateRef }, { propertyName: "warningIconRef", first: true, predicate: ["warningIcon"], descendants: true, read: TemplateRef }], ngImport: i0, template: "<div *ngIf=\"alert\" aria-live=\"assertive\" class=\"{{ cssClass() }}\">\r\n    <!-- <div class=\"flex flex-col items-center w-full space-y-4 sm:items-end\"> -->\r\n    <div class=\"flex flex-col items-center w-full max-w-sm space-y-4 sm:items-end\">\r\n        <!-- w-full max-w-sm overflow-hidden bg-red-900 rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-10 -->\r\n        <div class=\"alert__wrapper\">\r\n            <div class=\"p-4\">\r\n                <div class=\"flex items-start\">\r\n                    <div class=\"flex-shrink-0\">\r\n                        <ng-container *ngIf=\"alertIconRef\">\r\n                            <ng-container *ngTemplateOutlet=\"alertIconRef\"></ng-container>\r\n                        </ng-container>\r\n                        <!-- <ng-container *ngIf=\"alert?.type\" [ngSwitch]=\"alert?.type\">\r\n                            <ng-container *ngSwitchCase=\"0\" [ngTemplateOutlet]=\"successIcon\"></ng-container>\r\n                            <ng-container *ngSwitchCase=\"1\" [ngTemplateOutlet]=\"errorIcon\"></ng-container>\r\n                            <ng-container *ngSwitchCase=\"2\" [ngTemplateOutlet]=\"infoIcon\"></ng-container>\r\n                            <ng-container *ngSwitchCase=\"3\" [ngTemplateOutlet]=\"warningIcon\"></ng-container>\r\n                        </ng-container> -->\r\n                    </div>\r\n                    <div class=\"ml-3 w-0 flex-1 pt-0.5\">\r\n                        <p class=\"alert__title\">\r\n                            <!-- text-sm font-medium text-white -->\r\n                            {{alert?.title}}\r\n                        </p>\r\n\r\n                        <ul *ngIf=\"isErrorMessagesVisible\" role=\"list\" class=\"alert__messages\">\r\n                            <ng-container *ngIf=\"hasSingleMessage; then singleMessage else multiMessage\"></ng-container>\r\n                        </ul>\r\n                        <ng-template #singleMessage>\r\n                            <p class=\"alert__message\">{{alert?.messages![0].message}}</p>\r\n                        </ng-template>\r\n                        <ng-template #multiMessage>\r\n                            <li *ngFor=\"let item of alert?.messages\" class=\"alert__message-item\">\r\n                                <p class=\"alert__message\">{{item?.message}}</p>\r\n                            </li>\r\n                        </ng-template>\r\n                        <div *ngIf=\"hasActions()\" class=\"flex mt-3 space-x-7\">\r\n                            <!-- text-sm font-medium text-white bg-transparent rounded-md hover:text-red-200 focus:outline-none -->\r\n                            <button *ngFor=\"let action of alert?.actions\" (click)=\"onAction(action)\" type=\"button\"\r\n                                    class=\"alert__btn-action\">\r\n                                {{action.name}}\r\n                            </button>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"flex flex-shrink-0 ml-4\">\r\n                        <button (click)=\"onCloseAlert()\" class=\"alert__btn-close\">\r\n                            <span class=\"sr-only\">Close</span>\r\n                            <!-- Heroicon name: solid/x -->\r\n                            <svg class=\"w-5 h-5\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"\r\n                                 fill=\"currentColor\" aria-hidden=\"true\">\r\n                                <path fill-rule=\"evenodd\"\r\n                                      d=\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\"\r\n                                      clip-rule=\"evenodd\" />\r\n                            </svg>\r\n                        </button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<ng-template #successIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 13l4 4L19 7\"></path>\r\n    </svg>\r\n</ng-template>\r\n<ng-template #errorIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n              d=\"M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z\"></path>\r\n    </svg>\r\n</ng-template>\r\n<ng-template #infoIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n              d=\"M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"></path>\r\n    </svg>\r\n</ng-template>\r\n<ng-template #warningIcon>\r\n    <svg class=\"w-6 h-6 text-white\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n         stroke=\"currentColor\" aria-hidden=\"true\">\r\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n              d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z\">\r\n        </path>\r\n    </svg>\r\n</ng-template>\r\n", styles: [":host{margin-bottom:1rem;width:100%;flex:1 1 auto}.alert__wrapper{width:100%;max-width:24rem;overflow:hidden;border-radius:.5rem;pointer-events:auto;--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000);--tw-ring-opacity: 1;--tw-ring-color: rgba(0, 0, 0, var(--tw-ring-opacity));--tw-ring-opacity: .1}.alert__title{font-size:.875rem;line-height:1.25rem;font-weight:500}.alert__message{margin-top:.25rem;font-size:.875rem;line-height:1.25rem}.alert__btn-action{border-radius:.375rem;font-size:.875rem;line-height:1.25rem;font-weight:500}.alert__btn-action:focus{outline:2px solid transparent;outline-offset:2px}.alert__btn-close{display:inline-flex;border-radius:.375rem}.alert__btn-close:focus{outline:2px solid transparent;outline-offset:2px}.alert--error .alert__wrapper{--tw-bg-opacity: 1;background-color:rgba(127,29,29,var(--tw-bg-opacity))}.alert--error .alert__title{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--error .alert__message{--tw-text-opacity: 1;color:rgba(254,202,202,var(--tw-text-opacity))}.alert--error .alert__message-item{padding-top:.5rem;padding-bottom:.5rem}.alert--error .alert__messages{margin-top:.5rem}.alert--error .alert__messages>:not([hidden])~:not([hidden]){--tw-divide-y-reverse: 0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse));--tw-divide-opacity: 1;border-color:rgba(0,0,0,var(--tw-divide-opacity));--tw-divide-opacity: .1}.alert--error .alert__btn-action{background-color:transparent;--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--error .alert__btn-action:hover{--tw-text-opacity: 1;color:rgba(254,202,202,var(--tw-text-opacity))}.alert--error .alert__btn-close{--tw-bg-opacity: 1;background-color:rgba(127,29,29,var(--tw-bg-opacity));--tw-text-opacity: 1;color:rgba(254,226,226,var(--tw-text-opacity))}.alert--error .alert__btn-close:hover{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--info .alert__wrapper{--tw-bg-opacity: 1;background-color:rgba(37,99,235,var(--tw-bg-opacity))}.alert--info .alert__title{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--info .alert__message{--tw-text-opacity: 1;color:rgba(191,219,254,var(--tw-text-opacity))}.alert--info .alert__message-item{padding-top:.5rem;padding-bottom:.5rem}.alert--info .alert__messages{margin-top:.5rem}.alert--info .alert__messages>:not([hidden])~:not([hidden]){--tw-divide-y-reverse: 0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse));--tw-divide-opacity: 1;border-color:rgba(0,0,0,var(--tw-divide-opacity));--tw-divide-opacity: .1}.alert--info .alert__btn-action{background-color:transparent;--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--info .alert__btn-action:hover{--tw-text-opacity: 1;color:rgba(191,219,254,var(--tw-text-opacity))}.alert--info .alert__btn-close{--tw-bg-opacity: 1;background-color:rgba(37,99,235,var(--tw-bg-opacity));--tw-text-opacity: 1;color:rgba(219,234,254,var(--tw-text-opacity))}.alert--info .alert__btn-close:hover{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--success .alert__wrapper{--tw-bg-opacity: 1;background-color:rgba(5,150,105,var(--tw-bg-opacity))}.alert--success .alert__title{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--success .alert__message{--tw-text-opacity: 1;color:rgba(167,243,208,var(--tw-text-opacity))}.alert--success .alert__message-item{padding-top:.5rem;padding-bottom:.5rem}.alert--success .alert__messages{margin-top:.5rem}.alert--success .alert__messages>:not([hidden])~:not([hidden]){--tw-divide-y-reverse: 0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse));--tw-divide-opacity: 1;border-color:rgba(0,0,0,var(--tw-divide-opacity));--tw-divide-opacity: .1}.alert--success .alert__btn-action{background-color:transparent;--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--success .alert__btn-action:hover{--tw-text-opacity: 1;color:rgba(167,243,208,var(--tw-text-opacity))}.alert--success .alert__btn-close{--tw-bg-opacity: 1;background-color:rgba(5,150,105,var(--tw-bg-opacity));--tw-text-opacity: 1;color:rgba(209,250,229,var(--tw-text-opacity))}.alert--success .alert__btn-close:hover{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--warning .alert__wrapper{--tw-bg-opacity: 1;background-color:rgba(217,119,6,var(--tw-bg-opacity))}.alert--warning .alert__title{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--warning .alert__message{--tw-text-opacity: 1;color:rgba(253,230,138,var(--tw-text-opacity))}.alert--warning .alert__message-item{padding-top:.5rem;padding-bottom:.5rem}.alert--warning .alert__messages{margin-top:.5rem}.alert--warning .alert__messages>:not([hidden])~:not([hidden]){--tw-divide-y-reverse: 0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse));--tw-divide-opacity: 1;border-color:rgba(0,0,0,var(--tw-divide-opacity));--tw-divide-opacity: .1}.alert--warning .alert__btn-action{background-color:transparent;--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}.alert--warning .alert__btn-action:hover{--tw-text-opacity: 1;color:rgba(253,230,138,var(--tw-text-opacity))}.alert--warning .alert__btn-close{--tw-bg-opacity: 1;background-color:rgba(217,119,6,var(--tw-bg-opacity));--tw-text-opacity: 1;color:rgba(254,243,199,var(--tw-text-opacity))}.alert--warning .alert__btn-close:hover{--tw-text-opacity: 1;color:rgba(255,255,255,var(--tw-text-opacity))}\n"], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-alert',
                     templateUrl: './alert.component.html',
-                    styleUrls: ['./alert.component.scss']
+                    styleUrls: ['./alert.component.css']
                 }]
         }], ctorParameters: function () { return [{ type: AlertService }, { type: i2.Router }]; }, propDecorators: { alert: [{
                 type: Input
@@ -334,24 +325,18 @@ class AlertContainerComponent {
         this.alertSubscription.unsubscribe();
     }
 }
-AlertContainerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertContainerComponent, deps: [{ token: i0.ComponentFactoryResolver }, { token: AlertService }], target: i0.ɵɵFactoryTarget.Component });
-AlertContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: AlertContainerComponent, selector: "app-alert-container", viewQueries: [{ propertyName: "appElementHost", first: true, predicate: ElementHostDirective, descendants: true, static: true }], ngImport: i0, template: `
+AlertContainerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertContainerComponent, deps: [{ token: i0.ComponentFactoryResolver }, { token: AlertService }], target: i0.ɵɵFactoryTarget.Component });
+AlertContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: AlertContainerComponent, selector: "app-alert-container", viewQueries: [{ propertyName: "appElementHost", first: true, predicate: ElementHostDirective, descendants: true, static: true }], ngImport: i0, template: `
       <ng-template appElementHost></ng-template>
-  `, isInline: true, styles: ["\n        :host {\n            @apply flex flex-row flex-wrap fixed top-0 right-0 px-4 py-6 sm:p-6 max-w-sm items-end sm:items-end pointer-events-none;\n            @apply max-w-sm w-full z-20;\n        }\n    "], directives: [{ type: ElementHostDirective, selector: "[appElementHost]" }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertContainerComponent, decorators: [{
+  `, isInline: true, styles: [":host{pointer-events:none;position:fixed;top:0px;right:0px;display:flex;max-width:24rem;flex-direction:row;flex-wrap:wrap;align-items:flex-end;padding:1.5rem 1rem}@media (min-width: 640px){:host{align-items:flex-end;padding:1.5rem}}:host{z-index:20;width:100%;max-width:24rem}\n"], directives: [{ type: ElementHostDirective, selector: "[appElementHost]" }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertContainerComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-alert-container',
                     template: `
       <ng-template appElementHost></ng-template>
   `,
-                    styles: [`
-        :host {
-            @apply flex flex-row flex-wrap fixed top-0 right-0 px-4 py-6 sm:p-6 max-w-sm items-end sm:items-end pointer-events-none;
-            @apply max-w-sm w-full z-20;
-        }
-    `
-                    ],
+                    styleUrls: ['./alert-container.component.css'],
                     // providers: [AlertService]
                 }]
         }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }, { type: AlertService }]; }, propDecorators: { appElementHost: [{
@@ -370,10 +355,10 @@ class AlertModule {
         };
     }
 }
-AlertModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-AlertModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertModule, declarations: [AlertContainerComponent, AlertComponent], imports: [CommonModule, ElementHostModule], exports: [AlertContainerComponent] });
-AlertModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertModule, imports: [[CommonModule, ElementHostModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: AlertModule, decorators: [{
+AlertModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+AlertModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertModule, declarations: [AlertContainerComponent, AlertComponent], imports: [CommonModule, ElementHostModule], exports: [AlertContainerComponent] });
+AlertModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertModule, imports: [[CommonModule, ElementHostModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: AlertModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [AlertContainerComponent, AlertComponent],
@@ -469,9 +454,9 @@ class BlockUiDirective {
         this.unblock();
     }
 }
-BlockUiDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BlockUiDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive });
-BlockUiDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.11", type: BlockUiDirective, selector: "[x-blockui]", inputs: { targetElement: ["x-target-el", "targetElement"], autoZIndex: ["x-auto-zindex", "autoZIndex"], baseZIndex: ["x-base-zindex", "baseZIndex"], appBlockUi: ["x-blockui", "appBlockUi"], maskTpl: ["x-overlay-tpl", "maskTpl"] }, usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BlockUiDirective, decorators: [{
+BlockUiDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BlockUiDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive });
+BlockUiDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.14", type: BlockUiDirective, selector: "[x-blockui]", inputs: { targetElement: ["x-target-el", "targetElement"], autoZIndex: ["x-auto-zindex", "autoZIndex"], baseZIndex: ["x-base-zindex", "baseZIndex"], appBlockUi: ["x-blockui", "appBlockUi"], maskTpl: ["x-overlay-tpl", "maskTpl"] }, usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BlockUiDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[x-blockui]'
@@ -495,12 +480,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
 
 class BlockUiModule {
 }
-BlockUiModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BlockUiModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-BlockUiModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BlockUiModule, declarations: [BlockUiDirective], imports: [CommonModule], exports: [BlockUiDirective] });
-BlockUiModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BlockUiModule, imports: [[
+BlockUiModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BlockUiModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+BlockUiModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BlockUiModule, declarations: [BlockUiDirective], imports: [CommonModule], exports: [BlockUiDirective] });
+BlockUiModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BlockUiModule, imports: [[
             CommonModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BlockUiModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BlockUiModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -571,9 +556,9 @@ class BreadcrumbService extends Observable {
         return breadcrumbCopy;
     }
 }
-BreadcrumbService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbService, deps: [{ token: i2.ActivatedRoute }, { token: i2.Router }, { token: BREADCRUMB_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
-BreadcrumbService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbService, decorators: [{
+BreadcrumbService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbService, deps: [{ token: i2.ActivatedRoute }, { token: i2.Router }, { token: BREADCRUMB_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
+BreadcrumbService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i2.ActivatedRoute }, { type: i2.Router }, { type: undefined, decorators: [{
                     type: Inject,
@@ -605,20 +590,14 @@ class BreadcrumbComponent {
         (_a = this._breadcrumbSub) === null || _a === void 0 ? void 0 : _a.unsubscribe();
     }
 }
-BreadcrumbComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbComponent, deps: [{ token: BreadcrumbService }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Component });
-BreadcrumbComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: BreadcrumbComponent, selector: "app-breadcrumb", ngImport: i0, template: "<ol *ngIf=\"isBreadcrumbVisible\" role=\"list\" class=\"flex items-center space-x-4\">\n    <li>\n        <div>\n            <a [routerLink]=\"['/']\" class=\"text-gray-400 hover:text-gray-500\">\n                <!-- Heroicon name: solid/home -->\n                <svg class=\"flex-shrink-0 w-5 h-5\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"\n                     fill=\"currentColor\" aria-hidden=\"true\">\n                    <path\n                          d=\"M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z\" />\n                </svg>\n                <span class=\"sr-only\">Home</span>\n            </a>\n        </div>\n    </li>\n\n    <ng-container *ngFor=\"let item of breadcrumbs\">\n        <li>\n            <div class=\"flex items-center\">\n                <svg class=\"flex-shrink-0 w-5 h-5 text-gray-300\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\"\n                     viewBox=\"0 0 20 20\" aria-hidden=\"true\">\n                    <path d=\"M5.555 17.776l8-16 .894.448-8 16-.894-.448z\" />\n                </svg>\n                <!-- <a [routerLink]=\"item.route\" class=\"ml-4 text-sm font-medium text-gray-500 hover:text-gray-700\">{{\n                    item.label }}</a> -->\n                <!-- [item.newRoute, { outlets: { details: null } }] -->\n                <a routerLink=\"{{item.newRoute}}\"\n                   class=\"ml-4 text-sm font-medium text-gray-500 cursor-pointer hover:text-gray-700\">{{\n                    item.label }}</a>\n                <!-- <a (click)=\"onBreadcrumbMenuItemClick(item)\"\n                   class=\"ml-4 text-sm font-medium text-gray-500 cursor-pointer hover:text-gray-700\">{{\n                    item.label }}</a> -->\n            </div>\n        </li>\n    </ng-container>\n</ol>\n", styles: ["\n      :host {\n        display: block;\n      }\n    "], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.RouterLinkWithHref, selector: "a[routerLink],area[routerLink]", inputs: ["routerLink", "target", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbComponent, decorators: [{
+BreadcrumbComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbComponent, deps: [{ token: BreadcrumbService }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Component });
+BreadcrumbComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: BreadcrumbComponent, selector: "app-breadcrumb", ngImport: i0, template: "<ol *ngIf=\"isBreadcrumbVisible\" role=\"list\" class=\"flex items-center space-x-4\">\n    <li>\n        <div>\n            <a [routerLink]=\"['/']\" class=\"text-gray-400 hover:text-gray-500\">\n                <!-- Heroicon name: solid/home -->\n                <svg class=\"flex-shrink-0 w-5 h-5\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"\n                     fill=\"currentColor\" aria-hidden=\"true\">\n                    <path\n                          d=\"M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z\" />\n                </svg>\n                <span class=\"sr-only\">Home</span>\n            </a>\n        </div>\n    </li>\n\n    <ng-container *ngFor=\"let item of breadcrumbs\">\n        <li>\n            <div class=\"flex items-center\">\n                <svg class=\"flex-shrink-0 w-5 h-5 text-gray-300\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\"\n                     viewBox=\"0 0 20 20\" aria-hidden=\"true\">\n                    <path d=\"M5.555 17.776l8-16 .894.448-8 16-.894-.448z\" />\n                </svg>\n                <!-- <a [routerLink]=\"item.route\" class=\"ml-4 text-sm font-medium text-gray-500 hover:text-gray-700\">{{\n                    item.label }}</a> -->\n                <!-- [item.newRoute, { outlets: { details: null } }] -->\n                <a routerLink=\"{{item.newRoute}}\"\n                   class=\"ml-4 text-sm font-medium text-gray-500 cursor-pointer hover:text-gray-700\">{{\n                    item.label }}</a>\n                <!-- <a (click)=\"onBreadcrumbMenuItemClick(item)\"\n                   class=\"ml-4 text-sm font-medium text-gray-500 cursor-pointer hover:text-gray-700\">{{\n                    item.label }}</a> -->\n            </div>\n        </li>\n    </ng-container>\n</ol>\n", styles: [":host{display:block}\n"], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.RouterLinkWithHref, selector: "a[routerLink],area[routerLink]", inputs: ["routerLink", "target", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-breadcrumb',
                     templateUrl: './breadcrumb.component.html',
-                    styles: [
-                        `
-      :host {
-        display: block;
-      }
-    `
-                    ]
+                    styleUrls: ['./breadcrumb.component.css']
                 }]
         }], ctorParameters: function () { return [{ type: BreadcrumbService }, { type: i2.Router }]; } });
 
@@ -635,14 +614,14 @@ class BreadcrumbModule {
         };
     }
 }
-BreadcrumbModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-BreadcrumbModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbModule, declarations: [BreadcrumbComponent], imports: [CommonModule,
+BreadcrumbModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+BreadcrumbModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbModule, declarations: [BreadcrumbComponent], imports: [CommonModule,
         RouterModule], exports: [BreadcrumbComponent] });
-BreadcrumbModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbModule, providers: [BreadcrumbService], imports: [[
+BreadcrumbModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbModule, providers: [BreadcrumbService], imports: [[
             CommonModule,
             RouterModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BreadcrumbModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BreadcrumbModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [BreadcrumbComponent],
@@ -670,34 +649,14 @@ class ButtonIconComponent {
         this.buttonClick.emit();
     }
 }
-ButtonIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ButtonIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-ButtonIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: ButtonIconComponent, selector: "app-button-icon", inputs: { ariaLabel: "ariaLabel" }, outputs: { buttonClick: "buttonClick" }, ngImport: i0, template: `
-        <!-- text-indigo-800  rounded-md hover:text-indigo-900 focus:text-indigo-900 -->
-        <button (click)="onClick($event)" type="button" class="bg-transparent">
-            <span class="sr-only">{{ ariaLabel }}</span>
-            <ng-content></ng-content>
-            <!-- <ng-template [ngTemplateOutlet]="outlet"></ng-template> -->
-        </button>
-  `, isInline: true, styles: ["\n      :host {\n        @apply flex items-center h-7 outline-none;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ButtonIconComponent, decorators: [{
+ButtonIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ButtonIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+ButtonIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: ButtonIconComponent, selector: "app-button-icon", inputs: { ariaLabel: "ariaLabel" }, outputs: { buttonClick: "buttonClick" }, ngImport: i0, template: "<!-- text-indigo-800  rounded-md hover:text-indigo-900 focus:text-indigo-900 -->\r\n<button (click)=\"onClick($event)\" type=\"button\" class=\"bg-transparent\">\r\n    <span class=\"sr-only\">{{ ariaLabel }}</span>\r\n    <ng-content></ng-content>\r\n    <!-- <ng-template [ngTemplateOutlet]=\"outlet\"></ng-template> -->\r\n</button>\r\n", styles: [":host{display:flex;height:1.75rem;align-items:center;outline:2px solid transparent;outline-offset:2px}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ButtonIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-button-icon',
-                    template: `
-        <!-- text-indigo-800  rounded-md hover:text-indigo-900 focus:text-indigo-900 -->
-        <button (click)="onClick($event)" type="button" class="bg-transparent">
-            <span class="sr-only">{{ ariaLabel }}</span>
-            <ng-content></ng-content>
-            <!-- <ng-template [ngTemplateOutlet]="outlet"></ng-template> -->
-        </button>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply flex items-center h-7 outline-none;
-      }
-    `
-                    ]
+                    templateUrl: './button-icon.component.html',
+                    styleUrls: ['./button-icon.component.css']
                 }]
         }], propDecorators: { ariaLabel: [{
                 type: Input
@@ -706,10 +665,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class ButtonIconModule {
 }
-ButtonIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ButtonIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ButtonIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ButtonIconModule, declarations: [ButtonIconComponent], exports: [ButtonIconComponent] });
-ButtonIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ButtonIconModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ButtonIconModule, decorators: [{
+ButtonIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ButtonIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ButtonIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ButtonIconModule, declarations: [ButtonIconComponent], exports: [ButtonIconComponent] });
+ButtonIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ButtonIconModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ButtonIconModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [ButtonIconComponent],
@@ -739,12 +698,126 @@ class BaseIconComponent {
         catch (_b) { }
     }
 }
-BaseIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BaseIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-BaseIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: BaseIconComponent, selector: "ng-component", usesOnChanges: true, ngImport: i0, template: ``, isInline: true });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: BaseIconComponent, decorators: [{
+BaseIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BaseIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+BaseIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: BaseIconComponent, selector: "ng-component", usesOnChanges: true, ngImport: i0, template: ``, isInline: true });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: BaseIconComponent, decorators: [{
             type: Component,
             args: [{
                     template: ``
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconCloseComponent extends BaseIconComponent {
+    constructor(el, renderer) {
+        super(el, renderer);
+    }
+    ngOnInit() {
+        super.ngOnInit();
+    }
+}
+IconCloseComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconCloseComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconCloseComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconCloseComponent, selector: "app-icon-close", usesInheritance: true, ngImport: i0, template: "<svg x-description=\"Heroicon name: outline/x\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n     stroke=\"currentColor\" aria-hidden=\"true\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M6 18L18 6M6 6l12 12\"></path>\r\n</svg>\r\n", styles: [":host{display:block;height:1.5rem;width:1.5rem}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconCloseComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'app-icon-close',
+                    templateUrl: './icon-close.component.html',
+                    styleUrls: ['./icon-close.component.css'],
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconDotVerticalComponent extends BaseIconComponent {
+    constructor(el, renderer) {
+        super(el, renderer);
+    }
+    ngOnInit() {
+        super.ngOnInit();
+    }
+}
+IconDotVerticalComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconDotVerticalComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconDotVerticalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconDotVerticalComponent, selector: "app-icon-dot-vertical", usesInheritance: true, ngImport: i0, template: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\">\r\n    <path d=\"M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z\" />\r\n</svg>\r\n", styles: [":host{display:block;height:1.25rem;width:1.25rem;--tw-text-opacity: 1;color:rgba(107,114,128,var(--tw-text-opacity))}:host:hover{--tw-text-opacity: 1;color:rgba(17,24,39,var(--tw-text-opacity))}:host{transition-property:background-color,border-color,color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;transition-duration:.2s}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconDotVerticalComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'app-icon-dot-vertical',
+                    templateUrl: './icon-dot-vertical.component.html',
+                    styleUrls: ['./icon-dot-vertical.component.css'],
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconEyeComponent extends BaseIconComponent {
+    constructor(el, renderer) {
+        super(el, renderer);
+    }
+    ngOnInit() {
+        super.ngOnInit();
+    }
+}
+IconEyeComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconEyeComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconEyeComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconEyeComponent, selector: "app-icon-eye", usesInheritance: true, ngImport: i0, template: "<svg fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\">\r\n    <path d=\"M10 12a2 2 0 100-4 2 2 0 000 4z\"></path>\r\n    <path fill-rule=\"evenodd\"\r\n          d=\"M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z\"\r\n          clip-rule=\"evenodd\"></path>\r\n</svg>\r\n", styles: [":host{display:block;height:1.25rem;width:1.25rem}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconEyeComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'app-icon-eye',
+                    templateUrl: './icon-eye.component.html',
+                    styleUrls: ['./icon-eye.component.css'],
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconLoginComponent extends BaseIconComponent {
+    constructor(el, renderer) {
+        super(el, renderer);
+    }
+    ngOnInit() {
+        super.ngOnInit();
+    }
+}
+IconLoginComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconLoginComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconLoginComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconLoginComponent, selector: "app-icon-login", usesInheritance: true, ngImport: i0, template: "<svg fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\">\r\n    <path fill-rule=\"evenodd\"\r\n          d=\"M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z\"\r\n          clip-rule=\"evenodd\"></path>\r\n</svg>\r\n", styles: [":host{display:block;height:1.25rem;width:1.25rem}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconLoginComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'app-icon-login',
+                    templateUrl: './icon-login.component.html',
+                    styleUrls: ['./icon-login.component.css'],
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconLogoutComponent extends BaseIconComponent {
+    constructor(el, renderer) {
+        super(el, renderer);
+    }
+    ngOnInit() {
+        super.ngOnInit();
+    }
+}
+IconLogoutComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconLogoutComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconLogoutComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconLogoutComponent, selector: "app-icon-logout", usesInheritance: true, ngImport: i0, template: "<svg fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\">\r\n    <path fill-rule=\"evenodd\"\r\n          d=\"M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z\"\r\n          clip-rule=\"evenodd\"></path>\r\n</svg>\r\n", styles: [":host{display:block;height:1.25rem;width:1.25rem}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconLogoutComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'app-icon-logout',
+                    templateUrl: './icon-logout.component.html',
+                    styleUrls: ['./icon-logout.component.css'],
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconPencilComponent extends BaseIconComponent {
+    constructor(el, renderer) {
+        super(el, renderer);
+    }
+    ngOnInit() {
+        super.ngOnInit();
+    }
+}
+IconPencilComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconPencilComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconPencilComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconPencilComponent, selector: "app-icon-pencil", usesInheritance: true, ngImport: i0, template: "<svg fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\">\r\n    <path\r\n          d=\"M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z\">\r\n    </path>\r\n</svg>\r\n", styles: [":host{display:block;height:1.25rem;width:1.25rem}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconPencilComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'app-icon-pencil',
+                    templateUrl: './icon-pencil.component.html',
+                    styleUrls: ['./icon-pencil.component.css'],
                 }]
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
 
@@ -756,30 +829,62 @@ class IconTrashComponent extends BaseIconComponent {
         super.ngOnInit();
     }
 }
-IconTrashComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconTrashComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconTrashComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconTrashComponent, selector: "app-icon-trash", usesInheritance: true, ngImport: i0, template: `
-        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-        </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-5 h-5;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconTrashComponent, decorators: [{
+IconTrashComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconTrashComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+IconTrashComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: IconTrashComponent, selector: "app-icon-trash", usesInheritance: true, ngImport: i0, template: "<svg fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\">\r\n    <path fill-rule=\"evenodd\"\r\n          d=\"M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z\"\r\n          clip-rule=\"evenodd\"></path>\r\n</svg>\r\n", styles: [":host{display:block;height:1.25rem;width:1.25rem}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconTrashComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-icon-trash',
-                    template: `
-        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-        </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-5 h-5;
-      }
-    `
-                    ]
+                    templateUrl: './icon-trash.component.html',
+                    styleUrls: ['./icon-trash.component.css'],
                 }]
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class IconsModule {
+}
+IconsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+IconsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconsModule, declarations: [IconCloseComponent,
+        IconDotVerticalComponent,
+        IconEyeComponent,
+        IconPencilComponent,
+        IconTrashComponent,
+        IconLoginComponent,
+        IconLogoutComponent,
+        BaseIconComponent], exports: [IconCloseComponent,
+        IconDotVerticalComponent,
+        IconEyeComponent,
+        IconPencilComponent,
+        IconTrashComponent,
+        IconLoginComponent,
+        IconLogoutComponent,
+        BaseIconComponent] });
+IconsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconsModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: IconsModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        IconCloseComponent,
+                        IconDotVerticalComponent,
+                        IconEyeComponent,
+                        IconPencilComponent,
+                        IconTrashComponent,
+                        IconLoginComponent,
+                        IconLogoutComponent,
+                        BaseIconComponent
+                    ],
+                    exports: [
+                        IconCloseComponent,
+                        IconDotVerticalComponent,
+                        IconEyeComponent,
+                        IconPencilComponent,
+                        IconTrashComponent,
+                        IconLoginComponent,
+                        IconLogoutComponent,
+                        BaseIconComponent
+                    ],
+                    imports: []
+                }]
+        }] });
 
 class LinkIconComponent {
     constructor(resolver) {
@@ -814,30 +919,14 @@ class LinkIconComponent {
         (_a = this._iconComponentRef) === null || _a === void 0 ? void 0 : _a.destroy();
     }
 }
-LinkIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LinkIconComponent, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Component });
-LinkIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: LinkIconComponent, selector: "app-link-icon", inputs: { menuItem: "menuItem", iconClass: "iconClass" }, outputs: { linkClick: "linkClick" }, queries: [{ propertyName: "icon", first: true, predicate: IconTrashComponent, descendants: true }], viewQueries: [{ propertyName: "iconViewContainerRef", first: true, predicate: ["container"], descendants: true, read: ViewContainerRef }, { propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true }], ngImport: i0, template: `
-    <a (click)="onLinkClick()" class="flex items-center px-4 py-2 text-sm cursor-pointer" role="menuitem" tabindex="-1">
-        <ng-container #container *ngIf="menuItem?.isIconVisible"></ng-container>
-        <span class="truncate">{{menuItem?.label}}</span>
-    </a>
-  `, isInline: true, styles: ["\n      :host {\n        display: block;\n      }\n    "], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LinkIconComponent, decorators: [{
+LinkIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LinkIconComponent, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Component });
+LinkIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: LinkIconComponent, selector: "app-link-icon", inputs: { menuItem: "menuItem", iconClass: "iconClass" }, outputs: { linkClick: "linkClick" }, queries: [{ propertyName: "icon", first: true, predicate: IconTrashComponent, descendants: true }], viewQueries: [{ propertyName: "iconViewContainerRef", first: true, predicate: ["container"], descendants: true, read: ViewContainerRef }, { propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true }], ngImport: i0, template: "<a (click)=\"onLinkClick()\" class=\"flex items-center px-4 py-2 text-sm cursor-pointer\" role=\"menuitem\" tabindex=\"-1\">\r\n    <ng-container #container *ngIf=\"menuItem?.isIconVisible\"></ng-container>\r\n    <span class=\"truncate\">{{menuItem?.label}}</span>\r\n</a>\r\n", styles: [":host{display:block}\n"], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LinkIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-link-icon',
-                    template: `
-    <a (click)="onLinkClick()" class="flex items-center px-4 py-2 text-sm cursor-pointer" role="menuitem" tabindex="-1">
-        <ng-container #container *ngIf="menuItem?.isIconVisible"></ng-container>
-        <span class="truncate">{{menuItem?.label}}</span>
-    </a>
-  `,
-                    styles: [
-                        `
-      :host {
-        display: block;
-      }
-    `
-                    ]
+                    templateUrl: './link-icon.component.html',
+                    styleUrls: ['./link-icon.component.css'],
                 }]
         }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }]; }, propDecorators: { iconViewContainerRef: [{
                 type: ViewChild,
@@ -857,10 +946,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class LinkIconModule {
 }
-LinkIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LinkIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-LinkIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LinkIconModule, declarations: [LinkIconComponent], imports: [CommonModule], exports: [LinkIconComponent] });
-LinkIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LinkIconModule, imports: [[CommonModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LinkIconModule, decorators: [{
+LinkIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LinkIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+LinkIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LinkIconModule, declarations: [LinkIconComponent], imports: [CommonModule], exports: [LinkIconComponent] });
+LinkIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LinkIconModule, imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LinkIconModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [LinkIconComponent],
@@ -884,48 +973,14 @@ class ContextMenuComponent {
             this.menuItemClick.emit({ menuItem, handle: this.handle });
     }
 }
-ContextMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ContextMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-ContextMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: ContextMenuComponent, selector: "app-context-menu", inputs: { handle: "handle", menuItems: "menuItems" }, outputs: { menuItemClick: "menuItemClick" }, ngImport: i0, template: `
-    <!--  -->
-    <div class="mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-         role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-        <div class="py-1" role="none">
-            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-            <!-- -->
-            <ng-container *ngFor="let item of menuItems">
-                <app-link-icon (linkClick)="onLinkClick(item)" [menuItem]="item" [iconClass]="'mr-3 opacity-70'"
-                               class="text-gray-700 hover:text-indigo-700">
-                </app-link-icon>
-            </ng-container>
-        </div>
-    </div>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block z-20;\n      }\n    "], components: [{ type: LinkIconComponent, selector: "app-link-icon", inputs: ["menuItem", "iconClass"], outputs: ["linkClick"] }], directives: [{ type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ContextMenuComponent, decorators: [{
+ContextMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ContextMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+ContextMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: ContextMenuComponent, selector: "app-context-menu", inputs: { handle: "handle", menuItems: "menuItems" }, outputs: { menuItemClick: "menuItemClick" }, ngImport: i0, template: "<div class=\"mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\"\r\n     role=\"menu\" aria-orientation=\"vertical\" aria-labelledby=\"menu-0-button\" tabindex=\"-1\">\r\n    <div class=\"py-1\" role=\"none\">\r\n        <!-- Active: \"bg-gray-100 text-gray-900\", Not Active: \"text-gray-700\" -->\r\n        <!-- -->\r\n        <ng-container *ngFor=\"let item of menuItems\">\r\n            <app-link-icon (linkClick)=\"onLinkClick(item)\" [menuItem]=\"item\" [iconClass]=\"'mr-3 opacity-70'\"\r\n                           class=\"text-gray-700 hover:text-indigo-700\">\r\n            </app-link-icon>\r\n        </ng-container>\r\n    </div>\r\n</div>\r\n", styles: [":host{z-index:20;display:block}\n"], components: [{ type: LinkIconComponent, selector: "app-link-icon", inputs: ["menuItem", "iconClass"], outputs: ["linkClick"] }], directives: [{ type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ContextMenuComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-context-menu',
-                    template: `
-    <!--  -->
-    <div class="mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-         role="menu" aria-orientation="vertical" aria-labelledby="menu-0-button" tabindex="-1">
-        <div class="py-1" role="none">
-            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-            <!-- -->
-            <ng-container *ngFor="let item of menuItems">
-                <app-link-icon (linkClick)="onLinkClick(item)" [menuItem]="item" [iconClass]="'mr-3 opacity-70'"
-                               class="text-gray-700 hover:text-indigo-700">
-                </app-link-icon>
-            </ng-container>
-        </div>
-    </div>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block z-20;
-      }
-    `
-                    ],
+                    templateUrl: './context-menu.component.html',
+                    styleUrls: ['./context-menu.component.css'],
                     // changeDetection: ChangeDetectionStrategy.OnPush,
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { handle: [{
@@ -938,10 +993,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
 
 class ContextMenuModule {
 }
-ContextMenuModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ContextMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ContextMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ContextMenuModule, declarations: [ContextMenuComponent], imports: [CommonModule, LinkIconModule], exports: [ContextMenuComponent] });
-ContextMenuModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ContextMenuModule, imports: [[CommonModule, LinkIconModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ContextMenuModule, decorators: [{
+ContextMenuModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ContextMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ContextMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ContextMenuModule, declarations: [ContextMenuComponent], imports: [CommonModule, LinkIconModule], exports: [ContextMenuComponent] });
+ContextMenuModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ContextMenuModule, imports: [[CommonModule, LinkIconModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ContextMenuModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -963,14 +1018,14 @@ class DropdownMenuComponent {
         this.menuItemClicked.emit(menuItem);
     }
 }
-DropdownMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DropdownMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-DropdownMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: DropdownMenuComponent, selector: "app-dropdown-menu", inputs: { menus: "menus" }, outputs: { menuItemClicked: "menuItemClicked" }, ngImport: i0, template: "<!--\r\n              Dropdown menu, show/hide based on menu state.\r\n\r\n              Entering: \"transition ease-out duration-100\"\r\n                From: \"transform opacity-0 scale-95\"\r\n                To: \"transform opacity-100 scale-100\"\r\n              Leaving: \"transition ease-in duration-75\"\r\n                From: \"transform opacity-100 scale-100\"\r\n                To: \"transform opacity-0 scale-95\"\r\n            -->\r\n<div class=\"absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\"\r\n     role=\"menu\" aria-orientation=\"vertical\" aria-labelledby=\"user-menu-button\" tabindex=\"-1\">\r\n\r\n    <ng-container *ngFor=\"let menuItem of menus\">\r\n        <a [routerLink]=\"menuItem.routerLink()\" routerLinkActive=\"router-link-active\"\r\n           (click)=\"onMenuItemClick(menuItem)\" class=\"block px-4 py-2 text-sm text-gray-700\" tabindex=\"-1\">\r\n            {{menuItem.label}}\r\n        </a>\r\n    </ng-container>\r\n\r\n\r\n    <!-- Active: \"bg-gray-100\", Not Active: \"\" -->\r\n    <!-- <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-0\">Your\r\n        Profile</a>\r\n    <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\"\r\n       id=\"user-menu-item-1\">Settings</a>\r\n    <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-2\">Sign\r\n        out</a> -->\r\n</div>\r\n", styles: [""], directives: [{ type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i2.RouterLinkWithHref, selector: "a[routerLink],area[routerLink]", inputs: ["routerLink", "target", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }, { type: i2.RouterLinkActive, selector: "[routerLinkActive]", inputs: ["routerLinkActiveOptions", "routerLinkActive"], exportAs: ["routerLinkActive"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DropdownMenuComponent, decorators: [{
+DropdownMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DropdownMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+DropdownMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: DropdownMenuComponent, selector: "app-dropdown-menu", inputs: { menus: "menus" }, outputs: { menuItemClicked: "menuItemClicked" }, ngImport: i0, template: "<!--\r\n              Dropdown menu, show/hide based on menu state.\r\n\r\n              Entering: \"transition ease-out duration-100\"\r\n                From: \"transform opacity-0 scale-95\"\r\n                To: \"transform opacity-100 scale-100\"\r\n              Leaving: \"transition ease-in duration-75\"\r\n                From: \"transform opacity-100 scale-100\"\r\n                To: \"transform opacity-0 scale-95\"\r\n            -->\r\n<div class=\"absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\"\r\n     role=\"menu\" aria-orientation=\"vertical\" aria-labelledby=\"user-menu-button\" tabindex=\"-1\">\r\n\r\n    <ng-container *ngFor=\"let menuItem of menus\">\r\n        <a [routerLink]=\"menuItem.routerLink()\" routerLinkActive=\"router-link-active\"\r\n           (click)=\"onMenuItemClick(menuItem)\" class=\"block px-4 py-2 text-sm text-gray-700\" tabindex=\"-1\">\r\n            {{menuItem.label}}\r\n        </a>\r\n    </ng-container>\r\n\r\n\r\n    <!-- Active: \"bg-gray-100\", Not Active: \"\" -->\r\n    <!-- <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-0\">Your\r\n        Profile</a>\r\n    <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\"\r\n       id=\"user-menu-item-1\">Settings</a>\r\n    <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-2\">Sign\r\n        out</a> -->\r\n</div>\r\n", styles: [""], directives: [{ type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i2.RouterLinkWithHref, selector: "a[routerLink],area[routerLink]", inputs: ["routerLink", "target", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }, { type: i2.RouterLinkActive, selector: "[routerLinkActive]", inputs: ["routerLinkActiveOptions", "routerLinkActive"], exportAs: ["routerLinkActive"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DropdownMenuComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-dropdown-menu',
                     templateUrl: './dropdown-menu.component.html',
-                    styleUrls: ['./dropdown-menu.component.scss']
+                    styleUrls: ['./dropdown-menu.component.css']
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { menus: [{
                 type: Input
@@ -980,10 +1035,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
 
 class DropdownMenuModule {
 }
-DropdownMenuModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DropdownMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DropdownMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DropdownMenuModule, declarations: [DropdownMenuComponent], imports: [CommonModule, RouterModule], exports: [DropdownMenuComponent] });
-DropdownMenuModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DropdownMenuModule, imports: [[CommonModule, RouterModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: DropdownMenuModule, decorators: [{
+DropdownMenuModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DropdownMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DropdownMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DropdownMenuModule, declarations: [DropdownMenuComponent], imports: [CommonModule, RouterModule], exports: [DropdownMenuComponent] });
+DropdownMenuModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DropdownMenuModule, imports: [[CommonModule, RouterModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: DropdownMenuModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [DropdownMenuComponent],
@@ -1005,68 +1060,14 @@ class EmptyStateComponent {
         this.addNewItem.emit();
     }
 }
-EmptyStateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: EmptyStateComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-EmptyStateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: EmptyStateComponent, selector: "app-empty-state", inputs: { title: "title", description: "description", buttonLabel: "buttonLabel" }, outputs: { addNewItem: "addNewItem" }, ngImport: i0, template: `
-        <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-             aria-hidden="true">
-            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-        </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">{{ title }}</h3>
-        <p class="mt-1 text-sm text-gray-500">
-            {{ description }}
-        </p>
-        <div class="mt-6">
-            <button (click)="onAddNewItem()" type="button"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <!-- Heroicon name: solid/plus -->
-                <svg class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                     fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                          clip-rule="evenodd" />
-                </svg>
-                {{ buttonLabel }}
-            </button>
-        </div>
-  `, isInline: true, styles: ["\n      :host {\n        display: block;\n        @apply p-12 text-center border-2 border-gray-300;\n        @apply border-dashed rounded-lg hover:border-gray-400 focus:outline-none;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: EmptyStateComponent, decorators: [{
+EmptyStateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: EmptyStateComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+EmptyStateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: EmptyStateComponent, selector: "app-empty-state", inputs: { title: "title", description: "description", buttonLabel: "buttonLabel" }, outputs: { addNewItem: "addNewItem" }, ngImport: i0, template: "<svg class=\"w-12 h-12 mx-auto text-gray-400\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" aria-hidden=\"true\">\r\n    <path vector-effect=\"non-scaling-stroke\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n          d=\"M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z\" />\r\n</svg>\r\n<h3 class=\"mt-2 text-sm font-medium text-gray-900\">{{ title }}</h3>\r\n<p class=\"mt-1 text-sm text-gray-500\">\r\n    {{ description }}\r\n</p>\r\n<div class=\"mt-6\">\r\n    <button (click)=\"onAddNewItem()\" type=\"button\"\r\n            class=\"inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500\">\r\n        <!-- Heroicon name: solid/plus -->\r\n        <svg class=\"w-5 h-5 mr-2 -ml-1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\"\r\n             aria-hidden=\"true\">\r\n            <path fill-rule=\"evenodd\"\r\n                  d=\"M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z\"\r\n                  clip-rule=\"evenodd\" />\r\n        </svg>\r\n        {{ buttonLabel }}\r\n    </button>\r\n</div>\r\n", styles: [":host{display:block;border-width:2px;--tw-border-opacity: 1;border-color:rgba(209,213,219,var(--tw-border-opacity));padding:3rem;text-align:center;border-radius:.5rem;border-style:dashed}:host:hover{--tw-border-opacity: 1;border-color:rgba(156,163,175,var(--tw-border-opacity))}:host:focus{outline:2px solid transparent;outline-offset:2px}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: EmptyStateComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-empty-state',
-                    template: `
-        <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-             aria-hidden="true">
-            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-        </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">{{ title }}</h3>
-        <p class="mt-1 text-sm text-gray-500">
-            {{ description }}
-        </p>
-        <div class="mt-6">
-            <button (click)="onAddNewItem()" type="button"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <!-- Heroicon name: solid/plus -->
-                <svg class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                     fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                          clip-rule="evenodd" />
-                </svg>
-                {{ buttonLabel }}
-            </button>
-        </div>
-  `,
-                    styles: [
-                        `
-      :host {
-        display: block;
-        @apply p-12 text-center border-2 border-gray-300;
-        @apply border-dashed rounded-lg hover:border-gray-400 focus:outline-none;
-      }
-    `
-                    ]
+                    templateUrl: './empty-state.component.html',
+                    styleUrls: ['./empty-state.component.css'],
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { title: [{
                 type: Input
@@ -1079,266 +1080,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class EmptyStateModule {
 }
-EmptyStateModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: EmptyStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-EmptyStateModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: EmptyStateModule, declarations: [EmptyStateComponent], exports: [EmptyStateComponent] });
-EmptyStateModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: EmptyStateModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: EmptyStateModule, decorators: [{
+EmptyStateModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: EmptyStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+EmptyStateModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: EmptyStateModule, declarations: [EmptyStateComponent], exports: [EmptyStateComponent] });
+EmptyStateModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: EmptyStateModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: EmptyStateModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [EmptyStateComponent],
                     exports: [EmptyStateComponent]
-                }]
-        }] });
-
-class IconCloseComponent extends BaseIconComponent {
-    constructor(el, renderer) {
-        super(el, renderer);
-    }
-    ngOnInit() {
-        super.ngOnInit();
-    }
-}
-IconCloseComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconCloseComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconCloseComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconCloseComponent, selector: "app-icon-close", usesInheritance: true, ngImport: i0, template: `
-        <svg x-description="Heroicon name: outline/x"
-             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-6 h-6;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconCloseComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'app-icon-close',
-                    template: `
-        <svg x-description="Heroicon name: outline/x"
-             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-6 h-6;
-      }
-    `
-                    ]
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class IconDotVerticalComponent extends BaseIconComponent {
-    constructor(el, renderer) {
-        super(el, renderer);
-    }
-    ngOnInit() {
-        super.ngOnInit();
-    }
-}
-IconDotVerticalComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconDotVerticalComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconDotVerticalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconDotVerticalComponent, selector: "app-icon-dot-vertical", usesInheritance: true, ngImport: i0, template: `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-        </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-5 h-5 text-gray-500 transition-colors duration-200 hover:text-gray-900;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconDotVerticalComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'app-icon-dot-vertical',
-                    template: `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-        </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-5 h-5 text-gray-500 transition-colors duration-200 hover:text-gray-900;
-      }
-    `
-                    ]
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class IconEyeComponent extends BaseIconComponent {
-    constructor(el, renderer) {
-        super(el, renderer);
-    }
-    ngOnInit() {
-        super.ngOnInit();
-    }
-}
-IconEyeComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconEyeComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconEyeComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconEyeComponent, selector: "app-icon-eye", usesInheritance: true, ngImport: i0, template: `
-     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
-     </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-5 h-5;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconEyeComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'app-icon-eye',
-                    template: `
-     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
-     </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-5 h-5;
-      }
-    `
-                    ]
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class IconLoginComponent extends BaseIconComponent {
-    constructor(el, renderer) {
-        super(el, renderer);
-    }
-    ngOnInit() {
-        super.ngOnInit();
-    }
-}
-IconLoginComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconLoginComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconLoginComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconLoginComponent, selector: "app-icon-login", usesInheritance: true, ngImport: i0, template: `
-     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
-     </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-5 h-5;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconLoginComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'app-icon-login',
-                    template: `
-     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
-     </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-5 h-5;
-      }
-    `
-                    ]
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class IconLogoutComponent extends BaseIconComponent {
-    constructor(el, renderer) {
-        super(el, renderer);
-    }
-    ngOnInit() {
-        super.ngOnInit();
-    }
-}
-IconLogoutComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconLogoutComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconLogoutComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconLogoutComponent, selector: "app-icon-logout", usesInheritance: true, ngImport: i0, template: `
-     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
-     </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-5 h-5;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconLogoutComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'app-icon-logout',
-                    template: `
-     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
-     </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-5 h-5;
-      }
-    `
-                    ]
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class IconPencilComponent extends BaseIconComponent {
-    constructor(el, renderer) {
-        super(el, renderer);
-    }
-    ngOnInit() {
-        super.ngOnInit();
-    }
-}
-IconPencilComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconPencilComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-IconPencilComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: IconPencilComponent, selector: "app-icon-pencil", usesInheritance: true, ngImport: i0, template: `
-        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-        </svg>
-  `, isInline: true, styles: ["\n      :host {\n        @apply block w-5 h-5;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconPencilComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'app-icon-pencil',
-                    template: `
-        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-        </svg>
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply block w-5 h-5;
-      }
-    `
-                    ]
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class IconsModule {
-}
-IconsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-IconsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconsModule, declarations: [IconCloseComponent,
-        IconDotVerticalComponent,
-        IconEyeComponent,
-        IconPencilComponent,
-        IconTrashComponent,
-        IconLoginComponent,
-        IconLogoutComponent,
-        BaseIconComponent], exports: [IconCloseComponent,
-        IconDotVerticalComponent,
-        IconEyeComponent,
-        IconPencilComponent,
-        IconTrashComponent,
-        IconLoginComponent,
-        IconLogoutComponent,
-        BaseIconComponent] });
-IconsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconsModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: IconsModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [
-                        IconCloseComponent,
-                        IconDotVerticalComponent,
-                        IconEyeComponent,
-                        IconPencilComponent,
-                        IconTrashComponent,
-                        IconLoginComponent,
-                        IconLogoutComponent,
-                        BaseIconComponent
-                    ],
-                    exports: [
-                        IconCloseComponent,
-                        IconDotVerticalComponent,
-                        IconEyeComponent,
-                        IconPencilComponent,
-                        IconTrashComponent,
-                        IconLoginComponent,
-                        IconLogoutComponent,
-                        BaseIconComponent
-                    ],
-                    imports: []
                 }]
         }] });
 
@@ -1347,45 +1096,25 @@ class PageHeadingLayoutComponent {
     ngOnInit() {
     }
 }
-PageHeadingLayoutComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingLayoutComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-PageHeadingLayoutComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: PageHeadingLayoutComponent, selector: "app-page-heading-layout", ngImport: i0, template: `
-    <header class="bg-white border-dashed border-b-2 border-gray-200">
-      <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          dfaf
-        <ng-content></ng-content>
-      </div>
-    </header>
-  `, isInline: true, styles: ["\n      :host {\n        display: block;\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingLayoutComponent, decorators: [{
+PageHeadingLayoutComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingLayoutComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+PageHeadingLayoutComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: PageHeadingLayoutComponent, selector: "app-page-heading-layout", ngImport: i0, template: "<header class=\"bg-white border-b-2 border-gray-200 border-dashed\">\r\n    <div class=\"px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8\">\r\n        dfaf\r\n        <ng-content></ng-content>\r\n    </div>\r\n</header>\r\n", styles: [":host{display:block}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingLayoutComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-page-heading-layout',
-                    template: `
-    <header class="bg-white border-dashed border-b-2 border-gray-200">
-      <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          dfaf
-        <ng-content></ng-content>
-      </div>
-    </header>
-  `,
-                    styles: [
-                        `
-      :host {
-        display: block;
-      }
-    `
-                    ]
+                    templateUrl: './page-heading-layout.component.html',
+                    styleUrls: ['./page-heading-layout.component.css'],
                 }]
         }], ctorParameters: function () { return []; } });
 
 class PageHeadingLayoutModule {
 }
-PageHeadingLayoutModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingLayoutModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-PageHeadingLayoutModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingLayoutModule, declarations: [PageHeadingLayoutComponent], imports: [CommonModule], exports: [PageHeadingLayoutComponent] });
-PageHeadingLayoutModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingLayoutModule, imports: [[
+PageHeadingLayoutModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingLayoutModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+PageHeadingLayoutModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingLayoutModule, declarations: [PageHeadingLayoutComponent], imports: [CommonModule], exports: [PageHeadingLayoutComponent] });
+PageHeadingLayoutModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingLayoutModule, imports: [[
             CommonModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingLayoutModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingLayoutModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [PageHeadingLayoutComponent],
@@ -1407,21 +1136,14 @@ class TwoColumnLayoutComponent {
         this.hamburgerMenuClick.emit();
     }
 }
-TwoColumnLayoutComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TwoColumnLayoutComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-TwoColumnLayoutComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: TwoColumnLayoutComponent, selector: "app-two-column-layout", inputs: { isSecondaryContentVisible: "isSecondaryContentVisible" }, outputs: { hamburgerMenuClick: "hamburgerMenuClick" }, ngImport: i0, template: "<header class=\"bg-white border-b-2 border-gray-200 border-dashed\">\n    <div class=\"px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8\">\n        <ng-content select=\"[header-content]\"></ng-content>\n    </div>\n</header>\n\n<ng-content select=\"[breadcrumb-content]\"></ng-content>\n<!-- overflow-hidden -->\n<div class=\"flex flex-col flex-1 min-w-0 min-h-full\">\n    <div class=\"lg:hidden\">\n        <div class=\"flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5\">\n            <button (click)=\"hamburgerMenuClickHandler()\" type=\"button\"\n                    class=\"inline-flex items-center justify-center w-12 h-12 -mr-3 text-gray-500 rounded-md hover:text-gray-900\">\n                <span class=\"sr-only\">Open sidebar</span>\n                <!-- Heroicon name: outline/menu -->\n                <svg class=\"w-6 h-6\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n                     stroke=\"currentColor\" aria-hidden=\"true\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\" />\n                </svg>\n            </button>\n        </div>\n    </div>\n    <!-- overflow-hidden -->\n    <div class=\"relative z-0 flex flex-1 \">\n        <!-- overflow-y-auto -->\n        <main class=\"relative z-0 flex-1 bg-white focus:outline-none\">\n            <!-- Start main area-->\n            <!-- absolute inset-0  -->\n            <div class=\"min-h-full px-4 py-6 sm:px-6 lg:px-8\">\n                <div class=\"h-full\">\n                    <ng-content select=\"[main-content]\"></ng-content>\n                </div>\n            </div>\n            <!-- End main area -->\n        </main>\n        <!-- overflow-y-auto -->\n        <!-- absolute inset-0  -->\n        <aside *ngIf=\"isSecondaryContentVisible\"\n               class=\"relative flex-shrink-0 hidden border-l border-gray-200 bg-purple-50 lg:flex lg:flex-col w-80\">\n            <!-- Start secondary column (hidden on smaller screens) -->\n            <div class=\"min-h-full px-4 py-6 sm:px-6 lg:px-8\">\n                <div class=\"h-full\">\n                    <ng-content select=\"[secondary-content]\"></ng-content>\n                </div>\n            </div>\n            <!-- End secondary column -->\n        </aside>\n    </div>\n</div>\n", styles: ["\n      :host {\n          display: block;\n          flex: 1 1 0%;\n      }\n    "], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TwoColumnLayoutComponent, decorators: [{
+TwoColumnLayoutComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TwoColumnLayoutComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+TwoColumnLayoutComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: TwoColumnLayoutComponent, selector: "app-two-column-layout", inputs: { isSecondaryContentVisible: "isSecondaryContentVisible" }, outputs: { hamburgerMenuClick: "hamburgerMenuClick" }, ngImport: i0, template: "<header class=\"bg-white border-b-2 border-gray-200 border-dashed\">\n    <div class=\"px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8\">\n        <ng-content select=\"[header-content]\"></ng-content>\n    </div>\n</header>\n\n<ng-content select=\"[breadcrumb-content]\"></ng-content>\n<!-- overflow-hidden -->\n<div class=\"flex flex-col flex-1 min-w-0 min-h-full\">\n    <div class=\"lg:hidden\">\n        <div class=\"flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5\">\n            <button (click)=\"hamburgerMenuClickHandler()\" type=\"button\"\n                    class=\"inline-flex items-center justify-center w-12 h-12 -mr-3 text-gray-500 rounded-md hover:text-gray-900\">\n                <span class=\"sr-only\">Open sidebar</span>\n                <!-- Heroicon name: outline/menu -->\n                <svg class=\"w-6 h-6\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n                     stroke=\"currentColor\" aria-hidden=\"true\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\" />\n                </svg>\n            </button>\n        </div>\n    </div>\n    <!-- overflow-hidden -->\n    <div class=\"relative z-0 flex flex-1 \">\n        <!-- overflow-y-auto -->\n        <main class=\"relative z-0 flex-1 bg-white focus:outline-none\">\n            <!-- Start main area-->\n            <!-- absolute inset-0  -->\n            <div class=\"min-h-full px-4 py-6 sm:px-6 lg:px-8\">\n                <div class=\"h-full\">\n                    <ng-content select=\"[main-content]\"></ng-content>\n                </div>\n            </div>\n            <!-- End main area -->\n        </main>\n        <!-- overflow-y-auto -->\n        <!-- absolute inset-0  -->\n        <aside *ngIf=\"isSecondaryContentVisible\"\n               class=\"relative flex-shrink-0 hidden border-l border-gray-200 bg-purple-50 lg:flex lg:flex-col w-80\">\n            <!-- Start secondary column (hidden on smaller screens) -->\n            <div class=\"min-h-full px-4 py-6 sm:px-6 lg:px-8\">\n                <div class=\"h-full\">\n                    <ng-content select=\"[secondary-content]\"></ng-content>\n                </div>\n            </div>\n            <!-- End secondary column -->\n        </aside>\n    </div>\n</div>\n", styles: [":host{display:block;flex:1 1 0%}\n"], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TwoColumnLayoutComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-two-column-layout',
                     templateUrl: './two-column-layout.component.html',
-                    styles: [
-                        `
-      :host {
-          display: block;
-          flex: 1 1 0%;
-      }
-    `
-                    ]
+                    styleUrls: ['./two-column-layout.component.css'],
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { isSecondaryContentVisible: [{
                 type: Input
@@ -1431,12 +1153,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
 
 class TwoColumnLayoutModule {
 }
-TwoColumnLayoutModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TwoColumnLayoutModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-TwoColumnLayoutModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TwoColumnLayoutModule, declarations: [TwoColumnLayoutComponent], imports: [CommonModule], exports: [TwoColumnLayoutComponent] });
-TwoColumnLayoutModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TwoColumnLayoutModule, imports: [[
+TwoColumnLayoutModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TwoColumnLayoutModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+TwoColumnLayoutModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TwoColumnLayoutModule, declarations: [TwoColumnLayoutComponent], imports: [CommonModule], exports: [TwoColumnLayoutComponent] });
+TwoColumnLayoutModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TwoColumnLayoutModule, imports: [[
             CommonModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TwoColumnLayoutModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TwoColumnLayoutModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [TwoColumnLayoutComponent],
@@ -1452,35 +1174,23 @@ class LogoComponent {
     ngOnInit() {
     }
 }
-LogoComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LogoComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-LogoComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: LogoComponent, selector: "app-logo", ngImport: i0, template: `
-       <!-- <img class="hidden w-40 h-8 lg:block" src="assets/psr-logo.svg" alt="Personal Skill Rating"> -->
-       <img class="block w-10 h-8 lg:block" src="assets/psr-abbrv-logo.svg" alt="Personal Skill Rating">
-    `, isInline: true, styles: ["\n\n    :host {\n        @apply flex items-center flex-shrink-0;\n    }\n\n  "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LogoComponent, decorators: [{
+LogoComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LogoComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+LogoComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: LogoComponent, selector: "app-logo", ngImport: i0, template: "<img class=\"block w-10 h-8 lg:block\" src=\"assets/psr-abbrv-logo.svg\" alt=\"Personal Skill Rating\">\r\n", styles: [":host{display:flex;flex-shrink:0;align-items:center}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LogoComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-logo',
-                    template: `
-       <!-- <img class="hidden w-40 h-8 lg:block" src="assets/psr-logo.svg" alt="Personal Skill Rating"> -->
-       <img class="block w-10 h-8 lg:block" src="assets/psr-abbrv-logo.svg" alt="Personal Skill Rating">
-    `,
-                    styles: [`
-
-    :host {
-        @apply flex items-center flex-shrink-0;
-    }
-
-  `]
+                    templateUrl: './logo.component.html',
+                    styleUrls: ['./logo.component.css'],
                 }]
         }], ctorParameters: function () { return []; } });
 
 class LogoModule {
 }
-LogoModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LogoModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-LogoModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LogoModule, declarations: [LogoComponent], exports: [LogoComponent] });
-LogoModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LogoModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LogoModule, decorators: [{
+LogoModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LogoModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+LogoModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LogoModule, declarations: [LogoComponent], exports: [LogoComponent] });
+LogoModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LogoModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LogoModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [LogoComponent],
@@ -1501,58 +1211,14 @@ class PageHeadingComponent {
     ngOnInit() {
     }
 }
-PageHeadingComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-PageHeadingComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: PageHeadingComponent, selector: "app-page-heading", inputs: { title: "title", description: "description", xSize: ["x-size", "xSize"], xColor: ["x-color", "xColor"] }, ngImport: i0, template: `
-    <h1>{{title}}</h1>
-    <p>{{description}}</p>
-  `, isInline: true, styles: ["\n      :host {\n        display: block;\n      }\n\n      :host([x-size=large]) {\n          & h1 {\n              @apply text-3xl font-bold;\n          }\n\n          & p {\n              @apply text-lg font-normal;\n          }\n      }\n\n      :host([x-size=medium]) {\n          & h1 {\n              @apply text-lg font-medium leading-6;\n          }\n\n          & p {\n              @apply max-w-2xl mt-1 text-sm;\n          }\n      }\n\n      :host([x-color=black]) {\n          & h1, & p {\n              @apply text-gray-900;\n          }\n      }\n\n      :host([x-color=indigo]) {\n          & h1, & p {\n              @apply text-indigo-900;\n          }\n      }\n    "] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingComponent, decorators: [{
+PageHeadingComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+PageHeadingComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: PageHeadingComponent, selector: "app-page-heading", inputs: { title: "title", description: "description", xSize: ["x-size", "xSize"], xColor: ["x-color", "xColor"] }, ngImport: i0, template: "<h1>{{title}}</h1>\r\n<p>{{description}}</p>\r\n", styles: [":host{display:block}:host([x-size=large]) h1{font-size:1.875rem;line-height:2.25rem;font-weight:700}:host([x-size=large]) p{font-size:1.125rem;line-height:1.75rem;font-weight:400}:host([x-size=medium]) h1{font-size:1.125rem;line-height:1.75rem;font-weight:500;line-height:1.5rem}:host([x-size=medium]) p{margin-top:.25rem;max-width:42rem;font-size:.875rem;line-height:1.25rem}:host([x-color=black]) h1,:host([x-color=black]) p{--tw-text-opacity: 1;color:rgba(17,24,39,var(--tw-text-opacity))}:host([x-color=indigo]) h1,:host([x-color=indigo]) p{--tw-text-opacity: 1;color:rgba(49,46,129,var(--tw-text-opacity))}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-page-heading',
-                    template: `
-    <h1>{{title}}</h1>
-    <p>{{description}}</p>
-  `,
-                    styles: [
-                        `
-      :host {
-        display: block;
-      }
-
-      :host([x-size=large]) {
-          & h1 {
-              @apply text-3xl font-bold;
-          }
-
-          & p {
-              @apply text-lg font-normal;
-          }
-      }
-
-      :host([x-size=medium]) {
-          & h1 {
-              @apply text-lg font-medium leading-6;
-          }
-
-          & p {
-              @apply max-w-2xl mt-1 text-sm;
-          }
-      }
-
-      :host([x-color=black]) {
-          & h1, & p {
-              @apply text-gray-900;
-          }
-      }
-
-      :host([x-color=indigo]) {
-          & h1, & p {
-              @apply text-indigo-900;
-          }
-      }
-    `
-                    ]
+                    templateUrl: './page-heading.component.html',
+                    styleUrls: ['./page-heading.component.css'],
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { title: [{
                 type: Input
@@ -1567,10 +1233,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class PageHeadingModule {
 }
-PageHeadingModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-PageHeadingModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingModule, declarations: [PageHeadingComponent], exports: [PageHeadingComponent] });
-PageHeadingModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: PageHeadingModule, decorators: [{
+PageHeadingModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+PageHeadingModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingModule, declarations: [PageHeadingComponent], exports: [PageHeadingComponent] });
+PageHeadingModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: PageHeadingModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [PageHeadingComponent],
@@ -1584,30 +1250,14 @@ class ReadFieldComponent {
         return this.fieldLabel && this.fieldValue;
     }
 }
-ReadFieldComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ReadFieldComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-ReadFieldComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: ReadFieldComponent, selector: "app-read-field", inputs: { fieldLabel: "fieldLabel", fieldValue: "fieldValue" }, ngImport: i0, template: `
-    <ng-container *ngIf="isFieldVisible">
-        <div class="text-sm font-medium text-indigo-900">{{ fieldLabel }}</div>
-        <div class="mt-1 text-sm text-indigo-900">{{ fieldValue }}</div>
-    </ng-container>
-  `, isInline: true, styles: ["\n      :host {\n        display: block;\n      }\n    "], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ReadFieldComponent, decorators: [{
+ReadFieldComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ReadFieldComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+ReadFieldComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: ReadFieldComponent, selector: "app-read-field", inputs: { fieldLabel: "fieldLabel", fieldValue: "fieldValue" }, ngImport: i0, template: "<ng-container *ngIf=\"isFieldVisible\">\r\n    <div class=\"text-sm font-medium text-indigo-900\">{{ fieldLabel }}</div>\r\n    <div class=\"mt-1 text-sm text-indigo-900\">{{ fieldValue }}</div>\r\n</ng-container>\r\n", styles: [":host{display:block}\n"], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ReadFieldComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-read-field',
-                    template: `
-    <ng-container *ngIf="isFieldVisible">
-        <div class="text-sm font-medium text-indigo-900">{{ fieldLabel }}</div>
-        <div class="mt-1 text-sm text-indigo-900">{{ fieldValue }}</div>
-    </ng-container>
-  `,
-                    styles: [
-                        `
-      :host {
-        display: block;
-      }
-    `
-                    ]
+                    templateUrl: './read-field.component.html',
+                    styleUrls: ['./read-field.component.css'],
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { fieldLabel: [{
                 type: Input
@@ -1616,10 +1266,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class ReadFieldModule {
 }
-ReadFieldModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ReadFieldModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ReadFieldModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ReadFieldModule, declarations: [ReadFieldComponent], imports: [CommonModule], exports: [ReadFieldComponent] });
-ReadFieldModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ReadFieldModule, imports: [[CommonModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ReadFieldModule, decorators: [{
+ReadFieldModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ReadFieldModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ReadFieldModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ReadFieldModule, declarations: [ReadFieldComponent], imports: [CommonModule], exports: [ReadFieldComponent] });
+ReadFieldModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ReadFieldModule, imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ReadFieldModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [ReadFieldComponent],
@@ -1639,9 +1289,9 @@ class SecondaryHeaderService {
         this._subjectCloseClicked$.next(true);
     }
 }
-SecondaryHeaderService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-SecondaryHeaderService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderService, decorators: [{
+SecondaryHeaderService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+SecondaryHeaderService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
@@ -1657,72 +1307,14 @@ class SecondaryHeaderComponent {
         this.closeClick.emit();
     }
 }
-SecondaryHeaderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-SecondaryHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.11", type: SecondaryHeaderComponent, selector: "app-secondary-header", inputs: { title: "title", description: "description" }, outputs: { closeClick: "closeClick" }, ngImport: i0, template: `
-        <!-- <div>
-            <h1 class="text-lg font-medium leading-6 text-indigo-900">
-                Skill Information
-            </h1>
-            <p class="max-w-2xl mt-1 text-sm text-indigo-900">
-                Detils of the skill.
-            </p>
-        </div> -->
-        <app-page-heading x-size="medium" x-color="indigo" [title]="title" [description]="description"></app-page-heading>
-        <app-button-icon (buttonClick)="onButtonClick()" class="text-indigo-900">
-            <app-icon-close></app-icon-close>
-        </app-button-icon>
-        <!-- <app-page-heading x-size="medium" x-color="indigo"></app-page-heading> -->
-        <!-- <div class="flex items-center ml-3 h-7">
-            <button (click)="onCloseClick()" type="button"
-                    class="text-indigo-800 bg-transparent rounded-md hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:text-indigo-900">
-                <span class="sr-only">Close panel</span>
-                <svg class="w-6 h-6" x-description="Heroicon name: outline/x"
-                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div> -->
-  `, isInline: true, styles: ["\n      :host {\n        @apply flex justify-between py-5 border-b border-gray-200;\n      }\n    "], components: [{ type: PageHeadingComponent, selector: "app-page-heading", inputs: ["title", "description", "x-size", "x-color"] }, { type: ButtonIconComponent, selector: "app-button-icon", inputs: ["ariaLabel"], outputs: ["buttonClick"] }, { type: IconCloseComponent, selector: "app-icon-close" }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderComponent, decorators: [{
+SecondaryHeaderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+SecondaryHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "12.2.14", type: SecondaryHeaderComponent, selector: "app-secondary-header", inputs: { title: "title", description: "description" }, outputs: { closeClick: "closeClick" }, ngImport: i0, template: "<!-- <div>\r\n            <h1 class=\"text-lg font-medium leading-6 text-indigo-900\">\r\n                Skill Information\r\n            </h1>\r\n            <p class=\"max-w-2xl mt-1 text-sm text-indigo-900\">\r\n                Detils of the skill.\r\n            </p>\r\n        </div> -->\r\n<app-page-heading x-size=\"medium\" x-color=\"indigo\" [title]=\"title\" [description]=\"description\"></app-page-heading>\r\n<app-button-icon (buttonClick)=\"onButtonClick()\" class=\"text-indigo-900\">\r\n    <app-icon-close></app-icon-close>\r\n</app-button-icon>\r\n<!-- <app-page-heading x-size=\"medium\" x-color=\"indigo\"></app-page-heading> -->\r\n<!-- <div class=\"flex items-center ml-3 h-7\">\r\n            <button (click)=\"onCloseClick()\" type=\"button\"\r\n                    class=\"text-indigo-800 bg-transparent rounded-md hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:text-indigo-900\">\r\n                <span class=\"sr-only\">Close panel</span>\r\n                <svg class=\"w-6 h-6\" x-description=\"Heroicon name: outline/x\"\r\n                     xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\r\n                     stroke=\"currentColor\" aria-hidden=\"true\">\r\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\r\n                          d=\"M6 18L18 6M6 6l12 12\"></path>\r\n                </svg>\r\n            </button>\r\n        </div> -->\r\n", styles: [":host{display:flex;justify-content:space-between;border-bottom-width:1px;--tw-border-opacity: 1;border-color:rgba(229,231,235,var(--tw-border-opacity));padding-top:1.25rem;padding-bottom:1.25rem}\n"], components: [{ type: PageHeadingComponent, selector: "app-page-heading", inputs: ["title", "description", "x-size", "x-color"] }, { type: ButtonIconComponent, selector: "app-button-icon", inputs: ["ariaLabel"], outputs: ["buttonClick"] }, { type: IconCloseComponent, selector: "app-icon-close" }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'app-secondary-header',
-                    template: `
-        <!-- <div>
-            <h1 class="text-lg font-medium leading-6 text-indigo-900">
-                Skill Information
-            </h1>
-            <p class="max-w-2xl mt-1 text-sm text-indigo-900">
-                Detils of the skill.
-            </p>
-        </div> -->
-        <app-page-heading x-size="medium" x-color="indigo" [title]="title" [description]="description"></app-page-heading>
-        <app-button-icon (buttonClick)="onButtonClick()" class="text-indigo-900">
-            <app-icon-close></app-icon-close>
-        </app-button-icon>
-        <!-- <app-page-heading x-size="medium" x-color="indigo"></app-page-heading> -->
-        <!-- <div class="flex items-center ml-3 h-7">
-            <button (click)="onCloseClick()" type="button"
-                    class="text-indigo-800 bg-transparent rounded-md hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:text-indigo-900">
-                <span class="sr-only">Close panel</span>
-                <svg class="w-6 h-6" x-description="Heroicon name: outline/x"
-                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div> -->
-  `,
-                    styles: [
-                        `
-      :host {
-        @apply flex justify-between py-5 border-b border-gray-200;
-      }
-    `
-                    ]
+                    templateUrl: './secondary-header.component.html',
+                    styleUrls: ['./secondary-header.component.css'],
                 }]
         }], ctorParameters: function () { return []; }, propDecorators: { title: [{
                 type: Input
@@ -1733,10 +1325,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
             }] } });
 class SecondaryHeaderModule {
 }
-SecondaryHeaderModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-SecondaryHeaderModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderModule, declarations: [SecondaryHeaderComponent], imports: [ButtonIconModule, IconsModule, PageHeadingModule], exports: [SecondaryHeaderComponent] });
-SecondaryHeaderModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderModule, providers: [SecondaryHeaderService], imports: [[ButtonIconModule, IconsModule, PageHeadingModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SecondaryHeaderModule, decorators: [{
+SecondaryHeaderModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+SecondaryHeaderModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderModule, declarations: [SecondaryHeaderComponent], imports: [ButtonIconModule, IconsModule, PageHeadingModule], exports: [SecondaryHeaderComponent] });
+SecondaryHeaderModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderModule, providers: [SecondaryHeaderService], imports: [[ButtonIconModule, IconsModule, PageHeadingModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SecondaryHeaderModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [SecondaryHeaderComponent],
@@ -1748,8 +1340,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
 
 class SharedlibModule {
 }
-SharedlibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SharedlibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-SharedlibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SharedlibModule, imports: [CommonModule,
+SharedlibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SharedlibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+SharedlibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SharedlibModule, imports: [CommonModule,
         RouterModule,
         AlertModule,
         BreadcrumbModule,
@@ -1785,7 +1377,7 @@ SharedlibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version
         DisableControlModule,
         ElementHostModule,
         TemplateHandleModule] });
-SharedlibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SharedlibModule, providers: [
+SharedlibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SharedlibModule, providers: [
         UtilService
     ], imports: [[
             CommonModule,
@@ -1825,7 +1417,7 @@ SharedlibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version
         DisableControlModule,
         ElementHostModule,
         TemplateHandleModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: SharedlibModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: SharedlibModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],
@@ -1882,5 +1474,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { ALERT_CONFIG_TOKEN, Alert, AlertComponent, AlertContainerComponent, AlertModule, AlertService, AlertType, BREADCRUMB_CONFIG_TOKEN, BaseIconComponent, BlockUiDirective, BlockUiModule, BreadcrumbComponent, BreadcrumbModule, BreadcrumbService, ButtonIconComponent, ButtonIconModule, ContextMenuComponent, ContextMenuModule, DisableControlDirective, DisableControlModule, DropdownMenuComponent, DropdownMenuModule, ElementHostDirective, ElementHostModule, EmptyStateComponent, EmptyStateModule, IconCloseComponent, IconDotVerticalComponent, IconEyeComponent, IconLoginComponent, IconLogoutComponent, IconPencilComponent, IconTrashComponent, IconsModule, LinkIconComponent, LinkIconModule, LogoComponent, LogoModule, MenuItem, PRIMARY_MENU_TOKEN, PROFILE_MENU_TOKEN, PageHeadingComponent, PageHeadingLayoutComponent, PageHeadingLayoutModule, PageHeadingModule, ReadFieldComponent, ReadFieldModule, SecondaryHeaderComponent, SecondaryHeaderModule, SecondaryHeaderService, SharedlibModule, TemplateHandleDirective, TemplateHandleModule, TwoColumnLayoutComponent, TwoColumnLayoutModule };
+export { ALERT_CONFIG_TOKEN, Alert, AlertComponent, AlertContainerComponent, AlertModule, AlertService, AlertType, BREADCRUMB_CONFIG_TOKEN, BaseIconComponent, BlockUiDirective, BlockUiModule, BreadcrumbComponent, BreadcrumbModule, BreadcrumbService, ButtonIconComponent, ButtonIconModule, ContextMenuComponent, ContextMenuModule, DisableControlDirective, DisableControlModule, DropdownMenuComponent, DropdownMenuModule, ElementHostDirective, ElementHostModule, EmptyStateComponent, EmptyStateModule, IconCloseComponent, IconDotVerticalComponent, IconEyeComponent, IconLoginComponent, IconLogoutComponent, IconPencilComponent, IconTrashComponent, IconsModule, LinkIconComponent, LinkIconModule, LogoComponent, LogoModule, MenuItem, PageHeadingComponent, PageHeadingLayoutComponent, PageHeadingLayoutModule, PageHeadingModule, ReadFieldComponent, ReadFieldModule, SecondaryHeaderComponent, SecondaryHeaderModule, SecondaryHeaderService, SharedlibModule, TemplateHandleDirective, TemplateHandleModule, TwoColumnLayoutComponent, TwoColumnLayoutModule };
 //# sourceMappingURL=sharedlib.js.map

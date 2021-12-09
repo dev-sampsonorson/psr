@@ -11,6 +11,7 @@ export declare class ProfileMenuComponent implements OnInit, OnDestroy {
     private getUserSub;
     private openStatus$;
     isDropdownOpen: boolean;
+    contextMenuHandle: Symbol;
     menuItems: MenuItem[];
     constructor(service: ProfileMenuService, router: Router);
     ngOnInit(): void;

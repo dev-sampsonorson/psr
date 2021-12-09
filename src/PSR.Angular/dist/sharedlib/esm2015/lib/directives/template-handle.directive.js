@@ -5,9 +5,9 @@ export class TemplateHandleDirective {
         this.templateRef = templateRef;
     }
 }
-TemplateHandleDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleDirective, deps: [{ token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
-TemplateHandleDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.11", type: TemplateHandleDirective, selector: "[appTemplateHandle]", ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleDirective, decorators: [{
+TemplateHandleDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleDirective, deps: [{ token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
+TemplateHandleDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "12.2.14", type: TemplateHandleDirective, selector: "[appTemplateHandle]", ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[appTemplateHandle]'
@@ -15,14 +15,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
         }], ctorParameters: function () { return [{ type: i0.TemplateRef }]; } });
 export class TemplateHandleModule {
 }
-TemplateHandleModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-TemplateHandleModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule, declarations: [TemplateHandleDirective], exports: [TemplateHandleDirective] });
-TemplateHandleModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TemplateHandleModule, decorators: [{
+TemplateHandleModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+TemplateHandleModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule, declarations: [TemplateHandleDirective], exports: [TemplateHandleDirective] });
+TemplateHandleModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TemplateHandleModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [TemplateHandleDirective],
                     exports: [TemplateHandleDirective]
                 }]
         }] });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVtcGxhdGUtaGFuZGxlLmRpcmVjdGl2ZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3NoYXJlZGxpYi9zcmMvbGliL2RpcmVjdGl2ZXMvdGVtcGxhdGUtaGFuZGxlLmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLFFBQVEsRUFBZSxNQUFNLGVBQWUsQ0FBQzs7QUFNakUsTUFBTSxPQUFPLHVCQUF1QjtJQUNoQyxZQUFtQixXQUE2QjtRQUE3QixnQkFBVyxHQUFYLFdBQVcsQ0FBa0I7SUFBSSxDQUFDOztxSEFENUMsdUJBQXVCO3lHQUF2Qix1QkFBdUI7NEZBQXZCLHVCQUF1QjtrQkFIbkMsU0FBUzttQkFBQztvQkFDUCxRQUFRLEVBQUUscUJBQXFCO2lCQUNsQzs7QUFTRCxNQUFNLE9BQU8sb0JBQW9COztrSEFBcEIsb0JBQW9CO21IQUFwQixvQkFBb0IsaUJBUnBCLHVCQUF1QixhQUF2Qix1QkFBdUI7bUhBUXZCLG9CQUFvQjs0RkFBcEIsb0JBQW9CO2tCQUpoQyxRQUFRO21CQUFDO29CQUNOLFlBQVksRUFBRSxDQUFDLHVCQUF1QixDQUFDO29CQUN2QyxPQUFPLEVBQUUsQ0FBQyx1QkFBdUIsQ0FBQztpQkFDckMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEaXJlY3RpdmUsIE5nTW9kdWxlLCBUZW1wbGF0ZVJlZiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xyXG5cclxuXHJcbkBEaXJlY3RpdmUoe1xyXG4gICAgc2VsZWN0b3I6ICdbYXBwVGVtcGxhdGVIYW5kbGVdJ1xyXG59KVxyXG5leHBvcnQgY2xhc3MgVGVtcGxhdGVIYW5kbGVEaXJlY3RpdmUge1xyXG4gICAgY29uc3RydWN0b3IocHVibGljIHRlbXBsYXRlUmVmOiBUZW1wbGF0ZVJlZjxhbnk+KSB7IH1cclxufVxyXG5cclxuQE5nTW9kdWxlKHtcclxuICAgIGRlY2xhcmF0aW9uczogW1RlbXBsYXRlSGFuZGxlRGlyZWN0aXZlXSxcclxuICAgIGV4cG9ydHM6IFtUZW1wbGF0ZUhhbmRsZURpcmVjdGl2ZV1cclxufSlcclxuZXhwb3J0IGNsYXNzIFRlbXBsYXRlSGFuZGxlTW9kdWxlIHsgfSJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVtcGxhdGUtaGFuZGxlLmRpcmVjdGl2ZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3NoYXJlZGxpYi90ZW1wL3NyYy9saWIvZGlyZWN0aXZlcy90ZW1wbGF0ZS1oYW5kbGUuZGlyZWN0aXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsUUFBUSxFQUFlLE1BQU0sZUFBZSxDQUFDOztBQU1qRSxNQUFNLE9BQU8sdUJBQXVCO0lBQ2hDLFlBQW1CLFdBQTZCO1FBQTdCLGdCQUFXLEdBQVgsV0FBVyxDQUFrQjtJQUFJLENBQUM7O3FIQUQ1Qyx1QkFBdUI7eUdBQXZCLHVCQUF1Qjs0RkFBdkIsdUJBQXVCO2tCQUhuQyxTQUFTO21CQUFDO29CQUNQLFFBQVEsRUFBRSxxQkFBcUI7aUJBQ2xDOztBQVNELE1BQU0sT0FBTyxvQkFBb0I7O2tIQUFwQixvQkFBb0I7bUhBQXBCLG9CQUFvQixpQkFScEIsdUJBQXVCLGFBQXZCLHVCQUF1QjttSEFRdkIsb0JBQW9COzRGQUFwQixvQkFBb0I7a0JBSmhDLFFBQVE7bUJBQUM7b0JBQ04sWUFBWSxFQUFFLENBQUMsdUJBQXVCLENBQUM7b0JBQ3ZDLE9BQU8sRUFBRSxDQUFDLHVCQUF1QixDQUFDO2lCQUNyQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpcmVjdGl2ZSwgTmdNb2R1bGUsIFRlbXBsYXRlUmVmIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcblxyXG5cclxuQERpcmVjdGl2ZSh7XHJcbiAgICBzZWxlY3RvcjogJ1thcHBUZW1wbGF0ZUhhbmRsZV0nXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBUZW1wbGF0ZUhhbmRsZURpcmVjdGl2ZSB7XHJcbiAgICBjb25zdHJ1Y3RvcihwdWJsaWMgdGVtcGxhdGVSZWY6IFRlbXBsYXRlUmVmPGFueT4pIHsgfVxyXG59XHJcblxyXG5ATmdNb2R1bGUoe1xyXG4gICAgZGVjbGFyYXRpb25zOiBbVGVtcGxhdGVIYW5kbGVEaXJlY3RpdmVdLFxyXG4gICAgZXhwb3J0czogW1RlbXBsYXRlSGFuZGxlRGlyZWN0aXZlXVxyXG59KVxyXG5leHBvcnQgY2xhc3MgVGVtcGxhdGVIYW5kbGVNb2R1bGUgeyB9Il19

@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// @import "~headerlib/theming";
+
+// @import "markup/form.scss";
+
+:root {
+    --eui-blockui-overlay-border-radius: 0rem;
+    --eui-blockui-cursor: wait;
+    --eui-blockui-background-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    @apply bg-gray-50;
+    // background: $base-color;
+
+
+}
+
+html, body { @apply min-h-full; }
+
+/* body {
+    min-height: 100vh;
+    height:auto !important;
+    height: 100vh;
+} */
+
+.close-overlay {
+    @apply fixed inset-0 h-full w-full cursor-default z-10; //bg-black opacity-50
+}
+
+
+
+.ui-widget-overlay {
+    margin: 0;
+    // @apply flex justify-center items-center;
+}

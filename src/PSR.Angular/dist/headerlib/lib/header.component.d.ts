@@ -14,5 +14,5 @@ export declare class HeaderComponent implements OnInit {
     ngOnInit(): void;
     toggleMobileMenu(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "app-header", never, { "showSignInOrSignUp": "showSignInOrSignUp"; "user": "user"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "hdr-header", never, { "showSignInOrSignUp": "showSignInOrSignUp"; "user": "user"; }, {}, never, never>;
 }

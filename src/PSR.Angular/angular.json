@@ -3,113 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "psr": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "displayBlock": true
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
-      "root": "projects/psr",
-      "sourceRoot": "projects/psr/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/psr",
-            "index": "projects/psr/src/index.html",
-            "main": "projects/psr/src/main.ts",
-            "polyfills": "projects/psr/src/polyfills.ts",
-            "tsConfig": "projects/psr/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/psr/src/favicon.ico",
-              "projects/psr/src/assets"
-            ],
-            "styles": [
-              "projects/psr/src/styles/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "projects/psr/src/environments/environment.ts",
-                  "with": "projects/psr/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "psr:build:production"
-            },
-            "development": {
-              "browserTarget": "psr:build:development"
-            }
-          },
-          "defaultConfiguration": "development",
-          "options": {
-            "disableHostCheck": true
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "psr:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/psr/src/test.ts",
-            "polyfills": "projects/psr/src/polyfills.ts",
-            "tsConfig": "projects/psr/tsconfig.spec.json",
-            "karmaConfig": "projects/psr/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/psr/src/favicon.ico",
-              "projects/psr/src/assets"
-            ],
-            "styles": [
-              "projects/psr/src/styles/styles.scss"
-            ],
-            "scripts": []
-          }
-        }
-      }
-    },
+
     "skilllib": {
       "projectType": "library",
       "root": "projects/skilllib",
@@ -143,21 +37,21 @@
     },
     "sharedlib": {
       "projectType": "library",
-      "root": "projects/sharedlib",
-      "sourceRoot": "projects/sharedlib/src",
+      "root": "projects/sharedlib/temp",
+      "sourceRoot": "projects/sharedlib/temp/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/sharedlib/ng-package.json"
+            "project": "projects/sharedlib/temp/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/sharedlib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/sharedlib/temp/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/sharedlib/tsconfig.lib.json"
+              "tsConfig": "projects/sharedlib/temp/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -165,9 +59,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sharedlib/src/test.ts",
-            "tsConfig": "projects/sharedlib/tsconfig.spec.json",
-            "karmaConfig": "projects/sharedlib/karma.conf.js"
+            "main": "projects/sharedlib/temp/src/test.ts",
+            "tsConfig": "projects/sharedlib/temp/tsconfig.spec.json",
+            "karmaConfig": "projects/sharedlib/temp/karma.conf.js"
           }
         }
       }
@@ -236,21 +130,21 @@
     },
     "headerlib": {
       "projectType": "library",
-      "root": "projects/headerlib",
-      "sourceRoot": "projects/headerlib/src",
+      "root": "projects/headerlib/temp",
+      "sourceRoot": "projects/headerlib/temp/src",
       "prefix": "hdr",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/headerlib/ng-package.json"
+            "project": "projects/headerlib/temp/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/headerlib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/headerlib/temp/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/headerlib/tsconfig.lib.json"
+              "tsConfig": "projects/headerlib/temp/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -258,9 +152,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/headerlib/src/test.ts",
-            "tsConfig": "projects/headerlib/tsconfig.spec.json",
-            "karmaConfig": "projects/headerlib/karma.conf.js"
+            "main": "projects/headerlib/temp/src/test.ts",
+            "tsConfig": "projects/headerlib/temp/tsconfig.spec.json",
+            "karmaConfig": "projects/headerlib/temp/karma.conf.js"
           }
         }
       }
@@ -295,7 +189,154 @@
           }
         }
       }
+    },
+    "psr-desktop": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "displayBlock": true
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/psr-desktop",
+      "sourceRoot": "projects/psr-desktop/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/psr-desktop",
+            "index": "projects/psr-desktop/src/index.html",
+            "main": "projects/psr-desktop/src/main.ts",
+            "polyfills": "projects/psr-desktop/src/polyfills.ts",
+            "tsConfig": "projects/psr-desktop/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/psr-desktop/src/favicon.ico",
+              "projects/psr-desktop/src/assets"
+            ],
+            "styles": [
+              "projects/psr-desktop/src/styles/styles.scss",
+              "projects/corelib/styles.css",
+              "projects/sharedlib/styles.css",
+              "projects/authlib/styles.css",
+              "projects/headerlib/styles.css",
+              "projects/skilllib/styles.css",
+              "projects/myskilllib/styles.css",
+              "projects/skillmgtlib/styles.css"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/psr-desktop/src/styles/markup"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/psr-desktop/src/environments/environment.ts",
+                  "with": "projects/psr-desktop/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "psr-desktop:build:production"
+            },
+            "development": {
+              "browserTarget": "psr-desktop:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "psr-desktop:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/psr-desktop/src/test.ts",
+            "polyfills": "projects/psr-desktop/src/polyfills.ts",
+            "tsConfig": "projects/psr-desktop/tsconfig.spec.json",
+            "karmaConfig": "projects/psr-desktop/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/psr-desktop/src/favicon.ico",
+              "projects/psr-desktop/src/assets"
+            ],
+            "styles": [
+              "projects/psr-desktop/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "myskilllib": {
+      "projectType": "library",
+      "root": "projects/myskilllib",
+      "sourceRoot": "projects/myskilllib/src",
+      "prefix": "myskl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/myskilllib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/myskilllib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/myskilllib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/myskilllib/src/test.ts",
+            "tsConfig": "projects/myskilllib/tsconfig.spec.json",
+            "karmaConfig": "projects/myskilllib/karma.conf.js"
+          }
+        }
+      }
     }
   },
-  "defaultProject": "psr"
+  "defaultProject": "psr-desktop"
 }

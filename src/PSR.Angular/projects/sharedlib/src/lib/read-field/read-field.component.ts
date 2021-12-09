@@ -3,19 +3,8 @@ import { Component, Input, NgModule } from '@angular/core';
 
 @Component({
     selector: 'app-read-field',
-    template: `
-    <ng-container *ngIf="isFieldVisible">
-        <div class="text-sm font-medium text-indigo-900">{{ fieldLabel }}</div>
-        <div class="mt-1 text-sm text-indigo-900">{{ fieldValue }}</div>
-    </ng-container>
-  `,
-    styles: [
-        `
-      :host {
-        display: block;
-      }
-    `
-    ]
+    templateUrl: './read-field.component.html',
+    styleUrls: ['./read-field.component.scss'],
 })
 export class ReadFieldComponent {
 

@@ -8,30 +8,7 @@ import { MenuItem } from '@sharedlib';
             {{menuItem.label}}
         </a>
     `,
-    styles: [`
-        :host-context(.desktop-menu) {
-            @apply flex space-x-4;
-        }
-
-        :host-context(.mobile-menu) {
-            @apply block px-2 pt-2 pb-3 space-y-1;
-        }
-
-        .menu {
-            &__item {
-                @apply px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white;
-
-                &--active {
-                    @apply bg-gray-900 text-white;
-                }
-
-                &--stacked {
-                    @apply block text-base;
-                }
-            }
-        }
-
-    `]
+    styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
 

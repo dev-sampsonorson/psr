@@ -4,8 +4,8 @@ import { ObservableInput, throwError } from 'rxjs';
 import { filter, map, take, tap } from 'rxjs/operators';
 
 import { UserStorageService } from '../services';
+import { ErrorDispatcherService } from './error-dispatcher.service';
 import { ProblemDetails } from './error.model';
-import { GlobalErrorHandlerService } from './global-error-handler.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +14,7 @@ export class ErrorHandlerService {
 
     constructor(
         private userStorage: UserStorageService,
-        private globalError: GlobalErrorHandlerService,
+        private errorDispatcher: ErrorDispatcherService
     ) { }
 
     handleError(response: HttpErrorResponse): ObservableInput<any> {
@@ -27,7 +27,7 @@ export class ErrorHandlerService {
                 map(user => ({ user, status: response.status })),
                 tap(x => {
                     if (x.user === null && x.status === 401) {
-                        this.globalError.notifyUnauthenticated(problem);
+                        this.errorDispatcher.notifyUnauthenticated(problem);
                         // this.auth.logout();
                         // this.auth.redirectToLogin();
                     }
@@ -39,7 +39,7 @@ export class ErrorHandlerService {
                 }), */
                 tap(x => {
                     if (x.user !== null && x.status === 403) {
-                        this.globalError.notifyForbidden();
+                        this.errorDispatcher.notifyForbidden();
                     }
                     /* this.zone.run(() => {
                         (x.user !== null && x.status === 403) && this.alert.warn(
@@ -52,7 +52,7 @@ export class ErrorHandlerService {
             .subscribe();
 
         if (response.status === 0) {
-            this.globalError.notifyNoConnection();
+            this.errorDispatcher.notifyNoConnection();
             /* this.alert.error(
                 "No connection",
                 "Unable to connect to the server. You're probably offline or sever unreachable."
@@ -71,7 +71,7 @@ export class ErrorHandlerService {
         } */
 
         if (response.status === 404)
-            this.globalError.notifyNotFound();
+            this.errorDispatcher.notifyNotFound();
 
         /* [404].includes(response.status) && this.zone.run(() => {
             this.alert.error(
@@ -81,7 +81,7 @@ export class ErrorHandlerService {
         }); */
 
         if (![401, 403, 404, 0].includes(response.status)) {
-            this.globalError.notifyHttpError(problem);
+            this.errorDispatcher.notifyHttpError(problem);
         }
 
         /* ![401, 403, 404, 0].includes(response.status) && this.zone.run(() => {

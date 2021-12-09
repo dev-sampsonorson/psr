@@ -2,21 +2,8 @@ import { AfterContentInit, Component, EventEmitter, Input, NgModule, OnInit, Out
 
 @Component({
     selector: 'app-button-icon',
-    template: `
-        <!-- text-indigo-800  rounded-md hover:text-indigo-900 focus:text-indigo-900 -->
-        <button (click)="onClick($event)" type="button" class="bg-transparent">
-            <span class="sr-only">{{ ariaLabel }}</span>
-            <ng-content></ng-content>
-            <!-- <ng-template [ngTemplateOutlet]="outlet"></ng-template> -->
-        </button>
-  `,
-    styles: [
-        `
-      :host {
-        @apply flex items-center h-7 outline-none;
-      }
-    `
-    ]
+    templateUrl: './button-icon.component.html',
+    styleUrls: ['./button-icon.component.scss']
 })
 export class ButtonIconComponent implements OnInit, AfterContentInit {
 

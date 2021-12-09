@@ -34,9 +34,9 @@ class CustomUrlSerializer {
 class FormService {
     constructor() { }
 }
-FormService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: FormService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-FormService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: FormService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: FormService, decorators: [{
+FormService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: FormService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+FormService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: FormService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: FormService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -84,9 +84,9 @@ class LookupService {
         return this.http.get(this.appConfig.getUrl(AppEndpoints.GetCountries));
     }
 }
-LookupService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LookupService, deps: [{ token: i1.HttpClient }, { token: APP_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
-LookupService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LookupService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: LookupService, decorators: [{
+LookupService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LookupService, deps: [{ token: i1.HttpClient }, { token: APP_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
+LookupService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LookupService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: LookupService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -119,9 +119,9 @@ class StorageService {
         this.storage.removeItem(key);
     }
 }
-StorageService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: StorageService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-StorageService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: StorageService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: StorageService, decorators: [{
+StorageService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: StorageService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+StorageService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: StorageService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: StorageService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -142,9 +142,9 @@ class TestService {
         );
     }
 }
-TestService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TestService, deps: [{ token: i1.HttpClient }, { token: APP_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
-TestService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TestService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: TestService, decorators: [{
+TestService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TestService, deps: [{ token: i1.HttpClient }, { token: APP_CONFIG_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
+TestService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TestService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: TestService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -208,9 +208,9 @@ class UserStorageService {
         return this.storage.getItem(this.userStorageKey);
     }
 }
-UserStorageService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: UserStorageService, deps: [{ token: StorageService }, { token: USER_STORAGE_KEY_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
-UserStorageService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: UserStorageService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: UserStorageService, decorators: [{
+UserStorageService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: UserStorageService, deps: [{ token: StorageService }, { token: USER_STORAGE_KEY_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
+UserStorageService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: UserStorageService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: UserStorageService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -220,7 +220,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
                     args: [USER_STORAGE_KEY_TOKEN]
                 }] }]; } });
 
-class GlobalErrorHandlerService {
+class ErrorDispatcherService {
     constructor() {
         this._unauthenticatedSubject = new Subject();
         this._forbiddenSubject = new Subject();
@@ -247,21 +247,6 @@ class GlobalErrorHandlerService {
     get onGlobalError$() {
         return this._globalErrorSubject.asObservable();
     }
-    handleError(error) {
-        console.log('GlobalErrorHandlerService', error);
-        // Check if it's an error from an HTTP response
-        if (!(error instanceof HttpErrorResponse)) {
-            error = error.rejection; // get the error object
-        }
-        this.notifyGlobalError(error);
-        /* this.zone.run(() =>
-            this.alert.error(
-                error?.message || 'Undefined client error',
-                error?.status
-            )
-        ); */
-        // console.error('Error from global error handler');
-    }
     notifyUnauthenticated(problem) {
         this._unauthenticatedSubject.next(problem);
     }
@@ -281,23 +266,26 @@ class GlobalErrorHandlerService {
         this._globalErrorSubject.next(error);
     }
 }
-GlobalErrorHandlerService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: GlobalErrorHandlerService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-GlobalErrorHandlerService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: GlobalErrorHandlerService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: GlobalErrorHandlerService, decorators: [{
-            type: Injectable
+ErrorDispatcherService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorDispatcherService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+ErrorDispatcherService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorDispatcherService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorDispatcherService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
         }], ctorParameters: function () { return []; } });
 
 class ErrorHandlerService {
-    constructor(userStorage, globalError) {
+    constructor(userStorage, errorDispatcher) {
         this.userStorage = userStorage;
-        this.globalError = globalError;
+        this.errorDispatcher = errorDispatcher;
     }
     handleError(response) {
         const problem = response.error && response.error;
         this.userStorage.getUser()
             .pipe(take(1), filter(_ => [401, 403].includes(response.status)), map(user => ({ user, status: response.status })), tap(x => {
             if (x.user === null && x.status === 401) {
-                this.globalError.notifyUnauthenticated(problem);
+                this.errorDispatcher.notifyUnauthenticated(problem);
                 // this.auth.logout();
                 // this.auth.redirectToLogin();
             }
@@ -309,7 +297,7 @@ class ErrorHandlerService {
         }), */
         tap(x => {
             if (x.user !== null && x.status === 403) {
-                this.globalError.notifyForbidden();
+                this.errorDispatcher.notifyForbidden();
             }
             /* this.zone.run(() => {
                 (x.user !== null && x.status === 403) && this.alert.warn(
@@ -320,7 +308,7 @@ class ErrorHandlerService {
         }))
             .subscribe();
         if (response.status === 0) {
-            this.globalError.notifyNoConnection();
+            this.errorDispatcher.notifyNoConnection();
             /* this.alert.error(
                 "No connection",
                 "Unable to connect to the server. You're probably offline or sever unreachable."
@@ -335,7 +323,7 @@ class ErrorHandlerService {
             console.log(problem);
         } */
         if (response.status === 404)
-            this.globalError.notifyNotFound();
+            this.errorDispatcher.notifyNotFound();
         /* [404].includes(response.status) && this.zone.run(() => {
             this.alert.error(
                 "Not found",
@@ -343,7 +331,7 @@ class ErrorHandlerService {
             );
         }); */
         if (![401, 403, 404, 0].includes(response.status)) {
-            this.globalError.notifyHttpError(problem);
+            this.errorDispatcher.notifyHttpError(problem);
         }
         /* ![401, 403, 404, 0].includes(response.status) && this.zone.run(() => {
             //TODO: ExpressionChangedAfterItHasBeenCheckedError
@@ -377,14 +365,14 @@ class ErrorHandlerService {
             : 'An error has occured contact the administrator';
     }
 }
-ErrorHandlerService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorHandlerService, deps: [{ token: UserStorageService }, { token: GlobalErrorHandlerService }], target: i0.ɵɵFactoryTarget.Injectable });
-ErrorHandlerService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorHandlerService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorHandlerService, decorators: [{
+ErrorHandlerService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorHandlerService, deps: [{ token: UserStorageService }, { token: ErrorDispatcherService }], target: i0.ɵɵFactoryTarget.Injectable });
+ErrorHandlerService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorHandlerService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorHandlerService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], ctorParameters: function () { return [{ type: UserStorageService }, { type: GlobalErrorHandlerService }]; } });
+        }], ctorParameters: function () { return [{ type: UserStorageService }, { type: ErrorDispatcherService }]; } });
 
 class ErrorInterceptor {
     constructor(errorHandler) {
@@ -394,9 +382,9 @@ class ErrorInterceptor {
         return next.handle(request).pipe(catchError(error => this.errorHandler.handleError(error)));
     }
 }
-ErrorInterceptor.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorInterceptor, deps: [{ token: ErrorHandlerService }], target: i0.ɵɵFactoryTarget.Injectable });
-ErrorInterceptor.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorInterceptor, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorInterceptor, decorators: [{
+ErrorInterceptor.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorInterceptor, deps: [{ token: ErrorHandlerService }], target: i0.ɵɵFactoryTarget.Injectable });
+ErrorInterceptor.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorInterceptor, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorInterceptor, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -414,11 +402,37 @@ class ProblemDetails {
     }
 }
 
+class GlobalErrorHandlerService {
+    constructor(errorDispatcher) {
+        this.errorDispatcher = errorDispatcher;
+    }
+    handleError(error) {
+        console.log('GlobalErrorHandlerService', error);
+        // Check if it's an error from an HTTP response
+        if (!(error instanceof HttpErrorResponse)) {
+            error = error.rejection; // get the error object
+        }
+        this.errorDispatcher.notifyGlobalError(error);
+        /* this.zone.run(() =>
+            this.alert.error(
+                error?.message || 'Undefined client error',
+                error?.status
+            )
+        ); */
+        // console.error('Error from global error handler');
+    }
+}
+GlobalErrorHandlerService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: GlobalErrorHandlerService, deps: [{ token: ErrorDispatcherService }], target: i0.ɵɵFactoryTarget.Injectable });
+GlobalErrorHandlerService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: GlobalErrorHandlerService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: GlobalErrorHandlerService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: ErrorDispatcherService }]; } });
+
 class ErrorModule {
 }
-ErrorModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ErrorModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorModule });
-ErrorModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorModule, providers: [
+ErrorModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ErrorModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorModule });
+ErrorModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorModule, providers: [
         {
             provide: ErrorHandler,
             useClass: GlobalErrorHandlerService,
@@ -431,7 +445,7 @@ ErrorModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "1
         // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // { provide: APP_INITIALIZER, useFactory: authInitializer, multi: true, deps: [AuthService] },
     ] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: ErrorModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: ErrorModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],
@@ -463,9 +477,9 @@ class HttpLoadingInterceptor {
         }));
     }
 }
-HttpLoadingInterceptor.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: HttpLoadingInterceptor, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-HttpLoadingInterceptor.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: HttpLoadingInterceptor });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: HttpLoadingInterceptor, decorators: [{
+HttpLoadingInterceptor.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: HttpLoadingInterceptor, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+HttpLoadingInterceptor.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: HttpLoadingInterceptor });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: HttpLoadingInterceptor, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
@@ -480,12 +494,12 @@ class CorelibModule {
         };
     }
 }
-CorelibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-CorelibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, imports: [CommonModule,
+CorelibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+CorelibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, imports: [CommonModule,
         HttpClientModule,
         ErrorModule], exports: [HttpClientModule,
         ErrorModule] });
-CorelibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, providers: [
+CorelibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, providers: [
         // { provide: APP_INITIALIZER, useFactory: authInitializer, multi: true, deps: [AuthService] },
         // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // { provide: UrlSerializer, useClass: CustomUrlSerializer },
@@ -501,7 +515,7 @@ CorelibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: 
             ErrorModule
         ], HttpClientModule,
         ErrorModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImport: i0, type: CorelibModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.14", ngImport: i0, type: CorelibModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],
@@ -533,5 +547,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "12.2.11", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { APP_CONFIG_TOKEN, AppEndpoints, AppRoutes, CorelibModule, CustomUrlSerializer, EMPTY_USER, ErrorHandlerService, ErrorInterceptor, ErrorModule, FormService, GlobalErrorHandlerService, HttpLoadingInterceptor, LookupService, ProblemDetails, QueryParameterNames, StorageService, TestService, USER_STORAGE_KEY_TOKEN, UserStorageService };
+export { APP_CONFIG_TOKEN, AppEndpoints, AppRoutes, CorelibModule, CustomUrlSerializer, EMPTY_USER, ErrorDispatcherService, ErrorHandlerService, ErrorInterceptor, ErrorModule, FormService, GlobalErrorHandlerService, HttpLoadingInterceptor, LookupService, ProblemDetails, QueryParameterNames, StorageService, TestService, USER_STORAGE_KEY_TOKEN, UserStorageService };
 //# sourceMappingURL=corelib.js.map

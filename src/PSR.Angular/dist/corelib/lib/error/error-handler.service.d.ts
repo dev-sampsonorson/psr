@@ -1,12 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ObservableInput } from 'rxjs';
 import { UserStorageService } from '../services';
-import { GlobalErrorHandlerService } from './global-error-handler.service';
+import { ErrorDispatcherService } from './error-dispatcher.service';
 import * as i0 from "@angular/core";
 export declare class ErrorHandlerService {
     private userStorage;
-    private globalError;
-    constructor(userStorage: UserStorageService, globalError: GlobalErrorHandlerService);
+    private errorDispatcher;
+    constructor(userStorage: UserStorageService, errorDispatcher: ErrorDispatcherService);
     handleError(response: HttpErrorResponse): ObservableInput<any>;
     private isProblemDetail;
     private extractMessages;

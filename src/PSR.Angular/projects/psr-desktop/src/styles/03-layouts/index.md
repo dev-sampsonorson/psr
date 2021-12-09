@@ -1,0 +1,1 @@
+Styles for areas/components related to the layout of the application, such as top-menu, footer, content layout, layout global, marketing layout, not found, sidenave, etc.

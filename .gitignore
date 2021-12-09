@@ -455,7 +455,7 @@ $RECYCLE.BIN/
 .history/*
 
 # compiled output
-# /dist
+**/*/dist
 **/*/tmp
 **/*/out-tsc
 

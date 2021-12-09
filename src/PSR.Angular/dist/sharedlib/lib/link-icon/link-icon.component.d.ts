@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewInit, ComponentFactoryResolver, EventEmitter, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { IconTrashComponent } from '../icons/icon-trash.component';
+import { IconTrashComponent } from '../icons';
 import { MenuItem } from '../menu/menu.model';
 import * as i0 from "@angular/core";
 import * as i1 from "@angular/common";

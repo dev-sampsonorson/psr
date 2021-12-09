@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/headerlib",
+  "assets": [
+    "./styles.css"
+  ],
+  "lib": {
+    "cssUrl": "inline",
+    "entryFile": "src/index.ts",
+    "umdModuleIds": {
+        "@corelib": "corelib",
+        "@sharedlib": "sharedlib"
+    },
+    "styleIncludePaths": []
+  }
+}

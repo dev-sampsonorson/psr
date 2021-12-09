@@ -23,6 +23,7 @@ let authPaths = {
 let authRoutePaths = {
     Register: 'register',
     Login: 'login',
+    RevokeToken: 'revoke',
 };
 let authNavRoutes = {
     Register: () => [`/auth/${authRoutePaths.Register}`],

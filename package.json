@@ -6,6 +6,22 @@
   "scripts": {
     "goto:ng": "node goto-dir.js",
     "ng": "npm ng --prefix ./src/PSR.Angular/",
+    "build-lib:corelib": "npm run build:lib --prefix ./src/PSR.Angular/projects/corelib/",
+    "build-lib:sharedlib": "npm run build:lib --prefix ./src/PSR.Angular/projects/sharedlib/",
+    "build-lib:authlib": "npm run build:lib --prefix ./src/PSR.Angular/projects/authlib/",
+    "build-lib:headerlib": "npm run build:lib --prefix ./src/PSR.Angular/projects/headerlib/",
+    "build-lib:skilllib": "npm run build:lib --prefix ./src/PSR.Angular/projects/skilllib/",
+    "build-lib:myskilllib": "npm run build:lib --prefix ./src/PSR.Angular/projects/myskilllib/",
+    "build-lib:skillmgtlib": "npm run build:lib --prefix ./src/PSR.Angular/projects/skillmgtlib/",
+    "build:libs": "npm-run-all --serial build:corelib build:sharedlib build:authlib build:headerlib build:skilllib build:myskilllib build:skillmgtlib",
+    "watch-lib:corelib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/corelib/",
+    "watch-lib:sharedlib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/sharedlib/",
+    "watch-lib:authlib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/authlib/",
+    "watch-lib:headerlib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/headerlib/",
+    "watch-lib:skilllib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/skilllib/",
+    "watch-lib:myskilllib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/myskilllib/",
+    "watch-lib:skillmgtlib": "npm run watch:lib --prefix ./src/PSR.Angular/projects/skillmgtlib/",
+    "watch:libs": "npm-run-all --serial watch:corelib watch:sharedlib watch:authlib watch:headerlib watch:skilllib watch:myskilllib watch:skillmgtlib",
     "ng:serve": "npm start --prefix ./src/PSR.Angular/",
     "ng:build": "npm build --prefix ./src/PSR.Angular/",
     "ng:watch": "npm watch --watch --configuration development --prefix ./src/PSR.Angular/",
@@ -20,5 +36,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }

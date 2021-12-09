@@ -22,14 +22,14 @@
       "dom"
     ],
     "paths": {
-      "@env/*": ["projects/psr/src/environments/*"],
-    //   "@shared/*": ["projects/psr/src/app/shared/*"],
-    //   "@layouts/*": ["projects/psr/src/app/shared/layouts/*"],
-      "@features/*": ["projects/psr/src/app/features/*"],
-    //   "@core/*": ["projects/psr/src/app/core/*"],
-    //   "@auth/*": ["projects/psr/src/app/features/auth/*"],
+      "@env/*": ["projects/psr-desktop/src/environments/*"],
+    //   "@shared/*": ["projects/psr-desktop/src/app/shared/*"],
+    //   "@layouts/*": ["projects/psr-desktop/src/app/shared/layouts/*"],
+      "@features/*": ["projects/psr-desktop/src/app/features/*"],
+    //   "@core/*": ["projects/psr-desktop/src/app/core/*"],
+    //   "@auth/*": ["projects/psr-desktop/src/app/features/auth/*"],
       "@config/*": [
-        "projects/psr/src/app/config/*"
+        "projects/psr-desktop/src/app/config/*"
       ],
 
     //   "@sharedlib": ["projects/sharedlib/src/index.ts"],
@@ -52,7 +52,11 @@
       ],
       "@authlib": [
         "dist/authlib/authlib",
-        "dist/authlib"
+        "dist/authlib",
+      ],
+      "@authlib/*": [
+        "dist/authlib",
+        "dist/authlib/lib/*"
       ],
       "@headerlib": [
         "dist/headerlib/headerlib",
@@ -60,8 +64,16 @@
       ],
       "@skillmgtlib": [
         "dist/skillmgtlib/skillmgtlib",
-        "dist/skillmgtlib"
+        "dist/skillmgtlib",
       ],
+      "@skillmgtlib/*": [
+        "dist/skillmgtlib",
+        "dist/skillmgtlib/lib/*"
+      ],
+      "@myskilllib": [
+        "dist/myskilllib/myskilllib",
+        "dist/myskilllib"
+      ]
     }
   },
   "angularCompilerOptions": {

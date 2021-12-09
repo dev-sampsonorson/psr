@@ -14,16 +14,13 @@ import { ProfileMenuService } from './profile-menu.service';
         <button *ngIf="isDropdownOpen" (click)="onHideDropdown()" class="close-overlay" tabindex="-1"></button>
         <app-context-menu
             *ngIf="isDropdownOpen"
+            [handle]="contextMenuHandle"
             [menuItems]="menuItems"
             (menuItemClick)="onMenuItemClick($event)"
             class="absolute right-0 w-48">
         </app-context-menu>
     `,
-    styles: [`
-        :host {
-            @apply relative;
-        }
-    `]
+    styleUrls: ['./profile-menu.component.scss']
 })
 export class ProfileMenuComponent implements OnInit, OnDestroy {
 
@@ -33,6 +30,7 @@ export class ProfileMenuComponent implements OnInit, OnDestroy {
 
     private openStatus$: Observable<boolean>;
     public isDropdownOpen: boolean = false;
+    public contextMenuHandle: Symbol = Symbol('profileMenuContextMenuHandle');
 
     @Input() menuItems: MenuItem[] = [];
 

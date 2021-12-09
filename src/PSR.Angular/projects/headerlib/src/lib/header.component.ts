@@ -1,11 +1,11 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { IUser } from '@corelib';
-import { MenuItem, PRIMARY_MENU_TOKEN, PROFILE_MENU_TOKEN } from '@sharedlib';
+import { MenuItem } from '@sharedlib';
 
-// import { APP_CONFIG_TOKEN, IAppConfig } from '@config/app.config';
+import { PRIMARY_MENU_TOKEN, PROFILE_MENU_TOKEN } from './tokens';
 
 @Component({
-    selector: 'app-header',
+    selector: 'hdr-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })

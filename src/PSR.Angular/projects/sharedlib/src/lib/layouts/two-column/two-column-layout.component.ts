@@ -3,14 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
     selector: 'app-two-column-layout',
     templateUrl: './two-column-layout.component.html',
-    styles: [
-        `
-      :host {
-          display: block;
-          flex: 1 1 0%;
-      }
-    `
-    ]
+    styleUrls: ['./two-column-layout.component.scss'],
 })
 export class TwoColumnLayoutComponent implements OnInit {
     @Input() isSecondaryContentVisible = false;

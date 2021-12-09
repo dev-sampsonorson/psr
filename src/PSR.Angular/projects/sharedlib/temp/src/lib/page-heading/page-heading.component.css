@@ -1,0 +1,42 @@
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/lib/page-heading/page-heading.component.scss ***!
+  \*********************************************************************************************************************************************************************************************************************/
+:host {
+  display: block;
+}
+
+:host([x-size=large]) h1 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+:host([x-size=large]) p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+}
+
+:host([x-size=medium]) h1 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+:host([x-size=medium]) p {
+  margin-top: 0.25rem;
+  max-width: 42rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+:host([x-color=black]) h1, :host([x-color=black]) p {
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+:host([x-color=indigo]) h1, :host([x-color=indigo]) p {
+  --tw-text-opacity: 1;
+  color: rgba(49, 46, 129, var(--tw-text-opacity));
+}
