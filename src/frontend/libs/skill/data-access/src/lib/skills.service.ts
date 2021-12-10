@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { APP_CONFIG_TOKEN, IAppConfig } from '@psr/core';
 import { Observable } from 'rxjs';
 
-import { ISkill, ISkillCategory, ISkillSubCategory } from '../models/skill.model';
-import { SkillEndpoints } from '../skill.endpoints';
+import { ISkill, ISkillCategory, ISkillSubCategory } from './skill-data-access.model';
+import { SkillEndpoints } from './skill.endpoints';
 
 @Injectable()
 export class SkillsService {

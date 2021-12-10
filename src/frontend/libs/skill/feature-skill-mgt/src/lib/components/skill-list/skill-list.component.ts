@@ -1,13 +1,8 @@
 import { Component, Inject, NgZone, OnDestroy, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, MenuItem } from '@psr/shared/ui';
-import {
-    AddSkillCardComponent,
-    ISkill,
-    ISkillCard,
-    SkillCardComponent,
-    SkillCardContextMenuitemService,
-} from '@psr/skill/shared';
+import { ISkill } from '@psr/skill/data-access';
+import { AddSkillCardComponent, ISkillCard, SkillCardComponent, SkillCardContextMenuitemService } from '@psr/skill/shared';
 import { Observable, Subscription } from 'rxjs';
 
 import { SkillMgtService } from '../../services';

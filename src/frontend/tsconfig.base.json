@@ -27,6 +27,7 @@
             "@psr/shared/ui": ["libs/shared/ui/src/index.ts"],
             "@psr/shared/ui-header": ["libs/shared/ui-header/src/index.ts"],
             "@psr/shared/util": ["libs/shared/util/src/index.ts"],
+            "@psr/skill/data-access": ["libs/skill/data-access/src/index.ts"],
             "@psr/skill/feature-myskill": [
                 "libs/skill/feature-myskill/src/index.ts"
             ],

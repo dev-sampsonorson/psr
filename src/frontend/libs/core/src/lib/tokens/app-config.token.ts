@@ -8,7 +8,7 @@ export interface IAppNavigationPaths {
 }
 
 export interface IAppConfig {
-    baseUrl: string;
+    baseApiEndpoint: string;
     getUrl: (url: string) => string;
     navigationPaths: IAppNavigationPaths;
     // primaryMenu: MenuItem[];

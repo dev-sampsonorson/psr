@@ -1,0 +1,42 @@
+{
+    "projectType": "library",
+    "root": "libs/skill/data-access",
+    "sourceRoot": "libs/skill/data-access/src",
+    "prefix": "psr",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/libs/skill/data-access"],
+            "options": {
+                "project": "libs/skill/data-access/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/skill/data-access/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/skill/data-access/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/skill/data-access"],
+            "options": {
+                "jestConfig": "libs/skill/data-access/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/skill/data-access/src/**/*.ts",
+                    "libs/skill/data-access/src/**/*.html"
+                ]
+            }
+        }
+    },
+    "tags": ["scope:skill", "type:data-access", "platform:web"]
+}

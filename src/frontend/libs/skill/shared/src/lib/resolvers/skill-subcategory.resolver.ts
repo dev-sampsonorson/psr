@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { SkillsService } from '@psr/skill/data-access';
 import { Observable, of } from 'rxjs';
 import { pluck, switchMap, take } from 'rxjs/operators';
-
-import { SkillsService } from '../services/skills.service';
 
 @Injectable()
 export class SkillSubcategoryResolver implements Resolve<any> {

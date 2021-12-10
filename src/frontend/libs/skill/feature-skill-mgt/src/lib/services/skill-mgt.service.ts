@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { APP_CONFIG_TOKEN, IAppConfig } from '@psr/core';
-import { ISkill } from '@psr/skill/shared';
+import { ISkill } from '@psr/skill/data-access';
 import { Observable, Subject } from 'rxjs';
 
 import { SkillMgtEndpoints } from '../skill-mgt.endpoints';

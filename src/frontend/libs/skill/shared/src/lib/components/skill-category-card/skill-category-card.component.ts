@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { ISkillCategory } from '../../models/skill.model';
+import { ISkillCategory } from '@psr/skill/data-access';
 
 @Component({
     selector: 'psr-skl-category-card',

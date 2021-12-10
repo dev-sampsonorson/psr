@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BREADCRUMB_CONFIG_TOKEN, BreadcrumbService, IBreadcrumb, SecondaryHeaderService } from '@psr/shared/ui';
-import { ISkillCategory } from '@psr/skill/shared';
+import { ISkillCategory } from '@psr/skill/data-access';
 import { Observable, Subscription } from 'rxjs';
 
 import { PageTitleService } from '../services/page-title.service';

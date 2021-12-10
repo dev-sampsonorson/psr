@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ISkill, ISkillCategory, SkillsService } from '@psr/skill/data-access';
 import { Observable, of, zip } from 'rxjs';
 import { pluck, switchMap, take } from 'rxjs/operators';
-
-import { ISkill, ISkillCategory } from '../models/skill.model';
-import { SkillsService } from '../services/skills.service';
 
 @Injectable({
     providedIn: 'root'

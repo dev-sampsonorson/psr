@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BreadcrumbModule, SharedModule } from '@psr/shared/ui';
+import { SkillDataAccessModule } from '@psr/skill/data-access';
 import { SkillSharedModule } from '@psr/skill/shared';
 
 import { SkillAddModule, SkillEditModule, SkillFilterModule, SkillListModule } from './components';
@@ -20,7 +21,7 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens';
         SharedModule,
         BreadcrumbModule.withConfig(breadcrumbConfig || []),
         SkillMgtRoutingModule,
-
+        SkillDataAccessModule,
         SkillSharedModule,
 
         IndexModule,

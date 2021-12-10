@@ -62,7 +62,8 @@
                     "browserTarget": "psr-desktop:build:production"
                 },
                 "development": {
-                    "browserTarget": "psr-desktop:build:development"
+                    "browserTarget": "psr-desktop:build:development",
+                    "proxyConfig": "proxy.config.json"
                 }
             },
             "defaultConfiguration": "development"

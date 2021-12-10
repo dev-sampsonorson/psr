@@ -12,6 +12,7 @@
         "shared-ui": "libs/shared/ui",
         "shared-ui-header": "libs/shared/ui-header",
         "shared-util": "libs/shared/util",
+        "skill-data-access": "libs/skill/data-access",
         "skill-feature-myskill": "libs/skill/feature-myskill",
         "skill-feature-skill-mgt": "libs/skill/feature-skill-mgt",
         "skill-shared": "libs/skill/shared"

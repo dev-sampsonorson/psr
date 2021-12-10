@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { ISkill } from '../../models/skill.model';
+import { ISkill } from '@psr/skill/data-access';
 
 @Component({
     selector: 'psr-skl-read',

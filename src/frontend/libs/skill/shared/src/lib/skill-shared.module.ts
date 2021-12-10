@@ -16,7 +16,6 @@ import { SkillSubcategoryResolver } from './resolvers/skill-subcategory.resolver
 import { SkillResolver } from './resolvers/skill.resolver';
 import { SkillCardContextMenuitemService } from './services/skill-card-context-menuitem.service';
 import { SkillFormService } from './services/skill-form.service';
-import { SkillsService } from './services/skills.service';
 
 
 
@@ -35,7 +34,6 @@ import { SkillsService } from './services/skills.service';
     exports: [
     ],
     providers: [
-        SkillsService,
         SkillFormService,
         SkillCardContextMenuitemService,
 

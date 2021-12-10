@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout.component';
 
-const _baseUrl = environment.apiUrl;
+const _baseApiEndpoint = environment.baseApiEndpoint;
 
 @NgModule({
     declarations: [
@@ -31,13 +31,13 @@ const _baseUrl = environment.apiUrl;
         HomeFeatureShellModule,
 
         CoreModule.withConfig({
-            baseUrl: `${_baseUrl}`,
+            baseApiEndpoint: `${_baseApiEndpoint}`,
             getUrl: (url) => {
                 if (['/', '\\'].includes(url && url.slice(0, 1))) {
-                    return `${_baseUrl}${url.slice(1)}`;
+                    return `${_baseApiEndpoint}${url.slice(1)}`;
                 }
 
-                return `${_baseUrl}${url}`;
+                return `${_baseApiEndpoint}${url}`;
             },
             navigationPaths: {
                 Home: '/home',

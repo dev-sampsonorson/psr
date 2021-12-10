@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { ISkillSubCategory } from '../../models/skill.model';
+import { ISkillSubCategory } from '@psr/skill/data-access';
 
 @Component({
     selector: 'psr-skl-subcategory-card',

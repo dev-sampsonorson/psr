@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '@psr/shared/ui';
-import { ISkill, ISkillCategory, ISkillSubCategory, SkillFormService } from '@psr/skill/shared';
+import { ISkill, ISkillCategory, ISkillSubCategory } from '@psr/skill/data-access';
+import { SkillFormService } from '@psr/skill/shared';
 import { Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 

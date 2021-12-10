@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { ISkillResolverResult, SkillsService } from '@psr/skill/shared';
+import { SkillsService } from '@psr/skill/data-access';
+import { ISkillResolverResult } from '@psr/skill/shared';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

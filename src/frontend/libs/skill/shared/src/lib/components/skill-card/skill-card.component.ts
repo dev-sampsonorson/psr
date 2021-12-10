@@ -1,9 +1,10 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlockUiDirective, IBlockableUi, IContextMenuItemClickEvent, MenuItem } from '@psr/shared/ui';
+import { ISkill } from '@psr/skill/data-access';
 import { Observable, Subscription } from 'rxjs';
 
-import { ISkill, ISkillCard } from '../../models/skill.model';
+import { ISkillCard } from '../../models/skill.model';
 import { SkillCardContextMenuitemService } from '../../services/skill-card-context-menuitem.service';
 import { SKILL_CARD_TOKEN } from '../skill-list-display/skill-card.token';
 

@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ISkill, ISkillCategory, ISkillSubCategory, SkillsService } from '@psr/skill/data-access';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
 
-import { ISkill, ISkillCategory, ISkillSubCategory } from '../../models/skill.model';
 import { SkillFormService } from '../../services/skill-form.service';
-import { SkillsService } from '../../services/skills.service';
 
 @Component({
     selector: 'psr-skl-form',

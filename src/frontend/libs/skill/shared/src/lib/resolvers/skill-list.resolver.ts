@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ISkill, SkillsService } from '@psr/skill/data-access';
 import { Observable, of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
-
-import { ISkill } from '../models/skill.model';
-import { SkillsService } from '../services/skills.service';
 
 @Injectable()
 export class SkillListResolver implements Resolve<ISkill[]> {
