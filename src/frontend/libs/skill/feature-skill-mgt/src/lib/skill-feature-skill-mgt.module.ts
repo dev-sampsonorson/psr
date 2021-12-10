@@ -1,12 +1,13 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BreadcrumbModule, SharedModule } from '@psr/shared/ui';
+import { SkillSharedModule } from '@psr/skill/shared';
 
 import { SkillAddModule, SkillEditModule, SkillFilterModule, SkillListModule } from './components';
 import { breadcrumbConfig, skillCardContextMenuConfig } from './config';
 import { ISkillMgtConfig } from './models';
 import { IndexModule } from './pages';
 import { IndexResolver } from './resolvers';
-import { PageTitleService } from './services';
+import { PageTitleService, SkillMgtService } from './services';
 import { SkillMgtRoutingModule } from './skill-mgt-routing.module';
 import { SKILL_MGT_CONFIG_TOKEN } from './tokens';
 
@@ -20,6 +21,8 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens';
         BreadcrumbModule.withConfig(breadcrumbConfig || []),
         SkillMgtRoutingModule,
 
+        SkillSharedModule,
+
         IndexModule,
         SkillAddModule,
         SkillEditModule,
@@ -29,6 +32,7 @@ import { SKILL_MGT_CONFIG_TOKEN } from './tokens';
     providers: [
         PageTitleService,
         IndexResolver,
+        SkillMgtService,
     ]
 })
 export class SkillFeatureSkillMgtModule {

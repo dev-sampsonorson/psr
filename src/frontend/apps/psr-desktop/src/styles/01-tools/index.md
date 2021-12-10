@@ -1,0 +1,1 @@
+Defines elements/tools to be used in all sytles. Examples are; constants, mixins, variables, etc

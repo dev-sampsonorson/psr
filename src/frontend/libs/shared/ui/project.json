@@ -1,42 +1,42 @@
 {
-  "projectType": "library",
-  "root": "libs/shared/ui",
-  "sourceRoot": "libs/shared/ui/src",
-  "prefix": "psr-ui",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/shared/ui"],
-      "options": {
-        "project": "libs/shared/ui/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/shared/ui/tsconfig.lib.prod.json"
+    "projectType": "library",
+    "root": "libs/shared/ui",
+    "sourceRoot": "libs/shared/ui/src",
+    "prefix": "psr-ui",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/libs/shared/ui"],
+            "options": {
+                "project": "libs/shared/ui/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/shared/ui/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/shared/ui/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
         },
-        "development": {
-          "tsConfig": "libs/shared/ui/tsconfig.lib.json"
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/shared/ui"],
+            "options": {
+                "jestConfig": "libs/shared/ui/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/shared/ui/src/**/*.ts",
+                    "libs/shared/ui/src/**/*.html"
+                ]
+            }
         }
-      },
-      "defaultConfiguration": "production"
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/ui"],
-      "options": {
-        "jestConfig": "libs/shared/ui/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/shared/ui/src/**/*.ts",
-          "libs/shared/ui/src/**/*.html"
-        ]
-      }
-    }
-  },
-  "tags": ["scope:shared", "type:ui", "platform:web"]
+    "tags": ["scope:shared", "type:ui", "platform:web"]
 }

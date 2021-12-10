@@ -1,42 +1,42 @@
 {
-  "projectType": "library",
-  "root": "libs/skill/feature-myskill",
-  "sourceRoot": "libs/skill/feature-myskill/src",
-  "prefix": "psr-skl",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/skill/feature-myskill"],
-      "options": {
-        "project": "libs/skill/feature-myskill/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/skill/feature-myskill/tsconfig.lib.prod.json"
+    "projectType": "library",
+    "root": "libs/skill/feature-myskill",
+    "sourceRoot": "libs/skill/feature-myskill/src",
+    "prefix": "psr-skl",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/libs/skill/feature-myskill"],
+            "options": {
+                "project": "libs/skill/feature-myskill/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/skill/feature-myskill/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/skill/feature-myskill/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
         },
-        "development": {
-          "tsConfig": "libs/skill/feature-myskill/tsconfig.lib.json"
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/skill/feature-myskill"],
+            "options": {
+                "jestConfig": "libs/skill/feature-myskill/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/skill/feature-myskill/src/**/*.ts",
+                    "libs/skill/feature-myskill/src/**/*.html"
+                ]
+            }
         }
-      },
-      "defaultConfiguration": "production"
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/skill/feature-myskill"],
-      "options": {
-        "jestConfig": "libs/skill/feature-myskill/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/skill/feature-myskill/src/**/*.ts",
-          "libs/skill/feature-myskill/src/**/*.html"
-        ]
-      }
-    }
-  },
-  "tags": ["scope:skill", "type:feature", "platform:web"]
+    "tags": ["scope:skill", "type:feature", "platform:web"]
 }

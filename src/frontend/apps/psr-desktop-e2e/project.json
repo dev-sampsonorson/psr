@@ -1,28 +1,28 @@
 {
-  "root": "apps/psr-desktop-e2e",
-  "sourceRoot": "apps/psr-desktop-e2e/src",
-  "projectType": "application",
-  "targets": {
-    "e2e": {
-      "executor": "@nrwl/cypress:cypress",
-      "options": {
-        "cypressConfig": "apps/psr-desktop-e2e/cypress.json",
-        "devServerTarget": "psr-desktop:serve:development"
-      },
-      "configurations": {
-        "production": {
-          "devServerTarget": "psr-desktop:serve:production"
+    "root": "apps/psr-desktop-e2e",
+    "sourceRoot": "apps/psr-desktop-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/psr-desktop-e2e/cypress.json",
+                "devServerTarget": "psr-desktop:serve:development"
+            },
+            "configurations": {
+                "production": {
+                    "devServerTarget": "psr-desktop:serve:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/psr-desktop-e2e/**/*.{js,ts}"]
+            }
         }
-      }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/psr-desktop-e2e/**/*.{js,ts}"]
-      }
-    }
-  },
-  "tags": [],
-  "implicitDependencies": ["psr-desktop"]
+    "tags": [],
+    "implicitDependencies": ["psr-desktop"]
 }

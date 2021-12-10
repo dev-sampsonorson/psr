@@ -1,34 +1,40 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@psr/auth": ["libs/auth/src/index.ts"],
-      "@psr/core": ["libs/core/src/index.ts"],
-      "@psr/shared/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@psr/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@psr/shared/ui-header": ["libs/shared/ui-header/src/index.ts"],
-      "@psr/shared/util": ["libs/shared/util/src/index.ts"],
-      "@psr/skill/feature-myskill": [
-        "libs/skill/feature-myskill/src/index.ts"
-      ],
-      "@psr/skill/feature-skill-mgt": [
-        "libs/skill/feature-skill-mgt/src/index.ts"
-      ],
-      "@psr/skill/shared": ["libs/skill/shared/src/index.ts"]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@psr/auth": ["libs/auth/src/index.ts"],
+            "@psr/config": ["libs/config/src/index.ts"],
+            "@psr/core": ["libs/core/src/index.ts"],
+            "@psr/env/*": ["apps/psr-desktop/src/environments/*"],
+            "@psr/home/feature-shell": ["libs/home/feature-shell/src/index.ts"],
+            "@psr/secret/feature-shell": [
+                "libs/secret/feature-shell/src/index.ts"
+            ],
+            "@psr/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+            "@psr/shared/ui": ["libs/shared/ui/src/index.ts"],
+            "@psr/shared/ui-header": ["libs/shared/ui-header/src/index.ts"],
+            "@psr/shared/util": ["libs/shared/util/src/index.ts"],
+            "@psr/skill/feature-myskill": [
+                "libs/skill/feature-myskill/src/index.ts"
+            ],
+            "@psr/skill/feature-skill-mgt": [
+                "libs/skill/feature-skill-mgt/src/index.ts"
+            ],
+            "@psr/skill/shared": ["libs/skill/shared/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
 }

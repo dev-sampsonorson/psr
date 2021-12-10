@@ -1,42 +1,42 @@
 {
-  "projectType": "library",
-  "root": "libs/skill/shared",
-  "sourceRoot": "libs/skill/shared/src",
-  "prefix": "psr-skl",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/skill/shared"],
-      "options": {
-        "project": "libs/skill/shared/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/skill/shared/tsconfig.lib.prod.json"
+    "projectType": "library",
+    "root": "libs/skill/shared",
+    "sourceRoot": "libs/skill/shared/src",
+    "prefix": "psr-skl",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/libs/skill/shared"],
+            "options": {
+                "project": "libs/skill/shared/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/skill/shared/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/skill/shared/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
         },
-        "development": {
-          "tsConfig": "libs/skill/shared/tsconfig.lib.json"
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/skill/shared"],
+            "options": {
+                "jestConfig": "libs/skill/shared/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/skill/shared/src/**/*.ts",
+                    "libs/skill/shared/src/**/*.html"
+                ]
+            }
         }
-      },
-      "defaultConfiguration": "production"
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/skill/shared"],
-      "options": {
-        "jestConfig": "libs/skill/shared/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/skill/shared/src/**/*.ts",
-          "libs/skill/shared/src/**/*.html"
-        ]
-      }
-    }
-  },
-  "tags": ["scope:skill", "type:mix", "platform:web"]
+    "tags": ["scope:skill", "type:mix", "platform:web"]
 }

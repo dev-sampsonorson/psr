@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+.btn {
+    &__elevated {
+        @apply bg-white hover:bg-gray-100;
+        @apply text-gray-800 font-semibold;
+        @apply py-2 px-4 border border-gray-400 rounded shadow;
+    }
+}

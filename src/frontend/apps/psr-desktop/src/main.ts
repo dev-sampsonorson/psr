@@ -4,10 +4,17 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
+export function getRootUrl() {
+    return document.getElementsByTagName('base')[0].href;
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+const providers = [
+    { provide: 'ROOT_URL', useFactory: getRootUrl, deps: [] }
+];
+
+if (environment.production) {
+    enableProdMode();
+}
+
+platformBrowserDynamic(providers).bootstrapModule(AppModule)
+    .catch(err => console.error(err));
