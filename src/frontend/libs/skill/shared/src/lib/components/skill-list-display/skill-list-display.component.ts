@@ -4,7 +4,7 @@ import { ISkillCard } from '../../models';
 import { SKILL_CARD_TOKEN } from './skill-card.token';
 
 @Component({
-    selector: 'skl-list-display',
+    selector: 'psr-skl-list-display',
     templateUrl: './skill-list-display.component.html',
     styleUrls: ['./skill-list-display.component.scss'],
     // changeDetection: ChangeDetectionStrategy.OnPush,

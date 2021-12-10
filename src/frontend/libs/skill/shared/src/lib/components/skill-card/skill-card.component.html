@@ -20,9 +20,10 @@
             <span title="{{getCategoryInfo(skill)}}"
                   class="flex-1 pr-2 text-sm font-thin text-gray-500 truncate">{{getCategoryInfo(skill)}}</span>
             <div class="relative">
-                <app-button-icon (buttonClick)="onToggleContextMenu()">
-                    <app-icon-dot-vertical></app-icon-dot-vertical>
-                </app-button-icon>
+                <psr-ui-button-icon (buttonClick)="onToggleContextMenu()">
+                    <psr-ui-icon-dot-vertical>
+                    </psr-ui-icon-dot-vertical>
+                </psr-ui-button-icon>
                 <button *ngIf="isContextMenuVisible" (click)="onToggleContextMenu()" class="close-overlay"
                         tabindex="-1"></button>
                 <psr-ui-context-menu [handle]="contextMenuHandle" *ngIf="isContextMenuVisible"

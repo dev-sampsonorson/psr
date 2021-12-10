@@ -16,7 +16,7 @@ import { SkillMgtRoutes } from '../../skill-mgt-constants';
 import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '../../tokens';
 
 @Component({
-    selector: 'app-skill-list',
+    selector: 'psr-skl-list',
     templateUrl: './skill-list.component.html',
     styleUrls: ['./skill-list.component.scss']
 })

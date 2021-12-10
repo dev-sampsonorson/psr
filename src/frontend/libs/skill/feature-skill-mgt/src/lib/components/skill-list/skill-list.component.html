@@ -13,14 +13,14 @@
         </p>
     </div>
 </div>
-<skl-list-display [isAddSkillCardVisible]="isAddSkillCardVisible" [isSkillsVisible]="isSkillsVisible">
-    <skl-add-card (addSkillCardClick)="addSkillCardClickHandler()"></skl-add-card>
+<psr-skl-list-display [isAddSkillCardVisible]="isAddSkillCardVisible" [isSkillsVisible]="isSkillsVisible">
+    <psr-skl-add-card (addSkillCardClick)="addSkillCardClickHandler()"></psr-skl-add-card>
     <ng-container *ngFor="let skill of skills">
-        <skl-card #skillCard [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask" [skill]="skill"
-                  [menuItems]="menuItems"></skl-card>
+        <psr-skl-card #skillCard [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask" [skill]="skill"
+                      [menuItems]="menuItems"></psr-skl-card>
         <!-- (contextMenuItemEvent)="onCardItemEvent($event)" -->
     </ng-container>
-</skl-list-display>
+</psr-skl-list-display>
 <ng-template #mask>
     <div class="ui-blockui ui-widget-overlay">
         <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -30,6 +30,6 @@
         </svg>
     </div>
 </ng-template>
-<app-empty-state (addNewItem)="addSkillCardClickHandler()" *ngIf="!isSkillsVisible" [title]="emptyStateTitle"
-                 [description]="emptyStateDescription" [buttonLabel]="emptyStateButtonLabel">
-</app-empty-state>
+<psr-ui-empty-state (addNewItem)="addSkillCardClickHandler()" *ngIf="!isSkillsVisible" [title]="emptyStateTitle"
+                    [description]="emptyStateDescription" [buttonLabel]="emptyStateButtonLabel">
+</psr-ui-empty-state>

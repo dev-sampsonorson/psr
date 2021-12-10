@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'app-button-icon',
+    selector: 'psr-ui-button-icon',
     templateUrl: './button-icon.component.html',
     styleUrls: ['./button-icon.component.scss']
 })

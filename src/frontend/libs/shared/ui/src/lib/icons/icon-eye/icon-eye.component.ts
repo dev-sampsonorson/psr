@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { BaseIconComponent } from '../base-icon/base-icon.component';
 
 @Component({
-    selector: 'app-icon-eye',
+    selector: 'psr-ui-icon-eye',
     templateUrl: './icon-eye.component.html',
     styleUrls: ['./icon-eye.component.scss'],
 })

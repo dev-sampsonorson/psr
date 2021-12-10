@@ -8,7 +8,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { SkillMgtService } from '../../services';
 
 @Component({
-    selector: 'app-skill-edit',
+    selector: 'psr-skl-edit',
     templateUrl: './skill-edit.component.html',
     styleUrls: ['./skill-edit.component.scss']
 })

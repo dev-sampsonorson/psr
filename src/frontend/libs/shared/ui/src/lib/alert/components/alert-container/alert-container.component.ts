@@ -7,7 +7,7 @@ import { AlertService } from '../../services/alert.service';
 import { AlertComponent } from '../alert/alert.component';
 
 @Component({
-    selector: 'app-alert-container',
+    selector: 'psr-ui-alert-container',
     template: `
       <ng-template appElementHost></ng-template>
   `,

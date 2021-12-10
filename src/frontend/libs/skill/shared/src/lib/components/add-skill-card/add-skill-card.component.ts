@@ -4,7 +4,7 @@ import { ISkillCard } from '../../models';
 import { SKILL_CARD_TOKEN } from '../skill-list-display/skill-card.token';
 
 @Component({
-    selector: 'skl-add-card',
+    selector: 'psr-skl-add-card',
     templateUrl: './add-skill-card.component.html',
     styleUrls: ['./add-skill-card.component.scss'],
     providers: [{ provide: SKILL_CARD_TOKEN, useExisting: AddSkillCardComponent }],

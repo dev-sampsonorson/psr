@@ -46,11 +46,13 @@ const _baseUrl = environment.apiUrl;
             }
         }),
         SharedUiHeaderModule.withConfig(
+            /** Primary Menu */
             [
                 new MenuItem({ name: 'primary-home', label: 'Home', routerLink: () => AppRoutes.Home() }),
                 new MenuItem({ name: 'primary-skills', label: 'Skills', routerLink: () => AppRoutes.Skills() }),
                 new MenuItem({ name: 'primary-secret', label: 'Secret', routerLink: () => AppRoutes.Secret() })
             ],
+            /** Profile Menu */
             [
                 new MenuItem({
                     name: 'primary-signout',

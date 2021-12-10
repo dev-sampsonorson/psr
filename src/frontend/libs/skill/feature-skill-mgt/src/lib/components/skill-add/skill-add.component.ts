@@ -9,7 +9,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { SkillMgtService } from '../../services';
 
 @Component({
-    selector: 'app-skill-add',
+    selector: 'psr-skl-add',
     templateUrl: './skill-add.component.html',
     styleUrls: ['./skill-add.component.scss']
 })

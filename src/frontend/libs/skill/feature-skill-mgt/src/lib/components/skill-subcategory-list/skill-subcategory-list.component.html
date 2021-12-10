@@ -4,6 +4,6 @@
 <!-- { outlets: { primary: 'categories', details: null } } -->
 <!-- <a [routerLink]="['/skills', 'categories']">Categories</a> -->
 <ng-container *ngFor="let subcategory of subcategories">
-    <skl-subcategory-card (onCardClick)="onCardClick(subcategory)" [subcategory]="subcategory">
-    </skl-subcategory-card>
+    <psr-skl-subcategory-card (onCardClick)="onCardClick(subcategory)" [subcategory]="subcategory">
+    </psr-skl-subcategory-card>
 </ng-container>

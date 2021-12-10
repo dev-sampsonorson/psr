@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ISkillCategory } from '../../models/skill.model';
 
 @Component({
-    selector: 'skl-category-card',
+    selector: 'psr-skl-category-card',
     templateUrl: './skill-category-card.component.html',
     styleUrls: ['./skill-category-card.component.scss']
 })

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, NgModule } from '@angular/core';
 
 @Component({
-    selector: 'app-read-field',
+    selector: 'psr-ui-read-field',
     templateUrl: './read-field.component.html',
     styleUrls: ['./read-field.component.scss'],
 })

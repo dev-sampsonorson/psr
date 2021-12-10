@@ -1,7 +1,7 @@
 <div class="skill-list">
     <ng-container *ngIf="isSkillsVisible">
-        <!-- <skl-add-card *ngIf="isAddSkillCardVisible" (addSkillCardClick)="addSkillCardClickHandler()">
-        </skl-add-card>
+        <!-- <psr-skl-add-card *ngIf="isAddSkillCardVisible" (addSkillCardClick)="addSkillCardClickHandler()">
+        </psr-skl-add-card>
         <ng-container #skillListContainer></ng-container> -->
         <ng-content></ng-content>
 
@@ -18,7 +18,7 @@
 </div>
 <!-- <ng-container *ngFor="let skill of skills"> -->
 <!-- (skillCardClick)="skillCardClickHandler($event)" [x-compref]="skillCard"  -->
-<!-- <skl-card #skillCard [menuItems]="menuItems" [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask"
-                            [skill]="skill" (contextMenuItemEvent)="onCardItemEvent($event)"></skl-card> -->
+<!-- <psr-skl-card #skillCard [menuItems]="menuItems" [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask"
+                            [skill]="skill" (contextMenuItemEvent)="onCardItemEvent($event)"></psr-skl-card> -->
 <!-- <app-block-ui class="hidden" [target]="skillCard" [blocked]="skill?.deleting || false"></app-block-ui> -->
 <!-- </ng-container> -->

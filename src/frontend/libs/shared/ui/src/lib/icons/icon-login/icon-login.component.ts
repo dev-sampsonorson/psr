@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { BaseIconComponent } from '../base-icon/base-icon.component';
 
 @Component({
-    selector: 'app-icon-login',
+    selector: 'psr-ui-icon-login',
     templateUrl: './icon-login.component.html',
     styleUrls: ['./icon-login.component.scss'],
 })

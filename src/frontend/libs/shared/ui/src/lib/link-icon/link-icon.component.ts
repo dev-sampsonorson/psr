@@ -21,7 +21,7 @@ import { IconTrashComponent } from '../icons';
 import { MenuItem } from '../menu/menu.model';
 
 @Component({
-    selector: 'app-link-icon',
+    selector: 'psr-ui-link-icon',
     templateUrl: './link-icon.component.html',
     styleUrls: ['./link-icon.component.scss'],
 })

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ISkill } from '../../models/skill.model';
 
 @Component({
-    selector: 'skl-read',
+    selector: 'psr-skl-read',
     templateUrl: './skill-read.component.html',
     styleUrls: ['./skill-read.component.scss']
 })

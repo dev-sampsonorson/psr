@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from '../menu/menu.model';
 
 @Component({
-    selector: 'app-dropdown-menu',
+    selector: 'psr-ui-dropdown-menu',
     templateUrl: './dropdown-menu.component.html',
     styleUrls: ['./dropdown-menu.component.scss']
 })

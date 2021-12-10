@@ -1,7 +1,7 @@
 import { Component, Input, NgModule, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-page-heading',
+    selector: 'psr-ui-page-heading',
     templateUrl: './page-heading.component.html',
     styleUrls: ['./page-heading.component.scss'],
 })

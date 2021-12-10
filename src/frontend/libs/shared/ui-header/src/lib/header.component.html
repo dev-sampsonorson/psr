@@ -3,7 +3,8 @@
         <div class="relative flex items-center justify-between h-16">
             <psr-ui-hamburger (clicked)="toggleMobileMenu()"></psr-ui-hamburger>
             <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                <app-logo></app-logo>
+                <psr-ui-logo>
+                </psr-ui-logo>
                 <div class="hidden sm:block sm:ml-12">
                     <psr-ui-navigation class="desktop-menu" [menu]="primaryMenu" [stacked]="false">
                     </psr-ui-navigation>

@@ -6,7 +6,7 @@ import { IBreadcrumb } from './breadcrumb.model';
 import { BreadcrumbService } from './breadcrumb.service';
 
 @Component({
-    selector: 'app-breadcrumb',
+    selector: 'psr-ui-breadcrumb',
     templateUrl: './breadcrumb.component.html',
     styleUrls: ['./breadcrumb.component.scss']
 })

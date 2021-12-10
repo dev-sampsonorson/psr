@@ -6,7 +6,7 @@ import { PageTitleService } from '../../services';
 import { SkillMgtRoutes } from '../../skill-mgt-constants';
 
 @Component({
-    selector: 'sklmgt-category-list',
+    selector: 'psr-skl-category-list',
     templateUrl: './skill-category-list.component.html',
     styleUrls: ['./skill-category-list.component.scss']
 })

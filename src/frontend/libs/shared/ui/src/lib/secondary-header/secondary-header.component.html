@@ -6,11 +6,13 @@
                 Detils of the skill.
             </p>
         </div> -->
-<app-page-heading x-size="medium" x-color="indigo" [title]="title" [description]="description"></app-page-heading>
-<app-button-icon (buttonClick)="onButtonClick()" class="text-indigo-900">
-    <app-icon-close></app-icon-close>
-</app-button-icon>
-<!-- <app-page-heading x-size="medium" x-color="indigo"></app-page-heading> -->
+<psr-ui-page-heading x-size="medium" x-color="indigo" [title]="title" [description]="description">
+</psr-ui-page-heading>
+<psr-ui-button-icon (buttonClick)="onButtonClick()" class="text-indigo-900">
+    <psr-ui-icon-close>
+    </psr-ui-icon-close>
+</psr-ui-button-icon>
+<!-- <psr-ui-page-heading x-size="medium" x-color="indigo"></psr-ui-page-heading> -->
 <!-- <div class="flex items-center ml-3 h-7">
             <button (click)="onCloseClick()" type="button"
                     class="text-indigo-800 bg-transparent rounded-md hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:text-indigo-900">

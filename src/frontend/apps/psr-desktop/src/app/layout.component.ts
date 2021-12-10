@@ -4,7 +4,7 @@ import { IUser, UserStorageService } from '@psr/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-layout',
+    selector: 'psr-layout',
     template: `
       <psr-ui-header [showSignInOrSignUp]="isAuthenticated$ | async" [user]="user"></psr-ui-header>
       <!-- h-0 is here to make the immediate sibling fill height of this container -->

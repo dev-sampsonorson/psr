@@ -1,7 +1,8 @@
-<app-secondary-header [title]="title" [description]="description" (closeClick)="onCloseClick()"></app-secondary-header>
+<psr-ui-secondary-header [title]="title" [description]="description" (closeClick)="onCloseClick()">
+</psr-ui-secondary-header>
 
 <ng-container *ngIf="isFormVisible">
-    <skl-form [skill]="skill" [categories]="categories" [subcategories]="subcategories"
-              (commitSkill)="onUpdateSkill($event)" [buttonLabel]="buttonLabel">
-    </skl-form>
+    <psr-skl-form [skill]="skill" [categories]="categories" [subcategories]="subcategories"
+                  (commitSkill)="onUpdateSkill($event)" [buttonLabel]="buttonLabel">
+    </psr-skl-form>
 </ng-container>

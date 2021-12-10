@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'app-two-column-layout',
+    selector: 'psr-ui-two-column-layout',
     templateUrl: './two-column-layout.component.html',
     styleUrls: ['./two-column-layout.component.scss'],
 })

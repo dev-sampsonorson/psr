@@ -6,7 +6,7 @@ import { PageHeadingModule } from '../page-heading/page-heading.component';
 import { SecondaryHeaderService } from './secondary-header.service';
 
 @Component({
-    selector: 'app-secondary-header',
+    selector: 'psr-ui-secondary-header',
     templateUrl: './secondary-header.component.html',
     styleUrls: ['./secondary-header.component.scss'],
 })

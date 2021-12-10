@@ -8,7 +8,7 @@ import { SkillCardContextMenuitemService } from '../../services/skill-card-conte
 import { SKILL_CARD_TOKEN } from '../skill-list-display/skill-card.token';
 
 @Component({
-    selector: 'skl-card',
+    selector: 'psr-skl-card',
     templateUrl: './skill-card.component.html',
     styleUrls: ['./skill-card.component.scss'],
     providers: [{ provide: SKILL_CARD_TOKEN, useExisting: SkillCardComponent }],

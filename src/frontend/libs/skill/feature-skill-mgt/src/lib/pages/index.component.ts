@@ -7,17 +7,17 @@ import { Observable, Subscription } from 'rxjs';
 import { PageTitleService } from '../services/page-title.service';
 
 @Component({
-    selector: 'app-index',
+    selector: 'psr-skl-index',
     template: `
-    <!-- <app-page-heading-layout>
+    <!-- <psr-ui-page-heading-layout>
         <h1 class="text-3xl font-bold text-gray-900">
           {{ pageTitle$ | async}}
         </h1>
-    </app-page-heading-layout> -->
-    <app-two-column-layout [isSecondaryContentVisible]="isSecondaryContentVisible" (hamburgerMenuClick)="hamburgerMenuClickHandler()">
+    </psr-ui-page-heading-layout> -->
+    <psr-ui-two-column-layout [isSecondaryContentVisible]="isSecondaryContentVisible" (hamburgerMenuClick)="hamburgerMenuClickHandler()">
     <!-- border-2 border-gray-200 border-dashed rounded-lg -->
     <!-- flex justify-between items-center -->
-        <app-page-heading x-size="large" x-color="black" [title]="pageTitle$ | async" [description]="pageSubTitle$ | async"></app-page-heading>
+        <psr-ui-page-heading x-size="large" x-color="black" [title]="pageTitle$ | async" [description]="pageSubTitle$ | async"></psr-ui-page-heading>
         <div header-content class="">
             <h1 class="text-3xl font-bold text-gray-900">
               {{ pageTitle$ | async}}
@@ -25,10 +25,10 @@ import { PageTitleService } from '../services/page-title.service';
             <p id="message-heading" class="text-lg font-normal text-gray-900">
               {{ pageSubTitle$ | async}}
             </p>
-            <!-- <app-skill-filter [categories]="categories"></app-skill-filter> -->
+            <!-- <psr-skl-filter [categories]="categories"></psr-skl-filter> -->
         </div>
         <nav breadcrumb-content *ngIf="isBreadcrumbVisible" class="flex px-4 py-4 mx-auto border-b-2 border-gray-200 border-dashed max-w-7xl sm:px-6 lg:px-8" aria-label="Breadcrumb">
-            <app-breadcrumb></app-breadcrumb>
+            <psr-ui-breadcrumb></psr-ui-breadcrumb>
         </nav>
         <router-outlet main-content
                 (activate)="onPrimaryRouterOutletActivate()"
@@ -37,7 +37,7 @@ import { PageTitleService } from '../services/page-title.service';
                 (activate)="onDetailsRouterOutletActivate()"
                 (deactivate)="onDetailsRouterOutletDeactivate()"
                 name="details"></router-outlet>
-    </app-two-column-layout>
+    </psr-ui-two-column-layout>
   `,
     styles: [
         `

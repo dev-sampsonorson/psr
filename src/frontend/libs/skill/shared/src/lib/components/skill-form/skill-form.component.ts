@@ -9,7 +9,7 @@ import { SkillFormService } from '../../services/skill-form.service';
 import { SkillsService } from '../../services/skills.service';
 
 @Component({
-    selector: 'skl-form',
+    selector: 'psr-skl-form',
     templateUrl: './skill-form.component.html',
     styleUrls: ['./skill-form.component.scss']
 })

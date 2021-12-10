@@ -15,7 +15,7 @@ import { Alert, AlertType, IAlertAction, IAlertComponent } from '../../alert.mod
 import { AlertService } from '../../services/alert.service';
 
 @Component({
-    selector: 'app-alert',
+    selector: 'psr-ui-alert',
     templateUrl: './alert.component.html',
     styleUrls: ['./alert.component.scss']
 })

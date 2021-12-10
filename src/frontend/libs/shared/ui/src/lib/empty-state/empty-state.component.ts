@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'app-empty-state',
+    selector: 'psr-ui-empty-state',
     templateUrl: './empty-state.component.html',
     styleUrls: ['./empty-state.component.scss'],
 })

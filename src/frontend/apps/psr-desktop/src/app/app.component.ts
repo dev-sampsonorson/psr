@@ -13,7 +13,7 @@ import { ErrorSubscriptionService } from './services/error-subscription.service'
             @apply relative top-0 block min-h-full;
         }
 
-        .app-test {
+        .psr-ui-test {
             @apply bg-red-700;
         }
     `]
