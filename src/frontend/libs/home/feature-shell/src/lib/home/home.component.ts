@@ -1,13 +1,13 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@psr/auth';
 import { APP_CONFIG_TOKEN, IAppConfig, IUser, TestService, UserStorageService } from '@psr/core';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'psr-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'psr-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         private auth: AuthService,
         private router: Router,
         private userStorage: UserStorageService,
-        @Inject(APP_CONFIG_TOKEN) private appConfig: IAppConfig
+        @Inject(APP_CONFIG_TOKEN) private appConfig: IAppConfig,
+        private zone: NgZone
     ) { }
 
     ngOnInit(): void {
@@ -33,14 +34,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     onGetError(): void {
-        this.test.getError().subscribe(
-            value => {
-                console.info(value);
+        this.test.getError().subscribe({
+            next: (value) => {
+                console.log(value);
             },
-            error => {
+            error: () => {
                 // console.error(error);
             }
-        );
+        });
     }
 
     onGetTestDescription(): void {

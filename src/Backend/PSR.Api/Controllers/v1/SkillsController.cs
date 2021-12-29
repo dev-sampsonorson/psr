@@ -43,6 +43,12 @@ namespace PSR.Api.Controllers.v1
             return Ok(await _skillService.GetSkills(categoryId, subcategoryId));            
         }
 
+        [HttpGet]
+        [Route("categories/{categoryId}/subcategories/{subcategoryId}/list/{employeeId}")]
+        public async Task<IActionResult> GetSkillsByEmployee(Guid categoryId, Guid subcategoryId, Guid employeeId) {
+            return Ok(await _skillService.GetSkillsByEmployeeAsync(employeeId, categoryId, subcategoryId));            
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSkill(Guid id) {
             var result = await _skillService.GetSkill(id);

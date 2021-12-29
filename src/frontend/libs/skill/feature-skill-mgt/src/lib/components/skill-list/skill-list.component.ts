@@ -1,14 +1,14 @@
 import { Component, Inject, NgZone, OnDestroy, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, MenuItem } from '@psr/shared/ui';
+import { PageTitleService } from '@psr/shared/util';
 import { ISkill } from '@psr/skill/data-access';
-import { AddSkillCardComponent, ISkillCard, SkillCardComponent, SkillCardContextMenuitemService } from '@psr/skill/shared';
+import { AddSkillCardComponent, SkillCardComponent } from '@psr/skill/ui';
+import { ISkillCard, SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN, SkillCardContextMenuitemService } from '@psr/skill/util';
 import { Observable, Subscription } from 'rxjs';
 
 import { SkillMgtService } from '../../services';
-import { PageTitleService } from '../../services/page-title.service';
 import { SkillMgtRoutes } from '../../skill-mgt-constants';
-import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '../../tokens';
 
 @Component({
     selector: 'psr-skl-list',

@@ -43,7 +43,7 @@ namespace PSR.Api.Services
 
             // Generate Jwt token
             var tokenResult = await _tokenManager.JwtTokenAsync(
-                user, employee.FirstName, employee.LastName);
+                user, employee.Id, employee.FirstName, employee.LastName);
 
             return _mapper.MergeInto<UserAuthRes>(user, employee, tokenResult);
         }
@@ -77,7 +77,7 @@ namespace PSR.Api.Services
 
             // Generate Jwt token
             var tokenResult = await _tokenManager.JwtTokenAsync(
-                user, registrationReq.FirstName, registrationReq.LastName);
+                user, employeeToSave.Id, registrationReq.FirstName, registrationReq.LastName);
 
             if (!tokenResult.Succeeded)
                 throw new AppException("Registration failed", "Token generation failed");

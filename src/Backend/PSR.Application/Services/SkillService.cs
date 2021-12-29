@@ -12,7 +12,7 @@ namespace PSR.Application.Services
     public class SkillService : ISkillService
     {
 
-        private readonly ISkillRepository _skillRepository;
+    private readonly ISkillRepository _skillRepository;
         private readonly IMapper _mapper;
 
         public SkillService(
@@ -127,6 +127,14 @@ namespace PSR.Application.Services
             return _mapper.Map<Skill, SkillRes>(skill);
         }
 
+        public async Task<IEnumerable<SkillRes>> GetSkillsByEmployeeAsync(Guid employeeId, Guid categoryId, Guid subCategoryId) {
+            using (var uow = _skillRepository.UnitOfWork) {
+                var skills = await _skillRepository.GetSkillsByEmployeeAsync(employeeId, categoryId, subCategoryId);
+
+                return _mapper.Map<IEnumerable<Skill>, IEnumerable<SkillRes>>(skills);
+            }
+        }
+
         public IEnumerable<SkillCategoryRes> GetSkillCategories()
         {
             using (var uow = _skillRepository.UnitOfWork) {
@@ -136,10 +144,26 @@ namespace PSR.Application.Services
             }
         }
 
+        public async Task<IEnumerable<SkillCategoryRes>> GetSkillCategoriesByEmployeeAsync(Guid employeeId) {
+            using (var uow = _skillRepository.UnitOfWork) {
+                var categories = await _skillRepository.GetSkillCategoriesByEmployeeAsync(employeeId);
+
+                return _mapper.Map<IEnumerable<SkillCategory>, IEnumerable<SkillCategoryRes>>(categories);
+            }
+        }
+
         public IEnumerable<SkillSubCategoryRes> GetSkillSubCategories()
         {
             using (var uow = _skillRepository.UnitOfWork) {
                 var subCategories = _skillRepository.GetSkillSubCategories();
+
+                return _mapper.Map<IEnumerable<SkillSubCategory>, IEnumerable<SkillSubCategoryRes>>(subCategories);
+            }
+        }
+        
+        public async Task<IEnumerable<SkillSubCategoryRes>> GetSkillSubCategoriesByEmployeeAsync(Guid employeeId, Guid categoryId) {
+            using (var uow = _skillRepository.UnitOfWork) {
+                var subCategories = await _skillRepository.GetSkillSubCategoriesByEmployeeAsync(employeeId, categoryId);
 
                 return _mapper.Map<IEnumerable<SkillSubCategory>, IEnumerable<SkillSubCategoryRes>>(subCategories);
             }

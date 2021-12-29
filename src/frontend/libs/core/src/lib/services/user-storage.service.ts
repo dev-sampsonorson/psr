@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, concat, Observable, of } from 'rxjs';
-import { distinctUntilKeyChanged, filter, switchMap, take, tap } from 'rxjs/operators';
+import { BehaviorSubject, concat, Observable, of, throwError } from 'rxjs';
+import { distinctUntilKeyChanged, filter, map, switchMap, take, tap } from 'rxjs/operators';
 
+import { ErrorCode } from '../error/error.model';
 import { EMPTY_USER, IUser } from '../models';
 import { USER_STORAGE_KEY_TOKEN } from '../tokens';
 import { StorageService } from './storage.service';
@@ -28,7 +29,7 @@ export class UserStorageService {
     ) { }
 
     public getUser(): Observable<IUser | null> {
-        let source$ = concat(
+        const source$ = concat(
             this._userSubject.pipe(
                 // take will trigger the `subject` observable
                 // to complete so that the next observable in
@@ -64,6 +65,20 @@ export class UserStorageService {
         return source$;
     }
 
+    public getAuthenticatedUser(): Observable<IUser> {
+        return this.getUser().pipe(
+            // tap(() => { throw new { name: ErrorCode.UNAUTHENTICATED, message: '' }; }),
+            switchMap(u => {
+                if (u === null)
+                    return throwError(() => ErrorCode.UNAUTHENTICATED);
+
+                return of(u);
+            }),
+            filter(u => !!u),
+            map(u => u as unknown as IUser),
+        );
+    }
+
     public setUser(user: IUser | null): void {
         this._userSubject.next(user);
     }
@@ -73,6 +88,7 @@ export class UserStorageService {
     }
 
     public removeUser(): void {
+        this._userSubject.next(null);
         this.storage.removeItem(this.userStorageKey);
     }
 

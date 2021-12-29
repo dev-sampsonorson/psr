@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BlockUiModule, EmptyStateModule, MenuItem } from '@psr/shared/ui';
-import { AddSkillCardModule, SkillCardModule, SkillListDisplayModule } from '@psr/skill/shared';
+import { AddSkillCardModule, SkillCardModule, SkillListDisplayModule } from '@psr/skill/ui';
+import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '@psr/skill/util';
 
-import { SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN } from '../../tokens';
 import { SkillListComponent } from './skill-list.component';
 
 

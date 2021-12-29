@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -20,13 +21,16 @@ namespace PSR.Api.Controllers.v1
     {
         private readonly IAuthService _authService;
         private readonly ITokenManagerService _tokenManager;
+        private readonly JwtSettings _jwtSettings;
 
         public AuthController(
             ILoggerFactory loggerFactory,
             IAuthService authService,
+            IOptionsMonitor<JwtSettings> optionsMonitor,
             ITokenManagerService tokenManager) : base(loggerFactory)
         {
             _authService = authService;
+            _jwtSettings = optionsMonitor.CurrentValue;
             _tokenManager = tokenManager;
         }
 
@@ -73,6 +77,7 @@ namespace PSR.Api.Controllers.v1
 
         [HttpPost]
         [Route("revoke")]
+        [Authorize]
         public async Task<IActionResult> RevokeToken(RevokeTokenReq revokeReq)
         {            
             // accept refresh token in request body or cookie
@@ -85,15 +90,21 @@ namespace PSR.Api.Controllers.v1
             }
 
             var result = await _tokenManager.RevokeTokenAsync(refreshToken);
+            if (!result.Succeeded) {
+                throw new AppException("Logout failed", "Revoke failed");
+            }
 
-            return Ok(result);
+            Response.Cookies.Delete("refreshToken");
+
+            return Ok(result.Succeeded);
         }
 
         private void SetTokenCookie(string refreshToken) {
             // append cookie with refresh token to the http response
             var cookieOptions = new CookieOptions {
                 HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(7)
+                // Expires = _tokenManager.CalcJwtExpiration(_jwtSettings),
+                Expires = DateTime.UtcNow.Add(_jwtSettings.CookieTokenLifetime)
             };
             Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
         }

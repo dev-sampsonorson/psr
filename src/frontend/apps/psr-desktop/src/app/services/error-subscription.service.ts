@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@psr/auth';
-import { ErrorDispatcherService, ProblemDetails } from '@psr/core';
+import { ErrorCode, ErrorDispatcherService, ProblemDetails } from '@psr/core';
 import { AlertService } from '@psr/shared/ui';
 import { Observable, Subscription } from 'rxjs';
 
@@ -38,7 +38,7 @@ export class ErrorSubscriptionService {
 
     public startSubscription(): void {
         this._onUnauthenticatedSubscription = this._onUnauthenticated$.subscribe((problem: ProblemDetails) => {
-            this.auth.logout();
+            // this.auth.logout();
             this.alert.onCloseAlert(
                 this.alert.error(
                     problem.title,
@@ -78,8 +78,11 @@ export class ErrorSubscriptionService {
         });
 
         this._onGlobalErrorSubscription = this._onGlobalError$.subscribe((error: any) => {
+            if (error === ErrorCode.UNAUTHENTICATED) {
+                this.auth.logout();
+                this.alert.error("Unauthenticated", "You are not logged in.");
+            }
             console.error('Global error => ', error);
-            // console.error('Error from global error handler');
         });
     }
 

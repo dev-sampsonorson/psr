@@ -1,0 +1,42 @@
+{
+    "projectType": "library",
+    "root": "libs/skill/util",
+    "sourceRoot": "libs/skill/util/src",
+    "prefix": "psr",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/libs/skill/util"],
+            "options": {
+                "project": "libs/skill/util/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/skill/util/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/skill/util/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/skill/util"],
+            "options": {
+                "jestConfig": "libs/skill/util/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/skill/util/src/**/*.ts",
+                    "libs/skill/util/src/**/*.html"
+                ]
+            }
+        }
+    },
+    "tags": ["scope:skill", "type:util", "platform:web"]
+}

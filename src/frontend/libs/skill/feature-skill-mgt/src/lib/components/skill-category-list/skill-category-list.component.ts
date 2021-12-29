@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageTitleService } from '@psr/shared/util';
 import { ISkillCategory } from '@psr/skill/data-access';
 
-import { PageTitleService } from '../../services';
 import { SkillMgtRoutes } from '../../skill-mgt-constants';
 
 @Component({

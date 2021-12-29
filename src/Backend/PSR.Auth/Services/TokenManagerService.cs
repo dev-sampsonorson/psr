@@ -107,13 +107,15 @@ namespace PSR.Auth.Services
                 // get logged in user base on the information from the JWT token 
                 var userExisting = await _identityService.GetUserByIdAsync(storedRefreshToken.UserId);
                 
+                var employeeId = new Guid(claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == AuthClaimTypes.EmployeeId)?.Value!);
                 var firstName = claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == AuthClaimTypes.FirstName)?.Value!;
                 var lastName = claimsPrincipal?.Claims.FirstOrDefault(x => x.Type == AuthClaimTypes.LastName)?.Value!;
 
                 // generate new token
-                var tokenResult = await JwtTokenAsync(userExisting, firstName, lastName);
+                var tokenResult = await JwtTokenAsync(userExisting, employeeId, firstName, lastName);
                 
                 var userAuthResponse = _mapper.MergeInto<UserAuthRes>(userExisting, tokenResult);
+                userAuthResponse.EmployeeId = employeeId;
                 userAuthResponse.FirstName = firstName;
                 userAuthResponse.LastName = lastName;
 
@@ -138,15 +140,25 @@ namespace PSR.Auth.Services
             await _refreshTokenRepository.ChangePreviousTokensToUsedAsync(userId);
         }
 
-        public async Task<AuthRes> JwtTokenAsync(ApplicationUser user, string firstName, string lastName) {
+        public DateTime CalcJwtExpiration(JwtSettings jwtSettings) {
+            var result = DateTime.UtcNow.Add(jwtSettings.TokenLifetime); // TODO: update the expiration time to minutes
+            return result;
+        }
+
+        public DateTime CalcRefreshTokenExpiration(JwtSettings jwtSettings) {
+            var result = DateTime.UtcNow.Add(jwtSettings.RefreshTokenLifetime); // TODO: update the expiration time to minutes
+            return result;
+        }
+
+        public async Task<AuthRes> JwtTokenAsync(ApplicationUser user, Guid employeeId, string firstName, string lastName) {
             var jwtHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
 
-            var claims = await GetAllValidClaimsAsync(user, firstName, lastName);
+            var claims = await GetAllValidClaimsAsync(user, employeeId, firstName, lastName);
 
             var tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.Add(_jwtSettings.TokenLifetime), // TODO: update the expiration time to minutes
+                Expires = CalcJwtExpiration(_jwtSettings),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature // TODO: review the algorithm
@@ -231,13 +243,14 @@ namespace PSR.Auth.Services
             }
         }
         
-        private async Task<List<Claim>> GetAllValidClaimsAsync(ApplicationUser user, string firstName, string lastName) {
+        private async Task<List<Claim>> GetAllValidClaimsAsync(ApplicationUser user, Guid employeeId, string firstName, string lastName) {
             var _options = new IdentityOptions();
             var claims = new List<Claim> {
                 new Claim(AuthClaimTypes.UserId, user.Id),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(AuthClaimTypes.EmployeeId, employeeId.ToString()),
                 new Claim(AuthClaimTypes.FirstName, firstName),
                 new Claim(AuthClaimTypes.LastName, lastName),
             };
@@ -269,6 +282,10 @@ namespace PSR.Auth.Services
             token.RevokedDate = DateTime.UtcNow;
             token.ReasonRevoked = reason;
         }
+
+        /* private void MarkRefreshTokenUsed(RefreshToken token) {
+            token.IsUsed = true;
+        } */
 
         private RefreshToken GenerateRefreshToken(string securityTokenId, string userId) {
             var secureRandom = new SecureRandom();

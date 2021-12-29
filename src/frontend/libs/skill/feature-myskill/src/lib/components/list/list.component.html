@@ -1,0 +1,35 @@
+<div class="pb-5" *ngIf="isCategoryDetailsVisible">
+    <div class="flex flex-wrap items-baseline -mt-2 -ml-2">
+        <h3 class="mt-2 ml-2 text-lg font-medium leading-6 text-gray-700">
+            Skills
+        </h3>
+        <p class="mt-1 ml-2 text-sm text-gray-500 truncate">in
+            {{selectedCategoryName}}
+            <svg class="flex-shrink-0 inline-block w-5 h-5 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+            </svg>
+            {{selectedSubcategoryName}}
+        </p>
+    </div>
+</div>
+<psr-skl-list-display [isAddSkillCardVisible]="isAddSkillCardVisible" [isSkillsVisible]="isSkillsVisible">
+    <psr-skl-add-card (addSkillCardClick)="addSkillCardClickHandler()"></psr-skl-add-card>
+    <ng-container *ngFor="let skill of skills">
+        <psr-skl-card #skillCard [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask" [skill]="skill"
+                      [menuItems]="menuItems"></psr-skl-card>
+        <!-- (contextMenuItemEvent)="onCardItemEvent($event)" -->
+    </ng-container>
+</psr-skl-list-display>
+<ng-template #mask>
+    <div class="ui-blockui ui-widget-overlay">
+        <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+    </div>
+</ng-template>
+<psr-ui-empty-state (addNewItem)="addSkillCardClickHandler()" *ngIf="!isSkillsVisible" [title]="emptyStateTitle"
+                    [description]="emptyStateDescription" [buttonLabel]="emptyStateButtonLabel">
+</psr-ui-empty-state>

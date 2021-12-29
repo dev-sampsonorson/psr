@@ -1,10 +1,12 @@
 export interface IUser {
     id: string;
+    employeeId: string;
     userName: string;
     email: string;
     firstName: string;
     lastName: string;
     token: string;
+    refreshToken: string;
 }
 
 export interface IEmptyUser {

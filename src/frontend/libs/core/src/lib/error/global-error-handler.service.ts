@@ -11,7 +11,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     ) { }
 
     handleError(error: any) {
-        console.log('GlobalErrorHandlerService', error);
+        // console.log('GlobalErrorHandlerService', error);
         // Check if it's an error from an HTTP response
         if (!(error instanceof HttpErrorResponse)) {
             error = error.rejection; // get the error object

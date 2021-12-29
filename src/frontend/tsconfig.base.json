@@ -16,8 +16,8 @@
         "baseUrl": ".",
         "paths": {
             "@psr/auth": ["libs/auth/src/index.ts"],
-            "@psr/config": ["libs/config/src/index.ts"],
             "@psr/core": ["libs/core/src/index.ts"],
+            "@psr/desktop/config": ["libs/desktop/config/src/index.ts"],
             "@psr/env/*": ["apps/psr-desktop/src/environments/*"],
             "@psr/home/feature-shell": ["libs/home/feature-shell/src/index.ts"],
             "@psr/secret/feature-shell": [
@@ -34,7 +34,8 @@
             "@psr/skill/feature-skill-mgt": [
                 "libs/skill/feature-skill-mgt/src/index.ts"
             ],
-            "@psr/skill/shared": ["libs/skill/shared/src/index.ts"]
+            "@psr/skill/ui": ["libs/skill/ui/src/index.ts"],
+            "@psr/skill/util": ["libs/skill/util/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

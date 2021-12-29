@@ -38,7 +38,8 @@ namespace PSR.Api.Controllers.v1
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("{id}", Name = nameof(GetUser))]
         public async Task<IActionResult> GetUser(string id) {
 
             var user = await _authService.GetUserByIdAysnc(id);

@@ -8,9 +8,12 @@ namespace PSR.Application.Interfaces
     {
          Task<IEnumerable<SkillRes>> GetSkills();
          Task<IEnumerable<SkillRes>> GetSkills(Guid categoryId, Guid subcategoryId);
+         Task<IEnumerable<SkillRes>> GetSkillsByEmployeeAsync(Guid employeeId, Guid categoryId, Guid subCategoryId);
          Task<SkillRes> GetSkill(Guid id);
          IEnumerable<SkillCategoryRes> GetSkillCategories();
+         Task<IEnumerable<SkillCategoryRes>> GetSkillCategoriesByEmployeeAsync(Guid employeeId);
          IEnumerable<SkillSubCategoryRes> GetSkillSubCategories();
+         Task<IEnumerable<SkillSubCategoryRes>> GetSkillSubCategoriesByEmployeeAsync(Guid employeeId, Guid categoryId);
          Task<IEnumerable<SkillSubCategoryRes>> GetSkillSubCategoryByCategoryAsync(Guid categoryId);
          Task<SkillCategoryRes> GetCategory(Guid id);
          Task<SkillSubCategoryRes> GetSubCategory(Guid id);

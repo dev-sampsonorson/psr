@@ -14,6 +14,10 @@ const appRoutes: Routes = [
                 path: 'skills',
                 loadChildren: () => import('@psr/skill/feature-skill-mgt').then(m => m.SkillFeatureSkillMgtModule)
             },
+            {
+                path: 'my-skills',
+                loadChildren: () => import('@psr/skill/feature-myskill').then(m => m.SkillFeatureMyskillModule)
+            },
             { path: 'secret', loadChildren: () => import('@psr/secret/feature-shell').then(m => m.SecretFeatureShellModule) },
             // { path: 'secret', component: SecretComponent, canActivate: [AuthGuard] },
             { path: '', redirectTo: 'home', pathMatch: 'full' }

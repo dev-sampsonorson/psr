@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { ObservableInput, throwError } from 'rxjs';
 import { filter, map, take, tap } from 'rxjs/operators';
 
@@ -14,33 +14,28 @@ export class ErrorHandlerService {
 
     constructor(
         private userStorage: UserStorageService,
-        private errorDispatcher: ErrorDispatcherService
+        private errorDispatcher: ErrorDispatcherService,
+        private zone: NgZone
     ) { }
 
     handleError(response: HttpErrorResponse): ObservableInput<any> {
+        console.log('handleError', response);
         const problem: ProblemDetails = response.error && response.error as ProblemDetails;
 
         this.userStorage.getUser()
             .pipe(
                 take(1),
-                filter(_ => [401, 403].includes(response.status)),
+                filter(() => [401, 403].includes(response.status)),
                 map(user => ({ user, status: response.status })),
                 tap(x => {
-                    if (x.user === null && x.status === 401) {
-                        this.errorDispatcher.notifyUnauthenticated(problem);
-                        // this.auth.logout();
-                        // this.auth.redirectToLogin();
-                    }
-                    // x.user === null && [401, 403].includes(x.status) && this.auth.redirectToLogin();
-                    // x.user === null && [401, 403].includes(x.status) && this.auth.logout();
-                }),
-                /* tap(x => {
-                    x.user !== null && x.status === 401 && this.auth.logout();
-                }), */
-                tap(x => {
-                    if (x.user !== null && x.status === 403) {
+                    if (x.status === 403) {
                         this.errorDispatcher.notifyForbidden();
+                    } else if (x.status === 401) {
+                        this.userStorage.removeUser();
+                        this.errorDispatcher.notifyUnauthenticated(problem);
                     }
+
+                    /*  */
                     /* this.zone.run(() => {
                         (x.user !== null && x.status === 403) && this.alert.warn(
                             'Unauthorized',
@@ -95,13 +90,13 @@ export class ErrorHandlerService {
             // );
         }); */
 
-        return throwError({
+        return throwError(() => ({
             success: false,
             status: response.status,
             statusText: response.statusText,
             message: response.message,
             error: response.error
-        });
+        }));
     }
 
     private isProblemDetail(problem: any) {

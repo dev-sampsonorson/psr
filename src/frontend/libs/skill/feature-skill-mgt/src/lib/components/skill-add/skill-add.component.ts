@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '@psr/shared/ui';
 import { ISkill, ISkillCategory, ISkillSubCategory } from '@psr/skill/data-access';
-import { SkillFormService } from '@psr/skill/shared';
+import { SkillFormService } from '@psr/skill/util';
 import { Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -16,15 +16,15 @@ import { SkillMgtService } from '../../services';
 })
 export class SkillAddComponent implements OnInit, OnDestroy {
 
-    public title: string = 'Add New Skill';
-    public description: string = 'Provide details about the skill.';
-    public buttonLabel: string = 'Add skill';
+    public title = 'Add New Skill';
+    public description = 'Provide details about the skill.';
+    public buttonLabel = 'Add skill';
     public form: FormGroup | undefined;
     public skill: ISkill | undefined;
     public categories: ISkillCategory[] = [];
     public subCategories: ISkillSubCategory[] = [];
-    public formIsValid: boolean = false;
-    public isSubcategoryDisabled: boolean = true;
+    public formIsValid = false;
+    public isSubcategoryDisabled = true;
 
     private _categoryValueChangeSub: Subscription | undefined;
     private _formStatusChangeSub: Subscription | undefined;

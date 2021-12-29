@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '@psr/shared/ui';
 import { ISkill, ISkillCategory, ISkillSubCategory, SkillsService } from '@psr/skill/data-access';
-import { SkillFormService } from '@psr/skill/shared';
+import { SkillFormService } from '@psr/skill/util';
 import { Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -15,9 +15,9 @@ import { SkillMgtService } from '../../services';
 })
 export class SkillEditComponent implements OnInit, OnDestroy {
 
-    public title: string = 'Edit Skill';
-    public description: string = 'Update details about the skill.';
-    public buttonLabel: string = 'Update skill';
+    public title = 'Edit Skill';
+    public description = 'Update details about the skill.';
+    public buttonLabel = 'Update skill';
     public skill: ISkill | undefined;
     public categories: ISkillCategory[] = [];
     public subcategories: ISkillSubCategory[] = [];

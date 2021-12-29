@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthModule, AuthRoutePaths } from '@psr/auth';
-import { skillMgtConfig } from '@psr/config';
 import { AppRoutes, CoreModule } from '@psr/core';
-import { environment } from '@psr/env/environment';
 import { HomeFeatureShellModule } from '@psr/home/feature-shell';
 import { SecretFeatureShellModule } from '@psr/secret/feature-shell';
 import { AlertModule, IconLogoutComponent, MenuItem, SharedModule } from '@psr/shared/ui';
 import { SharedUiHeaderModule } from '@psr/shared/ui-header';
-import { SkillFeatureSkillMgtModule } from '@psr/skill/feature-skill-mgt';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout.component';
 
+// import { skillMgtConfig } from '@psr/desktop/config';
 const _baseApiEndpoint = environment.baseApiEndpoint;
 
 @NgModule({
@@ -49,6 +48,7 @@ const _baseApiEndpoint = environment.baseApiEndpoint;
             /** Primary Menu */
             [
                 new MenuItem({ name: 'primary-home', label: 'Home', routerLink: () => AppRoutes.Home() }),
+                new MenuItem({ name: 'primary-myskills', label: 'My Skills', routerLink: () => AppRoutes.MySkills() }),
                 new MenuItem({ name: 'primary-skills', label: 'Skills', routerLink: () => AppRoutes.Skills() }),
                 new MenuItem({ name: 'primary-secret', label: 'Secret', routerLink: () => AppRoutes.Secret() })
             ],
@@ -65,7 +65,8 @@ const _baseApiEndpoint = environment.baseApiEndpoint;
         ),
         AlertModule.forRoot(environment.alertOptions),
 
-        SkillFeatureSkillMgtModule.withConfig(skillMgtConfig)
+        // SkillFeatureSkillMgtModule.withConfig(skillMgtConfig),
+        // SkillFeatureMyskillModule.withConfig({})
     ],
     providers: [
         // { provide: SKILL_MGT_CONFIG_TOKEN, useValue: skillMgtConfig },

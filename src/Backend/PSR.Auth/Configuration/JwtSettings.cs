@@ -9,5 +9,7 @@ namespace PSR.Auth.Configuration
         public string Audience { get; set; } = "";
         public int RefreshTokenTTL { get; set; } = 1;
         public TimeSpan TokenLifetime { get; set; } = TimeSpan.MinValue;
+        public TimeSpan RefreshTokenLifetime { get; set; } = TimeSpan.MinValue;
+        public TimeSpan CookieTokenLifetime { get; set; } = TimeSpan.MinValue;
     }
 }

@@ -14,12 +14,14 @@ export interface IAppEndpoints {
 
 export interface IAppRoutes {
     readonly Home: () => any[] | string;
+    readonly MySkills: () => any[] | string;
     readonly Skills: () => any[] | string;
     readonly Secret: () => any[] | string;
 }
 
 let appRoutes: IAppRoutes = {
     Home: () => [`/home`],
+    MySkills: () => [`/my-skills`],
     Skills: () => [`/skills`],
     Secret: () => [`/secret`],
 };

@@ -30,6 +30,27 @@ namespace PSR.Infrastructure.Repository
             return _context.Set<SkillCategory>().AsNoTracking().ToList();
         }
 
+        public async Task<List<SkillCategory>> GetSkillCategoriesByEmployeeAsync(Guid employeeId) {
+            return await (from s in _context.Set<Skill>().AsNoTracking().Include(x => x.Category)
+                    join r in _context.Set<SkillRating>().AsNoTracking().Include(x => x.Skill).Include(x => x.Employee) on s.Id equals r.Skill.Id
+                    where r.Employee.Id == employeeId
+                    select s.Category).ToListAsync();
+        }
+
+        public async Task<List<SkillSubCategory>> GetSkillSubCategoriesByEmployeeAsync(Guid employeeId, Guid categoryId) {
+            return await (from s in _context.Set<Skill>().AsNoTracking().Include(x => x.SubCategory).ThenInclude(x => x.Category)
+                    join r in _context.Set<SkillRating>().AsNoTracking().Include(x => x.Skill).Include(x => x.Employee) on s.Id equals r.Skill.Id
+                    where s.CategoryId == categoryId && r.Employee.Id == employeeId
+                    select s.SubCategory).ToListAsync();
+        }
+
+        public async Task<List<Skill>> GetSkillsByEmployeeAsync(Guid employeeId, Guid categoryId, Guid subCategoryId) {
+            return await (from s in _context.Set<Skill>().AsNoTracking().Include(x => x.Category).Include(x => x.SubCategory).ThenInclude(x => x.Category)
+                    join r in _context.Set<SkillRating>().AsNoTracking().Include(x => x.Skill).Include(x => x.Employee) on s.Id equals r.Skill.Id
+                    where s.CategoryId == categoryId && s.SubCategoryId == subCategoryId && r.Employee.Id == employeeId
+                    select s).ToListAsync();
+        }
+
         public List<SkillSubCategory> GetSkillSubCategories()
         {
             return _context.Set<SkillSubCategory>().AsNoTracking().Include(x => x.Category).ToList();

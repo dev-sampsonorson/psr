@@ -16,11 +16,13 @@ namespace PSR.Api.Controllers.v1
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly IEmployeeManagementService _employeeManagementService;
+        private readonly ISkillService _skillService;
 
         public EmployeesController(
             IEmployeeRepository employeeRepository, 
             ISkillRepository skillRepository,
             IEmployeeManagementService employeeManagementService,
+            ISkillService skillService, 
             ILoggerFactory loggerFactory
         ) : base(loggerFactory)
         {
@@ -28,10 +30,12 @@ namespace PSR.Api.Controllers.v1
             ArgumentNullException.ThrowIfNull(employeeRepository, nameof(employeeRepository));
             ArgumentNullException.ThrowIfNull(skillRepository, nameof(skillRepository));
             ArgumentNullException.ThrowIfNull(employeeManagementService, nameof(employeeManagementService));
+            ArgumentNullException.ThrowIfNull(skillService, nameof(skillService));
 
             _employeeRepository = employeeRepository;
             _skillRepository = skillRepository;
             _employeeManagementService = employeeManagementService;
+            _skillService = skillService;
         }
 
         [HttpGet]
@@ -75,6 +79,24 @@ namespace PSR.Api.Controllers.v1
 
             return Ok(response);
             
+        }
+
+        [HttpGet()]
+        [Route("{employeeId}/categories")]
+        public async Task<IActionResult> GetSkillCategoriesByEmployee(Guid employeeId) {
+            return Ok(await _skillService.GetSkillCategoriesByEmployeeAsync(employeeId));
+        }
+
+        [HttpGet()]
+        [Route("{employeeId}/categories/{categoryId}/subcategories")]
+        public async Task<IActionResult> GetSkillSubCategoriesByEmployee(Guid categoryId, Guid employeeId) {
+            return Ok(await _skillService.GetSkillSubCategoriesByEmployeeAsync(employeeId, categoryId));
+        }
+
+        [HttpGet]
+        [Route("{employeeId}/categories/{categoryId}/subcategories/{subcategoryId}/skills")]
+        public async Task<IActionResult> GetSkillsByEmployee(Guid categoryId, Guid subcategoryId, Guid employeeId) {
+            return Ok(await _skillService.GetSkillsByEmployeeAsync(employeeId, categoryId, subcategoryId));            
         }
     }
 }

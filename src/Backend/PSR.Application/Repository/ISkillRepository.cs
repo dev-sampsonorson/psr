@@ -12,8 +12,11 @@ namespace PSR.Application.Repository
          Task<List<Skill>> GetSkillsByCategory(Guid categoryId);
          Task<List<Skill>> GetSkillsByCategoryAndSubcategory(Guid categoryId, Guid subCategoryId);
          List<SkillCategory> GetSkillCategories();
+         Task<List<SkillCategory>> GetSkillCategoriesByEmployeeAsync(Guid employeeId);
          List<SkillSubCategory> GetSkillSubCategories();
+         Task<List<SkillSubCategory>> GetSkillSubCategoriesByEmployeeAsync(Guid employeeId, Guid categoryId);
          Task<IEnumerable<SkillSubCategory>> GetSkillSubCategoryByCategoryAsync(Guid categoryId);
+         Task<List<Skill>> GetSkillsByEmployeeAsync(Guid employeeId, Guid categoryId, Guid subCategoryId);
          Task<SkillCategory> AddCategoryAsync(SkillCategory category);
          Task<SkillSubCategory> AddSubCategoryAsync(SkillSubCategory category);
          Task<bool> SlugExistsAsync(Guid skillId, string slug);

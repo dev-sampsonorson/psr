@@ -2,8 +2,8 @@
     "version": 2,
     "projects": {
         "auth": "libs/auth",
-        "config": "libs/config",
         "core": "libs/core",
+        "desktop-config": "libs/desktop/config",
         "home-feature-shell": "libs/home/feature-shell",
         "psr-desktop": "apps/psr-desktop",
         "psr-desktop-e2e": "apps/psr-desktop-e2e",
@@ -15,6 +15,7 @@
         "skill-data-access": "libs/skill/data-access",
         "skill-feature-myskill": "libs/skill/feature-myskill",
         "skill-feature-skill-mgt": "libs/skill/feature-skill-mgt",
-        "skill-shared": "libs/skill/shared"
+        "skill-ui": "libs/skill/ui",
+        "skill-util": "libs/skill/util"
     }
 }

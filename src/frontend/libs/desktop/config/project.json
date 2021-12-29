@@ -1,0 +1,42 @@
+{
+    "projectType": "library",
+    "root": "libs/desktop/config",
+    "sourceRoot": "libs/desktop/config/src",
+    "prefix": "psr-config",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/libs/desktop/config"],
+            "options": {
+                "project": "libs/desktop/config/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/desktop/config/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/desktop/config/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/desktop/config"],
+            "options": {
+                "jestConfig": "libs/desktop/config/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/desktop/config/src/**/*.ts",
+                    "libs/desktop/config/src/**/*.html"
+                ]
+            }
+        }
+    },
+    "tags": ["scope:desktop", "type:util", "platform:web"]
+}

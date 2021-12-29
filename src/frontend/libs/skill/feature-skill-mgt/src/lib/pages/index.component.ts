@@ -1,22 +1,15 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BREADCRUMB_CONFIG_TOKEN, BreadcrumbService, IBreadcrumb, SecondaryHeaderService } from '@psr/shared/ui';
+import { PageTitleService } from '@psr/shared/util';
 import { ISkillCategory } from '@psr/skill/data-access';
+import { SkillReadService } from '@psr/skill/util';
 import { Observable, Subscription } from 'rxjs';
-
-import { PageTitleService } from '../services/page-title.service';
 
 @Component({
     selector: 'psr-skl-index',
     template: `
-    <!-- <psr-ui-page-heading-layout>
-        <h1 class="text-3xl font-bold text-gray-900">
-          {{ pageTitle$ | async}}
-        </h1>
-    </psr-ui-page-heading-layout> -->
     <psr-ui-two-column-layout [isSecondaryContentVisible]="isSecondaryContentVisible" (hamburgerMenuClick)="hamburgerMenuClickHandler()">
-    <!-- border-2 border-gray-200 border-dashed rounded-lg -->
-    <!-- flex justify-between items-center -->
         <psr-ui-page-heading x-size="large" x-color="black" [title]="pageTitle$ | async" [description]="pageSubTitle$ | async"></psr-ui-page-heading>
         <div header-content class="">
             <h1 class="text-3xl font-bold text-gray-900">
@@ -25,7 +18,6 @@ import { PageTitleService } from '../services/page-title.service';
             <p id="message-heading" class="text-lg font-normal text-gray-900">
               {{ pageSubTitle$ | async}}
             </p>
-            <!-- <psr-skl-filter [categories]="categories"></psr-skl-filter> -->
         </div>
         <nav breadcrumb-content *ngIf="isBreadcrumbVisible" class="flex px-4 py-4 mx-auto border-b-2 border-gray-200 border-dashed max-w-7xl sm:px-6 lg:px-8" aria-label="Breadcrumb">
             <psr-ui-breadcrumb></psr-ui-breadcrumb>
@@ -58,12 +50,13 @@ export class IndexComponent implements OnInit, OnDestroy {
     pageSubTitle$: Observable<string>;
     categories: ISkillCategory[] = [];
 
-    isSecondaryContentVisible: boolean = false;
+    isSecondaryContentVisible = false;
 
     private _routerEventSub!: Subscription;
     private _routeDataSub!: Subscription;
 
     private _breadcrumbs$: Observable<IBreadcrumb[]>;
+    private _onCloseSkillRead$: Observable<void>;
 
     get isBreadcrumbVisible() {
         return this.breadcrumbConfig.length > 0;
@@ -76,10 +69,12 @@ export class IndexComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private secondaryHeaderService: SecondaryHeaderService,
         @Inject(BREADCRUMB_CONFIG_TOKEN) private breadcrumbConfig: IBreadcrumb[],
+        private skillReadService: SkillReadService,
     ) {
         this.pageTitle$ = this.pageTitle.pageTitle$;
         this.pageSubTitle$ = this.pageTitle.pageSubTitle$;
         this._breadcrumbs$ = this.breadcrumbService;
+        this._onCloseSkillRead$ = this.skillReadService.onCloseSkillRead$;
     }
 
     ngOnInit(): void {
@@ -91,6 +86,10 @@ export class IndexComponent implements OnInit, OnDestroy {
             if (isCloseClicked) {
                 this.router.navigate(['/skills', { outlets: { details: null } }]);
             }
+        });
+
+        this._onCloseSkillRead$.subscribe(() => {
+            this.router.navigate(['/skills', { outlets: { details: null } }]);
         });
     }
 

@@ -1,4 +1,8 @@
 import { NgModule } from '@angular/core';
 
-@NgModule()
+import { UtilService } from './services';
+
+@NgModule({
+    providers: [UtilService]
+})
 export class SharedUtilModule { }

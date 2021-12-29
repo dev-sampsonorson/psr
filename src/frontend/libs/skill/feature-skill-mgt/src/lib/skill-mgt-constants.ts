@@ -6,7 +6,7 @@ export interface ISkillMgtRoutes {
     readonly ListSubcategories: (id: string) => any[];
 }
 
-let appRoutes: ISkillMgtRoutes = {
+const appRoutes: ISkillMgtRoutes = {
     ListSkills: (categoryId: string, subcategoryId: string) => [`/skills`, `categories`, `${categoryId}`, `subcategories`, `${subcategoryId}`, `list`],
     // ReadSkill: (id: string) => [`/skills`, { outlets: { details: ['read', id] } }],
     ReadSkill: (id: string) => [`/skills`, { outlets: { details: ['read', id] } }],

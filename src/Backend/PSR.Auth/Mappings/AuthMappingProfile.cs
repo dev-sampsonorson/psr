@@ -15,14 +15,20 @@ namespace PSR.Auth.Mappings
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
             
             CreateMap<ApplicationUser, UserRes>();
-            CreateMap<Employee, UserRes>();
+            CreateMap<Employee, UserRes>()
+                .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
             
             CreateMap<ApplicationUser, UserRegistrationRes>();
-            CreateMap<Employee, UserRegistrationRes>();
+            CreateMap<Employee, UserRegistrationRes>()
+                .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<AuthRes, UserRegistrationRes>();
             
             CreateMap<ApplicationUser, UserAuthRes>();
-            CreateMap<Employee, UserAuthRes>();
+            CreateMap<Employee, UserAuthRes>()
+                .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<AuthRes, UserAuthRes>();
         }
 

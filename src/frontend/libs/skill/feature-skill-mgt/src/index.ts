@@ -2,7 +2,7 @@ export * from './lib/components';
 export * from './lib/config';
 export * from './lib/models';
 export * from './lib/pages';
-export * from './lib/resolvers';
+// export * from './lib/resolvers';
 export * from './lib/services';
 export * from './lib/tokens';
 
