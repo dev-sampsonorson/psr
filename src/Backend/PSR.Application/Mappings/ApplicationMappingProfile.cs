@@ -44,7 +44,9 @@ namespace PSR.Application.Mappings
                 .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Skill.CategoryId))
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Skill.Category.Name))
                 .ForMember(dest => dest.SubCategoryId, opt => opt.MapFrom(src => src.Skill.SubCategoryId))
-                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Skill.SubCategory.Name));
+                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Skill.SubCategory.Name))
+                .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.Employee.Id));
+            CreateMap<SkillRatingRes, UpsertSkillRatingRes>();
 
             CreateMap<SkillCategory, AddSkillCategoryReq>().ReverseMap();
             CreateMap<SkillCategory, AddSkillCategoryRes>();
@@ -72,7 +74,7 @@ namespace PSR.Application.Mappings
                 .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.Status.Name))
                 .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillRatings));
 
-            CreateMap<Employee, AddSkillToEmployeeRes>()
+            CreateMap<Employee, AddEmployeeSkillRatingRes>()
                 .ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
                 .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name))
                 .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => src.Status.Id))
@@ -86,6 +88,8 @@ namespace PSR.Application.Mappings
                 .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.Status.Name))
                 .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillRatings));
 
+            CreateMap<UpsertEmployeeSkillRatingReq, UpdateEmployeeSkillRatingReq>();
+            CreateMap<UpsertEmployeeSkillRatingReq, AddEmployeeSkillRatingReq>();
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)

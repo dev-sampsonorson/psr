@@ -1,6 +1,6 @@
 namespace PSR.Application.Models.Response
 {
-    public class SkillRatingRes
+    public class UpsertSkillRatingRes
     {
         public Guid SkillId { get; set; } = Guid.Empty;
         public string Name { get; set; } = "";
@@ -11,6 +11,6 @@ namespace PSR.Application.Models.Response
         public string SubCategoryName { get; set; } = "";
         public double Rating { get; set; } = 0;
         public Guid EmployeeId { get; set; } = Guid.Empty;
-
+        
     }
 }

@@ -14,8 +14,8 @@ import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
 export class SkillFormComponent implements OnInit, OnDestroy {
 
     public form: FormGroup | undefined;
-    public formIsValid: boolean = false;
-    public isSubcategoryDisabled: boolean = true;
+    public formIsValid = false;
+    public isSubcategoryDisabled = true;
 
     private _categoryValueChangeSub: Subscription | undefined;
     private _formStatusChangeSub: Subscription | undefined;
@@ -26,7 +26,7 @@ export class SkillFormComponent implements OnInit, OnDestroy {
 
     @Input() categories: ISkillCategory[] = [];
     @Input() subcategories?: ISkillSubCategory[] = [];
-    @Input() buttonLabel: string = 'Save';
+    @Input() buttonLabel = 'Save';
 
     // ngOnInit is called before set skill
     @Input() set skill(skill: ISkill | undefined) {

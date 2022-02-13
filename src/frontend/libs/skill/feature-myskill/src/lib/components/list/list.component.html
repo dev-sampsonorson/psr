@@ -15,9 +15,9 @@
 </div>
 <psr-skl-list-display [isAddSkillCardVisible]="isAddSkillCardVisible" [isSkillsVisible]="isSkillsVisible">
     <psr-skl-add-card (addSkillCardClick)="addSkillCardClickHandler()"></psr-skl-add-card>
-    <ng-container *ngFor="let skill of skills">
-        <psr-skl-card #skillCard [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask" [skill]="skill"
-                      [menuItems]="menuItems"></psr-skl-card>
+    <ng-container *ngFor="let skillRating of skillRatings">
+        <!-- <psr-skl-rating-card #skillCard [x-blockui]="skillCard.blockCard" [x-overlay-tpl]="mask"
+                             [skillRating]="skillRating" [menuItems]="menuItems"></psr-skl-rating-card> -->
         <!-- (contextMenuItemEvent)="onCardItemEvent($event)" -->
     </ng-container>
 </psr-skl-list-display>

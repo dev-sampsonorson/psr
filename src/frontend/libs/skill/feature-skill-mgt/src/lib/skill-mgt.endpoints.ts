@@ -6,7 +6,7 @@ export interface ISkillMgtEndpoints {
     readonly DeleteSkill: (config: IAppConfig, id: string) => string;
 }
 
-let endpoints: ISkillMgtEndpoints = {
+const endpoints: ISkillMgtEndpoints = {
     AddSkill: (config: IAppConfig) => config.getUrl(`skills`),
     UpdateSkill: (config: IAppConfig) => config.getUrl(`skills`),
     DeleteSkill: (config: IAppConfig, id: string) => config.getUrl(`skills/${id}`),

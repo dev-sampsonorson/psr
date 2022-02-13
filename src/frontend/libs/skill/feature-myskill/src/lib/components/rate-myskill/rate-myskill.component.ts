@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SkillsService } from '@psr/skill/data-access';
 import { map, switchMap } from 'rxjs';
 
 @Component({
@@ -12,8 +13,12 @@ export class RateMyskillComponent implements OnInit {
     public currentEmployeeId = '';
     public currentSkillId = '';
 
+    public minSkillRating = 0;
+    public maxSkillRating = 5;
+
     constructor(
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private skillService: SkillsService
     ) { }
 
     ngOnInit(): void {
@@ -31,5 +36,11 @@ export class RateMyskillComponent implements OnInit {
             this.currentSkillId = skillId;
         });
     }
+
+    onSaveRating(rating: number) {
+        // this.skillService.rateSkill(this.currentEmployeeId, this.currentSkillId, rating).subscribe();
+    }
+
+
 
 }

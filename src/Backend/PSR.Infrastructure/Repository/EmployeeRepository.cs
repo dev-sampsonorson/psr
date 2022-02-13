@@ -79,5 +79,39 @@ namespace PSR.Infrastructure.Repository
 
             return employee.Skills.Any(x => x.Id == skillId);
         }
+
+        public async Task<SkillRating?> GetSkillRatingAsync(Guid employeeId, Guid skillId) {
+            var employee = await dbSet
+                 .Include(x => x.SkillRatings).ThenInclude(x => x.Skill)
+                 .FirstOrDefaultAsync(x => x.Id == employeeId);
+
+            if (employee is null)
+                throw new EntityNotFoundException("Employee not found");
+            
+            return employee.SkillRatings.SingleOrDefault(x => x.Skill.Id == skillId);
+        }
+
+        public async Task<IEnumerable<SkillRating>> GetSkillRatingsAsync(Guid employeeId) {
+            var employee = await dbSet
+                .Include(x => x.SkillRatings).ThenInclude(x => x.Skill)
+                .FirstOrDefaultAsync(x => x.Id == employeeId);;
+
+            if (employee is null)
+                throw new EntityNotFoundException("Employee not found");
+
+            return employee.SkillRatings;
+        }
+
+        public async Task<IEnumerable<SkillRating>> GetSkillRatingsAsync(Guid categoryId, Guid subcategoryId, Guid employeeId) {
+            var employee = await dbSet
+                .Include(x => x.SkillRatings).ThenInclude(x => x.Skill.Category)
+                .Include(x => x.SkillRatings).ThenInclude(x => x.Skill.SubCategory)
+                .FirstOrDefaultAsync(x => x.Id == employeeId);
+
+            if (employee is null)
+                throw new EntityNotFoundException("Employee not found");
+
+            return employee.SkillRatings.Where(x => x.Skill.CategoryId == categoryId && x.Skill.SubCategoryId == subcategoryId);
+        }
     }
 }

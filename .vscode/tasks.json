@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Backend/PSR.Api/PSR.Api.csproj",
+                "${workspaceFolder}/src/backend/PSR.Api/PSR.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/Backend/PSR.Api/PSR.Api.csproj",
+                "${workspaceFolder}/src/backend/PSR.Api/PSR.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/src/Backend/PSR.Api/PSR.Api.csproj",
+                "${workspaceFolder}/src/backend/PSR.Api/PSR.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { RatingFormComponent } from './rating-form.component';
 
@@ -10,7 +11,8 @@ import { RatingFormComponent } from './rating-form.component';
         RatingFormComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ],
     exports: [RatingFormComponent]
 })

@@ -1,4 +1,5 @@
 using System.Net;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PSR.Api.Helpers;
 using PSR.Application.Common.Models.Request;
@@ -17,12 +18,14 @@ namespace PSR.Api.Controllers.v1
         private readonly ISkillRepository _skillRepository;
         private readonly IEmployeeManagementService _employeeManagementService;
         private readonly ISkillService _skillService;
+        private readonly IMapper _mapper;
 
         public EmployeesController(
             IEmployeeRepository employeeRepository, 
             ISkillRepository skillRepository,
             IEmployeeManagementService employeeManagementService,
             ISkillService skillService, 
+            IMapper mapper,
             ILoggerFactory loggerFactory
         ) : base(loggerFactory)
         {
@@ -31,11 +34,13 @@ namespace PSR.Api.Controllers.v1
             ArgumentNullException.ThrowIfNull(skillRepository, nameof(skillRepository));
             ArgumentNullException.ThrowIfNull(employeeManagementService, nameof(employeeManagementService));
             ArgumentNullException.ThrowIfNull(skillService, nameof(skillService));
+            ArgumentNullException.ThrowIfNull(mapper, nameof(mapper));
 
             _employeeRepository = employeeRepository;
             _skillRepository = skillRepository;
             _employeeManagementService = employeeManagementService;
             _skillService = skillService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -62,7 +67,7 @@ namespace PSR.Api.Controllers.v1
 
         // [HttpPost("{id}/skills/add")]
         [HttpPost("add-skill-rating")]
-        public async Task<IActionResult> AddSkillToEmployee(AddSkillToEmployeeReq request) {
+        public async Task<IActionResult> AddSkillToEmployee(AddEmployeeSkillRatingReq request) {
             
             var response = await _employeeManagementService.AddSkillRatingToEmployee(request);
 
@@ -78,6 +83,22 @@ namespace PSR.Api.Controllers.v1
 
 
             return Ok(response);
+            
+        }
+
+        [HttpPost("upsert-skill-rating")]
+        public async Task<IActionResult> UpsertEmployeeSkillRating(UpsertSkillRatingReq request) {
+            var isRatingAssigned = await _employeeManagementService.IsRatingAssigned(request.EmployeeId, request.SkillId);
+
+            if(isRatingAssigned) {
+                // var updateReq = _mapper.Map<UpsertEmployeeSkillRatingReq, UpdateEmployeeSkillRatingReq>(request);
+                var updateRes = await _employeeManagementService.UpdateSkillRating(request.EmployeeId, request.SkillId, request.Rating);
+                return Ok(_mapper.Map<SkillRatingRes, UpsertSkillRatingRes>(updateRes));
+            }
+            
+            // var addReq = _mapper.Map<UpsertEmployeeSkillRatingReq, AddEmployeeSkillRatingReq>(request);
+            var addRes = await _employeeManagementService.AddSkillRating(request.EmployeeId, request.SkillId, request.Rating);
+            return Ok(_mapper.Map<SkillRatingRes, UpsertSkillRatingRes>(addRes));
             
         }
 
@@ -97,6 +118,12 @@ namespace PSR.Api.Controllers.v1
         [Route("{employeeId}/categories/{categoryId}/subcategories/{subcategoryId}/skills")]
         public async Task<IActionResult> GetSkillsByEmployee(Guid categoryId, Guid subcategoryId, Guid employeeId) {
             return Ok(await _skillService.GetSkillsByEmployeeAsync(employeeId, categoryId, subcategoryId));            
+        }
+
+        [HttpGet]
+        [Route("{employeeId}/categories/{categoryId}/subcategories/{subcategoryId}/skillratings")]
+        public async Task<IActionResult> GetSkillRatingsByEmployee(Guid categoryId, Guid subcategoryId, Guid employeeId) {
+            return Ok(await _employeeManagementService.GetSkillRatingsAsync(categoryId, subcategoryId, employeeId));            
         }
     }
 }

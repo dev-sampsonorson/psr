@@ -19,4 +19,5 @@ export class SkillRatingService {
         private http: HttpClient,
         @Inject(APP_CONFIG_TOKEN) private appConfig: IAppConfig
     ) { }
+
 }

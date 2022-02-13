@@ -4,11 +4,11 @@ using PSR.Application.Repository;
 
 namespace PSR.Application.Validators
 {
-    public class AddSkillToEmployeeReqValidator : AbstractValidator<AddSkillToEmployeeReq>
+    public class UpsertSkillRatingReqValidator : AbstractValidator<UpsertSkillRatingReq>
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public AddSkillToEmployeeReqValidator(IEmployeeRepository employeeRepository){
+        public UpsertSkillRatingReqValidator(IEmployeeRepository employeeRepository){
             ArgumentNullException.ThrowIfNull(employeeRepository, nameof(employeeRepository));
 
             _employeeRepository = employeeRepository;
@@ -22,15 +22,8 @@ namespace PSR.Application.Validators
                 .NotEmpty()
                 .Must(skillId => skillId != Guid.Empty)
                 .Configure(rule => rule.MessageBuilder = _ => "Skill is required");
-            RuleFor(x => x.SkillId)
-                .MustAsync(UniqueToEmployee)
-                .WithMessage("Skill already exists for this employee");
 
             RuleFor(x => x.Rating).InclusiveBetween(0, 5).WithMessage("Rating must be between 0 and 5");
-        }
-
-        public async Task<bool> UniqueToEmployee(AddSkillToEmployeeReq request, Guid skillId, CancellationToken token) {
-            return !(await _employeeRepository.CheckSkillExists(request.EmployeeId, skillId));
         }
         
     }

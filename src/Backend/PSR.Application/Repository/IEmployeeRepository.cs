@@ -9,6 +9,9 @@ namespace PSR.Application.Repository
         void Delete(Employee entity);
         Task<Employee> GetByUserIdAsync(string userId);
         Task<bool> CheckSkillExists(Guid employeeId, Guid skillId);
+        Task<SkillRating?> GetSkillRatingAsync(Guid employeeId, Guid skillId);
+        Task<IEnumerable<SkillRating>> GetSkillRatingsAsync(Guid employeeId);
+        Task<IEnumerable<SkillRating>> GetSkillRatingsAsync(Guid categoryId, Guid subcategoryId, Guid employeeId);
          
     }
 }

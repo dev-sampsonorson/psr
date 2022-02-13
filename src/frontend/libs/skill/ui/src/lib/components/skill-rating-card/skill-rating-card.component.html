@@ -1,0 +1,36 @@
+<ng-container *ngIf="skillRating">
+    <!-- (click)="skillCardClickHandler(skill)" -->
+    <div tabindex="0"
+         class="relative flex flex-col justify-between h-full p-4 space-y-4 text-left border border-gray-200 rounded-lg hover:border-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-indigo-500">
+        <h3 class="text-lg font-medium text-gray-700">{{ skillRating.name}}</h3>
+        <div class="skill-stats">
+            <div class="skill-stats__info">
+                <span
+                      class="mr-4 text-xs font-thin text-gray-500 transition-colors duration-200 hover:text-gray-900">Employees</span>
+                <span class="text-xl font-normal text-gray-700">dfasfdsf</span>
+            </div>
+            <div class="skill-stats__info">
+                <span
+                      class="mr-4 text-xs font-thin text-gray-500 transition-colors duration-200 hover:text-gray-900">Team
+                    Competency</span>
+                <span class="text-xl font-normal text-gray-700">dfaf</span>
+            </div>
+        </div>
+        <div class="flex items-center h-5">
+            <span title="{{getCategoryInfo(skillRating)}}"
+                  class="flex-1 pr-2 text-sm font-thin text-gray-500 truncate">{{getCategoryInfo(skillRating)}}</span>
+            <div class="relative">
+                <psr-ui-button-icon (buttonClick)="onToggleContextMenu()">
+                    <psr-ui-icon-dot-vertical>
+                    </psr-ui-icon-dot-vertical>
+                </psr-ui-button-icon>
+                <button *ngIf="isContextMenuVisible" (click)="onToggleContextMenu()" class="close-overlay"
+                        tabindex="-1"></button>
+                <psr-ui-context-menu [handle]="contextMenuHandle" *ngIf="isContextMenuVisible"
+                                     (menuItemClick)="onMenuItemClick($event)" [menuItems]="menuItems"
+                                     class="absolute right-0 w-40"></psr-ui-context-menu>
+            </div>
+        </div>
+    </div>
+    <!-- <ng-container #blockUiOverlay></ng-container> -->
+</ng-container>

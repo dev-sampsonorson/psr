@@ -2,7 +2,7 @@ import { Component, Inject, NgZone, OnDestroy, OnInit, Type } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, MenuItem } from '@psr/shared/ui';
 import { PageTitleService } from '@psr/shared/util';
-import { ISkill } from '@psr/skill/data-access';
+import { ISkill, ISkillRating } from '@psr/skill/data-access';
 import { AddSkillCardComponent, SkillCardComponent } from '@psr/skill/ui';
 import { ISkillCard, SKILL_CARD_CONTEXT_MENU_CONFIG_TOKEN, SkillCardContextMenuitemService } from '@psr/skill/util';
 import { Observable, Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ export class ListComponent implements OnInit, OnDestroy {
     private _selectedCategoryId = '';
     private _selectedSubcategoryId = '';
 
-    public skills: ISkill[] = [];
+    public skillRatings: ISkillRating[] = [];
     public isAddSkillCardVisible = true;
     public emptyStateTitle: string;
     public emptyStateDescription: string;
@@ -39,7 +39,7 @@ export class ListComponent implements OnInit, OnDestroy {
     private _eventStartSub: Subscription | undefined;
 
     get isSkillsVisible() {
-        return this.skills.length > 0;
+        return this.skillRatings.length > 0;
     }
 
     get isCategoryDetailsVisible() {
@@ -76,8 +76,8 @@ export class ListComponent implements OnInit, OnDestroy {
             this._selectedSubcategoryId = subcategoryId;
         });
 
-        this.route.data.subscribe(({ skills, selectedCategory, selectedSubcategory }) => {
-            this.skills = skills; //.slice(0, 1);
+        this.route.data.subscribe(({ skillRatings, selectedCategory, selectedSubcategory }) => {
+            this.skillRatings = skillRatings; //.slice(0, 1);
             this.selectedCategoryName = selectedCategory?.name;
             this.selectedSubcategoryName = selectedSubcategory?.name;
         });
@@ -111,7 +111,7 @@ export class ListComponent implements OnInit, OnDestroy {
             if (confirm('Are you sure you want to delete this skill?')) {
                 // console.log('delete skill');
                 setTimeout(() => {
-                    this.skills.splice(this.skills.findIndex(x => x.id === e.skillId), 1);
+                    this.skillRatings.splice(this.skillRatings.findIndex(x => x.skillId === e.skillId), 1);
                     // let temp = this.skills;
                     // this.skills = [];
                     // this.skills = [...this.skills];

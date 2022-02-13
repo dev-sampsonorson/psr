@@ -1,0 +1,23 @@
+:host {
+    display: block;
+    position: relative;
+    width: 100%; //   max-width: 250px;
+    min-height: 190px;
+    cursor: pointer;
+
+    --eui-blockui-overlay-border-radius: 0.5rem;
+    --eui-blockui-cursor: wait;
+    --eui-blockui-background-color: rgba(255, 255, 255, 0.7);
+  }
+
+
+  .skill-stats {
+      display: flex;
+      flex-wrap: wrap;
+
+      &__info {
+          display: flex;
+          flex-direction: column;
+          flex: none;
+      }
+  }

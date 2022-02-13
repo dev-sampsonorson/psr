@@ -2,7 +2,7 @@ using PSR.Domain;
 
 namespace PSR.Application.Models.Response
 {
-    public class AddSkillToEmployeeRes
+    public class AddEmployeeSkillRatingRes
     {
         public Guid Id { get; set; } = Guid.Empty;
         public string UserId { get; set; } = "";

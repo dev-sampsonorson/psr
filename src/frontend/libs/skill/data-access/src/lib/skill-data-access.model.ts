@@ -12,6 +12,18 @@ export interface ISkill {
     deleting?: boolean;
 }
 
+export interface ISkillRating {
+    skillId: string;
+    name: string;
+    slug: string;
+    categoryId: string;
+    categoryName: string;
+    subcategoryId: string;
+    subcategoryName: string;
+    rating: number;
+    employeeId: string;
+}
+
 export interface ISkillCategory {
     id: string;
     name: string;

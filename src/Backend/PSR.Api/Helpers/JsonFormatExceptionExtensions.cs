@@ -18,7 +18,7 @@ namespace PSR.Api.Helpers
             string traceId = Guid.NewGuid().ToString();
             var validation = new ValidationProblemDetails(errorResponse){
                 Status = (int)HttpStatusCode.BadRequest,
-                Type = "http://localhost:4455/validation",
+                Type = "validation",
                 Title = "Validation failed",
                 Detail = "Request payload contains invalid data.",
                 Instance = traceId
